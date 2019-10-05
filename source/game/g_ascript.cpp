@@ -1954,6 +1954,25 @@ static void objectGameClient_SetQuickMenuItems( asstring_t *str, gclient_t *self
 	trap_GameCmd( PLAYERENT( playerNum ), va( "qm %s", str->buffer ) );
 }
 
+static void objectGameClient_DropClient( asstring_t *str, gclient_t *self )
+{
+    int playerNum;
+
+    if( self->asFactored )
+        return;
+
+    if( !str || !str->buffer )
+        return;
+
+    playerNum = (int)( self - game.clients );
+    assert( playerNum >= 0 && playerNum < gs.maxclients );
+
+    if( playerNum < 0 || playerNum >= gs.maxclients )
+        return;
+
+    trap_DropClient( &game.edicts[playerNum + 1], DROP_TYPE_NORECONNECT, str->buffer );
+}
+
 static const asFuncdef_t gameclient_Funcdefs[] =
 {
 	ASLIB_FUNCDEF_NULL
@@ -2007,6 +2026,7 @@ static const asMethod_t gameclient_Methods[] =
 	{ ASLIB_FUNCTION_DECL(void, setRaceTime, ( int sector, uint time )), asFUNCTION(objectGameClient_SetRaceTime), asCALL_CDECL_OBJLAST },
 	{ ASLIB_FUNCTION_DECL(void, setHelpMessage, ( uint msg )), asFUNCTION(objectGameClient_SetHelpMessage), asCALL_CDECL_OBJLAST },
 	{ ASLIB_FUNCTION_DECL(void, setQuickMenuItems, ( const String &in )), asFUNCTION(objectGameClient_SetQuickMenuItems), asCALL_CDECL_OBJLAST },
+    { ASLIB_FUNCTION_DECL(void, dropClient, ( const String &in )), asFUNCTION(objectGameClient_DropClient), asCALL_CDECL_OBJLAST },
 
 	ASLIB_METHOD_NULL
 };
@@ -2019,9 +2039,9 @@ static const asProperty_t gameclient_Properties[] =
 	{ ASLIB_PROPERTY_DECL(const bool, tv), ASLIB_FOFFSET(gclient_t, isTV) },
 	{ ASLIB_PROPERTY_DECL(int, team), ASLIB_FOFFSET(gclient_t, team) },
 	{ ASLIB_PROPERTY_DECL(const int, hand), ASLIB_FOFFSET(gclient_t, hand) },
-	{ ASLIB_PROPERTY_DECL(const bool, isOperator), ASLIB_FOFFSET(gclient_t, isoperator) },
+	{ ASLIB_PROPERTY_DECL(bool, isOperator), ASLIB_FOFFSET(gclient_t, isoperator) },
 	{ ASLIB_PROPERTY_DECL(const uint, queueTimeStamp), ASLIB_FOFFSET(gclient_t, queueTimeStamp) },
-	{ ASLIB_PROPERTY_DECL(const int, muted), ASLIB_FOFFSET(gclient_t, muted) },
+	{ ASLIB_PROPERTY_DECL(int, muted), ASLIB_FOFFSET(gclient_t, muted) },
 	{ ASLIB_PROPERTY_DECL(float, armor), ASLIB_FOFFSET(gclient_t, resp.armor) },
 	{ ASLIB_PROPERTY_DECL(const bool, chaseActive), ASLIB_FOFFSET(gclient_t, resp.chase.active) },
 	{ ASLIB_PROPERTY_DECL(int, chaseTarget), ASLIB_FOFFSET(gclient_t, resp.chase.target) },

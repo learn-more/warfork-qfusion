@@ -1031,10 +1031,10 @@ void G_InitMover( edict_t *ent )
 */
 void G_CallThink( edict_t *ent )
 {
-	if( ent->think )
+    if( ent->scriptSpawned && ent->asThinkFunc )
+        G_asCallMapEntityThink( ent );
+	else if( ent->think )
 		ent->think( ent );
-	else if( ent->scriptSpawned && ent->asThinkFunc )
-		G_asCallMapEntityThink( ent );
 	else if( developer->integer )
 		G_Printf( "NULL ent->think in %s\n", ent->classname ? ent->classname : va( "'no classname. Entity type is %i", ent->s.type ) );
 }
@@ -1049,13 +1049,13 @@ void G_CallTouch( edict_t *self, edict_t *other, cplane_t *plane, int surfFlags 
 	if( self == other )
 		return;
 
-	if( self->touch ) {
+    if( self->scriptSpawned && self->asTouchFunc ) {
+        touched = true;
+        G_asCallMapEntityTouch( self, other, plane, surfFlags );
+    }
+    else if( self->touch ) {
 		touched = true;
 		self->touch( self, other, plane, surfFlags );
-	}
-	else if( self->scriptSpawned && self->asTouchFunc ) {
-		touched = true;
-		G_asCallMapEntityTouch( self, other, plane, surfFlags );
 	}
 
 	if( touched && other->ai )
@@ -1067,10 +1067,10 @@ void G_CallTouch( edict_t *self, edict_t *other, cplane_t *plane, int surfFlags 
 */
 void G_CallUse( edict_t *self, edict_t *other, edict_t *activator )
 {
-	if( self->use )
+    if( self->scriptSpawned && self->asUseFunc )
+        G_asCallMapEntityUse( self, other, activator );
+    else if( self->use )
 		self->use( self, other, activator );
-	else if( self->scriptSpawned && self->asUseFunc )
-		G_asCallMapEntityUse( self, other, activator );
 }
 
 /*
@@ -1078,10 +1078,10 @@ void G_CallUse( edict_t *self, edict_t *other, edict_t *activator )
 */
 void G_CallStop( edict_t *self )
 {
-	if( self->stop )
-		self->stop( self );
-	else if( self->scriptSpawned && self->asStopFunc )
+	if( self->scriptSpawned && self->asStopFunc )
 		G_asCallMapEntityStop( self );
+    else if( self->stop )
+        self->stop( self );
 }
 
 /*
@@ -1089,10 +1089,10 @@ void G_CallStop( edict_t *self )
 */
 void G_CallPain( edict_t *ent, edict_t *attacker, float kick, float damage )
 {
-	if( ent->pain )
+    if( ent->scriptSpawned && ent->asPainFunc )
+        G_asCallMapEntityPain( ent, attacker, kick, damage );
+	else if( ent->pain )
 		ent->pain( ent, attacker, kick, damage );
-	else if( ent->scriptSpawned && ent->asPainFunc )
-		G_asCallMapEntityPain( ent, attacker, kick, damage );
 }
 
 /*
@@ -1100,10 +1100,10 @@ void G_CallPain( edict_t *ent, edict_t *attacker, float kick, float damage )
 */
 void G_CallDie( edict_t *ent, edict_t *inflictor, edict_t *attacker, int damage, const vec3_t point )
 {
-	if( ent->die )
+    if( ent->scriptSpawned && ent->asDieFunc )
+        G_asCallMapEntityDie( ent, inflictor, attacker, damage, point );
+	else if( ent->die )
 		ent->die( ent, inflictor, attacker, damage, point );
-	else if( ent->scriptSpawned && ent->asDieFunc )
-		G_asCallMapEntityDie( ent, inflictor, attacker, damage, point );
 }
 
 

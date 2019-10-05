@@ -2431,6 +2431,26 @@ static void objectGameEntity_explosionEffect( int radius, edict_t *self )
 	G_SpawnEvent( eventType, eventRadius, center );
 }
 
+static bool objectGameEntity_GetAllowFunctionOverride( edict_t *self )
+{
+    return self->scriptSpawned;
+}
+
+static void objectGameEntity_SetAllowFunctionOverride( bool allow, edict_t *self )
+{
+    if( allow )
+    {
+        self->scriptSpawned = true;
+        self->asScriptModule = static_cast<void *>(GAME_AS_ENGINE()->GetModule(GAMETYPE_SCRIPTS_MODULE_NAME));
+    }
+    else
+    {
+        self->scriptSpawned = false;
+        self->asScriptModule = NULL;
+    }
+    G_asClearEntityBehaviors( self );
+}
+
 static const asFuncdef_t gedict_Funcdefs[] =
 {
 	{ ASLIB_FUNCTION_DECL(void, entThink, (Entity @ent)) },
@@ -2497,6 +2517,8 @@ static const asMethod_t gedict_Methods[] =
 	{ ASLIB_FUNCTION_DECL(void, sustainDamage, ( Entity @inflicter, Entity @attacker, const Vec3 &in dir, float damage, float knockback, float stun, int mod )), asFUNCTION(objectGameEntity_sustainDamage), asCALL_CDECL_OBJLAST },
 	{ ASLIB_FUNCTION_DECL(void, splashDamage, ( Entity @attacker, int radius, float damage, float knockback, float stun, int mod )), asFUNCTION(objectGameEntity_splashDamage), asCALL_CDECL_OBJLAST },
 	{ ASLIB_FUNCTION_DECL(void, explosionEffect, ( int radius )), asFUNCTION(objectGameEntity_explosionEffect), asCALL_CDECL_OBJLAST },
+    { ASLIB_FUNCTION_DECL(bool, get_allowFunctionOverride, () const), asFUNCTION(objectGameEntity_GetAllowFunctionOverride), asCALL_CDECL_OBJLAST },
+    { ASLIB_FUNCTION_DECL(void, set_allowFunctionOverride, (const bool &in)), asFUNCTION(objectGameEntity_SetAllowFunctionOverride), asCALL_CDECL_OBJLAST },
 
 	ASLIB_METHOD_NULL
 };

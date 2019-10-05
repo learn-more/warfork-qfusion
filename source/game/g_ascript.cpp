@@ -600,6 +600,19 @@ static const asEnumVal_t asMiscelaneaEnumVals[] =
 	ASLIB_ENUM_VAL_NULL
 };
 
+static const asEnumVal_t asButtonEnumVals[] =
+{
+    ASLIB_ENUM_VAL( BUTTON_ATTACK ),
+    ASLIB_ENUM_VAL( BUTTON_WALK ),
+    ASLIB_ENUM_VAL( BUTTON_SPECIAL ),
+    ASLIB_ENUM_VAL( BUTTON_USE ),
+    ASLIB_ENUM_VAL( BUTTON_ZOOM ),
+    ASLIB_ENUM_VAL( BUTTON_BUSYICON ),
+    ASLIB_ENUM_VAL( BUTTON_ANY ),
+
+    ASLIB_ENUM_VAL_NULL
+};
+
 //=======================================================================
 
 static const asEnum_t asEnums[] =
@@ -634,6 +647,7 @@ static const asEnum_t asEnums[] =
 	{ "takedamage_e", asDamageEnumVals },
 	{ "keyicon_e", asKeyiconEnumVals },
 	{ "miscelanea_e", asMiscelaneaEnumVals },
+    { "buttons_e", asButtonEnumVals },
 
 	ASLIB_ENUM_VAL_NULL
 };
@@ -2054,6 +2068,7 @@ static const asProperty_t gameclient_Properties[] =
 	{ ASLIB_PROPERTY_DECL(bool, takeStun), ASLIB_FOFFSET(gclient_t, resp.takeStun) },
 	{ ASLIB_PROPERTY_DECL(uint, lastActivity), ASLIB_FOFFSET(gclient_t, level.last_activity) },
 	{ ASLIB_PROPERTY_DECL(const uint, uCmdTimeStamp), ASLIB_FOFFSET(gclient_t, ucmd.serverTimeStamp) },
+    { ASLIB_PROPERTY_DECL(const uint8, buttons), ASLIB_FOFFSET(gclient_t, ucmd.buttons) },
 
 	ASLIB_PROPERTY_NULL
 };

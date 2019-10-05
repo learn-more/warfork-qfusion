@@ -3036,6 +3036,14 @@ static int asFunc_SoundIndex( asstring_t *str )
 	return asFunc_SoundIndexExt( str, false );
 }
 
+static void asFunc_PureFile( asstring_t *str )
+{
+    if( !str || !str->buffer )
+        return;
+
+    G_PureModel( str->buffer );
+}
+
 static void asFunc_RegisterCommand( asstring_t *str )
 {
 	if( !str || !str->buffer || !str->len )
@@ -3364,7 +3372,8 @@ static const asglobfuncs_t asGlobFuncs[] =
 	{ "int G_ModelIndex( const String &in )", asFUNCTION(asFunc_ModelIndex), NULL },
 	{ "int G_SoundIndex( const String &in )", asFUNCTION(asFunc_SoundIndex), NULL },
 	{ "int G_ModelIndex( const String &in, bool pure )", asFUNCTION(asFunc_ModelIndexExt), NULL },
-	{ "int G_SoundIndex( const String &in, bool pure )", asFUNCTION(asFunc_SoundIndexExt), NULL },
+    { "int G_SoundIndex( const String &in, bool pure )", asFUNCTION(asFunc_SoundIndexExt), NULL },
+    { "void G_PureFile( const String &in )", asFUNCTION(asFunc_PureFile), NULL },
 	{ "void G_RegisterCommand( const String &in )", asFUNCTION(asFunc_RegisterCommand), NULL },
 	{ "void G_RegisterCallvote( const String &in, const String &in, const String &in, const String &in )", asFUNCTION(asFunc_RegisterCallvote), NULL },
 	{ "void G_ConfigString( int index, const String &in )", asFUNCTION(asFunc_ConfigString), NULL },

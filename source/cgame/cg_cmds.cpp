@@ -880,6 +880,17 @@ static void CG_SC_AddAward( void )
 	CG_AddAward( trap_Cmd_Argv( 1 ) );
 }
 
+/*
+* CG_SC_ExecuteText
+*/
+static void CG_SC_ExecuteText( void )
+{
+    if( cgs.demoPlaying || cgs.tv )
+        return;
+
+    trap_Cmd_ExecuteText( EXEC_APPEND, trap_Cmd_Args() );
+}
+
 typedef struct
 {
 	const char *name;
@@ -909,6 +920,7 @@ static const svcmd_t cg_svcmds[] =
 	{ "motd", CG_SC_MOTD },
 	{ "aw", CG_SC_AddAward },
 	{ "qm", CG_SC_MenuQuick },
+	{ "cmd", CG_SC_ExecuteText },
 
 	{ NULL }
 };

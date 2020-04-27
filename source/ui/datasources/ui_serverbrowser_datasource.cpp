@@ -301,6 +301,11 @@ void ServerInfo::fixString( std::string &s )
 		s.erase( pos, 1 );
 		pos = s.find( '\n', pos );
 	}
+	pos = s.find( ' ' );
+	while( pos != std::string::npos ) {
+		s.replace( pos, 1, "&nbsp;" );
+		pos = s.find(' ' );
+	}
 }
 
 // html encode all string fields, fix color tags and

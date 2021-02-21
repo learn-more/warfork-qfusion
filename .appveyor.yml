@@ -1,0 +1,63 @@
+version: 1.0.{build}
+skip_branch_with_pr: false
+image: Visual Studio 2017
+configuration: Release
+environment:
+  matrix:
+  - BUILD_PLATFORM: x86
+    VS_GENERATOR: Visual Studio 15 2017
+  - USE_SDL2: 1
+    BUILD_PLATFORM: x86
+    VS_GENERATOR: Visual Studio 15 2017
+  - BUILD_PLATFORM: x64
+    VS_GENERATOR: Visual Studio 15 2017 Win64
+  - USE_SDL2: 1
+    BUILD_PLATFORM: x64
+    VS_GENERATOR: Visual Studio 15 2017 Win64
+install:
+- cmd: >-
+
+    IF not exist "build_%BUILD_PLATFORM%" mkdir "build_%BUILD_PLATFORM%"
+
+    cd "build_%BUILD_PLATFORM%"
+
+    cmake -G "%VS_GENERATOR%" -T "%VS_TOOLSET%" ..\source\ -DUSE_SDL2=%USE_SDL2%
+
+    cd ..
+build_script:
+- cmd: >-
+    msbuild build_%BUILD_PLATFORM%\qfusion.sln /p:configuration=Release /maxcpucount:2
+
+    IF "%USE_SDL2%"=="1" cp libsrcs/lib/win32/%BUILD_PLATFORM%/release/SDL2.dll source\build\Release
+
+    cd source\build\Release
+
+    >>commit.txt echo %APPVEYOR_REPO_COMMIT%
+
+    IF "%USE_SDL2%"=="1" 7z a ..\..\..\win_%BUILD_PLATFORM%-SDL-Release.zip * -r -x!*.exp -x!*.lib
+
+    IF "%USE_SDL2%"=="" 7z a ..\..\..\win_%BUILD_PLATFORM%-Release.zip * -r -x!*.exp -x!*.lib
+
+    cd ..\..\..\
+artifacts:
+- path: win_x86-Release.zip
+- path: win_x64-Release.zip
+- path: win_x86-SDL-Release.zip
+- path: win_x64-SDL-Release.zip
+deploy:
+- provider: Environment
+  name: Automatic Github releases for qfusion
+  on:
+    branch: /(master|ci|warsow_2.1)/
+    APPVEYOR_REPO_TAG: true
+on_success:
+ - ps: Invoke-RestMethod https://raw.githubusercontent.com/Warfork/appveyor-discord-webhook/master/send.ps1 -o send.ps1
+ - ps: ./send.ps1 success $env:WEBHOOK_URL
+on_failure:
+ - ps: Invoke-RestMethod https://raw.githubusercontent.com/Warfork/appveyor-discord-webhook/master/send.ps1 -o send.ps1
+ - ps: ./send.ps1 failure $env:WEBHOOK_URL  
+notifications:
+- provider: GitHubPullRequest
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: false

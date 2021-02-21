@@ -1,4 +1,0 @@
-[submodule "warfork-assets"]
-	path = basewf
-	url = https://github.com/TeamForbiddenLLC/warfork-assets
-	branch = master

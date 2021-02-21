@@ -583,7 +583,7 @@ static void CG_BulletImpact( trace_t *tr )
 		CG_ParticleEffect( tr->endpos, tr->plane.normal, 0.30f, 0.30f, 0.25f, 20 );
 
 	// impact sound
-	trap_S_StartFixedSound( CG_MediaSfx( cgs.media.sfxRic[rand()%2] ), tr->endpos, CHAN_AUTO, cg_volume_effects->value, ATTN_STATIC );
+	trap_S_StartFixedSound( CG_MediaSfx( cgs.media.sfxRic[rand()%3] ), tr->endpos, CHAN_AUTO, cg_volume_effects->value, ATTN_STATIC );
 }
 
 /*
@@ -664,7 +664,7 @@ static void CG_Event_FireMachinegun( vec3_t origin, vec3_t dir, int weapon, int 
 			else
 			{
 				CG_ImpactPuffParticles( trace.endpos, trace.plane.normal, 1, 0.7, 1, 0.7, 0.0, 1.0, NULL );
-				trap_S_StartFixedSound( CG_MediaSfx( cgs.media.sfxRic[ rand()%2 ] ), trace.endpos, CHAN_AUTO, cg_volume_effects->value, ATTN_STATIC );
+				trap_S_StartFixedSound( CG_MediaSfx( cgs.media.sfxRic[ rand()%3 ] ), trace.endpos, CHAN_AUTO, cg_volume_effects->value, ATTN_STATIC );
 			}
 		}
 	}
@@ -884,7 +884,8 @@ static void CG_StartVoiceTokenEffect( int entNum, int type, int vsay )
 		return;
 
 	// played as it was made by the 1st person player
-	trap_S_StartGlobalSound( CG_MediaSfx( sound ), CHAN_AUTO, cg_volume_voicechats->value );
+   trap_S_StartGlobalSound( CG_MediaSfx( sound ), CHAN_AUTO, cg_volume_voicechats->value );
+
 }
 
 //==================================================================
@@ -900,7 +901,8 @@ void CG_Event_Fall( entity_state_t *state, int parm )
 	{
 		if( cg.frame.playerState.pmove.pm_type != PM_NORMAL )
 		{
-			CG_SexedSound( state->number, CHAN_AUTO, "*fall_0", cg_volume_players->value, state->attenuation );
+		    CG_SexedSound( state->number, CHAN_AUTO, va( S_PLAYER_FALL0_1_to_2, ( rand()&1 )+1 ), 
+			cg_volume_players->value, state->attenuation );
 			return;
 		}
 
@@ -932,7 +934,8 @@ void CG_Event_Fall( entity_state_t *state, int parm )
 		CG_SexedSound( state->number, CHAN_PAIN, "*fall_1", cg_volume_players->value, state->attenuation );
 	}
 	else
-		CG_SexedSound( state->number, CHAN_PAIN, "*fall_0", cg_volume_players->value, state->attenuation );
+		    CG_SexedSound( state->number, CHAN_PAIN, va( S_PLAYER_FALL0_1_to_2, ( rand()&1 )+1 ), 
+			cg_volume_players->value, state->attenuation );
 
 	// smoke effect
 	if( parm > 0 && ( cg_cartoonEffects->integer & 2 ) )
@@ -1003,7 +1006,6 @@ void CG_Event_Pain( entity_state_t *state, int parm )
 void CG_Event_Die( entity_state_t *state, int parm )
 {
 	CG_SexedSound( state->number, CHAN_PAIN, S_PLAYER_DEATH, cg_volume_players->value, state->attenuation );
-	
 	switch( parm )
 	{
 	case 0:
@@ -1030,23 +1032,63 @@ void CG_Event_Dash( entity_state_t *state, int parm )
 		break;
 	case 0: // dash front
 		CG_PModel_AddAnimation( state->number, LEGS_DASH, 0, 0, EVENT_CHANNEL );
-		CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
-			cg_volume_players->value, state->attenuation );
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, state->attenuation );
+                }
+
 		break;
 	case 1: // dash left
 		CG_PModel_AddAnimation( state->number, LEGS_DASH_LEFT, 0, 0, EVENT_CHANNEL );
-		CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
-			cg_volume_players->value, state->attenuation );
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, state->attenuation );
+                }
+
 		break;
 	case 2: // dash right
 		CG_PModel_AddAnimation( state->number, LEGS_DASH_RIGHT, 0, 0, EVENT_CHANNEL );
-		CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
-			cg_volume_players->value, state->attenuation );
+
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, state->attenuation );
+                }
+
+
 		break;
 	case 3: // dash back
 		CG_PModel_AddAnimation( state->number, LEGS_DASH_BACK, 0, 0, EVENT_CHANNEL );
-		CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
-			cg_volume_players->value, state->attenuation );
+
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_DASH_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, state->attenuation );
+                }
+
+
 		break;
 	}
 
@@ -1086,8 +1128,23 @@ void CG_Event_WallJump( entity_state_t *state, int parm, int ev )
 	}
 	else
 	{
-		CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_WALLJUMP_1_to_2, ( rand()&1 )+1 ), 
-			cg_volume_players->value, state->attenuation );
+
+
+
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_WALLJUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_WALLJUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, state->attenuation );
+                }
+
+
+
+
 	
 		// smoke effect
 		if( cg_cartoonEffects->integer & 1 )
@@ -1105,8 +1162,16 @@ void CG_Event_WallJump( entity_state_t *state, int parm, int ev )
 */
 void CG_Event_DoubleJump( entity_state_t *state, int parm )
 {
-	CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
-		cg_volume_players->value, state->attenuation );
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, state->attenuation );
+                }
 }
 
 /*
@@ -1123,8 +1188,17 @@ void CG_Event_Jump( entity_state_t *state, int parm )
 	if( xyspeedcheck < 100 )
 	{                      // the player is jumping on the same place, not running
 		CG_PModel_AddAnimation( state->number, LEGS_JUMP_NEUTRAL, 0, 0, EVENT_CHANNEL );
-		CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
-			cg_volume_players->value, state->attenuation );
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, state->attenuation );
+                }
+
 	}
 	else
 	{
@@ -1144,22 +1218,50 @@ void CG_Event_Jump( entity_state_t *state, int parm )
 			cent->jumpedLeft = !cent->jumpedLeft;
 			if( !cent->jumpedLeft )
 			{
+
 				CG_PModel_AddAnimation( state->number, LEGS_JUMP_LEG2, 0, 0, EVENT_CHANNEL );
+               
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
 				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
 					cg_volume_players->value, state->attenuation );
+                }
+
 			}
 			else
 			{
 				CG_PModel_AddAnimation( state->number, LEGS_JUMP_LEG1, 0, 0, EVENT_CHANNEL );
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
 				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
 					cg_volume_players->value, state->attenuation );
+                }
+
 			}
 		}
 		else
 		{
 			CG_PModel_AddAnimation( state->number, LEGS_JUMP_NEUTRAL, 0, 0, EVENT_CHANNEL );
-			CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
-				cg_volume_players->value, state->attenuation );
+
+                if( ISVIEWERENTITY( state->number ) ){
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, state->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( state->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, state->attenuation );
+                }
+
 		}
 	}
 #undef MOVEDIREPSILON
@@ -1329,8 +1431,17 @@ void CG_EntityEvent( entity_state_t *ent, int ev, int parm, bool predicted )
 		break;
 
 	case EV_JUMP_PAD:
-		CG_SexedSound( ent->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
-			cg_volume_players->value, ent->attenuation );
+
+                if( ISVIEWERENTITY( ent->number ) ){
+				CG_SexedSound( ent->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_efforts->value, ent->attenuation );
+                }
+                else
+                {
+				CG_SexedSound( ent->number, CHAN_BODY, va( S_PLAYER_JUMP_1_to_2, ( rand()&1 )+1 ), 
+					cg_volume_players->value, ent->attenuation );
+                }
+
 		CG_PModel_AddAnimation( ent->number, LEGS_JUMP_NEUTRAL, 0, 0, EVENT_CHANNEL );
 		break;
 
@@ -1400,7 +1511,7 @@ void CG_EntityEvent( entity_state_t *ent, int ev, int parm, bool predicted )
 		ByteToDir( parm, dir );
 		CG_BulletExplosion( ent->origin, dir, NULL );
 		CG_ParticleEffect( ent->origin, dir, 1.0f, 0.67f, 0.0f, 6 );
-		trap_S_StartFixedSound( CG_MediaSfx( cgs.media.sfxRic[rand()%2] ), ent->origin, CHAN_AUTO,
+		trap_S_StartFixedSound( CG_MediaSfx( cgs.media.sfxRic[rand()%3] ), ent->origin, CHAN_AUTO,
 			cg_volume_effects->value, ATTN_STATIC );
 		break;
 
@@ -1633,9 +1744,11 @@ static void CG_FireEntityEvents( bool early )
 * CG_FirePlayerStateEvents
 * This events are only received by this client, and only affect it.
 */
+
 static void CG_FirePlayerStateEvents( void )
 {
 	unsigned int event, parm, i, count;
+    static float reactionKillsDelay = 0.0f;
 	vec3_t dir;
 
 	if( cg.view.POVent != (int)cg.frame.playerState.POVnum )
@@ -1661,6 +1774,33 @@ static void CG_FirePlayerStateEvents( void )
 			{
 				trap_S_StartGlobalSound( CG_MediaSfx( cgs.media.sfxWeaponKill ), CHAN_AUTO, cg_volume_hitsound->value );
 				CG_ScreenCrosshairDamageUpdate();
+
+			if( cg_reactionKills->integer && !cg.view.thirdperson && !cgs.demoPlaying )
+            {
+
+            if( !cg_reactionKillsTimeout->integer )
+		            return;
+
+            if( cg_reactionKillsTimeout->integer < 1 || cg_reactionKillsTimeout->integer > 180 ) {
+	            cg_reactionKillsTimeout->integer = 45;
+              }
+
+	            // not if dead
+	            if( cg_entities[cg.view.POVent].current.type == ET_CORPSE || cg_entities[cg.view.POVent].current.type == ET_GIB ) {
+		            return;
+	            }
+
+        	    // see if enough time has elapsed
+	            reactionKillsDelay += cg.realFrameTime * 1000;
+
+	            if( reactionKillsDelay > cg_reactionKillsTimeout->integer ){     
+                CG_SexedSound( cg.view.POVent, CHAN_ANNOUNCER, va( S_PLAYER_RKILL_1_to_50, ( (int)brandom( 1, 50 ) ) ),
+                cg_volume_voicechats->value, 1.0f );
+		        reactionKillsDelay = 0.0f; // reset back to 0 
+                }
+
+           }
+
 			}
 			else
 			{ // hit a teammate

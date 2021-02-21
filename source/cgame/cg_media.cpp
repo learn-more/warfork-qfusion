@@ -67,7 +67,7 @@ void CG_RegisterMediaSounds( void )
 
 	cgs.media.sfxChat = CG_RegisterMediaSfx( S_CHAT, true );
 
-	for( i = 0; i < 2; i++ )
+	for( i = 0; i < 3; i++ )
 		cgs.media.sfxRic[i] = CG_RegisterMediaSfx( va( "sounds/weapons/ric%i", i+1 ), true );
 
 	// weapon
@@ -156,7 +156,7 @@ void CG_RegisterMediaSounds( void )
 	cgs.media.sfxVSaySounds[VSAY_AREASECURED] = CG_RegisterMediaSfx( S_VSAY_AREASECURED, true );
    	cgs.media.sfxVSaySounds[VSAY_SHUTUP] = CG_RegisterMediaSfx( S_VSAY_SHUTUP, true );
 	cgs.media.sfxVSaySounds[VSAY_BOOMSTICK] = CG_RegisterMediaSfx( S_VSAY_BOOMSTICK, true );
-	cgs.media.sfxVSaySounds[VSAY_GOTOPOWERUP] = CG_RegisterMediaSfx( S_VSAY_GOTOPOWERUP, true );
+	cgs.media.sfxVSaySounds[VSAY_GOTOWARSHELL] = CG_RegisterMediaSfx( S_VSAY_GOTOWARSHELL, true );
 	cgs.media.sfxVSaySounds[VSAY_GOTOQUAD] = CG_RegisterMediaSfx( S_VSAY_GOTOQUAD, true );
 	cgs.media.sfxVSaySounds[VSAY_OK] = CG_RegisterMediaSfx( S_VSAY_OK, true );
 	cgs.media.sfxVSaySounds[VSAY_DEFEND_A] = CG_RegisterMediaSfx( S_VSAY_DEFEND_A, true );
@@ -427,7 +427,7 @@ void CG_RegisterMediaShaders( void )
 	cgs.media.shaderVSayIcon[VSAY_AREASECURED] = CG_RegisterMediaShader( PATH_VSAY_AREASECURED_ICON, true );
    	cgs.media.shaderVSayIcon[VSAY_SHUTUP] = CG_RegisterMediaShader( PATH_VSAY_SHUTUP_ICON, true );
 	cgs.media.shaderVSayIcon[VSAY_BOOMSTICK] = CG_RegisterMediaShader( PATH_VSAY_BOOMSTICK_ICON, true );
-	cgs.media.shaderVSayIcon[VSAY_GOTOPOWERUP] = CG_RegisterMediaShader( PATH_VSAY_GOTOPOWERUP_ICON, true );
+	cgs.media.shaderVSayIcon[VSAY_GOTOWARSHELL] = CG_RegisterMediaShader( PATH_VSAY_GOTOWARSHELL_ICON, true );
 	cgs.media.shaderVSayIcon[VSAY_GOTOQUAD] = CG_RegisterMediaShader( PATH_VSAY_GOTOQUAD_ICON, true );
 	cgs.media.shaderVSayIcon[VSAY_OK] = CG_RegisterMediaShader( PATH_VSAY_OK_ICON, true );
 	cgs.media.shaderVSayIcon[VSAY_DEFEND_A] = CG_RegisterMediaShader( PATH_VSAY_DEFEND_A_ICON, true );

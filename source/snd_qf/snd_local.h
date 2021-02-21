@@ -217,7 +217,7 @@ sfxcache_t *SNDOGG_Load( sfx_t *s );
 // than could actually be referenced during gameplay,
 // because we don't want to free anything until we are
 // sure we won't need it.
-#define	    MAX_SFX	512
+#define	    MAX_SFX	4096
 extern sfx_t known_sfx[MAX_SFX];
 extern int num_sfx;
 

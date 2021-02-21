@@ -42,7 +42,7 @@ static struct tm *R_Localtime( const time_t time, struct tm* _tm )
 */
 void R_TakeScreenShot( const char *path, const char *name, const char *fmtString, int x, int y, int w, int h, bool silent, bool media )
 {
-	const char *extension = ".png";
+	const char *extension;
 	size_t path_size = strlen( path ) + 1;
 	char *checkname = NULL;
 	size_t checkname_size = 0;
@@ -51,9 +51,19 @@ void R_TakeScreenShot( const char *path, const char *name, const char *fmtString
 	if( !R_IsRenderingToScreen() )
 		return;
 	
+	switch(r_screenshot_format->integer) 
+	{
+		case 2:
+			extension = ".jpg";
+			break;
+		case 3:
+			extension = ".tga";
+			break;
+		default:
+			extension = ".png";
+			break;
+	}
 
-
-	
 	if( name && name[0] && Q_stricmp(name, "*") )
 	{
 		if( !COM_ValidateRelativeFilename( name ) )

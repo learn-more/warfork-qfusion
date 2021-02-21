@@ -2148,7 +2148,7 @@ void R_ScreenShot( const char *filename, int x, int y, int width, int height,
 					   flipx, flipy, flipdiagonal );
 	}
 
-	if( WritePNG( filename, &imginfo ) && !silent ) {
+		if( WriteScreenShot( filename, &imginfo, r_screenshot_format->integer ) && !silent ) {
 		Com_Printf( "Wrote %s\n", filename );
 	}
 }

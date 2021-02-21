@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 #ifndef APP_VERSION_UPDATE
-#define APP_VERSION_UPDATE				0
+#define APP_VERSION_UPDATE				1
 #endif
 
 #ifndef APP_VERSION
@@ -45,9 +45,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 #ifdef PUBLIC_BUILD
-#define APP_PROTOCOL_VERSION			22
+#define APP_PROTOCOL_VERSION			23
 #else
-#define APP_PROTOCOL_VERSION			2200
+#define APP_PROTOCOL_VERSION			2300
 #endif
 
 #ifdef PUBLIC_BUILD
@@ -57,7 +57,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 #ifndef APP_URL
-#define	APP_URL							"http://www.forbidden.gg/"
+#define APP_URL                         "http://warfork.com/"
 #endif
 
 #ifndef APP_COPYRIGHT_OWNER
@@ -90,7 +90,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 #ifndef APP_UPDATE_URL
-#define	APP_UPDATE_URL					"http://forbidden.gg/warfork/"
+#define APP_UPDATE_URL                  "http://warfork.com/update/"
 #define	APP_SERVER_UPDATE_DIRECTORY		"autoupdate/"STR_TOSTR( APP_VERSION_MAJOR ) "." STR_TOSTR( APP_VERSION_MINOR )"/"
 #define APP_SERVER_UPDATE_FILE			"filelist.txt"
 #define APP_CLIENT_UPDATE_FILE			"warfork_last_version.txt"
@@ -98,11 +98,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 #ifdef PUBLIC_BUILD
-#define APP_MATCHMAKER_URL				"https://mm.forbidden.gg:1338"
-#define APP_MATCHMAKER_WEB_URL			"https://www.forbidden.gg/wmm/"
+#define APP_MATCHMAKER_URL              "https://warfork.com:1338"
+#define APP_MATCHMAKER_WEB_URL          "https://warfork.com/wfmm/"
 #else
-#define APP_MATCHMAKER_URL				"http://mm-dev.forbidden.gg:1337"
-#define APP_MATCHMAKER_WEB_URL			"http://www-dev.forbidden.gg/wmm/"
+#define APP_MATCHMAKER_URL              "http://warfork.com:1337"
+#define APP_MATCHMAKER_WEB_URL          "http://warfork.com/wfmm/"
 #endif
 
 #ifndef APP_UI_BASEPATH

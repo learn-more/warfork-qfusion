@@ -248,7 +248,6 @@ extern "C" {
 #define S_PICKUP_ARMOR_RA	"sounds/items/armor_red"     // pickup red armor
 #define S_PICKUP_ARMOR_SHARD	"sounds/items/armor_shard"       // pickup shard
 
-#define S_PICKUP_QUAD		"sounds/items/quad_pickup"       // pickup Quad damage
 #define S_PICKUP_SHELL		"sounds/items/shell_pickup"      // pickup WarShell
 #define S_PICKUP_REGEN		"sounds/items/regen_pickup"      // pickup Regeneration
 
@@ -325,12 +324,15 @@ extern "C" {
 #define S_PLAYER_JUMP_1_to_2	    "*jump_%i"                   // player jump
 #define S_PLAYER_WALLJUMP_1_to_2    "*wj_%i"                 // player walljump
 #define S_PLAYER_DASH_1_to_2	    "*dash_%i"                   // player dash
-
+#define S_PLAYER_RKILL_1_to_50	    "*rkill_%i"                   // player reaction kill
+#define S_PLAYER_RSTART_1_to_20	    "*rstart_%i"                   // player round start
 
 //#define S_PLAYER_FALL_0_to_3		"*fall_%i"					// player fall (height)
+#define S_PLAYER_FALL0_1_to_2	"*fall_0_%i"					// player fall0 (variant)
 #define S_PLAYER_FALLDEATH	    "*falldeath"             // player falling to his death
 #define S_PLAYER_PAINS		    "*pain%i"                    // player pain (percent)
 #define S_PLAYER_DEATH		    "*death"
+#define S_PLAYER_QUAD_PICKUP    "*quad_pickup"                   // player pickup quad
 
 #define S_PLAYER_DROWN		    "*drown"                 // player drown
 #define S_PLAYER_GASP		    "*gasp"                      // player gasp
@@ -453,6 +455,7 @@ extern "C" {
 #define UI_SHADER_BIGLOGO			"gfx/ui/logo512"
 #define UI_SHADER_CURSOR			"gfx/ui/cursor"
 
+#define UI_SHADER_LOADINGBACKGROUND "gfx/ui/loadingbackground"
 #define UI_SHADER_LOADINGLOGO		"gfx/ui/loadinglogo"
 #define UI_SHADER_LOADINGBAR		"gfx/ui/loadingbar"
 
@@ -485,7 +488,7 @@ extern "C" {
 #define PATH_VSAY_AREASECURED_ICON  "gfx/hud/icons/vsay/areasecured"
 #define PATH_VSAY_SHUTUP_ICON	    "gfx/hud/icons/vsay/shutup"
 #define PATH_VSAY_BOOMSTICK_ICON    "gfx/hud/icons/vsay/boomstick"
-#define PATH_VSAY_GOTOPOWERUP_ICON  "gfx/hud/icons/vsay/gotopowerup"
+#define PATH_VSAY_GOTOWARSHELL_ICON  "gfx/hud/icons/vsay/gotowarshell"
 #define PATH_VSAY_GOTOQUAD_ICON	    "gfx/hud/icons/vsay/gotoquad"
 #define PATH_VSAY_OK_ICON	    "gfx/hud/icons/vsay/ok"
 #define PATH_VSAY_DEFEND_A_ICON	    "gfx/hud/icons/vsay/defend"
@@ -521,7 +524,7 @@ extern "C" {
 #define S_VSAY_AREASECURED			"sounds/vsay/areasecured"
 #define S_VSAY_SHUTUP				"sounds/vsay/shutup"
 #define S_VSAY_BOOMSTICK			"sounds/vsay/boomstick"
-#define S_VSAY_GOTOPOWERUP			"sounds/vsay/gotopowerup"
+#define S_VSAY_GOTOWARSHELL			"sounds/vsay/gotowarshell"
 #define S_VSAY_GOTOQUAD				"sounds/vsay/gotoquad"
 #define S_VSAY_OK				"sounds/vsay/ok"
 #define S_VSAY_DEFEND_A				"sounds/vsay/defend_a"

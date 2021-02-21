@@ -151,7 +151,7 @@ typedef struct
 	cgs_media_handle_t *sfxTimerBipBip;
 	cgs_media_handle_t *sfxTimerPloink;
 
-	cgs_media_handle_t *sfxRic[2];
+	cgs_media_handle_t *sfxRic[3];
 
 	cgs_media_handle_t *sfxWeaponUp;
 	cgs_media_handle_t *sfxWeaponUpNoAmmo;
@@ -885,6 +885,10 @@ extern cvar_t *cg_damageNumbersSize;
 extern cvar_t *cg_damageNumbersColor;
 extern cvar_t *cg_damageNumbersDistance;
 extern cvar_t *cg_damageNumbersOffset;
+extern cvar_t *cg_reactionKills;
+extern cvar_t *cg_reactionKillsTimeout;
+extern cvar_t *cg_reactionRoundStart;
+extern cvar_t *cg_reactionRoundStartOdds;
 extern cvar_t *cg_volume_hitsound;    // hit sound volume
 extern cvar_t *cg_autoaction_demo;
 extern cvar_t *cg_autoaction_screenshot;
@@ -893,6 +897,7 @@ extern cvar_t *cg_autoaction_spectator;
 extern cvar_t *cg_simpleItems; // simple items
 extern cvar_t *cg_simpleItemsSize; // simple items
 extern cvar_t *cg_volume_players; // players sound volume
+extern cvar_t *cg_volume_efforts; // efforts sound volume
 extern cvar_t *cg_volume_effects; // world sound volume
 extern cvar_t *cg_volume_announcer; // announcer sounds volume
 extern cvar_t *cg_volume_voicechats; //vsays volume

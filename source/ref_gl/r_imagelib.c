@@ -44,8 +44,23 @@ r_imginfo_t IMG_LoadImage( const char * filename, uint8_t * ( *allocbuf )( void 
     
 }
 
-bool WritePNG( const char * filename, r_imginfo_t * img ) {
-return stbi_write_png( filename, img->width, img->height, img->samples, img->pixels, 0 ) != 0;
+bool WriteScreenShot( const char *filename, r_imginfo_t *img, int type )
+{
+	int file;
+	if( ri.FS_FOpenAbsoluteFile( filename, &file, FS_WRITE ) == -1 ) {
+		Com_Printf( "WriteScreenShot: Couldn't create %s\n", filename );
+		return false;
+	}
+	ri.FS_FCloseFile( file );
+
+	switch( type ) {
+		case 2:
+			return stbi_write_jpg( filename, img->width, img->height, img->samples, img->pixels, 100 ) != 0;
+		case 3:
+			return stbi_write_tga( filename, img->width, img->height, img->samples, img->pixels ) != 0;
+		default:
+			return stbi_write_png( filename, img->width, img->height, img->samples, img->pixels, 0 ) != 0;
+	}
 }
 
 /*

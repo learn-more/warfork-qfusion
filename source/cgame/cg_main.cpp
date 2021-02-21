@@ -60,6 +60,7 @@ cvar_t *cg_handOffset;
 cvar_t *cg_gun_fov;
 cvar_t *cg_gun_alpha;
 cvar_t *cg_volume_players;
+cvar_t *cg_volume_efforts;
 cvar_t *cg_volume_effects;
 cvar_t *cg_volume_announcer;
 cvar_t *cg_volume_voicechats;
@@ -108,6 +109,10 @@ cvar_t *cg_damageNumbersSize;
 cvar_t *cg_damageNumbersColor;
 cvar_t *cg_damageNumbersDistance;
 cvar_t *cg_damageNumbersOffset;
+cvar_t *cg_reactionKills;
+cvar_t *cg_reactionKillsTimeout;
+cvar_t *cg_reactionRoundStart;
+cvar_t *cg_reactionRoundStartOdds;
 cvar_t *cg_particles;
 cvar_t *cg_showhelp;
 cvar_t *cg_showClamp;
@@ -770,11 +775,12 @@ static void CG_RegisterVariables( void )
 	cg_weaponFlashes =	trap_Cvar_Get( "cg_weaponFlashes", "2", CVAR_ARCHIVE );
 
 	// wsw
-	cg_volume_players =	trap_Cvar_Get( "cg_volume_players", "1.0", CVAR_ARCHIVE );
-	cg_volume_effects =	trap_Cvar_Get( "cg_volume_effects", "1.0", CVAR_ARCHIVE );
+	cg_volume_players =	trap_Cvar_Get( "cg_volume_players", "0.9", CVAR_ARCHIVE );
+	cg_volume_efforts =	trap_Cvar_Get( "cg_volume_efforts", "0.65", CVAR_ARCHIVE );
+	cg_volume_effects =	trap_Cvar_Get( "cg_volume_effects", "0.7", CVAR_ARCHIVE );
 	cg_volume_announcer =	trap_Cvar_Get( "cg_volume_announcer", "1.0", CVAR_ARCHIVE );
-	cg_volume_hitsound =	trap_Cvar_Get( "cg_volume_hitsound", "1.0", CVAR_ARCHIVE );
-	cg_volume_voicechats =	trap_Cvar_Get( "cg_volume_voicechats", "1.0", CVAR_ARCHIVE );
+	cg_volume_hitsound =	trap_Cvar_Get( "cg_volume_hitsound", "0.5", CVAR_ARCHIVE );
+	cg_volume_voicechats =	trap_Cvar_Get( "cg_volume_voicechats", "0.9", CVAR_ARCHIVE );
 	cg_handOffset =		trap_Cvar_Get( "cg_handOffset", "5", CVAR_ARCHIVE );
 	cg_projectileTrail =	trap_Cvar_Get( "cg_projectileTrail", "60", CVAR_ARCHIVE );
 	cg_projectileFireTrail =	trap_Cvar_Get( "cg_projectileFireTrail", "90", CVAR_ARCHIVE );
@@ -795,6 +801,10 @@ static void CG_RegisterVariables( void )
     cg_damageNumbersColor = trap_Cvar_Get( "cg_damageNumbersColor", "5", CVAR_ARCHIVE );
     cg_damageNumbersDistance = trap_Cvar_Get( "cg_damageNumbersDistance", "48", CVAR_ARCHIVE );
     cg_damageNumbersOffset = trap_Cvar_Get( "cg_damageNumbersOffset", "1", CVAR_ARCHIVE );
+    cg_reactionKills = trap_Cvar_Get( "cg_reactionKills", "0", CVAR_ARCHIVE );
+    cg_reactionKillsTimeout = trap_Cvar_Get( "cg_reactionKillsTimeout", "45", CVAR_ARCHIVE );
+    cg_reactionRoundStart = trap_Cvar_Get( "cg_reactionRoundStart", "0", CVAR_USERINFO | CVAR_ARCHIVE );
+    cg_reactionRoundStartOdds = trap_Cvar_Get( "cg_reactionRoundStartOdds", "5", CVAR_USERINFO | CVAR_ARCHIVE );
 	cg_autoaction_demo =	trap_Cvar_Get( "cg_autoaction_demo", "0", CVAR_ARCHIVE );
 	cg_autoaction_screenshot =  trap_Cvar_Get( "cg_autoaction_screenshot", "0", CVAR_ARCHIVE );
 	cg_autoaction_stats =	trap_Cvar_Get( "cg_autoaction_stats", "0", CVAR_ARCHIVE );
@@ -1120,6 +1130,7 @@ void CG_Reset( void )
 	CG_ClearPolys();
 	CG_ClearEffects();
 	CG_ClearLocalEntities();
+	CG_InitDamageNumbers();
 
 	// start up announcer events queue from clean
 	CG_ClearAnnouncerEvents();

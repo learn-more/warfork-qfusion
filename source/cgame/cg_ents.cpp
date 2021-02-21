@@ -36,6 +36,11 @@ static void CG_FixVolumeCvars( void )
 	else if( cg_volume_players->value > 2.0f )
 		trap_Cvar_SetValue( "cg_volume_players", 2.0f );
 
+	if( cg_volume_efforts->value < 0.3f )
+		trap_Cvar_SetValue( "cg_volume_efforts", 0.3f );
+	else if( cg_volume_efforts->value > 2.0f )
+		trap_Cvar_SetValue( "cg_volume_efforts", 2.0f );
+
 	if( cg_volume_effects->value < 0.0f )
 		trap_Cvar_SetValue( "cg_volume_effects", 0.0f );
 	else if( cg_volume_effects->value > 2.0f )

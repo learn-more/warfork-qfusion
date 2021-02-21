@@ -1471,12 +1471,12 @@ void CG_SmallPileOfGibs( const vec3_t origin, int damage, const vec3_t initialVe
 		// coloring
 		switch ( rand( ) % 3 ) {
 		case 0:
-			// orange
-			Vector4Set( color, 1, 0.5, 0, 1 );
+				// red
+				Vector4Set( color, 0.8, 0.5, 0.5, 1 );
 			break;
 		case 1:
-			// purple
-			Vector4Set( color, 1, 0, 1, 1 );
+				// blue
+				Vector4Set( color, 0.5, 0.7, 0.8, 1 );
 			break;
 		case 2:
 		default:

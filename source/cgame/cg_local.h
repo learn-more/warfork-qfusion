@@ -887,8 +887,6 @@ extern cvar_t *cg_damageNumbersDistance;
 extern cvar_t *cg_damageNumbersOffset;
 extern cvar_t *cg_reactionKills;
 extern cvar_t *cg_reactionKillsTimeout;
-extern cvar_t *cg_reactionRoundStart;
-extern cvar_t *cg_reactionRoundStartOdds;
 extern cvar_t *cg_volume_hitsound;    // hit sound volume
 extern cvar_t *cg_autoaction_demo;
 extern cvar_t *cg_autoaction_screenshot;

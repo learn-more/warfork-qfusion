@@ -111,8 +111,6 @@ cvar_t *cg_damageNumbersDistance;
 cvar_t *cg_damageNumbersOffset;
 cvar_t *cg_reactionKills;
 cvar_t *cg_reactionKillsTimeout;
-cvar_t *cg_reactionRoundStart;
-cvar_t *cg_reactionRoundStartOdds;
 cvar_t *cg_particles;
 cvar_t *cg_showhelp;
 cvar_t *cg_showClamp;
@@ -803,8 +801,6 @@ static void CG_RegisterVariables( void )
     cg_damageNumbersOffset = trap_Cvar_Get( "cg_damageNumbersOffset", "1", CVAR_ARCHIVE );
     cg_reactionKills = trap_Cvar_Get( "cg_reactionKills", "0", CVAR_ARCHIVE );
     cg_reactionKillsTimeout = trap_Cvar_Get( "cg_reactionKillsTimeout", "45", CVAR_ARCHIVE );
-    cg_reactionRoundStart = trap_Cvar_Get( "cg_reactionRoundStart", "0", CVAR_USERINFO | CVAR_ARCHIVE );
-    cg_reactionRoundStartOdds = trap_Cvar_Get( "cg_reactionRoundStartOdds", "5", CVAR_USERINFO | CVAR_ARCHIVE );
 	cg_autoaction_demo =	trap_Cvar_Get( "cg_autoaction_demo", "0", CVAR_ARCHIVE );
 	cg_autoaction_screenshot =  trap_Cvar_Get( "cg_autoaction_screenshot", "0", CVAR_ARCHIVE );
 	cg_autoaction_stats =	trap_Cvar_Get( "cg_autoaction_stats", "0", CVAR_ARCHIVE );

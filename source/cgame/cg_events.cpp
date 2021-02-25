@@ -1785,6 +1785,11 @@ static void CG_FirePlayerStateEvents( void )
 	            cg_reactionKillsTimeout->integer = 45;
               }
 
+	            // don't play reaction kill if there's a suicide and frag at the same time
+	            if( cg_entities[cg.view.POVent].current.modelindex == 0 ) {
+		            return;
+	            }
+				
 	            // not if dead
 	            if( cg_entities[cg.view.POVent].current.type == ET_CORPSE || cg_entities[cg.view.POVent].current.type == ET_GIB ) {
 		            return;

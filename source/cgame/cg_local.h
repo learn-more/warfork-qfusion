@@ -208,9 +208,6 @@ typedef struct
 
 	cgs_media_handle_t *sfxQuadFireSound;
 
-	// VSAY sounds
-	cgs_media_handle_t *sfxVSaySounds[VSAY_TOTAL];
-
 	//no wsw
 
 	// models
@@ -709,6 +706,7 @@ extern cvar_t *cg_hand;
 void CG_LoadClientInfo( cg_clientInfo_t *ci, const char *s, int client );
 void CG_UpdateSexedSoundsRegistration( pmodelinfo_t *pmodelinfo );
 void CG_SexedSound( int entnum, int entchannel, const char *name, float fvol, float attn );
+void CG_SexedVSay( int entnum, int vsay, float fvol );
 struct sfx_s *CG_RegisterSexedSound( int entnum, const char *name );
 
 //

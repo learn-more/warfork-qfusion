@@ -31,8 +31,46 @@ static const char *cg_defaultSexedSounds[] =
 	"*wj_1", "*wj_2",
 	"*dash_1", "*dash_2",
 	"*taunt",
-	"*no", "*needhealth", "*attack_b", "*sorry", "*oops", "*gotoquad", "*goodgame", "*roger", "*needbackup", "*areasecured", "*boomstick", "*gotopowerup", "*defend_a", "*booo", "*needhelp", "*needarmor", "*ok", "*yeehaa", "*noproblem", "*attack", "*attack_a", "*yes", "*armorfree", "*needweapon", "*defend_b", "*defend", "*thanks", "*ondefense", "*onoffense", "*needoffense", "*needdefense", "*affirmative", "*negative", "*shutup",
 	"*rkill_1", "*rkill_2", "*rkill_3", "*rkill_4", "*rkill_5", "*rkill_6", "*rkill_7", "*rkill_8", "*rkill_9", "*rkill_10", "*rkill_11", "*rkill_12", "*rkill_13", "*rkill_14", "*rkill_15", "*rkill_16", "*rkill_17", "*rkill_18", "*rkill_19", "*rkill_20", "*rkill_21", "*rkill_22", "*rkill_23", "*rkill_24", "*rkill_25", "*rkill_26", "*rkill_27", "*rkill_28", "*rkill_29", "*rkill_30", "*rkill_31", "*rkill_32", "*rkill_33", "*rkill_34", "*rkill_35", "*rkill_36", "*rkill_37", "*rkill_38", "*rkill_39", "*rkill_40", "*rkill_41", "*rkill_42", "*rkill_43", "*rkill_44", "*rkill_45", "*rkill_46", "*rkill_47", "*rkill_48", "*rkill_49", "*rkill_50",
+	NULL
+};
+
+static const char *cg_vsaySexedSounds[VSAY_TOTAL] = {
+	"", // VSAY_GENERIC
+	"*needhealth", // VSAY_NEEDHEALTH
+	"*needweapon", // VSAY_NEEDWEAPON
+	"*needarmor", // VSAY_NEEDARMOR
+	"*affirmative", // VSAY_AFFIRMATIVE
+	"*negative", // VSAY_NEGATIVE
+	"*yes", // VSAY_YES
+	"*no", // VSAY_NO
+	"*ondefense", // VSAY_ONDEFENSE
+	"*onoffense", // VSAY_ONOFFENSE
+	"*oops", // VSAY_OOPS
+	"*sorry", // VSAY_SORRY
+	"*thanks", // VSAY_THANKS
+	"*noproblem", // VSAY_NOPROBLEM
+	"*yeehaa", // VSAY_YEEHAA
+	"*goodgame", // VSAY_GOODGAME
+	"*defend", // VSAY_DEFEND
+	"*attack", // VSAY_ATTACK
+	"*needbackup", // VSAY_NEEDBACKUP
+	"*booo", // VSAY_BOO
+	"*needdefense", // VSAY_NEEDDEFENSE
+	"*needoffense", // VSAY_NEEDOFFENSE
+	"*needhelp", // VSAY_NEEDHELP
+	"*roger", // VSAY_ROGER
+	"*armorfree", // VSAY_ARMORFREE
+	"*areasecured", // VSAY_AREASECURED
+	"*shutup", // VSAY_SHUTUP
+	"*boomstick", // VSAY_BOOMSTICK
+	"*gotopowerup", //VSAY_GOTOWARSHELL
+	"*gotoquad", // VSAY_GOTOQUAD
+	"*ok", // VSAY_OK
+	"*defend_a", // VSAY_DEFEND_A
+	"*attack_a", // VSAY_ATTACK_A
+	"*defend_b", // VSAY_DEFEND_B
+	"*attack_b", // VSAY_ATTACK_B
 	NULL
 };
 
@@ -140,6 +178,13 @@ void CG_UpdateSexedSoundsRegistration( pmodelinfo_t *pmodelinfo )
 			break;
 		CG_RegisterPmodelSexedSound( pmodelinfo, name );
 	}
+	for( i = 0;; i++) {
+		name = cg_vsaySexedSounds[i];
+		if( !name )
+			break;
+		if( name[0] == '*' )
+			CG_RegisterPmodelSexedSound( pmodelinfo, name );
+	}
 
 	// load sounds server told us
 	for( i = 1; i < MAX_SOUNDS; i++ )
@@ -178,6 +223,13 @@ void CG_SexedSound( int entnum, int entchannel, const char *name, float fvol, fl
 		trap_S_StartGlobalSound( CG_RegisterSexedSound( entnum, name ), entchannel, fvol );
 	else
 		trap_S_StartRelativeSound( CG_RegisterSexedSound( entnum, name ), entnum, entchannel, fvol, attn );
+}
+
+void CG_SexedVSay( int entnum, int vsay, float fvol )
+{
+	if( vsay <= VSAY_GENERIC || vsay >= VSAY_TOTAL)
+		return;
+	CG_SexedSound( entnum, CHAN_AUTO, cg_vsaySexedSounds[vsay], fvol, ATTN_NONE);
 }
 
 

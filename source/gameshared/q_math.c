@@ -86,6 +86,7 @@ vec4_t colorWhite  = { 1, 1, 1, 1 };
 vec4_t colorLtGrey = { 0.75, 0.75, 0.75, 1 };
 vec4_t colorMdGrey = { 0.5, 0.5, 0.5, 1 };
 vec4_t colorDkGrey = { 0.25, 0.25, 0.25, 1 };
+vec4_t colorLtBlue = { 0.3, 0.55, 0.9, 1.0 };
 
 vec4_t color_table[MAX_S_COLORS] =
 {

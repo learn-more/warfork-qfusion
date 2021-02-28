@@ -871,7 +871,7 @@ static void CG_RegisterVariables( void )
 	cg_forceMyTeamAlpha = trap_Cvar_Get( "cg_forceMyTeamAlpha", "0", CVAR_ARCHIVE );
 
 	// dmh - learn0more's team colored beams
-	cg_teamColoredBeams = trap_Cvar_Get( "cg_teamColoredBeams", "0", CVAR_ARCHIVE );
+	cg_teamColoredBeams = trap_Cvar_Get( "cg_teamColoredBeams", "1", CVAR_ARCHIVE );
 	cg_teamColoredInstaBeams = trap_Cvar_Get( "cg_teamColoredInstaBeams", "1", CVAR_ARCHIVE );
 
 	cg_ebbeam_old = trap_Cvar_Get( "cg_ebbeam_old", "0", CVAR_ARCHIVE );
@@ -898,7 +898,7 @@ static void CG_RegisterVariables( void )
 
 	cg_flashWindowCount = trap_Cvar_Get( "cg_flashWindowCount", "4", CVAR_ARCHIVE );
 
-	cg_viewBob = trap_Cvar_Get( "cg_viewBob", "1", CVAR_ARCHIVE );
+	cg_viewBob = trap_Cvar_Get( "cg_viewBob", "0", CVAR_ARCHIVE );
 
 	cg_gamepad_moveThres = trap_Cvar_Get( "cg_gamepad_moveThres", "0.239", CVAR_ARCHIVE );
 	cg_gamepad_runThres = trap_Cvar_Get( "cg_gamepad_runThres", "0.75", CVAR_ARCHIVE );

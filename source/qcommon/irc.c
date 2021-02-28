@@ -279,7 +279,7 @@ void Irc_Connect_f( void )
 			// library loaded, check for connection status
 			bool *c;
 			if( !irc_server )
-				irc_server = Cvar_Get( "irc_server", "irc.quakenet.org", CVAR_ARCHIVE );
+				irc_server = Cvar_Get( "irc_server", "irc.warfork.com", CVAR_ARCHIVE );
 			if( !irc_connected )
 				irc_connected = Dynvar_Lookup( "irc_connected" );
 			assert( irc_server );

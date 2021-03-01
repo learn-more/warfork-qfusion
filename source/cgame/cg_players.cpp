@@ -64,7 +64,7 @@ static const char *cg_vsaySexedSounds[VSAY_TOTAL] = {
 	"*areasecured", // VSAY_AREASECURED
 	"*shutup", // VSAY_SHUTUP
 	"*boomstick", // VSAY_BOOMSTICK
-	"*gotopowerup", //VSAY_GOTOWARSHELL
+	"*gotowarshell", //VSAY_GOTOWARSHELL
 	"*gotoquad", // VSAY_GOTOQUAD
 	"*ok", // VSAY_OK
 	"*defend_a", // VSAY_DEFEND_A

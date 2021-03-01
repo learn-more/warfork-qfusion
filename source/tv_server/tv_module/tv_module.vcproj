@@ -81,7 +81,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="..\Debug\x86\basewsw\tv_x86.dll"
+				OutputFile="..\Debug\x86\basewf\tv_x86.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ManifestFile=".\Debug\x86\$(TargetFileName).intermediate.manifest"
@@ -188,7 +188,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="..\Release\x86\basewsw\tv_module_x86.dll"
+				OutputFile="..\Release\x86\basewf\tv_module_x86.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ManifestFile=".\Release\x86\$(TargetFileName).intermediate.manifest"
@@ -387,7 +387,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="..\Debug\x64\basewsw\tv_module_x64.dll"
+				OutputFile="..\Debug\x64\basewf\tv_module_x64.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ManifestFile=".\Debug\x64\$(TargetFileName).intermediate.manifest"
@@ -490,7 +490,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="..\Release\x64\basewsw\tv_module_x64.dll"
+				OutputFile="..\Release\x64\basewf\tv_module_x64.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ManifestFile=".\Release\x64\$(TargetFileName).intermediate.manifest"

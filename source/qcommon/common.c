@@ -962,7 +962,7 @@ void Qcommon_Init( int argc, char **argv )
 	if( tv_server->integer )
 		logconsole =	    Cvar_Get( "logconsole", "tvconsole.log", CVAR_ARCHIVE );
 	else if( dedicated->integer )
-		logconsole =	    Cvar_Get( "logconsole", "wswconsole.log", CVAR_ARCHIVE );
+		logconsole =	    Cvar_Get( "logconsole", "wfconsole.log", CVAR_ARCHIVE );
 	else
 		logconsole =	    Cvar_Get( "logconsole", "", CVAR_ARCHIVE );
 	logconsole_append = Cvar_Get( "logconsole_append", "1", CVAR_ARCHIVE );

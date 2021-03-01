@@ -1793,7 +1793,7 @@ static void CG_FirePlayerStateEvents( void )
 	            reactionKillsDelay += cg.realFrameTime * 1000;
 
 	            if( reactionKillsDelay > cg_reactionKillsTimeout->integer ){     
-                CG_SexedSound( cg.view.POVent, CHAN_ANNOUNCER, va( S_PLAYER_RKILL_1_to_50, ( (int)brandom( 1, 50 ) ) ),
+                CG_SexedSound( cg.view.POVent, CHAN_ANNOUNCER, va( S_PLAYER_RKILL_1_to_50, ( 1+rand()%51 ) ),
                 cg_volume_voicechats->value, 1.0f );
 		        reactionKillsDelay = 0.0f; // reset back to 0 
                 }

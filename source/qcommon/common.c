@@ -971,7 +971,7 @@ void Qcommon_Init( int argc, char **argv )
 
 	com_showtrace =	    Cvar_Get( "com_showtrace", "0", 0 );
 
-	Cvar_Get( "irc_server", "irc.warfork.com", CVAR_ARCHIVE );
+	Cvar_Get( "irc_address", "irc.warfork.com", CVAR_ARCHIVE );
 	Cvar_Get( "irc_port", "6667", CVAR_ARCHIVE );
 	Cvar_Get( "irc_nick", APPLICATION "Player", CVAR_ARCHIVE );
 	Cvar_Get( "irc_user", APPLICATION "User", CVAR_ARCHIVE );

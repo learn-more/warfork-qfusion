@@ -278,7 +278,7 @@ static void Irc_Logic_ReadMessages(void) {
 	bool msg_complete;
 	bool *connected;
 	do {
-		irc_server_msg_t msg;
+		irc_address_msg_t msg;
 		if (!Irc_Proto_PollServerMsg(&msg, &msg_complete)) {
 			// success
 			if (msg_complete)

@@ -44,7 +44,7 @@ extern cvar_t *irc_characterBucketRate;
 #define IRC_DEFAULT_CHARACTER_BUCKET_RATE	10		// per second (100 characters in 10 seconds)
 
 // server <- client messages
-typedef struct irc_server_msg_s {
+typedef struct irc_address_msg_s {
 	union {
 		char string[IRC_SEND_BUF_SIZE];
 		irc_numeric_t numeric;
@@ -53,10 +53,10 @@ typedef struct irc_server_msg_s {
 	char prefix[IRC_SEND_BUF_SIZE];
 	char params[IRC_SEND_BUF_SIZE];
 	char trailing[IRC_SEND_BUF_SIZE];
-} irc_server_msg_t;
+} irc_address_msg_t;
 
-bool Irc_Proto_PollServerMsg(irc_server_msg_t *msg, bool *msg_complete);
-bool Irc_Proto_ProcessServerMsg(const irc_server_msg_t *msg);
+bool Irc_Proto_PollServerMsg(irc_address_msg_t *msg, bool *msg_complete);
+bool Irc_Proto_ProcessServerMsg(const irc_address_msg_t *msg);
 
 static const bool IRC_INVISIBLE = true;
 static const char IRC_QUIT_MSG[] = APP_URL;

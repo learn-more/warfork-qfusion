@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 static irc_export_t *irc_export;
 static void *irc_libhandle = NULL;
 
-static cvar_t *irc_server;
+static cvar_t *irc_address;
 static dynvar_t *irc_connected;
 
 static void *irc_wakelock;
@@ -71,11 +71,11 @@ static void Irc_ConnectedListener_f( void *connected )
 {
 	if( *(bool *) connected )
 	{
-		assert( irc_server );
+		assert( irc_address );
 	}
 	else
 	{
-		assert( irc_server );
+		assert( irc_address );
 		Dynvar_RemoveListener( irc_connected, Irc_ConnectedListener_f );
 	}
 }
@@ -278,18 +278,18 @@ void Irc_Connect_f( void )
 		{
 			// library loaded, check for connection status
 			bool *c;
-			if( !irc_server )
-				irc_server = Cvar_Get( "irc_server", "irc.warfork.com", CVAR_ARCHIVE );
+			if( !irc_address )
+				irc_address = Cvar_Get( "irc_address", "irc.warfork.com", CVAR_ARCHIVE );
 			if( !irc_connected )
 				irc_connected = Dynvar_Lookup( "irc_connected" );
-			assert( irc_server );
+			assert( irc_address );
 			assert( irc_connected );
 			Dynvar_GetValue( irc_connected, (void **) &c );
 			if( !*c )
 			{
 				// not connected yet
 				if( argc >= 2 )
-					Cvar_Set( "irc_server", Cmd_Argv( 1 ) );
+					Cvar_Set( "irc_address", Cmd_Argv( 1 ) );
 				if( argc >= 3 )
 					Cvar_Set( "irc_port", Cmd_Argv( 2 ) );
 				Dynvar_AddListener( irc_connected, Irc_ConnectedListener_f );
@@ -302,7 +302,7 @@ void Irc_Connect_f( void )
 				else
 				{
 					// connect failed
-					Com_Printf( "Could not connect to %s (%s).\n", Cvar_GetStringValue( irc_server ), irc_export->ERROR_MSG );
+					Com_Printf( "Could not connect to %s (%s).\n", Cvar_GetStringValue( irc_address ), irc_export->ERROR_MSG );
 					Dynvar_RemoveListener( irc_connected, Irc_ConnectedListener_f );
 				}
 			}
@@ -319,12 +319,12 @@ void Irc_Disconnect_f( void )
 	if( irc_libhandle )
 	{
 		bool *c;
-		if( !irc_server )
-			irc_server = Cvar_Get( "irc_server", "", 0 );
+		if( !irc_address )
+			irc_address = Cvar_Get( "irc_address", "", 0 );
 		if( !irc_connected )
 			irc_connected = Dynvar_Lookup( "irc_connected" );
 		assert( irc_connected );
-		assert( irc_server );
+		assert( irc_address );
 		Dynvar_GetValue( irc_connected, (void **) &c );
 		if( *c )
 		{

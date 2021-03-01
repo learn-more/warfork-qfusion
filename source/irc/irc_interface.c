@@ -5,7 +5,7 @@
 #include "irc_rcon.h"
 
 dynvar_t *irc_connected;
-cvar_t *irc_server;
+cvar_t *irc_address;
 cvar_t *irc_port;
 cvar_t *irc_nick;
 cvar_t *irc_perform;
@@ -50,7 +50,7 @@ int Irc_If_API(void) {
 
 bool Irc_If_Init(void) {
 	irc_connected = IRC_IMPORT.Dynvar_Lookup("irc_connected");
-	irc_server = IRC_IMPORT.Cvar_Get("irc_server", "", 0);
+	irc_address = IRC_IMPORT.Cvar_Get("irc_address", "", 0);
 	irc_port = IRC_IMPORT.Cvar_Get("irc_port", "", 0);
 	irc_nick = IRC_IMPORT.Cvar_Get("irc_nick", "", 0);
 	irc_perform = IRC_IMPORT.Cvar_Get("irc_perform", "exec irc_perform.cfg\n", 0);
@@ -96,7 +96,7 @@ const char *Irc_If_GetHistoryNodeLine(const irc_chat_history_node_t *n) {
 }
 
 bool Irc_If_Connect(void) {
-	const char * const server = Cvar_GetStringValue(irc_server);
+	const char * const server = Cvar_GetStringValue(irc_address);
 	const unsigned short port = Cvar_GetIntegerValue(irc_port);
 	bool *c;
 	Irc_Logic_Connect(server, port);						// try to connect

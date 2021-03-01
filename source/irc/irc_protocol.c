@@ -30,7 +30,7 @@ typedef struct irc_bucket_s {
 	double character_token;
 } irc_bucket_t;
 
-static bool Irc_Proto_ParseServerMsg(const char *txt, size_t txt_len, irc_server_msg_t *msg);
+static bool Irc_Proto_ParseServerMsg(const char *txt, size_t txt_len, irc_address_msg_t *msg);
 
 static bool Irc_Proto_Enqueue(const char *msg, size_t msg_len);
 static void Irc_Proto_RefillBucket(void);
@@ -200,7 +200,7 @@ bool Irc_Proto_Quote(const char *message) {
 	return Irc_Proto_Enqueue(msg, msg_len);
 }
 
-bool Irc_Proto_PollServerMsg(irc_server_msg_t *msg, bool *msg_complete) {
+bool Irc_Proto_PollServerMsg(irc_address_msg_t *msg, bool *msg_complete) {
 	static char buf[IRC_RECV_BUF_SIZE];
 	static char *last = buf;
 	int recvd;
@@ -238,7 +238,7 @@ bool Irc_Proto_PollServerMsg(irc_server_msg_t *msg, bool *msg_complete) {
 	}
 }
 
-bool Irc_Proto_ProcessServerMsg(const irc_server_msg_t *msg) {
+bool Irc_Proto_ProcessServerMsg(const irc_address_msg_t *msg) {
 	irc_command_t cmd;
 	cmd.type = msg->type;
 	switch (cmd.type) {
@@ -253,7 +253,7 @@ bool Irc_Proto_ProcessServerMsg(const irc_server_msg_t *msg) {
 	return false;
 }
 
-static bool Irc_Proto_ParseServerMsg(const char *txt, size_t txt_len, irc_server_msg_t *msg) {
+static bool Irc_Proto_ParseServerMsg(const char *txt, size_t txt_len, irc_address_msg_t *msg) {
 	const char *c = txt;
 	const char *end = txt + txt_len;
 	*(msg->prefix) = '\0';

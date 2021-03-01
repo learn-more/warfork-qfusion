@@ -268,7 +268,7 @@ typedef struct irc_export_s {
 	int			(*API)(void);		// API version
 	bool	(*Init)(void);
 	void		(*Shutdown)(void);
-	bool	(*Connect)(void);	// connects to irc_server:irc_port
+	bool	(*Connect)(void);	// connects to irc_address:irc_port
 	bool	(*Disconnect)(void);
 	void		(*AddListener)(irc_command_t cmd, irc_listener_f listener);
 	void		(*RemoveListener)(irc_command_t cmd, irc_listener_f listener);

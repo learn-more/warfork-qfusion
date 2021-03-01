@@ -226,7 +226,7 @@ void Irc_Client_Connected_f(void *connected) {
 		IRC_IMPORT.Cmd_AddCommand("irc_names", Irc_Client_Names_f);
 		IRC_IMPORT.Cmd_AddCommand("irc_kick", Irc_Client_Kick_f);
 
-		Irc_Println( "Connected to %s.\n", IRC_COLOR_NONE, Cvar_GetStringValue( irc_server ) );
+		Irc_Println( "Connected to %s.\n", IRC_COLOR_NONE, Cvar_GetStringValue( irc_address ) );
 
 		srand( time( NULL ) );
 	} else if (!*c) {
@@ -371,9 +371,9 @@ void Irc_Client_Connected_f(void *connected) {
 		}
 
 		if( IRC_ERROR_MSG[0] )
-			Irc_Println( "Disconnected from %s (%s).\n", IRC_COLOR_NONE, Cvar_GetStringValue( irc_server ), IRC_ERROR_MSG );
+			Irc_Println( "Disconnected from %s (%s).\n", IRC_COLOR_NONE, Cvar_GetStringValue( irc_address ), IRC_ERROR_MSG );
 		else
-			Irc_Println( "Disconnected from %s.\n", IRC_COLOR_NONE, Cvar_GetStringValue( irc_server ) );
+			Irc_Println( "Disconnected from %s.\n", IRC_COLOR_NONE, Cvar_GetStringValue( irc_address ) );
 	}
 }
 

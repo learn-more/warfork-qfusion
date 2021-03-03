@@ -28,6 +28,22 @@ matrix:
             - gcc-4.9-multilib
             - g++-4.9-multilib
             - gcc-multilib
+            - libgnutls-dev:i386
+            - libidn11-dev:i386
+            - libkrb5-dev:i386
+            - librtmp-dev:i386
+            - libpng-dev:i386
+            - libgl1-mesa-dev:i386
+            - libglu1-mesa-dev:i386
+            - libpulse-dev:i386
+            - libsdl2-dev:i386
+            - libopenal-dev:i386
+            - libvorbis-dev:i386
+            - libtheora-dev:i386
+            - libfreetype6-dev:i386
+            - zlib1g-dev:i386
+            - libcurl4-gnutls-dev:i386
+            - libglib2.0-dev:i386
     - os: linux
       language: c++
       compiler: clang
@@ -40,7 +56,6 @@ matrix:
             - build-essential
             - libsdl2-dev
             - libopenal-dev
-            - libjpeg8-dev
             - libvorbis-dev
             - libtheora-dev
             - libfreetype6-dev
@@ -53,14 +68,14 @@ install:
   - if [[ "$QF_ARCH" == "x86" ]]; then export CC=gcc-4.9 CXX=g++-4.9; fi
   - cd "$TRAVIS_BUILD_DIR/source"
   - if [[ "$QF_ARCH" == "x86_64" ]]; then cmake .; fi
-  - if [[ "$QF_ARCH" == "x86" ]]; then cmake -DCMAKE_TOOLCHAIN_FILE=cmake/i386-linux-gnu.cmake -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 -DGAME_MODULES_ONLY=1 .; fi
+  - if [[ "$QF_ARCH" == "x86" ]]; then cmake -DCMAKE_TOOLCHAIN_FILE=cmake/i386-linux-gnu.cmake -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 .; fi
   - if [[ "$QF_ARCH" == "OSX" ]]; then cmake -G Xcode .; fi
   - cd "$TRAVIS_BUILD_DIR"
 
 script:
   - cd source
   - if [[ "$QF_ARCH" == "x86_64" ]]; then make -j8; fi
-  - if [[ "$QF_ARCH" == "x86" ]]; then make -j8 game cgame; fi
+  - if [[ "$QF_ARCH" == "x86" ]]; then make -j8; fi
   - if [[ "$QF_ARCH" == "OSX" ]]; then xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD; fi
   - cd build
   - echo "${TRAVIS_COMMIT}" >commit.txt

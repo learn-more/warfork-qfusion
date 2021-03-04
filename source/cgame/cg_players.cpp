@@ -264,4 +264,7 @@ void CG_LoadClientInfo( cg_clientInfo_t *ci, const char *info, int client )
 		Vector4Set( ci->color, COLOR_R( rgbcolor ), COLOR_G( rgbcolor ), COLOR_B( rgbcolor ), 255 );
 	else
 		Vector4Set( ci->color, 255, 255, 255, 255 );
+
+	s = Info_ValueForKey( info, "model" );
+	ci->modelindex = s && s[0] ? atoi( s ) : -1;
 }

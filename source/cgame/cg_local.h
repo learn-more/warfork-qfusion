@@ -372,6 +372,7 @@ typedef struct
 	int hand;
 	byte_vec4_t color;
 	struct shader_s *icon;
+	int modelindex;
 } cg_clientInfo_t;
 
 #define MAX_ANGLES_KICKS 3

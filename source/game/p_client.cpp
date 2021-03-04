@@ -1031,7 +1031,8 @@ void think_MoveTypeSwitcher( edict_t *ent )
 */
 static void G_UpdatePlayerInfoString( int playerNum )
 {
-	char playerString[MAX_INFO_STRING];
+	char playerString[MAX_INFO_STRING], playerModel[MAX_INFO_VALUE];
+	char *modelInfo;
 	gclient_t *client;
 
 	assert( playerNum >= 0 && playerNum < gs.maxclients );
@@ -1044,6 +1045,18 @@ static void G_UpdatePlayerInfoString( int playerNum )
 	Info_SetValueForKey( playerString, "hand", va( "%i", client->hand ) );
 	Info_SetValueForKey( playerString, "color",
 		va( "%i %i %i", client->color[0], client->color[1], client->color[2] ) );
+
+	modelInfo = Info_ValueForKey( client->userinfo, "model" );
+	if( !modelInfo || !modelInfo[0] || !COM_ValidateRelativeFilename( modelInfo ) || strchr( modelInfo, '/' ) )
+		modelInfo = NULL;
+
+	if( modelInfo )
+		Q_snprintfz( playerModel, sizeof( playerModel ), "$models/players/%s", modelInfo );
+	else
+		Q_snprintfz( playerModel, sizeof( playerModel ), "$models/players/%s", DEFAULT_PLAYERMODEL );
+
+	// cgame used the model for vsays
+	Info_SetValueForKey( playerString, "model", va( "%i", trap_ModelIndex( playerModel ) ) );
 
 	playerString[MAX_CONFIGSTRING_CHARS-1] = 0;
 	trap_ConfigString( CS_PLAYERINFOS + playerNum, playerString );

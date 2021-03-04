@@ -143,6 +143,7 @@ bool CG_PModelForCentity( centity_t *cent, pmodelinfo_t **pmodelinfo, struct ski
 	int team;
 	centity_t *owner;
 	unsigned int ownerNum;
+	int fallbackModelIndex;
 
 	owner = cent;
 	if( cent->current.type == ET_CORPSE && cent->current.bodyOwner )  // it's a body
@@ -153,9 +154,19 @@ bool CG_PModelForCentity( centity_t *cent, pmodelinfo_t **pmodelinfo, struct ski
 
 	CG_CheckUpdateTeamModelRegistration( team ); // check for cvar changes
 
-	// use the player defined one if not forcing
-	if( pmodelinfo )
-		*pmodelinfo = cgs.pModelsIndex[cent->current.modelindex];
+	// use the player defined one if not forcings
+	if( pmodelinfo ) {
+		if( cent->current.modelindex )
+			*pmodelinfo = cgs.pModelsIndex[cent->current.modelindex];
+		else
+		{
+			fallbackModelIndex = cgs.clientInfo[ownerNum - 1].modelindex;
+			if( fallbackModelIndex >= 0 && fallbackModelIndex < MAX_MODELS )
+			{
+				*pmodelinfo = cgs.pModelsIndex[fallbackModelIndex];
+			}
+		}
+	}
 	if( skin )
 		*skin = cgs.skinPrecache[cent->current.skinnum];
 

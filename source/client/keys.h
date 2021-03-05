@@ -36,6 +36,7 @@ const char *Key_KeynumToString( int keynum );
 
 int Key_StringToKeynum( const char *str );
 bool Key_IsDown( int keynum );
+bool Key_IsToggleConsole( int key );
 
 // wsw : aiwa : delegate pattern to forward key strokes to arbitrary code
 // delegates can be stacked, the topmost delegate is sent the key

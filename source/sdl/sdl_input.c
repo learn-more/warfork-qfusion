@@ -257,6 +257,13 @@ static void key_event( const SDL_KeyboardEvent *event, const bool state )
 	if( charkey >= 0 && charkey <= 255 ) {
 		Key_Event( charkey, state, Sys_Milliseconds() );
 	}
+
+	if( Key_IsToggleConsole( charkey ) )
+	{
+		// clear the sdl input buffer. prevents accents etc from modifying the first character written.
+		SDL_StopTextInput();
+		SDL_StartTextInput();
+	}
 }
 
 /*****************************************************************************/

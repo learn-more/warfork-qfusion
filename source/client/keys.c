@@ -383,7 +383,7 @@ static void Key_Bindlist_f( void )
 * If nothing is bound to toggleconsole, we use default key for it
 * Also toggleconsole is specially handled, so it's never outputed to the console or so
 */
-static bool Key_IsToggleConsole( int key )
+bool Key_IsToggleConsole( int key )
 {
 	if( key == -1 )
 		return false;

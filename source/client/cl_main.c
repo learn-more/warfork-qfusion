@@ -1839,6 +1839,14 @@ static void CL_WriteConfig_f( void )
 }
 
 /*
+* CL_CompleteWriteConfigBuildList
+*/
+static char **CL_CompleteWriteConfigBuildList( const char *partial )
+{
+	return Cmd_CompleteFileList( partial, "", ".cfg", true );
+}
+
+/*
 * CL_SetClientState
 */
 void CL_SetClientState( int state )
@@ -2205,6 +2213,7 @@ static void CL_InitLocal( void )
 	Cmd_AddCommand( "downloadstatus", CL_DownloadStatus_f );
 	Cmd_AddCommand( "downloadcancel", CL_DownloadCancel_f );
 
+	Cmd_SetCompletionFunc( "writeconfig", CL_CompleteWriteConfigBuildList );
 	Cmd_SetCompletionFunc( "demo", CL_DemoComplete );
 	Cmd_SetCompletionFunc( "demoavi", CL_DemoComplete );
 }

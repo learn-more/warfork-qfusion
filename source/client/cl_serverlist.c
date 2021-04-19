@@ -301,7 +301,7 @@ static void CL_QueryGetInfoMessage( const char *cmdname )
 	}
 
 	// send a broadcast packet
-	Com_DPrintf( "querying %s...\n", server );
+	Com_DPrintf( "quering %s...\n", server );
 
 	if( NET_StringToAddress( server, &adr ) )
 	{

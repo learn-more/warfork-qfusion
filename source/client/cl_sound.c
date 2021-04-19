@@ -167,12 +167,12 @@ static bool CL_SoundModule_Load( const char *name, sound_import_t *import, bool 
 	if( !se->Init( VID_GetWindowHandle(), MAX_EDICTS, verbose ) )
 	{
 		CL_SoundModule_Shutdown( verbose );
-		Com_Printf( "Initialization of %s failed\n", name );
+		Com_Printf( "Initialization failure: %s\n", name );
 		return false;
 	}
 
 	if( verbose )
-		Com_Printf( "Initialization of %s succesful\n", name );
+		Com_Printf( "Initialization successful: %s\n", name );
 
 	return true;
 }

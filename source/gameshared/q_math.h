@@ -101,7 +101,7 @@ extern vec4_t colorDkGrey;
 extern vec4_t colorOrange;
 extern vec4_t colorLtBlue;
 
-#define MAX_S_COLORS 11
+#define MAX_S_COLORS 10
 
 extern vec4_t color_table[MAX_S_COLORS];
 

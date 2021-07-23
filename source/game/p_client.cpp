@@ -1034,6 +1034,7 @@ static void G_UpdatePlayerInfoString( int playerNum )
 	char playerString[MAX_INFO_STRING], playerModel[MAX_INFO_VALUE];
 	char *modelInfo;
 	gclient_t *client;
+	size_t stringLength;
 
 	assert( playerNum >= 0 && playerNum < gs.maxclients );
 	client = &game.clients[playerNum];
@@ -1055,11 +1056,21 @@ static void G_UpdatePlayerInfoString( int playerNum )
 	else
 		Q_snprintfz( playerModel, sizeof( playerModel ), "$models/players/%s", DEFAULT_PLAYERMODEL );
 
-	// cgame used the model for vsays
-	Info_SetValueForKey( playerString, "model", va( "%i", trap_ModelIndex( playerModel ) ) );
+	stringLength = strlen( playerString );
 
-	playerString[MAX_CONFIGSTRING_CHARS-1] = 0;
-	trap_ConfigString( CS_PLAYERINFOS + playerNum, playerString );
+	// cgame used the model for vsays
+	Info_SetValueForKey( playerString, "m", va( "%i", trap_ModelIndex( playerModel ) ) );
+
+	if( strlen( playerString ) < MAX_CONFIGSTRING_CHARS )
+	{
+		trap_ConfigString( CS_PLAYERINFOS + playerNum, playerString );
+	}
+	else
+	{
+        playerString[stringLength] = 0;
+		trap_ConfigString( CS_PLAYERINFOS + playerNum, playerString );
+	}
+
 }
 
 /*

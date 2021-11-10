@@ -1246,6 +1246,60 @@ static void Cmd_Upstate_f( edict_t *ent )
 	trap_GameCmd( ent, va( "qm %s", ent->r.client->level.quickMenuItems ) );
 }
 
+
+#define MAPLIST_SEPS " ,"
+/*
+* Cmd_ServerMaplist_f
+*
+* Send all allowed maps to the client
+*/
+static void Cmd_ServerMaplist_f( edict_t *ent )
+{
+	char fullname[MAX_TOKEN_CHARS];
+
+	// update the maplist
+	trap_ML_Update ();
+
+	if( g_enforce_map_pool->integer && strlen( g_map_pool->string ) > 2 )
+	{
+		char* s, * tok;
+		
+		G_PrintMsg( ent, "Maps available [map pool enforced]:\n", g_map_pool->string );
+
+		s = G_CopyString( g_map_pool->string );
+		tok = strtok( s, MAPLIST_SEPS );
+		while ( tok != NULL )
+		{
+			Q_strncpyz( fullname, COM_RemoveColorTokens( trap_ML_GetFullname( tok ) ), sizeof( fullname ) );
+
+			if ( fullname[0] )
+			{
+				G_PrintMsg( ent, "%s: %s\n", tok, fullname );
+			}
+
+			tok = strtok( NULL, MAPLIST_SEPS );
+		}
+		G_Free( s );
+	}
+	else
+	{
+		char mapname[MAX_STRING_CHARS];
+		int i = 0;
+
+		G_PrintMsg( ent, "Maps available:\n" );
+
+		while (trap_ML_GetMapByNum(i++, mapname, sizeof(mapname)))
+		{
+			Q_strncpyz( fullname, COM_RemoveColorTokens( trap_ML_GetFullname( mapname ) ), sizeof( fullname ) );
+
+			if ( fullname[0] )
+			{
+				G_PrintMsg( ent, "%s: %s\n", mapname, fullname );
+			}
+		}
+	}
+}
+
 //===========================================================
 //	client commands
 //===========================================================
@@ -1362,6 +1416,7 @@ void G_InitGameCommands( void )
 	G_AddCommand( "timein", Cmd_Timein_f );
 	G_AddCommand( "cointoss", Cmd_CoinToss_f );
 	G_AddCommand( "whois", Cmd_Whois_f );
+	G_AddCommand( "servermaplist", Cmd_ServerMaplist_f );
 
 	// callvotes commands
 	G_AddCommand( "callvote", G_CallVote_Cmd );

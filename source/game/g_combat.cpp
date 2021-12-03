@@ -461,7 +461,7 @@ void G_Damage( edict_t *targ, edict_t *inflictor, edict_t *attacker, const vec3_
 		// in G_Fire_SunflowerPattern and show one number there instead
 		if( !GS_Instagib() && mod != MOD_RIOTGUN_W && mod != MOD_RIOTGUN_S ) {
 			edict_t * damage = G_SpawnEvent( EV_DAMAGE, 0, targ->s.origin );
-			damage->r.svflags |= SVF_ONLYOWNER;
+			damage->r.svflags |= SVF_OWNERANDCHASERS;
 			damage->s.ownerNum = ENTNUM( attacker );
 			damage->s.damage = HEALTH_TO_INT( take + asave );
 		}

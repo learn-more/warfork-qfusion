@@ -1719,6 +1719,14 @@ static void CG_FireEntityEvents( bool early )
 	{
 		state = &cg.frame.parsedEntities[pnum&( MAX_PARSE_ENTITIES-1 )];
 
+		if (cgs.demoPlaying)
+		{
+			if ((state->svflags & SVF_ONLYTEAM) && cg.predictedPlayerState.stats[STAT_TEAM] != state->team)
+				continue;
+			if (((state->svflags & SVF_ONLYOWNER) || (state->svflags & SVF_OWNERANDCHASERS)) && cg.predictedPlayerState.POVnum != state->ownerNum)
+				continue;
+		}
+
 		if( state->type == ET_SOUNDEVENT )
 		{
 			if( early )

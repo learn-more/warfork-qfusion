@@ -2157,6 +2157,14 @@ void CG_UpdateEntities( void )
 		cent->item = NULL;
 		cent->renderfx = 0;
 
+		if (cgs.demoPlaying)
+		{
+			if ((state->svflags & SVF_ONLYTEAM) && cg.predictedPlayerState.stats[STAT_TEAM] != state->team)
+				continue;
+			if (((state->svflags & SVF_ONLYOWNER) || (state->svflags & SVF_OWNERANDCHASERS)) && cg.predictedPlayerState.POVnum != state->ownerNum)
+				continue;
+		}
+
 		switch( cent->type )
 		{
 		case ET_GENERIC:

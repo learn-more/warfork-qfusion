@@ -336,7 +336,7 @@ bool Sys_FS_RemoveDirectory( const char *path )
 	WCHAR wpath[MAX_PATH];
 
 	_Sys_Utf8FileNameToWide(path, wpath, _countof(wpath));
-	return ( !_wrmdir( path ) );
+	return ( !_wrmdir( wpath ) );
 }
 
 /*

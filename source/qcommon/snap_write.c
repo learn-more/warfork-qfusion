@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "qcommon.h"
-
+#include "../gameshared/gs_public.h"
 #include "snap_write.h"
 
 /*
@@ -917,6 +917,15 @@ static bool SNAP_SnapCullEntity( cmodel_state_t *cms, edict_t *ent, edict_t *cle
 	// send only to owner
 	if( ( ent->r.svflags & SVF_ONLYOWNER ) && ( clent && ent->s.ownerNum != clent->s.number ) )
 		return true;
+
+	// send only to owner and whoever is chasing this entity
+	// multi-pov demo's still receive it, so that is filtered in CG_UpdateEntities and CG_FireEntityEvents
+	if( ( ent->r.svflags & SVF_OWNERANDCHASERS ) && clent ) {
+		bool self = ent->s.ownerNum == clent->s.number;
+		bool pov = clent->s.team == TEAM_SPECTATOR && (int)clent->r.client->ps.POVnum == ent->s.ownerNum;
+		if (!self && !pov)
+			return true;
+	}
 
 	if( ent->r.svflags & SVF_BROADCAST )  // send to everyone
 		return false;

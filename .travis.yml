@@ -73,6 +73,9 @@ install:
   - cd "$TRAVIS_BUILD_DIR"
 
 script:
+  - curl https://warfork.com/downloads/steamworks_sdk_153a.zip
+  - mv steamworks_sdk_153a.zip "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip"
+  - unzip "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip"
   - cd source
   - if [[ "$QF_ARCH" == "x86_64" ]]; then make -j8; fi
   - if [[ "$QF_ARCH" == "x86" ]]; then make -j8; fi

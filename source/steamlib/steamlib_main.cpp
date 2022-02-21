@@ -42,6 +42,8 @@ struct CSteamCallbacks {
 
 	STEAM_CALLBACK( CSteamCallbacks, OnGetAuthSessionTicketResponse, GetAuthSessionTicketResponse_t );
 	STEAM_CALLBACK( CSteamCallbacks, OnWorkshopItemInstalled, ItemInstalled_t );
+
+	STEAM_CALLBACK( CSteamCallbacks, OnGameServerChangeRequested, GameServerChangeRequested_t);
 };
 static CSteamCallbacks *g_pCallbacks = nullptr;
 
@@ -50,17 +52,31 @@ void CSteamCallbacks::OnGetAuthSessionTicketResponse( GetAuthSessionTicketRespon
 	if( pParam->m_eResult != k_EResultOK )
 		m_AuthTicketLength = 0;
 
-	m_callback( m_AuthTicket, m_AuthTicketLength );
+	if (m_callback)
+	{
+		m_callback(m_AuthTicket, m_AuthTicketLength);
+	}
 }
-
-void AddUGCItem(PublishedFileId_t workshopItemID);
 
 void CSteamCallbacks::OnWorkshopItemInstalled( ItemInstalled_t *pParam )
 {
 	if( pParam->m_unAppID == SteamUtils()->GetAppID() ) {
-		//AddUGCItem(pParam->m_nPublishedFileId);
 		Com_Printf( "New workshop item installed, please restart!\n" );
 	}
+}
+
+void CSteamCallbacks::OnGameServerChangeRequested( GameServerChangeRequested_t *pParam )
+{
+	char connectCommand[1024];
+	if( pParam->m_rgchPassword[0] ) {
+		char password[65] = { 0 };
+		Info_CleanValue( pParam->m_rgchPassword, password, sizeof( password ) );
+		Q_snprintfz( connectCommand, sizeof( connectCommand ), "connect \"%s@%s\"\n", password, pParam->m_rgchServer );
+	} else {
+		Q_snprintfz( connectCommand, sizeof( connectCommand ), "connect \"%s\"\n", pParam->m_rgchServer );
+	}
+
+	WSWSTEAM::GetSteamImport()->Cbuf_ExecuteText( EXEC_APPEND, connectCommand );
 }
 
 void AddUGCItem( PublishedFileId_t workshopItemID )

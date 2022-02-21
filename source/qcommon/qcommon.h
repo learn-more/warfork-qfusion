@@ -745,6 +745,7 @@ const char *FS_RuntimeDirectory( void );
 void	    FS_CreateAbsolutePath( const char *path );
 const char *FS_AbsoluteNameForFile( const char *filename );
 const char *FS_AbsoluteNameForBaseFile( const char *filename );
+void	    FS_AddExtraPK3Directory( const char *path );
 
 // // game and base files
 // file streaming

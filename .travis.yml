@@ -73,8 +73,7 @@ install:
   - cd "$TRAVIS_BUILD_DIR"
 
 script:
-  - curl https://warfork.com/downloads/steamworks_sdk_153a.zip
-  - mv steamworks_sdk_153a.zip "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip"
+  - curl https://warfork.com/downloads/sdk/ --output "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip"
   - unzip "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip"
   - cd source
   - if [[ "$QF_ARCH" == "x86_64" ]]; then make -j8; fi
@@ -82,6 +81,7 @@ script:
   - if [[ "$QF_ARCH" == "OSX" ]]; then xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD; fi
   - cd build
   - echo "${TRAVIS_COMMIT}" >commit.txt
+  - echo "671610" >steam_appid.txt
   - if [[ "$QF_ARCH" == "OSX" ]]; then cd Release && tar -czvf ../../tmp.tar.gz *.app && cd ..; fi
   - if [[ "$QF_ARCH" != "OSX" ]]; then tar -czvf ../tmp.tar.gz * --exclude *.a --exclude base*/*.a libs/*.a; fi
   - cd ..

@@ -26,6 +26,11 @@ install:
     cd ..
 build_script:
 - cmd: >-
+
+    curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+    
+    7z x third-party/steamworks/sdk.zip
+
     msbuild build_%BUILD_PLATFORM%\qfusion.sln /p:configuration=Release /maxcpucount:2
 
     IF "%USE_SDL2%"=="1" cp libsrcs/lib/win32/%BUILD_PLATFORM%/release/SDL2.dll source\build\Release
@@ -33,6 +38,8 @@ build_script:
     cd source\build\Release
 
     >>commit.txt echo %APPVEYOR_REPO_COMMIT%
+
+    >>steam_appid.txt echo 671610
 
     IF "%USE_SDL2%"=="1" 7z a ..\..\..\win_%BUILD_PLATFORM%-SDL-Release.zip * -r -x!*.exp -x!*.lib
 

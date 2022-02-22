@@ -4,17 +4,15 @@ image: Visual Studio 2017
 configuration: Release
 environment:
   matrix:
-  - BUILD_STEAMLIB: 1
-    BUILD_PLATFORM: x86
+  - BUILD_PLATFORM: x86
     VS_GENERATOR: Visual Studio 15 2017
-  - USE_SDL2: 1
-    BUILD_PLATFORM: x86
+    BUILD_STEAMLIB: 1 
+  - BUILD_PLATFORM: x86
     VS_GENERATOR: Visual Studio 15 2017
-  - BUILD_STEAMLIB: 1
-    BUILD_PLATFORM: x64
+  - BUILD_PLATFORM: x64
     VS_GENERATOR: Visual Studio 15 2017 Win64
-  - USE_SDL2: 1
-    BUILD_PLATFORM: x64
+    BUILD_STEAMLIB: 1
+  - BUILD_PLATFORM: x64
     VS_GENERATOR: Visual Studio 15 2017 Win64
 install:
 - cmd: >-
@@ -23,36 +21,34 @@ install:
 
     cd "build_%BUILD_PLATFORM%"
 
-    cmake -G "%VS_GENERATOR%" -T "%VS_TOOLSET%" ..\source\ -DUSE_SDL2=%USE_SDL2% -DBUILD_STEAMLIB=%BUILD_STEAMLIB%
+    cmake -G "%VS_GENERATOR%" -T "%VS_TOOLSET%" ..\source\ -DBUILD_STEAMLIB=%BUILD_STEAMLIB%
 
     cd ..
 build_script:
 - cmd: >-
 
-    curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+    IF "%BUILD_STEAMLIB%"=="1" curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
     
-    7z x third-party/steamworks/sdk.zip
+    IF "%BUILD_STEAMLIB%"=="1" 7z x third-party/steamworks/sdk.zip -othird-party/steamworks
 
     msbuild build_%BUILD_PLATFORM%\qfusion.sln /p:configuration=Release /maxcpucount:2
-
-    IF "%USE_SDL2%"=="1" cp libsrcs/lib/win32/%BUILD_PLATFORM%/release/SDL2.dll source\build\Release
-
+    
     cd source\build\Release
 
     >>commit.txt echo %APPVEYOR_REPO_COMMIT%
 
-    >>steam_appid.txt echo 671610
+    IF "%BUILD_STEAMLIB%"=="1" >>steam_appid.txt echo 671610
 
-    IF "%USE_SDL2%"=="1" 7z a ..\..\..\win_%BUILD_PLATFORM%-SDL-Release.zip * -r -x!*.exp -x!*.lib
+    IF "%BUILD_STEAMLIB%"=="1" 7z a ..\..\..\win_%BUILD_PLATFORM%-STEAM-Release.zip * -r -x!*.exp -x!*.lib
 
-    IF "%USE_SDL2%"=="" 7z a ..\..\..\win_%BUILD_PLATFORM%-Release.zip * -r -x!*.exp -x!*.lib
+    IF "%BUILD_STEAMLIB%"=="" 7z a ..\..\..\win_%BUILD_PLATFORM%-Release.zip * -r -x!*.exp -x!*.lib
 
     cd ..\..\..\
 artifacts:
 - path: win_x86-Release.zip
 - path: win_x64-Release.zip
-- path: win_x86-SDL-Release.zip
-- path: win_x64-SDL-Release.zip
+- path: win_x86-STEAM-Release.zip
+- path: win_x64-STEAM-Release.zip
 deploy:
 - provider: Environment
   name: Automatic Github releases for qfusion

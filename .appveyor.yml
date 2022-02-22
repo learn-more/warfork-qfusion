@@ -4,12 +4,14 @@ image: Visual Studio 2017
 configuration: Release
 environment:
   matrix:
-  - BUILD_PLATFORM: x86
+  - BUILD_STEAMLIB: 1
+    BUILD_PLATFORM: x86
     VS_GENERATOR: Visual Studio 15 2017
   - USE_SDL2: 1
     BUILD_PLATFORM: x86
     VS_GENERATOR: Visual Studio 15 2017
-  - BUILD_PLATFORM: x64
+  - BUILD_STEAMLIB: 1
+    BUILD_PLATFORM: x64
     VS_GENERATOR: Visual Studio 15 2017 Win64
   - USE_SDL2: 1
     BUILD_PLATFORM: x64
@@ -21,7 +23,7 @@ install:
 
     cd "build_%BUILD_PLATFORM%"
 
-    cmake -G "%VS_GENERATOR%" -T "%VS_TOOLSET%" ..\source\ -DUSE_SDL2=%USE_SDL2%
+    cmake -G "%VS_GENERATOR%" -T "%VS_TOOLSET%" ..\source\ -DUSE_SDL2=%USE_SDL2% -DBUILD_STEAMLIB=%BUILD_STEAMLIB%
 
     cd ..
 build_script:

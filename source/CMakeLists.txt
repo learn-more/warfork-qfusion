@@ -29,6 +29,7 @@ endif()
 
 option(USE_SDL2 "Build using SDL2" OFF)
 option(GAME_MODULES_ONLY "Only build game modules" OFF)
+option(BUILD_STEAMLIB "Include the steamlib module (requires Steamworks SDK)" OFF)
 
 # We build angelscript and libRocket from source
 
@@ -254,7 +255,9 @@ if (NOT GAME_MODULES_ONLY)
     add_subdirectory(snd_openal)
     add_subdirectory(snd_qf)
     add_subdirectory(ui)
-    add_subdirectory(steamlib)
+    if (BUILD_STEAMLIB)
+        add_subdirectory(steamlib)
+    endif()
     add_subdirectory(server)
     add_subdirectory(tv_server)
     add_subdirectory(client)

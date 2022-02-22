@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "sys_fs.h"
 #include "sys_threads.h"
+#include "steam.h"
 
 #include "compression.h"
 #include "wswcurl.h"
@@ -155,6 +156,7 @@ typedef struct searchpath_s
 	pack_t *pack;
 	struct searchpath_s *base;		// parent basepath
 	struct searchpath_s *next;
+	bool append_basegame;
 } searchpath_t;
 
 typedef struct
@@ -3596,7 +3598,10 @@ static char **FS_GamePathPaks( searchpath_t *basepath, const char *gamedir, int 
 		int numvfsfiles = 0, numfiles = 0;
 		char **vfsfilenames = NULL, **filenames;
 
-		Q_snprintfz( pattern, sizeof( pattern ), "%s/*.%s", gamedir, pak_extensions[e] );
+		if( basepath->append_basegame )
+			Q_snprintfz( pattern, sizeof( pattern ), "%s/*.%s", gamedir, pak_extensions[e] );
+		else
+			Q_snprintfz( pattern, sizeof( pattern ), "*.%s", pak_extensions[e] );
 		Q_snprintfz( basePattern, sizeof( basePattern ), "%s/%s", basepath->path, pattern );
 
 		if( basepath == fs_root_searchpath ) // only add VFS once per game, treat it like the installation directory
@@ -3690,7 +3695,11 @@ static int FS_TouchGamePath( searchpath_t *basepath, const char *gamedir, bool i
 		path_size = sizeof( char ) * ( strlen( basepath->path ) + 1 + strlen( gamedir ) + 1 );
 		search->path = ( char* )FS_Malloc( path_size );
 		search->base = basepath;
-		Q_snprintfz( search->path, path_size, "%s/%s", basepath->path, gamedir );
+		search->append_basegame = basepath->append_basegame;
+		if( search->append_basegame )
+			Q_snprintfz( search->path, path_size, "%s/%s", basepath->path, gamedir );
+		else
+			Q_snprintfz( search->path, path_size, "%s", basepath->path );
 
 		search->next = fs_searchpaths;
 		fs_searchpaths = search;
@@ -4090,16 +4099,23 @@ bool FS_SetGameDirectory( const char *dir, bool force )
 /*
 * FS_AddBasePath
 */
-static void FS_AddBasePath( const char *path )
+static void FS_AddBasePath( const char *path, bool append_basegame )
 {
 	searchpath_t *newpath;
 
 	newpath = ( searchpath_t* )FS_Malloc( sizeof( searchpath_t ) );
 	newpath->path = FS_CopyString( path );
 	newpath->next = fs_basepaths;
+	newpath->append_basegame = append_basegame;
 	fs_basepaths = newpath;
 	COM_SanitizeFilePath( newpath->path );
 }
+
+void FS_AddExtraPK3Directory( const char *path )
+{
+	FS_AddBasePath( path, false );
+}
+
 
 /*
 * FS_FreeSearchFiles
@@ -4351,27 +4367,37 @@ void FS_Init( void )
 			Q_snprintfz( downloadsdir, sizeof( downloadsdir ), "%s", "downloads" );
 		}
 
-		FS_AddBasePath( downloadsdir );
+		FS_AddBasePath( downloadsdir, true );
 		fs_downloads_searchpath = fs_basepaths;
 	}
 
 	if( fs_cdpath->string[0] )
-		FS_AddBasePath( fs_cdpath->string );
+		FS_AddBasePath( fs_cdpath->string, true );
 
-	FS_AddBasePath( fs_basepath->string );
+	FS_AddBasePath( fs_basepath->string, true );
 	fs_root_searchpath = fs_basepaths;
 	fs_write_searchpath = fs_basepaths;
 
 	if( homedir != NULL && fs_usehomedir->integer ) {
-		FS_AddBasePath( homedir );
+		FS_AddBasePath( homedir, true );
 		fs_write_searchpath = fs_basepaths;
 	}
 
 	cachedir = Sys_FS_GetCacheDirectory();
 	if( cachedir )
-		FS_AddBasePath( cachedir );
+		FS_AddBasePath( cachedir, true );
 
 	Sys_VFS_Init();
+
+	// Need to initialize before FS is done, but after the basic search path is constructed.
+#if APP_STEAMID
+	Steam_LoadLibrary();
+#if !defined(DEDICATED_ONLY)
+	Steam_Init();
+#else
+	// FIXME: Steam server init here!
+#endif
+#endif
 
 	//
 	// set game directories

@@ -44,6 +44,7 @@ void Steam_LoadLibrary( void )
 	import.Com_Printf = Com_Printf;
 	import.Com_DPrintf = Com_DPrintf;
 	import.Cbuf_ExecuteText = Cbuf_ExecuteText;
+	import.FS_AddExtraPK3Directory = FS_AddExtraPK3Directory;
 
 	// load dynamic library
 	Com_Printf( "Loading Steam module... " );

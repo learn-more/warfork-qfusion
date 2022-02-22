@@ -3087,8 +3087,6 @@ void CL_Init( void )
 	// init localization subsystem
 	L10n_Init();
 
-	Steam_Init();
-
 	VID_Init();
 
 	CL_ClearState();

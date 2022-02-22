@@ -24,7 +24,7 @@ License along with this library.
 
 // steamlib_public.h - steam integration subsystem
 
-#define	STEAMLIB_API_VERSION 3
+#define	STEAMLIB_API_VERSION 4
 
 //===============================================================
 
@@ -42,6 +42,10 @@ typedef struct
 
 	// console commands
 	void ( *Cbuf_ExecuteText )( int exec_when, const char *text );
+
+	// Allow steam to add a directory containing PK3 files
+	void ( *FS_AddExtraPK3Directory )( const char *path );
+
 } steamlib_import_t;
 
 //

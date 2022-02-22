@@ -17,6 +17,7 @@ License along with this library.
 */
 
 #include "steamlib_local.h"
+#include "../gameshared/q_shared.h"
 
 namespace WSWSTEAM {
 
@@ -57,6 +58,30 @@ extern "C" STEAMDLL_EXPORT steamlib_export_t *GetSteamLibAPI( steamlib_import_t 
 	globals.GetPersonaName = &WSWSTEAM::SteamLib_GetPersonaName;
 
 	return &globals;
+}
+
+void Sys_Error(const char* format, ...)
+{
+	va_list	argptr;
+	char msg[3072];
+
+	va_start(argptr, format);
+	Q_vsnprintfz(msg, sizeof(msg), format, argptr);
+	va_end(argptr);
+
+	WSWSTEAM::GetSteamImport()->Com_Error(ERR_FATAL, S_COLOR_RED "STEAM" S_COLOR_WHITE ": %s", msg);
+}
+
+void Com_Printf(const char* format, ...)
+{
+	va_list	argptr;
+	char msg[3072];
+
+	va_start(argptr, format);
+	Q_vsnprintfz(msg, sizeof(msg), format, argptr);
+	va_end(argptr);
+
+	WSWSTEAM::GetSteamImport()->Com_Printf(S_COLOR_YELLOW "STEAM" S_COLOR_WHITE ": %s", msg);
 }
 
 #if defined ( HAVE_DLLMAIN ) && !defined ( STEAMLIB_HARD_LINKED )

@@ -13,7 +13,7 @@ file(GLOB STEAMLIB_SOURCES
 set(STEAMWORKS_SDK_DIR ${CMAKE_HOME_DIRECTORY}/../third-party/steamworks/sdk)
 include_directories("${STEAMWORKS_SDK_DIR}/public")
 
-set(STEAMWORKS_LIBRARY steam_api)
+set(STEAMWORKS_LIBRARY libsteam_api)
 # Please note, this is not in the 'libs' directory!
 set(STEAMWORKS_OUTPUT_PATH ${CMAKE_HOME_DIRECTORY}/build)
 
@@ -23,6 +23,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
         set(STEAMWORKS_LIBRARY steam_api64)
     else()
         set(STEAMWORKS_LIBRARY_DIR ${STEAMWORKS_SDK_DIR}/redistributable_bin)
+		set(STEAMWORKS_LIBRARY steam_api)
     endif()
     set(STEAMWORKS_LIBRARY_EXTENSION .dll)
     # This is not a typo, but using Visual Studio's 'Configuration' property!

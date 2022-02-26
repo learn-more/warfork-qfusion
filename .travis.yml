@@ -8,13 +8,15 @@ matrix:
   include:
     - os: osx
       osx_image: xcode8.3
-      env: QF_ARCH=OSX
+      env: 
+      - QF_ARCH=OSX  
       language: c++
       compiler: clang
     - os: linux
       language: c++
       compiler: gcc-4.9
-      env: QF_ARCH=x86
+      env: 
+      - QF_ARCH=x86  
       addons:
         apt:
           sources:
@@ -47,7 +49,8 @@ matrix:
     - os: linux
       language: c++
       compiler: clang
-      env: QF_ARCH=x86_64
+      env: 
+      - QF_ARCH=x86_64
       addons:
         apt:
           packages:
@@ -67,14 +70,14 @@ install:
   - if [[ "$QF_ARCH" == "x86_64" ]]; then export CC=clang CXX=clang++; fi
   - if [[ "$QF_ARCH" == "x86" ]]; then export CC=gcc-4.9 CXX=g++-4.9; fi
   - cd "$TRAVIS_BUILD_DIR/source"
-  - if [[ "$QF_ARCH" == "x86_64" ]]; then cmake .; fi
-  - if [[ "$QF_ARCH" == "x86" ]]; then cmake -DCMAKE_TOOLCHAIN_FILE=cmake/i386-linux-gnu.cmake -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 .; fi
-  - if [[ "$QF_ARCH" == "OSX" ]]; then cmake -G Xcode .; fi
+  - if [[ "$QF_ARCH" == "x86_64" ]]; then cmake -DBUILD_STEAMLIB=1 .; fi
+  - if [[ "$QF_ARCH" == "x86" ]]; then cmake -DCMAKE_TOOLCHAIN_FILE=cmake/i386-linux-gnu.cmake -DCMAKE_C_FLAGS=-m32 -DCMAKE_CXX_FLAGS=-m32 -DBUILD_STEAMLIB=1 .; fi
+  - if [[ "$QF_ARCH" == "OSX" ]]; then cmake -G Xcode -DBUILD_STEAMLIB=1 .; fi
   - cd "$TRAVIS_BUILD_DIR"
 
 script:
   - curl https://warfork.com/downloads/sdk/ --output "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip"
-  - unzip "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip"
+  - unzip "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip" -d "$TRAVIS_BUILD_DIR/third-party/steamworks"
   - cd source
   - if [[ "$QF_ARCH" == "x86_64" ]]; then make -j8; fi
   - if [[ "$QF_ARCH" == "x86" ]]; then make -j8; fi

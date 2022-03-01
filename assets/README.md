@@ -1,0 +1,3 @@
+# ___WARFORK ASSETS___ 
+ 
+Everything in the assets folder is for internal use by our developers. It's an absolute spaghetti of different licenses, which is not suitable for use anywhere. We decided to move it here so more developers could get involved. There's absolutely no way to maintain an accurate list of licenses as things are constantly being changed. If you see a commit that states a license assume it is wrong. When a release is ready for Steam we re-review each individual asset, assign it a license, and update our list, which you can find by launching Warfork on Steam, clicking Credits, and clicking View License. The licenses you see in-game reflect the current Steam release and not this sloppy work in progress repository\previous Steam releases.

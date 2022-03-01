@@ -1,0 +1,6 @@
+// Example cheatvars blocklist
+// Uncomment a line to use it
+// Completely disallow this variable:
+// lp_aimbot|*
+// Only disallow one specific value:
+// cg_thirdPerson|1

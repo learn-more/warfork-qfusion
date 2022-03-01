@@ -19,9 +19,6 @@ matrix:
       - QF_ARCH=x86  
       addons:
         apt:
-          sources:
-            - kubuntu-backports
-            - ubuntu-toolchain-r-test
           packages:
             - gcc-4.9
             - g++-4.9

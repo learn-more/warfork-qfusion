@@ -75,6 +75,9 @@ unsigned int time_after_game;
 unsigned int time_before_ref;
 unsigned int time_after_ref;
 
+// debug/performance counter vars
+int c_pointcontents, c_traces, c_brush_traces;
+
 /*
 ==============================================================
 

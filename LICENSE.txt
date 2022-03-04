@@ -1,21 +1,3 @@
-Warfork (https://www.forbidden.gg) assets are licensed under the Creative Commons — CC0 1.0 Universal License and CC Attribution-ShareAlike 3.0 United States (CC BY-SA 3.0 US). You can view a complete list of assets in warfork_assets.txt. 
-
-https://creativecommons.org/publicdomain/zero/1.0/
-https://creativecommons.org/publicdomain/zero/1.0/legalcode
-
-https://creativecommons.org/licenses/by-sa/3.0/us/
-https://creativecommons.org/licenses/by-sa/3.0/us/legalcode
-
-Warsow (https://github.com/Warsow) assets* are licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
-To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
-
-* Applicable to any asset not listed in warfork_assets.txt.
-
-Warfork is powered by qfusion* (https://github.com/Qfusion/qfusion) licensed under the GPLv2 License. Qfusion is an id Tech 2 derived game engine.
-To view a copy of this license, visit https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html or send a letter to 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-* Applicable to any gametypes included.
-
 Warfork uses the following libraries:
 
 OpenAL-MOB https://github.com/Jawbone/OpenAL-MOB (lgpl)

@@ -169,13 +169,13 @@ if (NOT GAME_MODULES_ONLY)
     find_package(Freetype REQUIRED)
     find_package(OpenAL)
 
-    # We need SDL only on non-Windows platforms or when with SDL2-backend
-    if (USE_SDL2 OR (${CMAKE_SYSTEM_NAME} MATCHES "Linux"))
+    # We default to SDL2 only on non-Windows platforms
+    if(NOT DEFINED USE_SDL2 AND (${CMAKE_SYSTEM_NAME} MATCHES "Linux"))
+        set(USE_SDL2 1)
+    endif()
+    if (${USE_SDL2})
         set(USE_SDL2 1)
         find_package(SDL2 REQUIRED)
-    endif()
-
-    if (USE_SDL2)
         add_definitions(-DUSE_SDL2)
     endif()
 endif()

@@ -632,6 +632,17 @@ static void GLimp_SetXPMIcon( const int *xpm_icon )
 	free( cardinalData );
 }
 
+/**
+** GLimp_SetWindowIcon
+*/
+void GLimp_SetWindowIcon( void ) {
+#ifndef __APPLE__
+	const int *xpm_icon = glw_state.applicationIcon;
+
+	GLimp_SetXPMIcon(xpm_icon);
+#endif
+}
+
 /*****************************************************************************/
 
 /*
@@ -828,6 +839,13 @@ static rserr_t GLimp_SetMode_Real( int width, int height, int displayFrequency, 
 rserr_t GLimp_SetMode( int x, int y, int width, int height, int displayFrequency, bool fullscreen, bool stereo )
 {
 	return GLimp_SetMode_Real( width, height, displayFrequency, fullscreen, false, false );
+}
+
+/*
+** GLimp_SetFullscreenMode
+*/
+rserr_t GLimp_SetFullscreenMode( int displayFrequency, bool fullscreen ) {
+	return GLimp_SetMode_Real(0, 0, displayFrequency, fullscreen, false, false);
 }
 
 /*
@@ -1125,7 +1143,7 @@ void *GLimp_GetWindowSurface( bool *renderable )
 {
 	if( renderable )
 		*renderable = true;
-	return ( void * )x11dispay.gl_win;
+	return ( void * )x11display.gl_win;
 }
 
 /*
@@ -1147,7 +1165,10 @@ bool GLimp_SharedContext_Create( void **context, void **surface )
 	*context = (void *)ctx;
 	if( surface )
 		*surface = (void *)x11display.gl_win;
-	return true;
+
+	// qglXCreateContext makes the newly created context current
+	// we don't want that, so revert to our main context
+	return GLimp_MakeCurrent((void *)x11display.ctx, (void *)x11display.gl_win);
 }
 
 /*
@@ -1155,6 +1176,13 @@ bool GLimp_SharedContext_Create( void **context, void **surface )
 */
 bool GLimp_SharedContext_MakeCurrent( void *context, void *surface )
 {
+	return qglXMakeCurrent( x11display.dpy, (GLXDrawable)surface, (GLXContext)context ) == True ? true : false;
+}
+
+/*
+** GLimp_SharedContext_MakeCurrent
+*/
+bool GLimp_MakeCurrent( void *context, void *surface ) {
 	return qglXMakeCurrent( x11display.dpy, (GLXDrawable)surface, (GLXContext)context ) == True ? true : false;
 }
 

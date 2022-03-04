@@ -1166,9 +1166,7 @@ bool GLimp_SharedContext_Create( void **context, void **surface )
 	if( surface )
 		*surface = (void *)x11display.gl_win;
 
-	// qglXCreateContext makes the newly created context current
-	// we don't want that, so revert to our main context
-	return GLimp_MakeCurrent((void *)x11display.ctx, (void *)x11display.gl_win);
+	return true;
 }
 
 /*

@@ -126,6 +126,9 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR MINGW)
 
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99 -D_POSIX_C_SOURCE=200112L -D_XOPEN_SOURCE=500")
 
+    # default to sdl2 build on non-windows platforms
+    set(USE_SDL2 1)
+
     # -Wl,--as-needed
     add_common_link_flags("-Wl,--as-needed")
 
@@ -169,11 +172,7 @@ if (NOT GAME_MODULES_ONLY)
     find_package(Freetype REQUIRED)
     find_package(OpenAL)
 
-    # We default to SDL2 only on non-Windows platforms
-    if(NOT DEFINED USE_SDL2 AND (${CMAKE_SYSTEM_NAME} MATCHES "Linux"))
-        set(USE_SDL2 1)
-    endif()
-    if (${USE_SDL2})
+    if (USE_SDL2)
         set(USE_SDL2 1)
         find_package(SDL2 REQUIRED)
         add_definitions(-DUSE_SDL2)

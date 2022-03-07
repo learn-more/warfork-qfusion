@@ -1047,10 +1047,10 @@ void CG_UpdatePlayerModelEnt( centity_t *cent )
 	}
 
 	// fallback
-	if( !pmodel->pmodelinfo )
+	if( !pmodel->pmodelinfo || !pmodel->skin ) {
 		pmodel->pmodelinfo = cgs.basePModelInfo;
-	if( !pmodel->skin )
 		pmodel->skin = cgs.baseSkin;
+	}
 
 	// make sure al poses have their memory space
 	cent->skel = CG_SkeletonForModel( pmodel->pmodelinfo->model );

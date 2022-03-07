@@ -126,6 +126,9 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR MINGW)
 
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99 -D_POSIX_C_SOURCE=200112L -D_XOPEN_SOURCE=500")
 
+    # default to sdl2 build on non-windows platforms
+    set(USE_SDL2 1)
+
     # -Wl,--as-needed
     add_common_link_flags("-Wl,--as-needed")
 
@@ -169,13 +172,9 @@ if (NOT GAME_MODULES_ONLY)
     find_package(Freetype REQUIRED)
     find_package(OpenAL)
 
-    # We need SDL only on non-Windows platforms or when with SDL2-backend
-    if (USE_SDL2 OR (${CMAKE_SYSTEM_NAME} MATCHES "Linux"))
+    if (USE_SDL2)
         set(USE_SDL2 1)
         find_package(SDL2 REQUIRED)
-    endif()
-
-    if (USE_SDL2)
         add_definitions(-DUSE_SDL2)
     endif()
 endif()
@@ -252,7 +251,9 @@ if (NOT GAME_MODULES_ONLY)
     add_subdirectory(ftlib)
     add_subdirectory(irc)
     add_subdirectory(ref_gl)
-    add_subdirectory(snd_openal)
+    if (OPENAL_FOUND)
+        add_subdirectory(snd_openal)
+    endif()
     add_subdirectory(snd_qf)
     add_subdirectory(ui)
     if (BUILD_STEAMLIB)

@@ -22,6 +22,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "qcommon.h"
 #include "cm_local.h"
 
+extern int c_pointcontents;
+extern int c_traces;
+
 /*
 * CM_InitBoxHull
 *
@@ -501,6 +504,8 @@ static float trace_realfraction;
 #endif
 static int trace_contents;
 static bool trace_ispoint;      // optimized case
+
+extern int c_brush_traces;
 
 /*
 * CM_ClipBoxToBrush

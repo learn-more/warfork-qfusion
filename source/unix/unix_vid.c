@@ -37,6 +37,8 @@ rserr_t VID_Sys_Init( const char *applicationName, const char *screenshotsPrefix
 {
 	x11display.dpy = NULL;
 
+	XInitThreads();
+
 	return re.Init( applicationName, screenshotsPrefix, startupColor, 0, iconXPM,
 		NULL, &VID_WndProc, parentWindow, verbose );
 }

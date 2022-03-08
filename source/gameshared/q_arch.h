@@ -213,7 +213,7 @@ typedef UINT_PTR socket_handle_t;
 #define LIBOGG_LIBNAME "libogg.so.0|libogg.so"
 #define LIBVORBIS_LIBNAME "libvorbis.so.0|libvorbis.so"
 #define LIBVORBISFILE_LIBNAME "libvorbisfile.so.3|libvorbisfile.so"
-#define LIBTHEORA_LIBNAME "libtheora.so.0|libtheora.so"
+#define LIBTHEORA_LIBNAME "libtheoradec.so.1|libtheoradec.so|libtheora.so.0|libtheora.so"
 #define LIBFREETYPE_LIBNAME "libfreetype.so.6|libfreetype.so"
 
 #if defined ( __FreeBSD__ )

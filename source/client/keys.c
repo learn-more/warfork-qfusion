@@ -673,7 +673,7 @@ void Key_Event( int key, bool down, unsigned time )
 		key_repeats[key] = 0;
 	}
 
-#if !defined( WIN32 ) && !defined( __ANDROID__ )
+#if !defined( WIN32 )
 	// switch between fullscreen/windowed when ALT+ENTER is pressed
 	if( key == K_ENTER && down && (keydown[K_LALT] || keydown[K_RALT]) )
 	{

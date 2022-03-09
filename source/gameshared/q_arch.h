@@ -199,10 +199,6 @@ typedef UINT_PTR socket_handle_t;
 #define LIB_PREFIX "lib"
 #define LIB_SUFFIX ".so"
 
-#ifndef __ANDROID__
-#define OPENAL_RUNTIME
-#endif
-
 // FIXME: move these to CMakeLists.txt
 #define LIBZ_LIBNAME "libz.so.1|libz.so"
 #define LIBCURL_LIBNAME "libcurl.so.4|libcurl.so.3|libcurl.so"
@@ -217,9 +213,6 @@ typedef UINT_PTR socket_handle_t;
 #if defined ( __FreeBSD__ )
 #define BUILDSTRING "FreeBSD"
 #define OSNAME "FreeBSD"
-#elif defined ( __ANDROID__ )
-#define BUILDSTRING "Android"
-#define OSNAME "Android"
 #else
 #define BUILDSTRING "Linux"
 #define OSNAME "Linux"
@@ -230,9 +223,6 @@ typedef UINT_PTR socket_handle_t;
 #ifdef __i386__
 #if defined ( __FreeBSD__ )
 #define ARCH "freebsd_i386"
-#define CPUSTRING "i386"
-#elif defined ( __ANDROID__ )
-#define ARCH "android_x86"
 #define CPUSTRING "i386"
 #else
 #define ARCH "i386"

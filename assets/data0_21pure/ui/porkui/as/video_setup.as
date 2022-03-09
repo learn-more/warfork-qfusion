@@ -209,16 +209,7 @@ class VideoSetup
 
 	void CheckFullscreenAvailability( Element @elem )
 	{
-		if( window.osName == 'Android' )
-		{
-			Element @frame = elem.getElementById( idFullscreenFrame );
-			if ( @frame != null )
-				frame.css( 'display', 'none' );
-		}
-		else
-		{
 			showVideoFrame = true;
-		}
 	}
 
 	void CheckVsyncAvailability( Element @elem )
@@ -270,16 +261,7 @@ class VideoSetup
 	
 	void CheckGammaAvailability( Element @elem )
 	{
-		if( window.osName == 'Android' )
-		{
-			Element @frame = elem.getElementById( idGammaFrame );
-			if ( @frame != null )
-				frame.css( 'display', 'none' );
-		}
-		else
-		{
 			showVideoFrame = true;
-		}
 	}
 
 	void CheckSoftParticlesAvailability( Element @elem )

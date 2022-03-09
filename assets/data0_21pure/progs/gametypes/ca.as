@@ -1061,7 +1061,7 @@ void GT_InitGametype()
         config = "// '" + gametype.title + "' gametype configuration file\n"
                  + "// This config will be executed each time the gametype is started\n"
                  + "\n\n// map rotation\n"
-                 + "set g_maplist \"wca1\" // list of maps in automatic rotation\n"
+                 + "set g_maplist \"wfca1\" // list of maps in automatic rotation\n"
                  + "set g_maprotation \"0\"   // 0 = same map, 1 = in order, 2 = random\n"
                  + "\n// game settings\n"
                  + "set g_scorelimit \"11\"\n"

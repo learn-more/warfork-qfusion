@@ -124,7 +124,6 @@ extern "C" {
 
 #define VID_INITFIRST
 
-#define MUMBLE_SUPPORT
 #define OPENAL_RUNTIME
 
 // FIXME: move these to CMakeLists.txt
@@ -201,7 +200,6 @@ typedef UINT_PTR socket_handle_t;
 #define LIB_SUFFIX ".so"
 
 #ifndef __ANDROID__
-#define MUMBLE_SUPPORT
 #define OPENAL_RUNTIME
 #endif
 
@@ -307,7 +305,6 @@ typedef int socket_handle_t;
 #define LIB_PREFIX "lib"
 #define LIB_SUFFIX ".dylib"
 
-#define MUMBLE_SUPPORT
 #define OPENAL_RUNTIME
 
 // FIXME: move these to CMakeLists.txt

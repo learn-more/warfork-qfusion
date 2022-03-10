@@ -1033,16 +1033,6 @@ struct angelwrap_api_s *Com_asGetAngelExport( void );
 /*
 ==============================================================
 
-ANTICHEAT SYSTEMS
-
-==============================================================
-*/
-bool AC_LoadServerLibrary( void *exports, void *imports );
-bool AC_LoadClientLibrary( void *exports, void *imports );
-
-/*
-==============================================================
-
 MAPLIST SUBSYSTEM
 
 ==============================================================

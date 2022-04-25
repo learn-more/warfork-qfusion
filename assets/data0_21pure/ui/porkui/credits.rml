@@ -63,7 +63,7 @@
                         AJ (Vertex9)<br/> Caine
                         <br/><br/>
                         <h3 class="intro">Special Thanks</h3>
-                        3D Realms - Game Promotion at Realms Deep<br/> chribit - Forbidden\Icy Video Animation<br/> Dexter Haslem - Qfusion Assistance <br/> E1M1 Magazine - Game Promotion <br/> GelmoSan - Gametype Scripting <br/> In The Keep - Event Hosting & Game Promotion <br/> Jannik "drahti" Kolodziej - Qfusion Assistance <br/> joyh97 - Former "Steam Trailer Announcer"<br/> Michael Savage - Qfusion Assistance<br/> msh - Qfusion Assistance<br/> Richard Asher - Former "Announcer"<br/> Victor Luchitz - Qfusion Assistance
+                        3D Realms - Game Promotion at Realms Deep<br/> Alexander "Axee" Elder - Code Audit<br/> chribit - Forbidden\Icy Video Animation<br/> Dexter Haslem - Qfusion Assistance<br/> Dunk "Ultra-n00b aka d1223m" Fordyce - Code Audit <br/> E1M1 Magazine - Game Promotion <br/> GelmoSan - Gametype Scripting <br/> Inumeg - Code Audit <br/> In The Keep - Event Hosting & Game Promotion <br/> Jannik "drahti" Kolodziej - Qfusion Assistance <br/> joyh97 - Former "Steam Trailer Announcer"<br/> Michael Savage - Qfusion Assistance<br/> msh - Qfusion Assistance<br/> Pat AfterMoon - Code Audit<br/>Richard Asher - Former "Announcer"<br/>Thilo Schulz - Code Audit <br/> Victor Luchitz - Qfusion Assistance
                         <br/><br/>
                     </panel>
                     <tab>Warsow</tab>
@@ -75,15 +75,18 @@
                         <h3 class="intro">Founder</h3>
                         Fabrice "Solomonk" Demurger
                         <br/><br/>
+					    <h3 class="intro">Lead Game Designer</h3>
+						Baptiste "Blemish" Martin
+                        <br/><br/>
                         <h3 class="intro">Lead Software Engineers</h3>
                         <br/> Ben "kurim" Litz
+                        <br/> Damien "pb" Deville  
                         <br/> German "jal" Garcia
                         <br/> Pekka "Medar" Lampila
                         <br/> Victor "Vic" Luchits
                         <br/><br/>
                         <h3 class="intro">Software Engineers</h3>
-                        <br/> Alex "Toukkapoukka" Seilder
-                        <br/> Damien "pb" Deville  
+                        <br/> Alex "Toukkapoukka" (Christian Holmberg) Seilder
                         <br/> Tarmo Alexander "Crizis" Sundström
                         <br/> Vitaliy "Triang3l" Kuzmin
                         <br/><br/>
@@ -93,13 +96,18 @@
                         <br/> Andrei "adem4ik" Stepanov
                         <br/> Andrey "Vkni" Bergman
                         <br/> Calvin "Chobbes" Beck
+						<br/> Clement "Mokshu" Siegrist
                         <br/> Daniel "danlin" Lindenfelser
                         <br/> Dexter "dexter" Haslem
+						<br/> Gabriel Schnoering
                         <br/> Gerco "hettoo" van Heerdt
+                        <br/> gir                        
                         <br/> impulz
+                        <br/> jite aka dimman  
+						 <br/> Joseph Alex "kalhartt" Hartsell
                         <br/> Johannes "hangy" Athmer
+						<br/> Jorgen "impii" "impakt" Indal
                         <br/> Jyaan "jyaan" Bresy
-                        <br/> kalhartt
                         <br/> koffie
                         <br/> Lawrence "thelawenforcer" McCurrach
                         <br/> Mallory "BoB le pointu" Mollo
@@ -108,10 +116,13 @@
                         <br/> Mark "learn_more" Jansen
                         <br/> Michael P. "virus" Jung
                         <br/> Philipp Thomas "aiwa" Unterbrunner
+						<br/> Richard "R1CH" Stanway
+						<br/> Steve "meat" Yeager
                         <br/> stopiccot
                         <br/> stylemistake
-                        <br/> Susumu "guwashi" Ota   
-                        <br/> Torben "torbenh" Hohn
+                        <br/> Susumu "guwashi" Ota
+                        <br/> Timothee "TTimo" Besset							
+                        <br/> Ultra-n00b                        				
                         <br/> Uz-Valentin "uz" Friedrich
                         <br/> Will "Will" Franklin
                         <br/> William "Willis" Weilep                     
@@ -181,10 +192,7 @@
                         German "jal" Garcia
                         <br/><br/>
                         <h3 class="intro">Code Contributors</h3>
-                        Andrei "Adem" Stepanov <br/> Mathieu "molivier" Oliver <br/> Tarmo Alexander "Crizis" Sundström<br/> Vitaliy "Triang3l" Kuzmin
-                        <br/><br/>
-                        <h3 class="intro">Missing Contributors</h3>
-                        Please contact us on Discord to be added!
+                        Andrei "Adem" Stepanov <br/> Anton "tonik" Gavrilov <br/> Ashley "LadyHavoc" Hale <br/> DarkOne <br/> Dr. Tim Ferguson <br/> Martin Kraus <br/> Mathieu "molivier" Oliver <br/> Nolan "Radix" Pflug <br/> Shawn "EvilTypeGuy" Walker-Salas <br/> Rudolf "divVerent" Polzer <br/> Stephen C. Taylor <br/> Tarmo Alexander "Crizis" Sundström<br/> Vitaliy "Triang3l" Kuzmin
                         <br/><br/>
                     </panel>
                     <tab>License</tab>

@@ -5,7 +5,7 @@
 //=========================================================
 
 /*
-	asbind.h - Copyright Christian Holmberg 2011
+	asbind.h - Copyright Alex (Christian Holmberg) Seidler 2011
 
 	This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

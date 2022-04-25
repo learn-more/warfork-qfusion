@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../sdl/sdl_input_joy.h"
 
 // Vic: transplanted the XInput2 code from jquake
+// Vic: it should be dropped in favour of SDL2 and removed from the codebase
 
 // TODO: add in_mouse?
 cvar_t *in_grabinconsole;

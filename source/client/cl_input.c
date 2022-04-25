@@ -257,7 +257,8 @@ void CL_MouseMove( usercmd_t *cmd, int mx, int my )
 	if( m_accel->value != 0.0f && mouse_frame_time != 0.0f )
 	{
 		// QuakeLive-style mouse acceleration, ported from ioquake3
-		// original patch by Gabriel Schnoering and TTimo
+		// patch by TTimo and Schnoering Gabriel <gabriel.schnoering@gmail.com>
+		// Thilo Schulz <thilo@tjps.eu> "I have not written the code you want me to sign a release for, I have no intellectual property rights to it"
 		if( m_accelStyle->integer == 1 )
 		{
 			float rate[2];

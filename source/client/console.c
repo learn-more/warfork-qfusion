@@ -1133,6 +1133,7 @@ void Con_DrawConsole( void )
 * New function for tab-completion system
 * Added by EvilTypeGuy
 * MEGA Thanks to Taniwha
+* After speaking with vic, EvilTypeGuy, and taniwha it has been established only EvilTypeGuy contributed code in the initial DarkPlaces/QuakeForge implementation, however it is now irrelevant/obsolete in Qfusion.
 */
 static void Con_DisplayList( char **list )
 {
@@ -1195,8 +1196,10 @@ static void Con_DisplayList( char **list )
 
 * New function for tab-completion system
 * Added by EvilTypeGuy
-* Thanks to Fett erich@heintz.com
-* Thanks to taniwha
+* Thanks to Fett
+* Thanks to taniwha 
+* After speaking with vic, EvilTypeGuy, and taniwha it has been established only EvilTypeGuy contributed code in the initial DarkPlaces/QuakeForge implementation, however it is now irrelevant/obsolete in Qfusion.
+* 
 */
 static void Con_CompleteCommandLine( void )
 {

@@ -121,6 +121,7 @@
 				'options_input.rml',
 				'options_audio.rml',
 				'game_join.rml',
+				'game_join.rml?servers=all',
 				'game_join.rml?servers=normal',
 				'game_join.rml?servers=race',
 				'game_join.rml?servers=instagib',

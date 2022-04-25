@@ -19,6 +19,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
+/* ------------------------------------------------------------------------
+ * Id Software's RoQ video file format decoder
+ *
+ * Dr. Tim Ferguson, 2001.
+ * For more details on the algorithm:
+ *         http://www.csse.monash.edu.au/~timf/videocodec.html
+ *
+ * This is a simple decoder for the Id Software RoQ video format.  In
+ * this format, audio samples are DPCM coded and the video frames are
+ * coded using motion blocks and vector quantisation.
+ *
+ * Note: All information on the RoQ file format has been obtained through
+ *   pure reverse engineering.  This was achieved by giving known input
+ *   audio and video frames to the roq.exe encoder and analysing the
+ *   resulting output text and RoQ file.  No decompiling of the Quake III
+ *   Arena game was required.
+ *
+ * You may freely use this source code.  I only ask that you reference its
+ * source in your projects documentation:
+ *       Tim Ferguson: http://www.csse.monash.edu.au/~timf/
+ * ------------------------------------------------------------------------ */
+ 
 /*
 =======================================================================
 

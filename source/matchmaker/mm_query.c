@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011 Christian Holmberg
+Copyright (C) 2011 Alex (Christian Holmberg) Seidler
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License

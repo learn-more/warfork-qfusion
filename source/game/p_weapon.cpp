@@ -26,7 +26,7 @@ void SV_Physics_LinearProjectile( edict_t *ent );
 static bool	is_quad;
 
 #define NO_ROCKET_ANTILAG
-#define PLASMAHACK // ffs : hack for the plasmagun
+#define PLASMAHACK // hack for the plasmagun
 
 #ifdef PLASMAHACK
 void W_Plasma_Backtrace( edict_t *ent, const vec3_t start );
@@ -220,7 +220,7 @@ static void G_ProjectileDistancePrestep( edict_t *projectile, float distance )
 
 	projectile->waterlevel = ( G_PointContents4D( projectile->s.origin, projectile->timeDelta ) & MASK_WATER ) ? true : false;
 
-	// ffs : hack for the plasmagun
+	// hack for the plasmagun
 #ifdef PLASMAHACK
 	if( projectile->s.type == ET_PLASMA )
 		W_Plasma_Backtrace( projectile, plasma_hack_start );

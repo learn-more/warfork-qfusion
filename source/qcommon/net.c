@@ -846,6 +846,7 @@ static int NET_Loopback_GetPacket( const socket_t *socket, netadr_t *address, ms
 
 	if( loop->send - loop->get > ( MAX_LOOPBACK - 1 ) )  // wsw : jal (from q2pro)
 		loop->get = loop->send - MAX_LOOPBACK + 1; // wsw : jal (from q2pro)
+	// this is a known bug fix not subject to any copyright he literally added - 1 and + 1 to the original q2 source
 
 	if( loop->get >= loop->send )
 		return 0;

@@ -10,7 +10,8 @@ static int64_t micro_offset = 0;
 static unsigned int Sys_Milliseconds_TGT( void );
 static uint64_t Sys_Microseconds_QPC( void );
 
-// wsw: pb adapted High Res Performance Counter code from ezquake
+// wsw: pb adapted High Res Performance Counter code from zquake
+// this code was originally written by Anton "Tonik" Gavrilov  https://sourceforge.net/p/zquake/code/690/ 
 
 /*
 * Sys_GetHwTimer_f

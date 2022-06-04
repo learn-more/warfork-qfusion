@@ -37,3 +37,6 @@ libsrcs/SDL2/VisualC/SDLmain/Win32
 libsrcs/SDL2/VisualC/SDLtest/Win32
 libsrcs/SDL2/VisualC/tests/*/Win32
 third-party/steamworks/sdk
+
+# Ignore Visual Studio database files
+.vs

@@ -438,9 +438,9 @@ static void Cmd_Position_f( edict_t *ent )
 			G_SpectatorMode( ent );
 
 		if( G_Teleport( ent, origin, angles ) )
-			G_PrintMsg( ent, "Position not available.\n" );
-		else
 			G_PrintMsg( ent, "Position set.\n" );
+		else
+			G_PrintMsg( ent, "Position not available.\n" );
 	}
 	else
 	{

@@ -21,8 +21,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifndef _STEAM_LIB_H_
 #define _STEAM_LIB_H_
 
-void Steam_LoadLibrary( void );
-void Steam_UnloadLibrary( void );
 void Steam_Init( void );
 void Steam_RunFrame( void );
 void Steam_Shutdown( void );

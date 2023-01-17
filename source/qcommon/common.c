@@ -1191,8 +1191,6 @@ void Qcommon_Shutdown( void )
 	NET_Shutdown();
 	Key_Shutdown();
 
-	Steam_UnloadLibrary();
-
 	Com_Autoupdate_Shutdown();
 
 	Qcommon_ShutdownCommands();

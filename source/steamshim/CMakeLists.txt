@@ -1,13 +1,9 @@
-project(steamlib)
+project(wf_steam)
 
-file(GLOB STEAMLIB_HEADERS
-    "*.h"
-	"../gameshared/*.h"
-)
-
-file(GLOB STEAMLIB_SOURCES
-    "*.cpp"
-    "../gameshared/q_shared.c"
+add_definitions(
+    -DGAME_LAUNCH_NAME="${QFUSION_CLIENT_NAME}${CMAKE_EXECUTABLE_SUFFIX}"
+    -DUNICODE
+    -D_UNICODE
 )
 
 set(STEAMWORKS_SDK_DIR ${CMAKE_HOME_DIRECTORY}/../third-party/steamworks/sdk)
@@ -43,14 +39,21 @@ endif()
 
 link_directories(${STEAMWORKS_LIBRARY_DIR})
 
-add_library(steamlib SHARED ${STEAMLIB_SOURCES} ${STEAMLIB_HEADERS})
-target_link_libraries(steamlib ${STEAMWORKS_LIBRARY})
-qf_set_output_dir(steamlib libs)
 
-add_custom_command(TARGET steamlib
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    set(STEAM_SERVER_BINARY_TYPE WIN32)
+else()
+    set(STEAM_SERVER_BINARY_TYPE "")
+endif()
+
+
+add_executable(wf_steam ${STEAM_SERVER_BINARY_TYPE} steamshim_parent.cpp)
+target_link_libraries(wf_steam ${STEAMWORKS_LIBRARY})
+qf_set_output_dir(wf_steam "")
+
+add_custom_command(TARGET wf_steam
     POST_BUILD
     COMMAND "${CMAKE_COMMAND}" -E copy_if_different
         "${STEAMWORKS_LIBRARY_DIR}/${STEAMWORKS_SO_PREFIX}${STEAMWORKS_LIBRARY}${STEAMWORKS_LIBRARY_EXTENSION}"
         "${STEAMWORKS_OUTPUT_PATH}"
-        
 )

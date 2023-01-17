@@ -28,7 +28,8 @@ typedef int PipeType;
 
 #define DEBUGPIPE 1
 #if DEBUGPIPE
-#define dbgpipe printf
+void Com_Printf( const char *format, ... );
+#define dbgpipe Com_Printf
 #else
 static inline void dbgpipe(const char *fmt, ...) {}
 #endif
@@ -348,7 +349,7 @@ const STEAMSHIM_Event *STEAMSHIM_pump(void)
     /* Run Steam event loop. */
     if (br == 0)
     {
-        dbgpipe("Child sending SHIMCMD_PUMP().\n");
+        //dbgpipe("Child sending SHIMCMD_PUMP().\n");
         write1ByteCmd(SHIMCMD_PUMP);
     } /* if */
 

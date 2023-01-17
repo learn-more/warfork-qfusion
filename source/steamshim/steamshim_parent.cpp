@@ -9,6 +9,7 @@
 typedef PROCESS_INFORMATION ProcessType;
 typedef HANDLE PipeType;
 #define NULLPIPE NULL
+#include <malloc.h>
 #else
 #include <stdio.h>
 #include <stdlib.h>
@@ -100,11 +101,16 @@ static bool setEnvVar(const char *key, const char *val)
     return (SetEnvironmentVariableA(key, val) != 0);
 } // setEnvVar
 
-static bool launchChild(ProcessType *pid);
+static bool launchChild(ProcessType *pid)
 {
-    return (CreateProcessW(TEXT(".\\") TEXT(GAME_LAUNCH_NAME) TEXT(".exe"),
-                           GetCommandLineW(), NULL, NULL, TRUE, 0, NULL,
-                           NULL, NULL, pid) != 0);
+    LPWSTR str = _wcsdup( GetCommandLineW() );
+    STARTUPINFOW si = { sizeof( si ) };
+
+    memset( pid, 0, sizeof( *pid ) );
+    bool bResult = ( CreateProcessW( TEXT( ".\\" ) TEXT( GAME_LAUNCH_NAME ), str, NULL, NULL, TRUE, 0, NULL,
+                              NULL, &si, pid) != 0);
+    free( str );
+    return bResult;
 } // launchChild
 
 static int closeProcess(ProcessType *pid)

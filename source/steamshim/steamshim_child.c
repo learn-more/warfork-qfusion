@@ -7,6 +7,7 @@ typedef HANDLE PipeType;
 typedef unsigned __int8 uint8;
 typedef __int32 int32;
 typedef unsigned __int64 uint64;
+#include <stdio.h>
 #else
 #include <stdio.h>
 #include <stdlib.h>
@@ -69,9 +70,9 @@ static void closePipe(PipeType fd)
 static char *getEnvVar(const char *key, char *buf, const size_t _buflen)
 {
     const DWORD buflen = (DWORD) _buflen;
-    const DWORD rc = GetEnvironmentVariableA(key, val, buflen);
+    const DWORD rc = GetEnvironmentVariableA(key, buf, buflen);
     /* rc doesn't count null char, hence "<". */
-    return ((rc > 0) && (rc < buflen)) ? NULL : buf;
+    return ((rc > 0) && (rc < buflen)) ? buf : NULL;
 } /* getEnvVar */
 
 #else
@@ -185,7 +186,9 @@ int STEAMSHIM_init(void)
         return 0;
     } /* if */
 
+#ifndef _WIN32
     signal(SIGPIPE, SIG_IGN);
+#endif
 
     dbgpipe("Child init success!\n");
     return 1;
@@ -205,7 +208,9 @@ void STEAMSHIM_deinit(void)
 
     GPipeRead = GPipeWrite = NULLPIPE;
 
+#ifndef _WIN32
     signal(SIGPIPE, SIG_DFL);
+#endif
 } /* STEAMSHIM_deinit */
 
 static inline int isAlive(void)

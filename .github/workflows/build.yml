@@ -1,0 +1,81 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install build dependencies
+        run: sudo apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev zlib1g-dev libcurl4-gnutls-dev git zip unzip
+
+      #- name: Download steamworks sdk
+      #  run: |
+      #    curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+      #    unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+
+      - name: Generate makefiles
+        working-directory: ./source
+        #run: cmake -DBUILD_STEAMLIB=1 .
+        run: cmake .
+
+      - name: Build project
+        working-directory: ./source
+        run: make -j8
+      
+      - name: Package warfork
+        working-directory: ./source/build
+        run: |
+          echo "${GITHUB_SHA}" > commit.txt
+          echo "671610" > steam_appid.txt
+          tar -czvf ../Linux-x86_64-Release.tar.gz * --exclude *.a --exclude base*/*.a libs/*.a
+
+      - name: Upload warfork artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: linux-x86_64-release
+          path: source/Linux-x86_64-Release.tar.gz
+
+  build-osx:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '11.7.0'
+
+      - name: Install build dependencies
+        run: |
+          brew update
+          brew install curl cmake sdl2 openal-soft libvorbis theora freetype zlib git zip unzip
+
+      #- name: Download steamworks sdk
+      #  run: |
+      #    curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+      #    unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+
+      - name: Generate makefiles
+        working-directory: ./source
+        #run: cmake -G Xcode -DBUILD_STEAMLIB=1 .
+        run: cmake -G Xcode .
+
+      - name: Build project
+        working-directory: ./source
+        run: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      
+      - name: Package warfork
+        working-directory: ./source/build
+        run: |
+          echo "${GITHUB_SHA}" > commit.txt
+          echo "671610" > steam_appid.txt
+          tar -czvf ../OSX-x86_64-Release.tar.gz Release/*.app
+
+      - name: Upload warfork artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: osx-x86_64-release
+          path: source/OSX-x86_64-Release.tar.gz

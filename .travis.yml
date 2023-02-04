@@ -81,7 +81,7 @@ script:
   - cd source
   - if [[ "$QF_ARCH" == "x86_64" ]]; then make -j8; fi
   - if [[ "$QF_ARCH" == "x86" ]]; then make -j8; fi
-  - if [[ "$QF_ARCH" == "OSX" ]]; then xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD; fi
+  - if [[ "$QF_ARCH" == "OSX" ]]; then xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO; fi
   - cd build
   - echo "${TRAVIS_COMMIT}" >commit.txt
   - echo "671610" >steam_appid.txt

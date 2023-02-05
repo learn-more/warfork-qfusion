@@ -199,6 +199,8 @@ typedef UINT_PTR socket_handle_t;
 #define LIB_PREFIX "lib"
 #define LIB_SUFFIX ".so"
 
+#define OPENAL_RUNTIME
+
 // FIXME: move these to CMakeLists.txt
 #define LIBZ_LIBNAME "libz.so.1|libz.so"
 #define LIBCURL_LIBNAME "libcurl.so.4|libcurl.so.3|libcurl.so"

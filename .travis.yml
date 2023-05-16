@@ -66,6 +66,9 @@ matrix:
             - libcurl4-gnutls-dev
 
 
+before_install:
+  - if [[ "$QF_ARCH" != "OSX" ]]; then sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B; fi
+
 install:
   - if [[ "$QF_ARCH" == "x86_64" ]]; then export CC=clang CXX=clang++; fi
   - if [[ "$QF_ARCH" == "x86" ]]; then export CC=gcc-4.9 CXX=g++-4.9; fi

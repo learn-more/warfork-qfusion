@@ -64,6 +64,7 @@ cvar_t *m_yaw;
 //
 // userinfo
 //
+cvar_t *discord_id;
 cvar_t *info_password;
 cvar_t *rate;
 
@@ -2133,7 +2134,8 @@ static void CL_InitLocal( void )
 	//
 	// userinfo
 	//
-	info_password =		Cvar_Get( "password", "", CVAR_USERINFO );
+	discord_id = Cvar_Get( "discord_id", "", CVAR_USERINFO|CVAR_READONLY );
+	info_password = Cvar_Get( "password", "", CVAR_USERINFO );
 	rate =			Cvar_Get( "rate", "60000", CVAR_DEVELOPER ); // FIXME
 
 	name = Cvar_Get( "name", "", CVAR_USERINFO | CVAR_ARCHIVE );
@@ -2754,6 +2756,9 @@ void CL_Frame( int realmsec, int gamemsec )
 			CL_SoundModule_Update( vec3_origin, vec3_origin, axis_identity, NULL, false );
 	}
 
+    // update discord
+    CL_UpdateDiscord();
+    
 	// advance local effects for next frame
 	SCR_RunCinematic();
 	SCR_RunConsole( allRealMsec );
@@ -3114,6 +3119,7 @@ void CL_Init( void )
 
 	CL_InitMedia();
 
+    CL_InitDiscord();
 	CL_UIModule_ForceMenuOn();
 
 	// check for update
@@ -3164,6 +3170,7 @@ void CL_Shutdown( void )
 		cls.servername = NULL;
 	}
 
+    CL_ShutdownDiscord();
 	CL_UIModule_Shutdown();
 	CL_GameModule_Shutdown();
 	CL_SoundModule_Shutdown( true );

@@ -1,0 +1,493 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/g
+msgid "g_allow_bunny"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_allow_falldamage"
+msgstr "<0/1> Enables fall damage."
+
+#. Console/g
+msgid "g_allow_selfdamage"
+msgstr "<0/1> If enabled, players can hurt themselves with own weapons."
+
+#. Console/g
+msgid "g_allow_stun"
+msgstr "<0/1> If enabled, players can get stunned."
+
+#. Console/g
+msgid "g_allow_teamdamage"
+msgstr "<0/1> Enables friendlyfire."
+
+#. Console/g
+msgid "g_ammo_respawn"
+msgstr "<value>	Changes the ammo respawn time."
+
+#. Console/g
+msgid "g_antilag"
+msgstr "<0/1> Enables antilag."
+
+#. Console/g
+msgid "g_antilag_maxtimedelta"
+msgstr "<value>"
+
+#. Console/g
+msgid "g_antilag_timenudge"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_asGC_interval"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_asGC_stats"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_autorecord"
+msgstr "<0/1> Automatically records all demos."
+
+#. Console/g
+msgid "g_autorecord_maxdemos"
+msgstr "<value>	Maximum amount of automatically recorded demos to keep (deletes old ones once limit is exceeded)."
+
+#. Console/g
+msgid "g_bomb_armtime"
+msgstr "<value> (Bomb-exclusive) Changes the amount of time needed to arm a bomb."
+
+#. Console/g
+msgid "g_bomb_bombtimer"
+msgstr "<value>	(Bomb-exclusive) Time before the bomb explodes after arming."
+
+#. Console/g
+msgid "g_bomb_carriers"
+msgstr "<value>	(Bomb-exclusive)"
+
+#. Console/g
+msgid "g_bomb_defusetime"
+msgstr "<value>	(Bomb-exclusive) Changes the amount of time needed to defuse an armed bomb."
+
+#. Console/g
+msgid "g_bomb_roundtime"
+msgstr "<value>	(Bomb-exclusive) Sets the round time (in seconds)."
+
+#. Console/g
+msgid "g_bomb_spawnprotection"
+msgstr "<value>	(Bomb-exclusive)"
+
+#. Console/g
+msgid "g_challengers_queue"
+msgstr "<0/1> Enables the challengers queue."
+
+#. Console/g
+msgid "g_countdown_time"
+msgstr "<value>"
+
+#. Console/g
+msgid "g_disable_opcall_allow_falldamage"
+msgstr "<0/1> Disables 'allow_falldamage' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_allow_selfdamage"
+msgstr "<0/1> Disables 'allow_selfdamage' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_allow_teamdamage"
+msgstr "<0/1> Disables 'allow_teamdamage' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_allow_uneven"
+msgstr "<0/1> Disables 'allow_uneven' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_allready"
+msgstr "<0/1> Disables 'allready' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_extended_time"
+msgstr "<0/1> Disables 'extended_time' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_gametype"
+msgstr "<0/1> Disables 'gametype' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_instajump"
+msgstr "<0/1> Disables 'instajump' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_instashield"
+msgstr "<0/1> Disables 'instashield' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_kick"
+msgstr "<0/1> Disables 'kick' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_kickban"
+msgstr "<0/1> Disables 'kickban' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_lock"
+msgstr "<0/1> Disables 'lock' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_map"
+msgstr "<0/1> Disables 'map' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_maxteamplayers"
+msgstr "<0/1> Disables 'maxteamplayers' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_mute"
+msgstr "<0/1> Disables 'mute' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_nextmap"
+msgstr "<0/1> Disables 'nextmap' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_numbots"
+msgstr "<0/1> Disables 'numbots' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_rebalance"
+msgstr "<0/1> Disables 'rebalance' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_remove"
+msgstr "<0/1> Disables 'remove' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_restart"
+msgstr "<0/1> Disables 'restart' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_scorelimit"
+msgstr "<0/1> Disables 'scorelimit' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_shuffle"
+msgstr "<0/1> Disables 'shuffle' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_timein"
+msgstr "<0/1> Disables 'timein' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_timelimit"
+msgstr "<0/1> Disables 'timelimit' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_timeout"
+msgstr "<0/1> Disables 'timeout' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_unlock"
+msgstr "<0/1> Disables 'unlock' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_unmute"
+msgstr "<0/1> Disables 'unmute' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_vmute"
+msgstr "<0/1> Disables 'vmute' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_vunmute"
+msgstr "<0/1> Disables 'vunmute' opcall."
+
+#. Console/g
+msgid "g_disable_opcall_warmup_timelimit"
+msgstr "<0/1> Disables 'warmup_timelimit' opcall."
+
+#. Console/g
+msgid "g_disable_vote_allow_falldamage"
+msgstr "<0/1> Disables 'allow_falldamage' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_allow_selfdamage"
+msgstr "<0/1> Disables 'allow_selfdamage' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_allow_teamdamage"
+msgstr "<0/1> Disables 'allow_teamdamage' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_allow_uneven"
+msgstr "<0/1> Disables 'allow_uneven' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_allready"
+msgstr "<0/1> Disables 'allready' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_extended_time"
+msgstr "<0/1> Disables 'extended_time' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_gametype"
+msgstr "<0/1> Disables 'gametype' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_instajump"
+msgstr "<0/1> Disables 'instajump' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_instashield"
+msgstr "<0/1> Disables 'instashield' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_kick"
+msgstr "<0/1> Disables 'kick' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_kickban"
+msgstr "<0/1> Disables 'kickban' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_lock"
+msgstr "<0/1> Disables 'lock' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_map"
+msgstr "<0/1> Disables 'map' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_maxteamplayers"
+msgstr "<0/1> Disables 'maxteamplayers' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_mute"
+msgstr "<0/1> Disables 'mute' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_nextmap"
+msgstr "<0/1> Disables 'nextmap' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_numbots"
+msgstr "<0/1> Disables 'numbots' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_rebalance"
+msgstr "<0/1> Disables 'rebalance' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_remove"
+msgstr "<0/1> Disables 'remove' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_restart"
+msgstr "<0/1> Disables 'restart' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_scorelimit"
+msgstr "<0/1> Disables 'scorelimit' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_shuffle"
+msgstr "<0/1> Disables 'shuffle' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_timein"
+msgstr "<0/1> Disables 'timein' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_timelimit"
+msgstr "<0/1> Disables 'timelimit' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_timeout"
+msgstr "<0/1> Disables 'timeout' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_unlock"
+msgstr "<0/1> Disables 'unlock' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_unmute"
+msgstr "<0/1> Disables 'unmute' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_vmute"
+msgstr "<0/1> Disables 'vmute' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_vunmute"
+msgstr "<0/1> Disables 'vunmute' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_disable_vote_warmup_timelimit"
+msgstr "<0/1> Disables 'warmup_timelimit' callvote. Doesn't affect opcalls."
+
+#. Console/g
+msgid "g_enforce_map_pool"
+msgstr "<0/1> Enables enforcing the map pool for 'map' callvote."
+
+#. Console/g
+msgid "g_floodprotection_delay"
+msgstr "<value>	Blocks the chat for x seconds to player who triggered the flood protection."
+
+#. Console/g
+msgid "g_floodprotection_messages"
+msgstr "<value>	How many messages can a player send in y seconds before triggering the flood protection."
+
+#. Console/g
+msgid "g_floodprotection_seconds"
+msgstr "<value>	Triggers flood protection if a player sends more than x messages in y seconds."
+
+#. Console/g
+msgid "g_floodprotection_team"
+msgstr "<0/1> If enabled, protects teamchat from flood."
+
+#. Console/g
+msgid "g_gametype"
+msgstr "<gametype> Changes the gametype. Requires server restart / map reload."
+
+#. Console/g
+msgid "g_gametypes_available"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_gametypes_list"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_gravity"
+msgstr "<value>	Obsolete Console variable."
+
+#. Console/g
+msgid "g_health_respawn"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_inactivity_maxtime"
+msgstr "<value>	A player will get moved to spectators team if inactive for longer than x seconds (doesn't affect warmup)."
+
+#. Console/g
+msgid "g_instagib"
+msgstr "<0/1> Enables InstaGib. Requires server restart."
+
+#. Console/g
+msgid "g_instajump"
+msgstr "<0/1> Enables Instajump."
+
+#. Console/g
+msgid "g_instashield"
+msgstr "<0/1> Enables Instashield."
+
+#. Console/g
+msgid "g_knockback_scale"
+msgstr "<value>	Changes the knockback scale of weapons. Affects normal weapons AND Instagun."
+
+#. Console/g
+msgid "g_map_pool"
+msgstr "<maplist> Only allows these maps to appear in 'map' callvote. Needs g_enforce_map_pool set to 1."
+
+#. Console/g
+msgid "g_maplist"
+msgstr "<maplist> Sets the server's map list."
+
+#. Console/g
+msgid "g_maprotation"
+msgstr "<0-2> Sets map rotation mode. 0 - same map, 1 - in order, 2 - random."
+
+#. Console/g
+msgid "g_match_extendedtime"
+msgstr "<value>	Changes the overtime's length to x minutes. 0 to disable."
+
+#. Console/g
+msgid "g_match_score"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_match_time"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_maxtimeouts"
+msgstr "<value>	How many timeouts can be called per match."
+
+#. Console/g
+msgid "g_maxvelocity"
+msgstr "Obsolete Console Variable."
+
+#. Console/g
+msgid "g_needpass"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_numbots"
+msgstr "<value>	Amount of bots on the server."
+
+#. Console/g
+msgid "g_operator_password"
+msgstr "<password>	Sets the operator password. Operator is disabled if empty."
+
+#. Console/g
+msgid "g_postmatch_timelimit"
+msgstr "<value>"
+
+#. Console/g
+msgid "g_race_gametype"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_scorelimit"
+msgstr "<value>	Amount of points required to obtain by a player / team to end the match."
+
+#. Console/g
+msgid "g_spawnsystem_wave_maxcount"
+msgstr "<value>	Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_spawnsystem_wave_time"
+msgstr "<value>	Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/g
+msgid "g_teams_allow_uneven"
+msgstr "<0/1> Allow the teams to be uneven. If enabled, allows players to switch teams anytime."
+
+#. Console/g
+msgid "g_teams_maxplayers"
+msgstr "<value>	How many players can a single team have."
+
+#. Console/g
+msgid "g_timelimit"
+msgstr "<value>	Sets the duration of matches (in minutes)."
+
+#. Console/g
+msgid "g_uploads_demos"
+msgstr "<0/1> Allows players to download demos from the server."
+
+#. Console/g
+msgid "g_votable_gametypes"
+msgstr "<gametypes>	A list of gametypes allowed to be used in 'gametype' callvote."
+
+#. Console/g
+msgid "g_vote_allowed"
+msgstr "<0/1> Allows / disallows calling ALL votes (including opcalls)."
+
+#. Console/g
+msgid "g_vote_cooldowntime"
+msgstr "<value>	A player needs to wait x seconds after calling a vote to call another one."
+
+#. Console/g
+msgid "g_vote_electtime"
+msgstr "<value>	Specifies how long do callvotes last (in seconds)."
+
+#. Console/g
+msgid "g_vote_maxchanges"
+msgstr "<value>	Specifies how many times can a player change their vote."
+
+#. Console/g
+msgid "g_vote_percent"
+msgstr "<0-100>	How much % of players need to vote yes for the vote to pass."
+
+#. Console/g
+msgid "g_weapon_respawn"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."

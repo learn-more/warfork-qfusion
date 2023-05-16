@@ -1,0 +1,690 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/cg
+msgid "cg_autoaction_demo"
+msgstr "<0/1> Enables automatic demo recording of matches after warmup mode is finished. The demo will be written to /demos/autorecord/gametype/ in your data folder with the following file format: gametype_yyyy-mm-dd-hh-mm_map_playername_id.wdz20"
+
+#. Console/cg
+msgid "cg_autoaction_screenshot"
+msgstr "<0/1> Enables automatic screenshot of final standings on the scoreboard when the match is finished. The screenshot will be written to /screenshots/ in your data folder with the following file format: wf_yymmdd_id.extension"
+
+#. Console/cg
+msgid "cg_autoaction_spectator"
+msgstr "<0/1> Use autoaction when spectating games."
+
+#. Console/cg
+msgid "cg_autoaction_stats"
+msgstr "<0/1> If enabled, your statistics will be written to /stats/gametype/ in your data folder when the match is finished in following file format: gametype_yyyy-mm-dd-hh-mm_map_playername_id.txt"
+
+#. Console/cg
+msgid "cg_bloodTrail"
+msgstr "<value>	Changes the density of damage rings rendered when a player is hit. 0 = Disabled"
+
+#. Console/cg
+msgid "cg_bloodTrailAlpha"
+msgstr "<0-1> Sets the transparency of damage rings rendered. 0 = 100% Transparent & 1 = 100% Solid"
+
+#. Console/cg
+msgid "cg_cartoonEffects"
+msgstr "<2/4/7>	Enables cartoon effects.
+Example Screenshots: 2 = Dust effect when falling, 4 = Dash effect, 7 = Dust effect when falling, Dash effect, Wall-jump effect."
+
+#. Console/cg
+msgid "cg_cartoonHitEffect"
+msgstr "<0/1> If enabled, critical hit effects are displayed for high damage value attacks."
+
+#. Console/cg
+msgid "cg_chatBeep"
+msgstr "<0/1> Enables the chat beep sound when someone sends a message."
+
+#. Console/cg
+msgid "cg_chatFilter"
+msgstr "<0-2> Filters chat messages. 0 = Display all Messages, 1 = Filters global chat messages, 2 = Filters team chat messages"
+
+#. Console/cg
+msgid "cg_chatFilterTV"
+msgstr "<0-4> Filters Warfork TV chat messages.
+0 = Display all Messages, 1 = Filters global chat messages, 2 = Filters team chat messages, 4 = Filter TV spectator chat messages."
+
+#. Console/cg
+msgid "cg_clientHUD"
+msgstr "<HUD name> Changes your HUD."
+
+#. Console/cg
+msgid "cg_colorCorrection"
+msgstr "<0/1> Enables color correction. Color Correction works only on maps which have tables for it with supported GPUs."
+
+#. Console/cg
+msgid "cg_crosshair"
+msgstr "<0-13> Changes your crosshair style. 0 = No crosshair"
+
+#. Console/cg
+msgid "cg_crosshair_color"
+msgstr "<R G B>	Changes the color of your crosshair."
+
+#. Console/cg
+msgid "cg_crosshair_damage_color"
+msgstr "<R G B>	Changes the color of your crosshair when you hit an enemy."
+
+#. Console/cg
+msgid "cg_crosshair_font"
+msgstr "<fontname> Changes the font of your crosshair."
+
+#. Console/cg
+msgid "cg_crosshair_size"
+msgstr "<size> Changes the size of your crosshair."
+
+#. Console/cg
+msgid "cg_crosshair_strong"
+msgstr "<0-13> Changes your crosshair style for strong ammo. 0 disables it."
+
+#. Console/cg
+msgid "cg_crosshair_strong_color"
+msgstr "<R G B>	Changes the color of your crosshair for strong ammo."
+
+#. Console/cg
+msgid "cg_crosshair_strong_size"
+msgstr "<size> Changes the size of your crosshair for strong ammo."
+
+#. Console/cg
+msgid "cg_damage_blend"
+msgstr "This command no longer works. It use to enable a red flash when you got hit if cg_damage_indicator = 1."
+
+#. Console/cg
+msgid "cg_damage_indicator"
+msgstr "<0-1> If enabled, a red damage indicator will appear in the direction(s) you were hit."
+
+#. Console/cg
+msgid "cg_damage_indicator_time"
+msgstr "<value>	Sets how long the red damage indicator will be visible."
+
+#. Console/cg
+msgid "cg_damageNumbers"
+msgstr "<0/1> Enables Damage Numbers that are displayed when attacking a player."
+
+#. Console/cg
+msgid "cg_damageNumbersColor"
+msgstr "<0-11> Changes the color of your Damage Numbers. 0 = White, 1 = Black, 2 = Red, 3 = Green, 4 = Blue, 5 = Yellow, 6 = Orange, 7 = Magenta, 8 = Cyan, 9 = Light Grey, 10 = Medium Grey, 11 = Dark Grey"
+
+#. Console/cg
+msgid "cg_damageNumbersDistance"
+msgstr "<1-200>	The vertical distance above the player model that Damage Numbers are displayed."
+
+#. Console/cg
+msgid "cg_damageNumbersOffset"
+msgstr "<1-5> The offset distance between the Damage Number and its shadow."
+
+#. Console/cg
+msgid "cg_damageNumbersSize"
+msgstr "<1-4> Changes the size of your Damage Numbers. 1 = Tiny, 2 = Small, 3 = Medium, 4 = Large"
+
+#. Console/cg
+msgid "cg_debugHUD"
+msgstr "<0/1> If enabled, the HUD name that's being loaded will print to console."
+
+#. Console/cg
+msgid "cg_debugPlayerModels"
+msgstr "<0/1> If enabled, player model information will be displayed on each map load in console."
+
+#. Console/cg
+msgid "cg_debugWeaponModels"
+msgstr "<0/1> If enabled, weapon model information will be displayed on each map load in console."
+
+#. Console/cg
+msgid "cg_decals"
+msgstr "<0/1> If enabled, you will see projectile impact effects on walls."
+
+#. Console/cg
+msgid "cg_draw2D"
+msgstr "<0/1> If enabled, you will see the HUD (scores, ammunition, clock, etc.)"
+
+#. Console/cg
+msgid "cg_ebbeam_alpha"
+msgstr "<0-1> Sets the transparency of the Electrobolt Beam. 0 = 100% Transparent & 1 = 100% Solid"
+
+#. Console/cg
+msgid "cg_ebbeam_old"
+msgstr "<0/1> If enabled, you will see the old (simplistic) Electrobolt beam."
+
+#. Console/cg
+msgid "cg_ebbeam_time"
+msgstr "<value>	Sets how long the Elecrobolt beam will be visible."
+
+#. Console/cg
+msgid "cg_ebbeam_width"
+msgstr "<value>	Sets the width of the Elecrobolt beam."
+
+#. Console/cg
+msgid "cg_explosionsDust"
+msgstr "<0/1> If enabled, an explosion dust will appear around Grenade Launcher and Rocket Launcher projectiles upon impact."
+
+#. Console/cg
+msgid "cg_explosionsRing"
+msgstr "<0/1> If enabled, an explosion ring will appear around Grenade Launcher and Rocket Launcher projectiles upon impact."
+
+#. Console/cg
+msgid "cg_flashWindowCount"
+msgstr "<value>	The amount of times Warfork flashes in your taskbar if warmup ends and a match starts."
+
+#. Console/cg
+msgid "cg_forceMyTeamAlpha"
+msgstr "<0/1> If enabled, your HUD, teammates and enemies will appear as if you always were in the Forbidden team."
+
+#. Console/cg
+msgid "cg_gamepad_accelMax"
+msgstr "<value>	Maximum acceleration of the gamepad."
+
+#. Console/cg
+msgid "cg_gamepad_accelSpeed"
+msgstr "<value>	Speed of gamepad's acceleration."
+
+#. Console/cg
+msgid "cg_gamepad_accelThres"
+msgstr "<value>	Threshold of gamepad's acceleration."
+
+#. Console/cg
+msgid "cg_gamepad_moveThres"
+msgstr "<value>	Specifies the dead-zone for movement."
+
+#. Console/cg
+msgid "cg_gamepad_pitchInvert"
+msgstr "<0/1> If enabled, the gamepad will be inverted."
+
+#. Console/cg
+msgid "cg_gamepad_pitchSpeed"
+msgstr "<value>	Specifies the sensitivity when looking up and down."
+
+#. Console/cg
+msgid "cg_gamepad_pitchThres"
+msgstr "<value>	Specifies the dead-zone for looking up and down."
+
+#. Console/cg
+msgid "cg_gamepad_runThres"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_gamepad_strafeRunThres"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_gamepad_strafeThres"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_gamepad_swapSticks"
+msgstr "<0/1> Swaps sticks on your gamepad."
+
+#. Console/cg
+msgid "cg_gamepad_yawSpeed"
+msgstr "<value>	Specifies the sensitivity when looking left and right."
+
+#. Console/cg
+msgid "cg_gamepad_yawThres"
+msgstr "<value>	Specifies the dead-zone for looking left and right."
+
+#. Console/cg
+msgid "cg_gibs"
+msgstr "This command no longer works. It use to define the total number of gibs that would be displayed when you fragged someone."
+
+#. Console/cg
+msgid "cg_gun"
+msgstr "<0/1> Shows your weapon."
+
+#. Console/cg
+msgid "cg_gun_alpha"
+msgstr "<0-1> Transparency of your weapon model."
+
+#. Console/cg
+msgid "cg_gun_fov"
+msgstr "<1-160>	Field-of-View of your weapon model."
+
+#. Console/cg
+msgid "cg_gunbob"
+msgstr "<0/1> Enables bobbing of the weapon model."
+
+#. Console/cg
+msgid "cg_gunx"
+msgstr "<value>	Moves your weapon's model on the X axis."
+
+#. Console/cg
+msgid "cg_guny"
+msgstr "<value>	Moves your weapon's model on the Y axis."
+
+#. Console/cg
+msgid "cg_gunz"
+msgstr "<value>	Moves your weapon's model on the Z axis."
+	
+#. Console/cg
+msgid "cg_handOffset"
+msgstr "<value>	The offset of your hand's position. 0 means middle."
+
+#. Console/cg
+msgid "cg_instabeam_alpha"
+msgstr "<0-1> Transparency of the instabeam."
+	
+#. Console/cg
+msgid "cg_instabeam_time"
+msgstr "<value>	The time an instagun beam will be displayed before disappearing."
+	
+#. Console/cg
+msgid "cg_instabeam_width"
+msgstr "<value>	The width of an instagun beam."
+	
+#. Console/cg
+msgid "cg_laserBeamSubdivisions"
+msgstr "<value>	The higher the number the smoother the laser beam looks."
+			
+#. Console/cg
+msgid "cg_movementStyle"
+msgstr "<0/1> Old movement = 0 and New movement = 1"
+
+#. Console/cg
+msgid "cg_noAutoHop"
+msgstr "<0/1> If enabled, disables autohop by holding spacebar."
+
+#. Console/cg
+msgid "cg_outlineModels"
+msgstr "<0/1> Outlines models."
+
+#. Console/cg
+msgid "cg_outlinePlayers"
+msgstr "<0/1> Outlines players."
+
+#. Console/cg
+msgid "cg_outlineWorld"
+msgstr "<0/1> Outlines every object in maps."
+
+#. Console/cg
+msgid "cg_particles"
+msgstr "<0/1> Enables particles."
+
+#. Console/cg
+msgid "cg_pickup_flash"
+msgstr "<0/1> If enabled, you will see a flash when picking up an item or weapon. For this command to work set cg_showViewBlends 1."
+	
+#. Console/cg
+msgid "cg_placebo"
+msgstr "<value>	Similar to sv_cheats. User experience varies. Satisfaction not guaranteed."
+	
+#. Console/cg
+msgid "cg_playerTrailsColor"
+msgstr "This command has already been removed from the game."
+
+#. Console/cg
+msgid "cg_playList"
+msgstr "<path>/filename.m3u Path to your in-game music playlist."
+
+#. Console/cg
+msgid "cg_playListShuffle"
+msgstr "<0/1> Plays songs randomly from the music playlist."
+
+#. Console/cg
+msgid "cg_predict"
+msgstr "<0/1> Predicts players' movement on multiplayer servers for smoothness."
+
+#. Console/cg
+msgid "cg_predict_optimize"
+msgstr "<0/1> Optimizes cg_predict's behavior."
+
+#. Console/cg
+msgid "cg_predictLaserBeam"
+msgstr "<0/1> If enabled, a perfectly straight line laserbeam will always be drawn regardless of server lag. If disabled, a laserbeam will be drawn based on server lag."
+
+#. Console/cg
+msgid "cg_projectileAntilagOffset"
+msgstr "<value>	The defined value adds a time offset to counter anti-lag visualization."
+
+#. Console/cg
+msgid "cg_projectileFireTrail"
+msgstr "<value>	Controls the amount of firetrail left behind when firing the Rocket Launcher or Grenade Launcher. 0 = Disabled"
+
+#. Console/cg
+msgid "cg_projectileFireTrailAlpha"
+msgstr "<0-1> Controls the transparency level of the firetrail left behind when firing the Rocket Launcher or Grenade Launcher.
+0 = 100% Transparent, 1 = Solid Color"
+
+#. Console/cg
+msgid "cg_projectileTrail"
+msgstr "<value>	Controls the amount of smoke left behind when firing the Rocket Launcher or Grenade Launcher.
+0 = Disabled"
+
+#. Console/cg
+msgid "cg_raceGhosts"
+msgstr "<0/1> Enables ghosts while racing."
+
+#. Console/cg
+msgid "cg_raceGhostsAlpha"
+msgstr "<0-1> Transparency of race ghosts."
+
+#. Console/cg
+msgid "cg_reactionKills"
+msgstr "<0/1> Enables Reaction Kills."
+
+#. Console/cg
+msgid "cg_reactionKillsTimeout"
+msgstr "<1-180>	Frequency of Reaction Kills in seconds."
+
+#. Console/cg
+msgid "cg_scoreboardFontFamily"
+msgstr "<value>	Name of font used in scoreboard."
+
+#. Console/cg
+msgid "cg_scoreboardFontSize"
+msgstr "<value>	Size of scoreboard's font."
+
+#. Console/cg
+msgid "cg_scoreboardMonoFontFamily"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_scoreboardStats"
+msgstr "<0-1> If enabled, Weapons Statistics will be shown on the Scoreboard."
+
+#. Console/cg
+msgid "cg_scoreboardTitleFontFamily"
+msgstr "<value> Name of font used in the scoreboard's title."
+
+#. Console/cg
+msgid "cg_scoreboardTitleFontSize"
+msgstr "<value>	Size of the font used in scoreboard's title."
+
+#. Console/cg
+msgid "cg_scoreboardWidthScale"
+msgstr "<value>	Width scale of the scoreboard."
+
+#. Console/cg
+msgid "cg_shadows"
+msgstr "<0-2> Enables shadows. Uses simple shadows if set to 1, shadowmaps if set to 2. 0 to disable."
+
+#. Console/cg
+msgid "cg_showAwards"
+msgstr "<0/1> Shows awards upon certain events (On Fire! etc.)"
+
+#. Console/cg
+msgid "cg_showBloodTrail"
+msgstr "<0/1> If enabled, damage rings will be rendered when a player is hit."
+
+#. Console/cg
+msgid "cg_showCaptureAreas"
+msgstr "This command no longer works."
+
+#. Console/cg
+msgid "cg_showChasers"
+msgstr "<0/1> Displays chasers on the scoreboard (if there are any)."
+
+#. Console/cg
+msgid "cg_showCrosshairDamage"
+msgstr "<0/1> Changes the crosshair's color to the damage color if an enemy gets hit."
+
+#. Console/cg
+msgid "cg_showFPS"
+msgstr "<0/1> Enables an FPS counter."
+
+#. Console/cg
+msgid "cg_showhelp"
+msgstr "<0/1> Displays help text under the timer."
+
+#. Console/cg
+msgid "cg_showHUD"
+msgstr "<0/1> Enables HUD."
+
+#. Console/cg
+msgid "cg_showItemTimers"
+msgstr "<value>	Displays when items will spawn on your HUD (only in spectator mode)."
+
+#. Console/cg
+msgid "cg_showMiniMap"
+msgstr "<0/1> Displays a minimap (if supported by gamemode)."
+
+#. Console/cg
+msgid "cg_showMiss"
+msgstr "<0/1> For debugging server events. If enabled, will dump prediction misses to console in x:y format. x = time y = distance error.
+Best to use with con_drawnotify 1 for easier viewing."
+
+#. Console/cg
+msgid "cg_showObituaries"
+msgstr "<value>	Displays who fragged who using which weapon on your HUD."
+
+#. Console/cg
+msgid "cg_showPickup"
+msgstr "<0/1> Displays when you pickup an item on your HUD."
+
+#. Console/cg
+msgid "cg_showPlayerNames"
+msgstr "<0/1> Displays player names above player models."
+
+#. Console/cg
+msgid "cg_showPlayerNames_alpha"
+msgstr "<0-1> Transparency of player names."
+
+#. Console/cg
+msgid "cg_showPlayerNames_barWidth"
+msgstr "<value>	Bar width above your teammates player model, which contains information such as Health and Armor."
+
+#. Console/cg
+msgid "cg_showPlayerNames_xoffset"
+msgstr "<value>	Move player names by this much on the X axis."
+
+#. Console/cg
+msgid "cg_showPlayerNames_yoffset"
+msgstr "<value>	Move player names by this much on the Y axis."
+
+#. Console/cg
+msgid "cg_showPlayerNames_zfar"
+msgstr "<value>	Defines the distance that player names are still drawn over models."
+
+#. Console/cg
+msgid "cg_showPlayerTrails"
+msgstr "<0/1> This command has already been removed from the game and only exists in default.cfg. The next update will purge the remnants."
+
+#. Console/cg
+msgid "cg_showPointedPlayer"
+msgstr "<0/1> If enabled, when your mouse is pointed over a teammate or enemy their name will be drawn over the player model."
+
+#. Console/cg
+msgid "cg_showPressedKeys"
+msgstr "<0/1> If enabled, will show the key presses of players."
+
+#. Console/cg
+msgid "cg_showSelfShadow"
+msgstr "<0/1> Enables seeing your own shadow."
+
+#. Console/cg
+msgid "cg_showSpeed"
+msgstr "<0-3> Changes the position of the speed display of the player. 0 to disable. Values higher than 1 aren't supported on all HUDs."
+
+#. Console/cg
+msgid "cg_showTeamLocations"
+msgstr "<0/1> If enabled and your HUD supports it, your teammates location will be shown."
+
+#. Console/cg
+msgid "cg_showTeamMates"
+msgstr "<0/1> Show teammates indicators."
+
+#. Console/cg
+msgid "cg_showTimer"
+msgstr "<0/1> Displays the match's timer."
+
+#. Console/cg
+msgid "cg_showViewBlends"
+msgstr "<0/1> If enabled, fullscreen overlays for underwater and pain effects will be displayed."
+
+#. Console/cg
+msgid "cg_showZoomEffect"
+msgstr "<0/1> If enabled, the zoom effect is shown."
+
+#. Console/cg
+msgid "cg_simpleItems"
+msgstr "<0-2> Replaces 3D models of pickupable items with simplistic 2D models. 0 = 3D item models, 1 = Animated 2D items (bobbing up and down), 2 = Static 2D items"
+
+#. Console/cg
+msgid "cg_simpleItemsSize"
+msgstr "<value>	Changes the size of simplistic item models."
+
+#. Console/cg
+msgid "cg_specHUD"
+msgstr "<HUD name> Changes the HUD while spectating."
+
+#. Console/cg
+msgid "cg_strafeHUD"
+msgstr "<0/1> Enables strafe HUD."
+
+#. Console/cg
+msgid "cg_teamALPHAcolor"
+msgstr "<R G B> Color of team Forbidden players."
+
+#. Console/cg
+msgid "cg_teamALPHAmodel"
+msgstr "<model name> Default model of team Forbidden players."
+
+#. Console/cg
+msgid "cg_teamALPHAmodelForce"
+msgstr "<0/1> Changes models of all team Forbidden players to a user-chosen one."
+
+#. Console/cg
+msgid "cg_teamALPHAskin"
+msgstr "<default/fullbright> Changes models skin of all Team Forbidden players to a user-chosen one."
+
+#. Console/cg
+msgid "cg_teamBETAcolor"
+msgstr "<R G B>	Color of team Icy players."
+
+#. Console/cg
+msgid "cg_teamBETAmodel"
+msgstr "<model name> Default model of team Icy players."
+
+#. Console/cg
+msgid "cg_teamBETAmodelForce"
+msgstr "<0/1> Changes models of all team Beta players to a user-chosen one."
+
+#. Console/cg
+msgid "cg_teamBETAskin"
+msgstr "<default/fullbright> Changes models skin of all team Icy players to a user-chosen one."
+
+#. Console/cg
+msgid "cg_teamColoredBeams"
+msgstr "<0/1> If enabled, the LG beam color will be changed to the team color of the attacker."
+
+#. Console/cg
+msgid "cg_teamColoredInstaBeams"
+msgstr "<0/1> Changes the color of the InstaBeam to the team color of the attacker."
+
+#. Console/cg
+msgid "cg_teamPLAYERScolor"
+msgstr "<R G B>	Color of team Players players (non-team based gametypes)."
+
+#. Console/cg
+msgid "cg_teamPLAYERScolorForce"
+msgstr "<0/1> Changes color of all team Players players to a user-chosen one."
+
+#. Console/cg
+msgid "cg_teamPLAYERSmodel"
+msgstr "<model name> Default model of team Players players."
+
+#. Console/cg
+msgid "cg_teamPLAYERSmodelForce"
+msgstr "<0/1> Changes models of all team Players players to a user-chosen one."
+
+#. Console/cg
+msgid "cg_teamPLAYERSskin"
+msgstr "<default/fullbright> Changes models skin of all team Players players to a user-chosen one."
+
+#. Console/cg
+msgid "cg_thirdPerson"
+msgstr "<0/1> Enables third person view."
+
+#. Console/cg
+msgid "cg_thirdPersonAngle"
+msgstr "<value>	Changes the angle of third person view."
+
+#. Console/cg
+msgid "cg_thirdPersonRange"
+msgstr "<value>	The distance that the player model appears from the camera when in third person view."
+
+#. Console/cg
+msgid "cg_touch_flip"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_lookDecel"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_lookInvert"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_lookSens"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_lookThres"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_moveThres"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_scale"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_showMoveDir"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_strafeThres"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_zoomThres"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_touch_zoomTime"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/cg
+msgid "cg_viewBob"
+msgstr "<0/1> Enabled head bobbing."
+
+#. Console/cg
+msgid "cg_viewSize"
+msgstr "<40-100> The percentage of the viewable area displayed on your screen. If less than 100 is defined then black space will fill your screen. If you set cl_demoavi_scissor 0 then images will always be exported as cg_viewSize 100. If you set cl_demoavi_scissor 1 then images will always be exported as cg_viewSize 100."
+
+#. Console/cg
+msgid "cg_voiceChats"
+msgstr "<0/1> Enables voice commands (also known as 'VSAYS')."
+	
+#. Console/cg
+msgid "cg_volume_announcer"
+msgstr "<0-2.0>	Changes the volume of the announcer."
+		
+#. Console/cg
+msgid "cg_volume_effects"
+msgstr "<0-2.0>	Changes the volume of the effects."
+		
+#. Console/cg
+msgid "cg_volume_hitsound"
+msgstr "<0-2.0>	Changes the volume of the hitsound."
+			
+#. Console/cg
+msgid "cg_volume_players"
+msgstr "<0-2.0>	Changes the volume of player sounds."
+			
+#. Console/cg
+msgid "cg_volume_voicechats"
+msgstr "<0.0-2.0> Changes the volume of voice commands."
+				
+#. Console/cg
+msgid "cg_weaponAutoswitch"
+msgstr "<0-2> Enables auto switching of weapons when you're out of ammo. 0 = Autoswitch Disabled, 1 = Autoswitch Enabled (one click), 2 = Autoswitch Enabled (two clicks)"
+				
+#. Console/cg
+msgid "cg_weaponFlashes"
+msgstr "<0-2> Enables weapon flashes. 0 = All Weapon Flashes Disabled, 1 = Wall + Floor Weapons Flash Enabled, 2 = Wall + Floor & Weapon Muzzle Flashes Enabled (if cg_gun is set to 1)."
+
+#. Console/cg
+msgid "cg_weaponlist"
+msgstr "<0/1> If enabled, the weapon list will be displayed on your HUD."

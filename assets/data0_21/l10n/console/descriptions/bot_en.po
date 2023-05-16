@@ -1,0 +1,21 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/bot
+msgid "bot_dummy"
+msgstr "<0/1> If enabled, bots will be completely stationary and not fire any weapons."
+
+#. Console/bot
+msgid "bot_showcombat"
+msgstr "<0/1> If enabled, combat messages for bots will be displayed. Chasecam and botdebug must be enabled as well for this command to work."
+
+#. Console/bot
+msgid "bot_showlrgoal"
+msgstr "<0/1> If enabled, the long range goals for bots will be displayed. Chasecam and botdebug must be enabled as well for this command to work."
+
+#. Console/bot
+msgid "bot_showpath"
+msgstr "<0/1> If enabled, a path will be drawn that the bot is following. Chasecam and botdebug must be enabled as well for this command to work."
+
+#. Console/bot
+msgid "bot_showsrgoal"
+msgstr "<0/1> If enabled, the short range goals for bots will be displayed. Chasecam and botdebug must be enabled as well for this command to work."

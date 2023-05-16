@@ -1,0 +1,5 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/net
+msgid "net_showfragments"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."

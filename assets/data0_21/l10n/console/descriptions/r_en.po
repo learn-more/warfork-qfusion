@@ -1,0 +1,341 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/r
+msgid "r_brightness"
+msgstr "<0-1.0>	Sets the brightness level on your screen."
+
+#. Console/r
+msgid "r_coronascale"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_detailtextures"
+msgstr "<0/1> If enabled, detailed textures will be shown."
+
+#. Console/r
+msgid "r_drawelements"
+msgstr "<0/1> Enables drawing elements."
+
+#. Console/r
+msgid "r_drawentities"
+msgstr "<0/1> Enables drawing entities."
+
+#. Console/r
+msgid "r_drawflat"
+msgstr "<0/1> If enabled, will draw the floor and walls as solid colors."
+
+#. Console/r
+msgid "r_draworder"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_drawworld"
+msgstr "<0/1> Enables drawing the world."
+		
+#. Console/r
+msgid "r_dynamiclight"
+msgstr "<0/1> Enables dynamic light."
+
+#. Console/r
+msgid "r_environment_color"
+msgstr "Changes the background color if r_drawworld is 0"
+
+#. Console/r
+msgid "r_faceplanecull"
+msgstr "<0/1> If enabled, only the polygons of the face will be rendered. This command doesn't work and exists only in default.cfg. It will be purged and moved into the deprecated commands section soon."
+
+#. Console/r
+msgid "r_fastsky"
+msgstr "<0/1> If enabled, only a basic skybox will be drawn."
+	
+#. Console/r
+msgid "r_floorcolor"
+msgstr "<R G B>	The color of floor if r_drawflat = 1. Examples: Red, Green, Blue"
+
+#. Console/r
+msgid "r_fullbright"
+msgstr "<0/1> Sets maximum brightness to all textures."
+	
+#. Console/r
+msgid "r_fxaa"
+msgstr "<0/1> Enables FXAA antialiasing."
+	
+#. Console/r
+msgid "r_gamma"
+msgstr "<value>	Changes the gamma."
+
+#. Console/r
+msgid "r_ignorehwgamma"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_leafvis"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_lerpmodels"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_lighting_ambientscale"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_lighting_deluxemapping"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_lighting_directedscale"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_lighting_glossexponent"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_lighting_glossintensity"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_lighting_grayscale"
+msgstr "<0/1> Enables grayscale lighting."
+
+#. Console/r
+msgid "r_lighting_maxglsldlights"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+			
+#. Console/r
+msgid "r_lighting_maxlmblocksize"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_lighting_packlightmaps"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_lighting_specular"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+				
+#. Console/r
+msgid "r_lighting_vertexlight"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_lightmap"
+msgstr "<0/1> If enabled, all textures will not be displayed and only static lights will be visible."
+		
+#. Console/r
+msgid "r_lockpvs"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_lodbias"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_lodscale"
+msgstr "<value>	This value adjusts the level of detail scale modifier."
+
+#. Console/r
+msgid "r_mapoverbrightbits"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_maxfps"
+msgstr "<24-1000> Sets the FPS limit.."
+			
+#. Console/r
+msgid "r_maxglslbones"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_multithreading"
+msgstr "<0/1> Enables multithreading."
+		
+#. Console/r
+msgid "r_nobind"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_nocull"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_norefresh"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_novis"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_offsetmapping"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_offsetmapping_reliefmapping"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_offsetmapping_scale"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_outlines_cutoff"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_outlines_scale"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_outlines_world"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_overbrightbits"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_packlightmaps"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_picmip"
+msgstr "<0-16> Overall image and texture quality. The highest the number the lower the quality level."
+
+#. Console/r
+msgid "r_polyblend"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_portalmaps"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_portalmaps_maxtexsize"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_portalonly"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_screenshot_fmtstr"
+msgstr "<date format> File name format of screenshots. Example: wf_y%m%d_HM%S"
+
+#. Console/r
+msgid "r_screenshot_jpeg"
+msgstr "<0/1> Enables .jpeg screenshots."
+	
+#. Console/r
+msgid "r_screenshot_jpeg_quality"
+msgstr "<0-100>	Sets the quality of jpeg screenshots, in percentages."
+
+#. Console/r
+msgid "r_shadows"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_shadows_alpha"
+msgstr "<0-1> Alpha of shadows."
+
+#. Console/r
+msgid "r_shadows_dither"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_shadows_maxtexsize"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_shadows_nudge"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_shadows_pcf"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_shadows_projection_distance"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_shadows_self_shadow"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_shownormals"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_showtris"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_skymip"
+msgstr "<0-16>	Overall image and texture quality of the skybox. The highest the number the lower the quality level."
+
+#. Console/r
+msgid "r_soft_particles"
+msgstr "<0/1> Enables soft particles."
+			
+#. Console/r
+msgid "r_soft_particles_available"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_soft_particles_scale"
+msgstr "Scale of soft particles."
+			
+#. Console/r
+msgid "r_speeds"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_stencilbits"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_subdivisions"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_swapinterval"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/r
+msgid "r_swapinterval_min"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_temp1"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/r
+msgid "r_texturebits"
+msgstr "<0/1> If enabled, vsync will be activated. Set vid_displayfrequency to your preferred value."
+			
+#. Console/r
+msgid "r_texturecompression"
+msgstr "<0/1> Enables texture compression."
+		
+#. Console/r
+msgid "r_texturefilter"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/r
+msgid "r_texturefilter_max"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+			
+#. Console/r
+msgid "r_texturemode"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+			
+#. Console/r
+msgid "r_usenotexture"
+msgstr "<0/1> Disables textures."
+
+#. Console/r
+msgid "r_wallcolor"
+msgstr "<R G B>	The color of walls if r_drawflat = 1."

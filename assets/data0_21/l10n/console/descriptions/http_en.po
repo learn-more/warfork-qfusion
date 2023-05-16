@@ -1,0 +1,9 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/http
+msgid "http_proxy"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/http
+msgid "http_proxyuserpwd"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."

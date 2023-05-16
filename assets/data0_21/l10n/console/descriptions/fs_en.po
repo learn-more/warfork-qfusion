@@ -1,0 +1,45 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/fs
+msgid "fs_basegame"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_basepath"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_cdpath"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_game"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_usedownloadsdir"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_usehomedir"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_checksum"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_mtime"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_pakfile"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/fs
+msgid "fs_path"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/fs
+msgid "fs_search"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."

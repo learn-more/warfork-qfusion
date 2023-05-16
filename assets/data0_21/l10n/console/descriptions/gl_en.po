@@ -1,0 +1,202 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/gl
+msgid "gl_cull"
+msgstr "<0/1> Enable OpenGL Culling."
+
+#. Console/gl
+msgid "gl_drawbuffer"
+msgstr "<value>	Specifies the buffer which display information will be written to."
+
+#. Console/gl
+msgid "gl_driver_win"
+msgstr "<value>	Specifies the OpenGL driver dll file."
+
+#. Console/gl
+msgid "gl_ext_bgra"
+msgstr "If enabled, the BGRA openGL extension will be used if supported."
+
+#. Console/gl
+msgid "gl_ext_blend_func_separate"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_compressed_ETC1_RGB8_texture"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_depth24"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_depth_nonlinear"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_depth_texture"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_draw_instanced"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_draw_range_elements"
+msgstr "<0/1> If enabled, DrawRangeElements (an opengl extension) will be used if it's supported."
+
+#. Console/gl
+msgid "gl_ext_ES3_compatibility"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_fragment_precision_high"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_fragment_shader"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_framebuffer_blit"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_framebuffer_object"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_gamma_control"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_get_program_binary"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_GLSL"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_GLSL130"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_GLSL_core"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_gpu_memory_info"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_gpu_shader5"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_half_float_vertex"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_instanced_arrays"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_meminfo"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_multitexture"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_packed_depth_stencil"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_rgb8_rgba8"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_shader_objects"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_shading_language_100"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_shading_language_130"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_shadow"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_shadow_samplers"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_swap_control"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_texture3D"
+msgstr "<0/1> If enabled, the Texture3D (an opengl extension) will be used if it's supported."
+
+#. Console/gl
+msgid "gl_ext_texture_array"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_texture_compression"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_texture_cube_map"
+msgstr "If enabled, Texture Cube Mapping (an opengl extension) will be used if it's supported."
+
+#. Console/gl
+msgid "gl_ext_texture_edge_clamp"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_texture_filter_anisotropic"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_texture_lod"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_texture_non_power_of_two"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_texture_npot"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_vertex_buffer_object"
+msgstr "If enabled, opengl vertex buffer objects will be utilized if supported. Vertex buffer objects are often slower than range elements."
+
+#. Console/gl
+msgid "gl_ext_vertex_buffer_object_hack"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_vertex_half_float"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_ext_vertex_shader"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/gl
+msgid "gl_finish"
+msgstr "<0/1> If enabled, the CPU will wait for the GPU at the end of each rendered frame.
+This can help resolve some video lag and input issues."
+
+#. Console/gl
+msgid "gl_max_texture_size"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."

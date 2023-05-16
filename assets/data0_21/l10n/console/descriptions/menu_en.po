@@ -1,0 +1,29 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/menu
+msgid "menu_close"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/menu
+msgid "menu_force"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/menu
+msgid "menu_modal"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/menu
+msgid "menu_open"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+		
+#. Console/menu
+msgid "menu_quick"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+			
+#. Console/menu
+msgid "menu_tvchannel_add"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+			
+#. Console/menu
+msgid "menu_tvchannel_remove"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."

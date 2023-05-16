@@ -1,0 +1,21 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/in
+msgid "in_debug"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/in
+msgid "in_dinput"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/in
+msgid "in_grabinconsole"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/in
+msgid "in_initmouse"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/in
+msgid "in_mouse"
+msgstr "<0/1> Enables mouse input."

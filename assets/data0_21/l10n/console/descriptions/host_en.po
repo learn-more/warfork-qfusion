@@ -1,0 +1,5 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/host
+msgid "host_speeds"
+msgstr "<0/1> If enabled timing information will be printed to console. all (total time), sv (server time), gm (game time), cl (client time), and rf (renderer time)."

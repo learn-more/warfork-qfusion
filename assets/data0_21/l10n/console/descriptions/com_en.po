@@ -1,0 +1,9 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/com
+msgid "com_introPlayed3"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/com
+msgid "com_showtrace"
+msgstr "<0/1> If enabled, the number of traces that has to be made will be displayed in console. You must change the map with devmap <mapname> and then com_showtrace 1 to utilize this command."

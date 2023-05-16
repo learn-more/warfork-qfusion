@@ -1,0 +1,21 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/logconsole
+msgid "logconsole"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+	
+#. Console/logconsole
+msgid "logconsole_append"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/logconsole
+msgid "logconsole_append"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+				
+#. Console/logconsole
+msgid "logconsole_flush"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/logconsole
+msgid "logconsole_timestamp"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."

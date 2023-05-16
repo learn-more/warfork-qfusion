@@ -1,0 +1,49 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/m
+msgid "m_accel"
+msgstr "<value>	Mouse acceleration multiplier."
+
+#. Console/m
+msgid "m_accelOffset"
+msgstr "<value>	Enables different mouse acceleration styles. 0 = Disabled, 1 = Weakens amplification effect if you move your mouse slower, 2 = Minimum distance for mouse movement to be registered."
+
+#. Console/m
+msgid "m_accelPow"
+msgstr "<value>	Determines the rate of acceleration for m_accelStyle = 2. Must be greater than 2 to not decelerate."
+
+#. Console/m
+msgid "m_accelStyle"
+msgstr "<value>	Style of mouse acceleration. 0 = Legacy style, 1 = Quake Live style, 2 = Extended legacy style with offset and variable pow mechanisms."
+
+#. Console/m
+msgid "m_filter"
+msgstr "<0-2> If enabled the type of filtering applied to your mouse input will be changed. 0 = Off, 1 = Linear interpolation filtering, 2 = Extrapolation filtering."
+	
+#. Console/m
+msgid "m_filterStrength"
+msgstr "<value>	Controls the strength of m_filter."
+
+#. Console/m
+msgid "m_forward"
+msgstr "<value>	Changes your mouse sensitivity when moving forward and back."
+
+#. Console/m
+msgid "m_pitch"
+msgstr "<value>	The sensitivity for looking up and down with the mouse."
+
+#. Console/m
+msgid "m_raw"
+msgstr "<0/1> Enables raw mouse data input."
+
+#. Console/m
+msgid "m_sensCap"
+msgstr "<value>	Affects the maximum limit for m_accelStyle = 2."
+
+#. Console/m
+msgid "m_side"
+msgstr "<value>	Changes your mouse sensitivity when moving left and right."
+
+#. Console/m
+msgid "m_yaw"
+msgstr "<value>	Changes speed scale of X axis."

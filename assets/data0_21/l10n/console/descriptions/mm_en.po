@@ -1,0 +1,13 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/mm
+msgid "mm_url"
+msgstr "Specifies the Warfork Matchmaking Servers"
+
+#. Console/mm
+msgid "mm_login"
+msgstr "Logs you in Matchmaking."
+
+#. Console/mm
+msgid "mm_logout"
+msgstr "Logs you out of matchmaking."

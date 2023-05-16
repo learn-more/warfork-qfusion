@@ -340,14 +340,14 @@ void ServerInfo::fixStrings()
 // 3) hostname ASC
 bool ServerInfo::DefaultCompareBinary( const ServerInfo *lhs, const ServerInfo *rhs )
 {
-	if( lhs->mm > rhs->mm ) return true;
-	if( lhs->mm < rhs->mm ) return false;
-
 	if( lhs->curuser > rhs->curuser ) return true;
 	if( lhs->curuser < rhs->curuser ) return false;
 
 	if( lhs->ping < rhs->ping ) return true;
 	if( lhs->ping > rhs->ping ) return false;
+
+	//if( lhs->mm > rhs->mm ) return true;
+	//if( lhs->mm < rhs->mm ) return false;
 
 	return LessPtrBinary<std::string, &ServerInfo::locleanname>( lhs, rhs );
 }

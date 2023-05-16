@@ -10,6 +10,7 @@
 namespace WSWUI {
 
 // TODO: constify
+#define TABLE_NAME_ALL	"all"
 #define TABLE_NAME_NORMAL	"normal"
 #define TABLE_NAME_INSTA	"instagib"
 #define TABLE_NAME_TV		"tv"
@@ -609,6 +610,7 @@ void ServerBrowserDataSource::updateFrame()
 				
 				tableNameForServerInfo( serverInfo, tableName );
 				addServerToTable( serverInfo, tableName );
+				addServerToTable( serverInfo, TABLE_NAME_ALL );
 
 				if( serverInfo.favorite )
 					addServerToTable( serverInfo, TABLE_NAME_FAVORITES );

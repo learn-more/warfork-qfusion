@@ -18,101 +18,68 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-#undef STR_HELPER
-#undef STR_TOSTR
-
-#define STR_HELPER( s )					# s
-#define STR_TOSTR( x )					STR_HELPER( x )
-
-#ifdef APPLICATION_VERSION_HEADER
-
-#if defined( RC_INVOKED ) && defined ( __GNUC__ )
-
-#define APPLICATION_VERSION_HEADER_RC_STR STR_TOSTR( APPLICATION_VERSION_HEADER )
-#include APPLICATION_VERSION_HEADER_RC_STR
-
-#else
-
-#include APPLICATION_VERSION_HEADER
-
-#endif
-
-#endif
-
 #ifndef APPLICATION
-#define APPLICATION						"Qfusion"
+#define APPLICATION						"Warfork"
 #endif
 
 #ifndef APPLICATION_UTF8
-#define APPLICATION_UTF8				"Qfusion"
+#define APPLICATION_UTF8				"Warfork"
 #endif
 
-#ifndef DEFAULT_BASEGAME
-#define	DEFAULT_BASEGAME				"base"
-#endif
+#define	DEFAULT_BASEGAME				"basewf"
 
 #ifndef APP_VERSION_MAJOR
-#define APP_VERSION_MAJOR				0
+#define APP_VERSION_MAJOR				2
 #endif
 
 #ifndef APP_VERSION_MINOR
-#define APP_VERSION_MINOR				2
+#define APP_VERSION_MINOR				1
 #endif
 
 #ifndef APP_VERSION_UPDATE
-#define APP_VERSION_UPDATE				0
+#define APP_VERSION_UPDATE				2
 #endif
 
 #ifndef APP_VERSION
 #define APP_VERSION						APP_VERSION_MAJOR+APP_VERSION_MINOR*0.1+APP_VERSION_UPDATE*0.01
 #endif
 
-#ifndef APP_PROTOCOL_VERSION
 #ifdef PUBLIC_BUILD
-#define APP_PROTOCOL_VERSION			1
+#define APP_PROTOCOL_VERSION			25
 #else
-#define APP_PROTOCOL_VERSION			1001	// we're using revision number as protocol version for internal builds
-#endif
+#define APP_PROTOCOL_VERSION			2400
 #endif
 
-#ifndef APP_DEMO_PROTOCOL_VERSION
 #ifdef PUBLIC_BUILD
-#define APP_DEMO_PROTOCOL_VERSION		1
+#define APP_DEMO_PROTOCOL_VERSION		21
 #else
-#define APP_DEMO_PROTOCOL_VERSION		1001
-#endif
+#define APP_DEMO_PROTOCOL_VERSION		21
 #endif
 
 #ifndef APP_URL
-#define	APP_URL							"http://www.e4m5.net/"
+#define APP_URL                         "http://warfork.com/"
 #endif
 
 #ifndef APP_COPYRIGHT_OWNER
-#define APP_COPYRIGHT_OWNER				"Picmip Studios"
+#define APP_COPYRIGHT_OWNER				"Team Forbidden LLC"
 #endif
 
 #ifndef APP_SCREENSHOTS_PREFIX
-#define APP_SCREENSHOTS_PREFIX			"qfusion_"
+#define APP_SCREENSHOTS_PREFIX			"wf_"
 #endif
-#ifndef APP_PROTOCOL_VERSION_STR
+
+#undef STR_HELPER
+#undef STR_TOSTR
+
+#define STR_HELPER( s )					# s
+#define STR_TOSTR( x )					STR_HELPER( x )
+
 #define APP_PROTOCOL_VERSION_STR		STR_TOSTR( APP_PROTOCOL_VERSION )
-#endif
-
-#ifndef APP_DEMO_PROTOCOL_VERSION_STR
 #define APP_DEMO_PROTOCOL_VERSION_STR	STR_TOSTR( APP_DEMO_PROTOCOL_VERSION )
-#endif
+#define APP_DEMO_EXTENSION_STR			".wfdz" APP_DEMO_PROTOCOL_VERSION_STR
 
-#ifndef APP_DEMO_EXTENSION_STR
-#define APP_DEMO_EXTENSION_STR			".md" APP_DEMO_PROTOCOL_VERSION_STR
-#endif
-
-#ifndef APP_URI_SCHEME
 #define APP_URI_SCHEME					APPLICATION "://"
-#endif
-
-#ifndef APP_URI_PROTO_SCHEME
 #define APP_URI_PROTO_SCHEME			APPLICATION STR_TOSTR( APP_PROTOCOL_VERSION ) "://"
-#endif
 
 #ifndef APP_VERSION_STR
 #define APP_VERSION_STR					STR_TOSTR( APP_VERSION_MAJOR ) "." STR_TOSTR( APP_VERSION_MINOR ) STR_TOSTR( APP_VERSION_UPDATE )
@@ -123,30 +90,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 #ifndef APP_UPDATE_URL
-#define	APP_UPDATE_URL					"http://update.e4m5.net/"
-#define	APP_SERVER_UPDATE_DIRECTORY		"autoupdate/"STR_TOSTR( APP_VERSION_MAJOR ) "." STR_TOSTR( APP_VERSION_MINOR )"/"
+#define APP_UPDATE_URL                  "http://warfork.com/update/"
+#define APP_SERVER_UPDATE_DIRECTORY     "autoupdate/" STR_TOSTR ( APP_VERSION_MAJOR ) "." STR_TOSTR ( APP_VERSION_MINOR ) "/"
 #define APP_SERVER_UPDATE_FILE			"filelist.txt"
-#define APP_CLIENT_UPDATE_FILE			"qfusion_last_version.txt"
+#define APP_CLIENT_UPDATE_FILE			"warfork_last_version.txt"
+#define APP_CLIENT_ANNOUNCEMENT_FILE	"warfork_announcement.txt"
 #endif
 
-#ifndef APP_MATCHMAKER_URL
 #ifdef PUBLIC_BUILD
-#define APP_MATCHMAKER_URL				"http://www.e4m5.net:1337"
+#define APP_MATCHMAKER_URL              "https://warfork.com:1338"
+#define APP_MATCHMAKER_WEB_URL          "https://warfork.com/wfmm/"
 #else
-#define APP_MATCHMAKER_URL				"http://www.e4m5.net:1337"
-#endif
-#endif
-
-#ifndef APP_MATCHMAKER_WEB_URL
-#ifdef PUBLIC_BUILD
-#define APP_MATCHMAKER_WEB_URL			"http://www.e4m5.net/wmm/"
-#else
-#define APP_MATCHMAKER_WEB_URL			"http://www.e4m5.net/wmm/"
-#endif
+#define APP_MATCHMAKER_URL              "http://warfork.com:1337"
+#define APP_MATCHMAKER_WEB_URL          "http://warfork.com/wfmm/"
 #endif
 
 #ifndef APP_UI_BASEPATH
-#define APP_UI_BASEPATH					"ui/baseui"
+#define APP_UI_BASEPATH					"ui/porkui"
 #endif
 
 #ifndef APP_STARTUP_COLOR
@@ -191,22 +151,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 #ifndef APP_ICO_ICON
-#define APP_ICO_ICON 					"../../icons/qfusion.ico"
+#define APP_ICO_ICON 					"../../icons/warfork.ico"
 #endif
 
 #ifndef APP_DEMO_ICO_ICON
-#define APP_DEMO_ICO_ICON 				"../../icons/qfusion-demo.ico"
+#define APP_DEMO_ICO_ICON 				"../../icons/warfork-demo.ico"
 #endif
 
 #ifndef APP_XPM_ICON
-#define APP_XPM_ICON 					"../../icons/qfusion256x256.xpm"
+#define APP_XPM_ICON 					"../../icons/warfork256x256.xpm"
 #endif
 
-/**
- * The Steam App ID of the game.
- * 0 disables integration.
- * 480 can be used for testing with Spacewar.
- */
 #ifndef APP_STEAMID
-#define APP_STEAMID						0
+#define APP_STEAMID						671610
 #endif

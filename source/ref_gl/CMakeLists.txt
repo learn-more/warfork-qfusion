@@ -1,7 +1,5 @@
 project(ref_gl)
 
-include_directories(${JPEG_INCLUDE_DIR} ${PNG_INCLUDE_DIR})
-
 if (USE_SDL2)
 	include_directories(${SDL2_INCLUDE_DIR})
 endif()

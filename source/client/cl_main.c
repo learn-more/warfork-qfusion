@@ -2651,10 +2651,6 @@ void CL_Frame( int realmsec, int gamemsec )
 		minMsec = max( ( 1000.0f / maxFps ), 1 );
 		roundingMsec += max( ( 1000.0f / maxFps ), 1.0f ) - minMsec;
 #endif
-	} else if( cls.state == CA_DISCONNECTED ) {
-		maxFps = 60;
-		minMsec = 1000.0f / maxFps;
-		roundingMsec += 1000.0f / maxFps - minMsec;
 	}
 	else if( cl_maxfps->integer > 0 && !cl_timedemo->integer 
 		&& !( cls.demo.avi_video && cls.state == CA_ACTIVE ) )

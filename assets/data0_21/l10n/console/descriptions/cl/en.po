@@ -1,0 +1,167 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/cl
+msgid "cl_anglespeedkey"
+msgstr "<value> Defines the multiplier for how fast you turn when running is toggled."
+
+#. Console/cl
+msgid "cl_checkForUpdate"
+msgstr "<0/1> The client will be permitted to check for updates.\n"
+"^6Disable: cl_checkForUpdate \"0\"\n"
+"^6Enable: cl_checkForUpdate \"1\"\n"
+"^6Note: This merely retrieves the latest version number from a remote server and compares it with your version number. Warfork utilizes Steam for updates, so it's unlikely this command will be used in the future."
+
+#. Console/cl
+msgid "cl_compresspackets"
+msgstr "<0/1> Compresses network packets.\n"
+"^6Disable: cl_compresspackets \"0\"\n"
+"^6Enable: cl_compresspackets \"1\""
+
+#. Console/cl
+msgid "cl_debug_serverCmd"
+msgstr "<0/1> Server command information will printed to console.\n"
+"^6Disable: cl_debug_serverCmd \"0\"\n"
+"^6Enable: cl_debug_serverCmd \"1\"\n"
+"^6Note: You must also enable sv_cheats \"1\" for this command to work. CL_ParseConfigstringCommand and CL_ParseServerCommand details will be printed on screen in the top left hand corner."
+
+#. Console/cl
+msgid "cl_debug_timeDelta"
+msgstr "<0/1> Server debug information (netcode) will printed to console."
+
+#. Console/cl
+msgid "cl_demoavi_audio"
+msgstr "<0/1> Creates a .wav file when using demoavi.\n"
+"^6Disable: cl_demoavi_audio \"0\"\n"
+"^6Enable: cl_demoavi_audio \"1\"\n"
+"^6Note: cl_demoavi_video should be set to \"0\" to prevent lag when capturing, which will result in audio that is not realtime."
+
+#. Console/cl
+msgid "cl_demoavi_fps"
+msgstr "<value> Determines how many frames per second get captured by demoavi."
+
+#. Console/cl
+msgid "cl_demoavi_scissor"
+msgstr "<0/1> Demoavi will use the value of cg_viewSize for recordings.\n"
+"^6Note: If cg_viewSize (the viewport size) is less than \"100\", then a black frame will fill-in the remaining percentage of viewable area."
+
+#. Console/cl
+msgid "cl_demoavi_video"
+msgstr "<0/1> Output frames when using demoavi.\n"
+"^6Disable: cl_demoavi_video \"0\"\n"
+"^6Enable: cl_demoavi_video \"1\""
+
+#. Console/cl
+msgid "cl_download_allow_modules"
+msgstr "<0/1> Allows the downloading of modules.\n"
+"^6Disable: cl_download_allow_modules \"0\"\n"
+"^6Enable: cl_download_allow_modules \"1\"\n"
+"^6Note: This is needed for mods such as Racemod."
+
+#. Console/cl
+msgid "cl_download_name"
+msgstr "The name of what's being downloaded."
+
+#. Console/cl
+msgid "cl_download_percent"
+msgstr "The percentage of what's being downloaded."
+
+#. Console/cl
+msgid "cl_downloads"
+msgstr "<0/1> Allows your client to download files (maps, textures, etc.) directly from the server you're connecting to."
+
+#. Console/cl
+msgid "cl_downloads_from_web"
+msgstr "<0/1> Allows your client to download files (maps, textures, etc.) from a webserver."
+
+#. Console/cl
+msgid "cl_downloads_from_web_timeout"
+msgstr "<value> The time before a client timeout when attempting to download from a webserver."
+
+#. Console/cl
+msgid "cl_extrapolate"
+msgstr "<0/1> Enhances server-side accuracy in client-side weapon and physics calculations."
+"^6Disable: cl_extrapolate \"0\"\n"
+"^6Enable: cl_extrapolate \"1\"\n"
+"^6Note: Significant disparities arise while rocketjumping with high ping and toggling extrapolation; additionally, enabled extrapolation affects perceived server-client lag on leaderboards, not true ping."
+
+#. Console/cl
+msgid "cl_flip"
+msgstr "Flips your view."
+"^6Disable: cl_flip \"0\"\n"
+"^6Enable: cl_flip \"1\"\n"
+
+#. Console/cl
+msgid "cl_maxfps"
+msgstr "<24-1000> Sets the FPS limit."
+
+#. Console/cl
+msgid "cl_mm_autologin"
+msgstr "<0/1> Matchmaking will automatically be logged into.\n"
+"^6Disable: cl_mm_autologin \"0\"\n"
+"^6Enable: cl_mm_autologin \"1\""
+
+#. Console/cl
+msgid "cl_mm_session"
+msgstr "Contains your matchmaking session information."
+
+#. Console/cl
+msgid "cl_mm_user"
+msgstr "<value> Contains your matchmaking username."
+
+#. Console/cl
+msgid "cl_pitchspeed"
+msgstr "<value> The speed the player's screen moves up and down when using keyboard keys."
+
+#. Console/cl
+msgid "cl_port"
+msgstr "IPv4 client port"
+
+#. Console/cl
+msgid "cl_port6"
+msgstr "IPv6 client port"
+
+#. Console/cl
+msgid "cl_pps"
+msgstr "<value> The amount packets per second that client is sending to the server."
+
+#. Console/cl
+msgid "cl_run"
+msgstr "<0/1> Running will be toggle automatically. This serves no purpose in disabling as Warfork has no footstep sounds.\n"
+"^6Disable: cl_run \"0\"\n"
+"^6Enable: cl_run \"1\""
+
+#. Console/cl
+msgid "cl_shownet"
+msgstr "<0/1> Latency information for network packets will be printed in console.\n"
+"^6Disable: cl_shownet \"0\"\n"
+"^6Enable: cl_shownet \"1\""
+
+#. Console/cl
+msgid "cl_sleep"
+msgstr "<0/1> You will get lower CPU usage with the cost of higher mouse latency and less stable fps.\n"
+"^6Disable: cl_sleep \"0\"\n"
+"^6Enable: cl_sleep \"1\""
+
+#. Console/cl
+msgid "cl_stereo"
+msgstr "<0/1> Stereoscopic rendering mode will be toggled.\n"
+"^6Disable: cl_stereo \"0\"\n"
+"^6Enable: cl_stereo \"1\""
+
+#. Console/cl
+msgid "cl_stereo_separation"
+msgstr "<0-1.0> Camera offset with cl_stereo\n"
+"^6Disable: cl_stereo_separation \"0\""
+
+#. Console/cl
+msgid "cl_timeout"
+msgstr "<value> Disconnects you from server if packet isn't recieved more than specified time in seconds."
+
+#. Console/cl
+msgid "cl_ucmdMaxResend"
+msgstr "The maximum amount of times a user command will be resent to the server.\n"
+"^6Note: This occurs when it isn't acknowledged by the server."
+
+#. Console/cl
+msgid "cl_yawspeed"
+msgstr "<value> Controls your turn speed."

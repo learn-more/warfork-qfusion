@@ -1,5 +1,0 @@
-# (c) Team Forbidden LLC. All Rights Reserved.
-
-#. Console/vsay
-msgid "vsay_team"
-msgstr "<name> Says a voice message to the team."

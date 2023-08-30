@@ -1,0 +1,53 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/ui
+msgid "ui_autobrowse_manual"
+msgstr "<0/1> Servers will be suggested when you click \"Play\" and query the masterservers.\n"
+"^6Disable: ui_autobrowse_manual \"0\"\n"
+"^6Enable: ui_autobrowse_manual \"1\""
+
+#. Console/ui
+msgid "ui_basepath"
+msgstr "<value>	Defines the basepath of the user interface (Example: \"ui/porkui\")."
+
+#. Console/ui
+msgid "ui_cachepurgedate"
+msgstr "<yyyy-mm-dd> Purges the folder \"cache/ui\" on a specific date, which contains cache from asyncrhonous HTTP requests (Example: \"2023-02-13\")."
+
+#. Console/ui
+msgid "ui_lighting"
+msgstr "Used to store your lighting choices in the UI.\n"
+"^6Note: Do not change this in console. It will not apply any lighting changes and only cause confusion in the UI."
+
+#. Console/ui
+msgid "ui_preload"
+msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+
+#. Console/ui
+msgid "ui_serverbrowser_tab"
+msgstr "Used to store the last tab used in the Server Browser.\n"
+"^6Note: Do not change this in console. It will only cause confusion in the UI."
+
+#. Console/ui
+msgid "ui_tutorial_taken"
+msgstr "<0/1> You will be prompted (once per game load) to complete the tutorial upon clicking \"Play\".\n"
+"^6Disable: ui_tutorial_taken \"0\"\n"
+"^6Enable: ui_tutorial_taken \"1\"\n"
+"^6Note: This has been temporarily repurposed for a Warfork Early Access message."
+
+#. Console/ui
+msgid "ui_video_profile"
+msgstr "Used to store your graphics profile in the UI.\n"
+"^6Note: Do not change this in console. It will not apply any gfx changes and only cause confusion in the UI."
+
+#. Console/ui
+msgid "ui_dumpapi"
+msgstr "Prints a list of Angelscript API header files."
+
+#. Console/ui
+msgid "ui_printdocs"
+msgstr "Prints document cache and navigation stack to console."
+
+#. Console/ui
+msgid "ui_reload"
+msgstr "Reloads the User Interface."

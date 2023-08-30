@@ -1,9 +1,0 @@
-# (c) Team Forbidden LLC. All Rights Reserved.
-
-#. Console/win
-msgid "win_noalttab"
-msgstr "<0/1> If enabled, ALT+TAB will work. Example: 0 = Disabled or 1 Enabled"
-
-#. Console/win
-msgid "win_nowinkeys"
-msgstr "<0/1> If enabled, Windows keys will work. 0 = Disabled or 1 Enabled"

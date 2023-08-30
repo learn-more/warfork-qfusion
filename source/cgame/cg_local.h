@@ -714,7 +714,6 @@ struct sfx_s *CG_RegisterSexedSound( int entnum, const char *name );
 // cg_predict.c
 //
 extern cvar_t *cg_predict;
-extern cvar_t *cg_predict_optimize;
 extern cvar_t *cg_showMiss;
 
 void CG_PredictedEvent( int entNum, int ev, int parm );
@@ -741,7 +740,6 @@ extern cvar_t *cg_scoreboardWidthScale;
 extern cvar_t *cg_showFPS;
 extern cvar_t *cg_showAwards;
 extern cvar_t *cg_showZoomEffect;
-extern cvar_t *cg_showCaptureAreas;
 extern cvar_t *cg_showChasers;
 
 void CG_ScreenInit( void );

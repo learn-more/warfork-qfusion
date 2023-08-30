@@ -88,19 +88,19 @@ static const char * const LocalBotNames[] =
 	"Marzipan",
 	"Butter",
 	"Biscuit",
-	"Clover",
+	"Cora",
 
+	"Fred",
 	"Dino",
 	"Rocky",
-	"Salem",
-	"Mama",
+	"Fluffy",
 	"Luke",
 
 	"Nico",
 	"Maggie",
 	"Bridgette",
 	"Angus",
-	"Fred",
+	"Clover",
 
 	NULL
 };

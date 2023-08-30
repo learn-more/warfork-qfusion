@@ -1,0 +1,5 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/masterservers
+msgid "masterservers_steam"
+msgstr "<value> Specifies the Steam masterservers used to query a list of Warfork servers."

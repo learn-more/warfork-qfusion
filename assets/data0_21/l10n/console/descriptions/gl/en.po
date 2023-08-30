@@ -1,0 +1,342 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/gl
+msgid "gl_cull"
+msgstr "<0/1> OpenGL Culling.\n"
+"^6Disable: gl_cull \"0\"\n"
+"^6Enable: gl_cull \"1\"\n"
+"^6Note: Culling in graphics involves removing hidden objects early on to avoid unnecessary processing."
+
+#. Console/gl
+msgid "gl_drawbuffer"
+msgstr "<value> When colors are sent to the frame buffer, they get written into the designated color buffers.\n"
+"^6Note: Some examples include GL_NONE, GL_FRONT_LEFT, GL_FRONT_RIGHT, GL_BACK_LEFT, GL_BACK_right, GL_FRONT, GL_BACK, GL_LEFT, GL_RIGHT, GL_FRONT_AND_BACK."
+
+#. Console/gl
+msgid "gl_driver_win"
+msgstr "<value> Designates the specific OpenGL driver DLL file to be utilized.\n"
+"^6Note: This command is for Microsoft Windows only."
+
+#. Console/gl
+msgid "gl_ext_bgra"
+msgstr "<0/1> OpenGL extension gl_ext_bgra.\n"
+"^6Disable: gl_ext_bgra \"0\"\n"
+"^6Enable: gl_ext_bgra \"1\"\n"
+"^6Note: A write protected variable. A common format for organizing colors (blue, green, red, and alpha) in images or graphics data."
+
+#. Console/gl
+msgid "gl_ext_blend_func_separate"
+msgstr "<0/1> OpenGL extension blend_func_separate.\n"
+"^6Disable: gl_ext_blend_func_separate \"0\"\n"
+"^6Enable: gl_ext_blend_func_separate \"1\"\n"
+"^6Note: A write protected variable. Allows you to control how colors and transparency are combined separately when rendering."
+
+#. Console/gl
+msgid "gl_ext_compressed_ETC1_RGB8_texture"
+msgstr "<0/1> OpenGL extension ETC1_RGB8_texture.\n"
+"^6Disable: gl_ext_compressed_ETC1_RGB8_texture \"0\"\n"
+"^6Enable: gl_ext_compressed_ETC1_RGB8_texture \"1\"\n"
+"^6Note: Helps to efficiently store and render graphics with reduced memory usage."
+
+#. Console/gl
+msgid "gl_ext_depth24"
+msgstr "<0/1> OpenGL extension depth24.\n"
+"^6Disable: gl_ext_depth24 \"0\"\n"
+"^6Enable: gl_ext_depth24 \"1\"\n"
+"^6Note: Enhances depth accuracy to 24 bits for more detailed rendering of scenes."
+
+#. Console/gl
+msgid "gl_ext_depth_nonlinear"
+msgstr "<0/1> OpenGL extension depth_nonlinear.\n"
+"^6Disable: gl_ext_depth_nonlinear \"0\"\n"
+"^6Enable: gl_ext_depth_nonlinear \"1\"\n"
+"^6Note: How objects at various distances appear on screen for better visual clarity and reduced flickering."
+
+#. Console/gl
+msgid "gl_ext_depth_texture"
+msgstr "<0/1> OpenGL extension depth_texture.\n"
+"^6Disable: gl_ext_depth_texture \"0\"\n"
+"^6Enable: gl_ext_depth_texture \"1\"\n"
+"^6Note: Lets you use depth information as textures, useful for advanced rendering like shadows."
+
+#. Console/gl
+msgid "gl_ext_draw_instanced"
+msgstr "<0/1> OpenGL extension draw_instanced.\n"
+"^6Disable: gl_ext_draw_instanced \"0\"\n"
+"^6Enable: gl_ext_draw_instanced \"1\"\n"
+"^6Note: Helps render many copies of something at once, making things faster."
+
+#. Console/gl
+msgid "gl_ext_draw_range_elements"
+msgstr "<0/1> OpenGL extension draw_range_elements.\n"
+"^6Disable: gl_ext_draw_range_elements \"0\"\n"
+"^6Enable: gl_ext_draw_range_elements \"1\"\n"
+"^6Note: Boosts rendering efficiency by focusing on drawing specific ranges of elements."
+
+#. Console/gl
+msgid "gl_ext_ES3_compatibility"
+msgstr "<0/1> OpenGL extension ES3_compatibility.\n"
+"^6Disable: gl_ext_ES3_compatibility \"0\"\n"
+"^6Enable: gl_ext_ES3_compatibility \"1\"\n"
+"^6Note: Enhances compatibility with OpenGL ES 3.0 features, enabling smoother migration between different versions of OpenGL."
+
+#. Console/gl
+msgid "gl_ext_fragment_precision_high"
+msgstr "<0/1> OpenGL extension fragment_precision_high.\n"
+"^6Disable: gl_ext_fragment_precision_high \"0\"\n"
+"^6Enable: gl_ext_fragment_precision_high \"1\"\n"
+"^6Note: Offers more precise color calculations in graphics by improving the accuracy of fragment shaders."
+
+#. Console/gl
+msgid "gl_ext_fragment_shader"
+msgstr "<0/1> OpenGL extension fragment_shader.\n"
+"^6Disable: gl_ext_fragment_shader \"0\"\n"
+"^6Enable: gl_ext_fragment_shader \"1\"\n"
+"^6Note: Support for additional fragment shader functionality, expanding the capabilities of graphics rendering."
+
+#. Console/gl
+msgid "gl_ext_framebuffer_blit"
+msgstr "<0/1> OpenGL extension framebuffer_blit.\n"
+"^6Disable: gl_ext_framebuffer_blit \"0\"\n"
+"^6Enable: gl_ext_framebuffer_blit \"1\"\n"
+"^6Note: Makes it easier to copy images between framebuffers, helping with efficient rendering tasks."
+
+#. Console/gl
+msgid "gl_ext_framebuffer_object"
+msgstr "<0/1> OpenGL extension framebuffer_object.\n"
+"^6Disable: gl_ext_framebuffer_object \"0\"\n"
+"^6Enable: gl_ext_framebuffer_object \"1\"\n"
+"^6Note: A write protected variable. A more flexible and efficient way to manage framebuffers for advanced rendering techniques."
+
+#. Console/gl
+msgid "gl_ext_gamma_control"
+msgstr "<0/1> OpenGL extension gl_ext_gamma_control.\n"
+"^6Disable: gl_ext_gamma_control \"0\"\n"
+"^6Enable: gl_ext_gamma_control \"1\"\n"
+"^6Note: Gamma control by the GPU (if supported)."
+
+#. Console/gl
+msgid "gl_ext_get_program_binary"
+msgstr "<0/1> OpenGL extension get_program_binary.\n"
+"^6Disable: gl_ext_get_program_binary \"0\"\n"
+"^6Enable: gl_ext_get_program_binary \"1\"\n"
+"^6Note: Helps shaders load faster by storing and retrieving their compiled binary form."
+
+#. Console/gl
+msgid "gl_ext_GLSL"
+msgstr "<0/1> OpenGL Shading Language (GLSL).\n"
+"^6Disable: gl_ext_GLSL \"0\"\n"
+"^6Enable: gl_ext_GLSL \"1\""
+"^6Note: A write protected variable. GLSL is for writing shaders that control various stages of the graphics pipeline."
+
+#. Console/gl
+msgid "gl_ext_GLSL130"
+msgstr "<0/1> OpenGL extension GLSL130.\n"
+"^6Disable: gl_ext_GLSL130 \"0\"\n"
+"^6Enable: gl_ext_GLSL130 \"1\"\n"
+"^6Note: Support for GLSL (OpenGL Shading Language) version 1.30, enabling advanced shader programming capabilities."
+
+#. Console/gl
+msgid "gl_ext_GLSL_core"
+msgstr "<0/1> OpenGL extension GLSL_core.\n"
+"^6Disable: gl_ext_GLSL_core \"0\"\n"
+"^6Enable: gl_ext_GLSL_core \"1\"\n"
+"^6Note: A write protected variable. Integrates core GLSL (OpenGL Shading Language) features into OpenGL, enhancing shader programming capabilities."
+
+#. Console/gl
+msgid "gl_ext_gpu_memory_info"
+msgstr "<0/1> OpenGL extension gpu_memory_info.\n"
+"^6Disable: gl_ext_gpu_memory_info \"0\"\n"
+"^6Enable: gl_ext_gpu_memory_info \"1\"\n"
+"^6Note: A write protected variable. Provides access to GPU memory information in OpenGL, allowing applications to monitor and manage memory usage effectively."
+
+#. Console/gl
+msgid "gl_ext_gpu_shader5"
+msgstr "<0/1> OpenGL extension gpu_shader5.\n"
+"^6Disable: gl_ext_gpu_shader5 \"0\"\n"
+"^6Enable: gl_ext_gpu_shader5 \"1\"\n"
+"^6Note: Adds support for advanced shader features and capabilities, enhancing GPU-based rendering and computation."
+
+#. Console/gl
+msgid "gl_ext_half_float_vertex"
+msgstr "<0/1> OpenGL extension half_float_vertex.\n"
+"^6Disable: gl_ext_half_float_vertex \"0\"\n"
+"^6Enable: gl_ext_half_float_vertex \"1\"\n"
+"^6Note: Allows the use of half-precision (16-bit) floating-point vertex attributes in OpenGL, optimizing memory usage for vertex data."
+
+#. Console/gl
+msgid "gl_ext_instanced_arrays"
+msgstr "<0/1> OpenGL extension instanced_arrays.\n"
+"^6Disable: gl_ext_instanced_arrays \"0\"\n"
+"^6Enable: gl_ext_instanced_arrays \"1\"\n"
+"^6Note: Enables efficient rendering of multiple instances of the same object by sharing vertex data across instances."
+
+#. Console/gl
+msgid "gl_ext_meminfo"
+msgstr "<0/1> OpenGL extension meminfo.\n"
+"^6Disable: gl_ext_meminfo \"0\"\n"
+"^6Enable: gl_ext_meminfo \"1\"\n"
+"^6Note: A write protected variable. Provides access to memory information related to OpenGL resources, aiding in memory management and optimization."
+
+#. Console/gl
+msgid "gl_ext_multitexture"
+msgstr "<0/1> OpenGL extension multitexture.\n"
+"^6Disable: gl_ext_multitexture \"0\"\n"
+"^6Enable: gl_ext_multitexture \"1\"\n"
+"^6Note: A write protected variable. Enables the use of multiple texture units for enhanced texturing effects and complex material rendering."
+
+#. Console/gl
+msgid "gl_ext_packed_depth_stencil"
+msgstr "<0/1> OpenGL extension packed_depth_stencil.\n"
+"^6Disable: gl_ext_packed_depth_stencil \"0\"\n"
+"^6Enable: gl_ext_packed_depth_stencil \"1\"\n"
+"^6Note: Enables efficient storage of combined depth and stencil information within a single memory location for rendering and testing."
+
+#. Console/gl
+msgid "gl_ext_rgb8_rgba8"
+msgstr "<0/1> OpenGL extension rgb8_rgba8.\n"
+"^6Disable: gl_ext_shading_language_130 \"0\"\n"
+"^6Enable: gl_ext_shading_language_130 \"1\"\n"
+"^6Note: Provides support for 8-bit per channel RGB and RGBA textures in OpenGL, optimizing color storage and rendering."
+
+#. Console/gl
+msgid "gl_ext_shader_objects"
+msgstr "<0/1> OpenGL extension shader_objects.\n"
+"^6Disable: gl_ext_shader_objects \"0\"\n"
+"^6Enable: gl_ext_shader_objects \"1\"\n"
+"^6Note: A write protected variable. Introduces shader objects, allowing for more modular and organized shader programming and management."
+
+#. Console/gl
+msgid "gl_ext_shading_language_100"
+msgstr "<0/1> OpenGL extension shading_language_100.\n"
+"^6Disable: gl_ext_shading_language_100 \"0\"\n"
+"^6Enable: gl_ext_shading_language_100 \"1\"\n"
+"^6Note: A write protected variable. Support for GLSL (OpenGL Shading Language) version 1.00, allowing shader-based graphics programming in OpenGL."
+
+#. Console/gl
+msgid "gl_ext_shading_language_130"
+msgstr "<0/1> OpenGL extension shading_language_130.\n"
+"^6Disable: gl_ext_shading_language_130 \"0\"\n"
+"^6Enable: gl_ext_shading_language_130 \"1\"\n"
+"^6Note: Support for GLSL (OpenGL Shading Language) version 1.30, enabling advanced shader programming capabilities in OpenGL."
+
+#. Console/gl
+msgid "gl_ext_shadow"
+msgstr "<0/1> OpenGL extension shadow.\n"
+"^6Disable: gl_ext_shadow \"0\"\n"
+"^6Enable: gl_ext_shadow \"1\"\n"
+"^6Note: Improves shadow mapping techniques for more realistic shadow rendering."
+
+#. Console/gl
+msgid "gl_ext_shadow_samplers"
+msgstr "<0/1> OpenGL extension shadow_samplers.\n"
+"^6Disable: gl_ext_shadow_samplers \"0\"\n"
+"^6Enable: gl_ext_shadow_samplers \"1\"\n"
+"^6Note: Enhances shadow mapping in OpenGL by providing specialized sampling methods for shadows."
+
+#. Console/gl
+msgid "gl_ext_swap_control"
+msgstr "<0/1> OpenGL extension swap_control.\n"
+"^6Disable: gl_ext_swap_control \"0\"\n"
+"^6Enable: gl_ext_swap_control \"1\"\n"
+"^6Note: Provides control over buffer swapping and vertical synchronization (V-Sync) in OpenGL."
+
+#. Console/gl
+msgid "gl_ext_texture3D"
+msgstr "<0/1> OpenGL extension texture3D.\n"
+"^6Disable: gl_ext_texture3D \"0\"\n"
+"^6Enable: gl_ext_texture3D \"1\"\n"
+"^6Note: Enables 3D textures in OpenGL for representing and sampling volumetric data."
+
+#. Console/gl
+msgid "gl_ext_texture_array"
+msgstr "<0/1> OpenGL extension texture_array.\n"
+"^6Disable: gl_ext_texture_array \"0\"\n"
+"^6Enable: gl_ext_texture_array \"1\"\n"
+"^6Note: Enables the use of texture arrays for efficiently storing and sampling multiple textures in OpenGL."
+
+#. Console/gl
+msgid "gl_ext_texture_compression"
+msgstr "<0/1> OpenGL extension texture_compression.\n"
+"^6Disable: gl_ext_texture_compression \"0\"\n"
+"^6Enable: gl_ext_texture_compression \"1\"\n"
+"^6Note: Allows compressed texture formats for efficient use of texture memory in OpenGL."
+
+#. Console/gl
+msgid "gl_ext_texture_cube_map"
+msgstr "<0/1> OpenGL extension texture_cube_map.\n"
+"^6Disable: gl_ext_texture_cube_map \"0\"\n"
+"^6Enable: gl_ext_texture_cube_map \"1\"\n"
+"^6Note: A write protected variable. Enables the use of cube maps for advanced 3D texture mapping in OpenGL."
+
+#. Console/gl
+msgid "gl_ext_texture_edge_clamp"
+msgstr "<0/1> OpenGL extension texture_edge_clamp.\n"
+"^6Disable: gl_ext_texture_edge_clamp \"0\"\n"
+"^6Enable: gl_ext_texture_edge_clamp \"1\"\n"
+"^6Note: A write protected variable. Extension that provides additional ways to handle texture edges."
+
+#. Console/gl
+msgid "gl_ext_texture_filter_anisotropic"
+msgstr "<0/1> OpenGL extension texture_filter_anisotropic.\n"
+"^6Disable: gl_ext_texture_filter_anisotropic \"0\"\n"
+"^6Enable: gl_ext_texture_filter_anisotropic \"1\"\n"
+"^6Note: A write protected variable. It introduces anisotropic filtering, which improves the quality of texture rendering, especially for surfaces viewed at oblique angles."
+
+#. Console/gl
+msgid "gl_ext_texture_lod"
+msgstr "<0/1> OpenGL extension texture_lod.\n"
+"^6Disable: gl_ext_texture_lod \"0\"\n"
+"^6Enable: gl_ext_texture_lod \"1\"\n"
+"^6Note: Allows you to manually control the level of detail when sampling textures."
+
+#. Console/gl
+msgid "gl_ext_texture_non_power_of_two"
+msgstr "<0/1> Load textures which have non-power-of-two (NPOT) dimensions.\n"
+"^6Disable: gl_ext_texture_non_power_of_two \"0\"\n"
+"^6Enable: gl_ext_texture_non_power_of_two \"1\""
+
+#. Console/gl
+msgid "gl_ext_texture_npot"
+msgstr "<0/1> Load textures which have non-power-of-two (NPOT) dimensions.\n"
+"^6Disable: gl_ext_texture_npot \"0\"\n"
+"^6Enable: gl_ext_texture_npot \"1\""
+
+#. Console/gl
+msgid "gl_ext_vertex_buffer_object"
+msgstr "<0/1> OpenGL extension vertex_buffer_object.\n"
+"^6Disable: gl_ext_vertex_buffer_object \"0\"\n"
+"^6Enable: gl_ext_vertex_buffer_object \"1\"\n"
+"^6Note: A write protected variable. Boosts graphics performance by improving how vertex data is transferred and rendered."
+
+#. Console/gl
+msgid "gl_ext_vertex_buffer_object_hack"
+msgstr "<0/1> OpenGL extension vertex_buffer_object_hack.\n"
+"^6Disable: gl_ext_vertex_buffer_object_hack \"0\"\n"
+"^6Enable: gl_ext_vertex_buffer_object_hack \"1\"\n"
+"^6Note: A write protected variable."
+
+#. Console/gl
+msgid "gl_ext_vertex_half_float"
+msgstr "<0/1> OpenGL extension vertex_half_float.\n"
+"^6Disable: gl_ext_vertex_half_float \"0\"\n"
+"^6Enable: gl_ext_vertex_half_float \"1\"\n"
+"^6Note: Saves memory by using shorter numbers for vertices in graphics, without losing too much accuracy."
+
+#. Console/gl
+msgid "gl_ext_vertex_shader"
+msgstr "<0/1> OpenGL extension vertex_shader.\n"
+"^6Disable: gl_ext_vertex_shader \"0\"\n"
+"^6Enable: gl_ext_vertex_shader \"1\"\n"
+"^6Note: A write protected variable. Shapes and moves individual points, like corners of triangles, to create 3D graphics."
+
+#. Console/gl
+msgid "gl_finish"
+msgstr "<0/1> The CPU will wait for the GPU at the end of each rendered frame.\n"
+"^6Disable: gl_finish \"0\"\n"
+"^6Enable: gl_finish \"1\"\n"
+"^6Note: This can help resolve some video lag and input issues."
+
+#. Console/gl
+msgid "gl_max_texture_size"
+msgstr "<value> The maximum texture size (width and height) that your graphics hardware supports."

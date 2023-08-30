@@ -1,0 +1,11 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/http
+msgid "http_proxy"
+msgstr "<value> HTTP Proxy IP.\n"
+"^6Note: Warfork utilizes CURL and this specifies CURLOPT_PROXY."
+
+#. Console/http
+msgid "http_proxyuserpwd"
+msgstr "<value> HTTP Username and Password for proxy authentication.\n"
+"^6Note: Warfork utilizes CURL and this specifies CURLOPT_PROXYUSERPWD."

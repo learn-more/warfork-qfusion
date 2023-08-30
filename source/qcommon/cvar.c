@@ -471,29 +471,35 @@ void Cvar_FixCheatVars( void )
 */
 bool Cvar_Command( void )
 {
-	cvar_t *v;
+    cvar_t *v;
+    const char *translated;
+            
+    // check variables
+    v = Cvar_Find( Cmd_Argv( 0 ) );
+    if( !v )
+        return false;
 
-	// check variables
-	v = Cvar_Find( Cmd_Argv( 0 ) );
-	if( !v )
-		return false;
+    // perform a variable print or set
+    if( Cmd_Argc() == 1 )
+    {
+        Com_Printf( "\"%s\" is \"%s%s\" default: \"%s%s\"\n", v->name,
+        v->string, Q_ColorStringTerminator( v->string, ColorIndex(COLOR_WHITE) ),
+        v->dvalue, Q_ColorStringTerminator( v->dvalue, ColorIndex(COLOR_WHITE) ) );
 
-	// perform a variable print or set
-	if( Cmd_Argc() == 1 )
-	{
-		Com_Printf( "\"%s\" is \"%s%s\" default: \"%s%s\"\n", v->name,
-			v->string, Q_ColorStringTerminator( v->string, ColorIndex(COLOR_WHITE) ),
-			v->dvalue, Q_ColorStringTerminator( v->dvalue, ColorIndex(COLOR_WHITE) ) );
-		if( v->latched_string )
-			Com_Printf( "latched: \"%s%s\"\n", v->latched_string,
-			Q_ColorStringTerminator( v->latched_string, ColorIndex(COLOR_WHITE) ) );
-		return true;
-	}
+        if( v->latched_string )
+            Com_Printf( "latched: \"%s%s\"\n", v->latched_string,
+                Q_ColorStringTerminator( v->latched_string, ColorIndex(COLOR_WHITE) ) );
 
-	Cvar_Set( v->name, Cmd_Argv( 1 ) );
-	return true;
+        translated = L10n_TranslateString( "descriptions", Cvar_GetName( v ) );
+        if( translated )
+        Com_Printf( S_COLOR_CYAN "%s\n", translated );
+
+        return true;
+    }
+
+    Cvar_Set( v->name, Cmd_Argv( 1 ) );
+    return true;
 }
-
 
 /*
 * Cvar_Set_f

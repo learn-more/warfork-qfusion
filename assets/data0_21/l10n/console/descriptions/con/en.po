@@ -1,0 +1,70 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/con
+msgid "con_chatmode"
+msgstr "<1/3> Changes the chat mode.\n"
+"^6Always chat unless a command contains a slash: con_chatmode \"1\"\n"
+"^6Commands don't require a slash: con_chatmode \"3\"\n"
+"^6Note: An example of \"1\" vs \"3\" in console would be /sensitivity and sensitivity."
+
+#. Console/con
+msgid "con_drawNotify"
+msgstr "<0/1> Transparently overlay the last few lines of console output over the top left corner.\n"
+"^6Disable: con_drawNotify \"0\"\n"
+"^6Enable: con_drawNotify \"1\""
+
+#. Console/con
+msgid "con_fontSystemBigSize"
+msgstr "<value> Changes the value of \"Big Sized\" fonts.\n"
+"^6Note: You will need to restart the game for changes to go into effect."
+
+#. Console/con
+msgid "con_fontSystemConsoleSize"
+msgstr "<1-26> Changes the font size of the console text.\n"
+"^6Smallest: con_fontSystemConsoleSize \"1\"\n"
+"^6Largest: con_fontSystemConsoleSize \"26\""
+
+#. Console/con
+msgid "con_fontSystemFallbackFamily"
+msgstr "<value> Sets the fallback font family."
+
+#. Console/con
+msgid "con_fontSystemFamily"
+msgstr "<value> Sets the default font family."
+
+#. Console/con
+msgid "con_fontSystemMediumSize"
+msgstr "<value> Changes the value of \"Medium Sized\" fonts.\n"
+"^6Note: You will need to restart the game for changes to go into effect."
+
+#. Console/con
+msgid "con_fontSystemMonoFamily"
+msgstr "<value> Sets the default mono font family."
+
+#. Console/con
+msgid "con_fontSystemSmallSize"
+msgstr "<value> Changes the value of \"Small Sized\" fonts.\n"
+"^6Note: You will need to restart the game for changes to go into effect."
+
+#. Console/con
+msgid "con_fontSystemTinySize"
+msgstr "<value> Changes the value of \"Tiny Sized\" fonts.\n"
+"^6Note: You will need to restart the game for changes to go into effect. \"Tiny Sized\" fonts were originally added to Warfork for Damage Numbers."
+
+#. Console/con
+msgid "con_messageMode"
+msgstr "<0/1> Opens the chat window.\n"
+"^6Shows arriving messages and gradually disappears: con_messageMode \"0\"\n"
+"^6Secures the window in position: con_messageMode \"1\""
+"^6Note: con_messageMode is intended to be used from the HUD, not set by the player."
+
+#. Console/con
+msgid "con_notifytime"
+msgstr "<value> The amount of seconds con_drawNotify output will remain on screen."
+
+#. Console/con
+msgid "con_printText"
+msgstr "<0/1> Text will be printed to console.\n"
+"^6Disable: con_printText \"0\"\n"
+"^6Enable: con_printText \"1\"\n"
+"^6Note: con_printText \"0\" works best with scr_consize \"0.1\" and scr_conspeed \"0\"."

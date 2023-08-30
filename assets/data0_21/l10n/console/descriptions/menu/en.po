@@ -1,0 +1,36 @@
+# (c) Team Forbidden LLC. All Rights Reserved.
+
+#. Console/menu
+msgid "menu_close"
+msgstr "Utilized by the UI to close menus.\n"
+"^6Note: menu_close is not intended to be set by the player."
+
+#. Console/menu
+msgid "menu_force"
+msgstr "Utilized by the UI to force the menu open.\n"
+"^6Note: menu_force is not intended to be set by the player. It's used when you load the game or disconnect from a server."
+
+#. Console/menu
+msgid "menu_modal"
+msgstr "Utilized by the UI to open modals.\n"
+"^6Note: menu_modal is not intended to be set by the player."
+
+#. Console/menu
+msgid "menu_open"
+msgstr "<filename> Utilized by the UI to open menus.\n"
+"^6Note: menu_modal is not intended to be set by the player, but you could utilize it for tasks. Example: bind \"p\" \"credits\" will open credits."
+
+#. Console/menu
+msgid "menu_quick"
+msgstr "If quickMenuURL is different then it pops all documents from stack and inserts a new one.\n"
+"^6Note: menu_quick is not intended to be set by the player. When you pop a stack, it removes the most recently added element."
+
+#. Console/menu
+msgid "menu_tvchannel_add"
+msgstr "Adds a Warfork TV channel to the TV server list.\n"
+"^6Note: menu_tvchannel_add is not intended to be set by the player."
+
+#. Console/menu
+msgid "menu_tvchannel_remove"
+msgstr "Removes a Warfork TV channel from the TV server list.\n"
+"^6Note: menu_tvchannel_remove is not intended to be set by the player."

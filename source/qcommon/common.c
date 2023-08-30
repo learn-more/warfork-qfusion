@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 // common.c -- misc functions used in client and server
 #include "qcommon.h"
+#include "l10n.h"
 #if defined(__GNUC__) && defined(i386)
 #include <cpuid.h>
 #endif
@@ -858,6 +859,51 @@ void Qcommon_ShutdownCommands( void )
 }
 
 /*
+* Qcommon_InitCvarDescriptions
+*/
+
+void Qcommon_InitCvarDescriptions( void )
+{
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/bot" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/cg" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/cl" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/cm" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/com" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/con" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/fs" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/g" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/gl" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/host" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/http" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/in" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/logconsole" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/m" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/masterservers" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/menu" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/mm" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/net" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/prefixless" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/r" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/rcon" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/s" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/scr" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/sv" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/ui" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/vid" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/vsay" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/win" );
+}
+
+/*
+* Qcommon_ShutdownCvarDescriptions
+*/
+
+void Qcommon_ShutdownCvarDescriptions( void )
+{
+    L10n_ClearDomain( "descriptions" );
+}
+
+/*
 * Qcommon_Init
 */
 void Qcommon_Init( int argc, char **argv )
@@ -883,15 +929,15 @@ void Qcommon_Init( int argc, char **argv )
 	Cvar_PreInit();
 	Dynvar_PreInit();
 
-	// create basic commands and cvars
-	Cmd_Init();
-	Cvar_Init();
-	Dynvar_Init();
-	dynvars_initialized = true;
+    // create basic commands and cvars
+    Cmd_Init();
+    Cvar_Init();
+    Dynvar_Init();
+    dynvars_initialized = true;
 
-	wswcurl_init();
+    wswcurl_init();
 
-	Key_Init();
+    Key_Init();
 
 	// we need to add the early commands twice, because
 	// a basepath or cdpath needs to be set before execing
@@ -927,6 +973,10 @@ void Qcommon_Init( int argc, char **argv )
 
 	FS_Init();
 
+    // init localization subsystem
+    L10n_Init();
+        Qcommon_InitCvarDescriptions();
+        
 	Cbuf_AddText( "exec default.cfg\n" );
 	if( !dedicated->integer )
 	{
@@ -1148,16 +1198,19 @@ void Qcommon_Shutdown( void )
 
 	Com_CloseConsoleLog( true, true );
 
+   Qcommon_ShutdownCvarDescriptions();
+   L10n_Shutdown();
+
 	FS_Shutdown();
 
 	Com_UnloadCompressionLibraries();
 
-	wswcurl_cleanup();
-
-	Dynvar_Shutdown();
-	dynvars_initialized = false;
-	Cvar_Shutdown();
-	Cmd_Shutdown();
+   wswcurl_cleanup();
+   
+   Dynvar_Shutdown();
+   dynvars_initialized = false;
+    Cvar_Shutdown();
+    Cmd_Shutdown();
 	Cbuf_Shutdown();
 	Memory_Shutdown();
 	

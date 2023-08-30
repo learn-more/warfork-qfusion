@@ -117,6 +117,12 @@ msgid "sv_lastAutoUpdate"
 msgstr "<value> Days since last automatic update."
 
 #. Console/sv
+msgid "sv_log_heartbeats"
+msgstr "<0/1> Prints transmitted heartbeat messages to the server console.\n"
+"^6Disable: sv_log_heartbeats \"0\"\n"
+"^6Enable: sv_log_heartbeats \"1\""
+
+#. Console/sv
 msgid "sv_maxclients"
 msgstr "<value>	Maximum amount of players allowed on the server."
 

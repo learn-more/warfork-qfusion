@@ -869,7 +869,7 @@ void Qcommon_InitCvarDescriptions( void )
     L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/cl" );
     L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/cm" );
     L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/com" );
-    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/con" );
+    L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/console" );
     L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/fs" );
     L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/g" );
     L10n_LoadLangPOFile( "descriptions", "l10n/console/descriptions/gl" );

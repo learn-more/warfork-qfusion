@@ -62,7 +62,6 @@ cvar_t *sv_http_upstream_ip;
 cvar_t *sv_http_upstream_realip_header;
 #endif
 
-// cvar_t *sv_showclamp;
 cvar_t *sv_showRcon;
 cvar_t *sv_showChallenge;
 cvar_t *sv_showInfoQueries;
@@ -575,78 +574,6 @@ static bool SV_RunGameFrame( int msec )
 	return false;
 }
 
-
-/*
-static bool SV_RunGameFrame( int msec )
-{
-int extraTime = 0;
-static unsigned int accTime = 0;
-
-accTime += msec;
-
-// move autonomous things around if enough time has passed
-if( svs.gametime < sv.nextSnapTime )
-{
-if( svs.gametime + svc.snapFrameTime < sv.nextSnapTime )
-{
-if( sv_showclamp->integer )
-Com_Printf( "sv lowclamp\n" );
-sv.nextSnapTime = svs.gametime + svc.snapFrameTime;
-return false;
-}
-
-// see if it's time to advance the world
-if( accTime >= WORLDFRAMETIME )
-{
-if( host_speeds->integer )
-time_before_game = Sys_Milliseconds();
-
-ge->RunFrame( WORLDFRAMETIME, svs.gametime );
-
-if( host_speeds->integer )
-time_after_game = Sys_Milliseconds();
-
-accTime = accTime - WORLDFRAMETIME;
-}
-
-if( !SV_SendClientsFragments() )
-{
-// FIXME: gametime might slower/faster than real time
-if( dedicated->integer )
-{
-socket_t *sockets[] = { &svs.socket_udp, NULL };
-NET_Sleep( min( WORLDFRAMETIME - accTime, sv.nextSnapTime - svs.gametime ), sockets );
-}
-}
-
-return false;
-}
-
-if( sv.nextSnapTime <= svs.gametime )
-{
-extraTime = (int)( svs.gametime - sv.nextSnapTime );
-}
-if( extraTime >= msec )
-extraTime = msec - 1;
-
-sv.nextSnapTime = ( svs.gametime + svc.snapFrameTime ) - extraTime;
-
-// Execute all clients pending move commands
-if( accTime )
-{
-ge->RunFrame( accTime, svs.gametime );
-accTime = 0;
-}
-
-// update ping based on the last known frame from all clients
-SV_CalcPings();
-
-sv.framenum++;
-ge->SnapFrame();
-
-return true;
-}
-*/
 static void SV_CheckDefaultMap( void )
 {
 	if( svc.autostarted )
@@ -951,7 +878,6 @@ void SV_Init( void )
 	sv_hostname =		    Cvar_Get( "sv_hostname", APPLICATION " server", CVAR_SERVERINFO | CVAR_ARCHIVE );
 	sv_timeout =		    Cvar_Get( "sv_timeout", "125", 0 );
 	sv_zombietime =		    Cvar_Get( "sv_zombietime", "2", 0 );
-//	sv_showclamp =		    Cvar_Get( "sv_showclamp", "0", 0 );
 	sv_showRcon =		    Cvar_Get( "sv_showRcon", "1", 0 );
 	sv_showChallenge =	    Cvar_Get( "sv_showChallenge", "0", 0 );
 	sv_showInfoQueries =	Cvar_Get( "sv_showInfoQueries", "0", 0 );

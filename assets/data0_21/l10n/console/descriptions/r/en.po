@@ -144,10 +144,12 @@ msgid "r_lighting_maxlmblocksize"
 msgstr "<value> Lightmap block size\n"
 "^6Note: Higher values than the default will degrade performance."
 
-#. Console/r (TODO)
+#. Console/r
 msgid "r_lighting_packlightmaps"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
-		
+msgstr "<0/1> Optimizes lighting by combining lightmap textures into a single texture atlas.\n"
+"^6Disable: r_lighting_packlightmaps \"0\"\n"
+"^6Enable: r_lighting_packlightmaps \"1\""
+
 #. Console/r
 msgid "r_lighting_specular"
 msgstr "<0/1> Specular Lighting.\n"
@@ -190,14 +192,13 @@ msgstr "<value> This value adjusts the level of detail scale modifier.\n"
 msgid "r_mapoverbrightbits"
 msgstr "<value> Shadows throughout the map will become lighter."
 
-#. Console/r (TODO)
+#. Console/r
 msgid "r_maxfps"
-msgstr "<1-1000> Sets the maxium frames per second.\n"
-"^6Note: Set cl_maxfps to the same corresponding value."
+msgstr "<1-1000> Sets the maximum frames per second."
 
-#. Console/r (TODO)
+#. Console/r 
 msgid "r_maxglslbones"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<value> The maximum number of skeletal animation bones that can be processed and used within a GLSL shader."
 		
 #. Console/r
 msgid "r_multithreading"
@@ -215,7 +216,7 @@ msgstr "<0/1> Avoids binding textures during rendering."
 msgid "r_nocull"
 msgstr "<0/1> Renders objects you cannot see.\n"
 "^6Disable: r_nocull \"0\"\n"
-"^6Enable: r_nocull \"1\""
+"^6Enable: r_nocull \"1\"\n"
 "^6Note: Unless you're a developer this command adds no value."
 
 #. Console/r
@@ -225,14 +226,17 @@ msgstr "<0/1> Prevents the engine from refreshing or updating the visual display
 "^6Enable: r_norefresh \"1\"\n"
 "^6Note: This effectively freezes the rendering process."
 
-#. Console/r (TODO)
+#. Console/r
 msgid "r_novis"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Makes objects always visible even if they should be hidden based on their visibility.\n"
+"^6Disable: r_novis \"0\"\n"
+"^6Enable: r_novis \"1\"\n"
+"^6Note: Using r_showtris \"1\" will make this easy to visually see."
 
 #. Console/r (TODO)
 msgid "r_offsetmapping"
-msgstr "Controls the use of offset mapping for simulating surface relief in 3D graphics."
-		
+msgstr "Influences rendering by adjusting offsets to enhance surface details."
+
 #. Console/r (TODO)
 msgid "r_offsetmapping_reliefmapping"
 msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
@@ -268,7 +272,7 @@ msgstr "<0-16> Overall image and texture quality.\n"
 
 #. Console/r
 msgid "r_polyblend"
-msgstr "<0/1> 2D color blends."
+msgstr "<0/1> 2D color blends.\n"
 "^6Disable: r_polyblend \"0\"\n"
 "^6Enable: r_polyblend \"1\""
 
@@ -306,25 +310,21 @@ msgstr "Please help contribute a description of this command by visiting the War
 
 #. Console/r (TODO)
 msgid "r_shadows_alpha"
-msgstr "<0-1> Alpha of shadows."
+msgstr "<0-1.0> Alpha of shadows."
 
 #. Console/r (TODO)
 msgid "r_shadows_dither"
 msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
 
-#. Console/r (TODO)
+#. Console/r
 msgid "r_shadows_maxtexsize"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<value> Sets the maximum size of shadowmap textures."
 
 #. Console/r (TODO)
-msgid "r_shadows_nudge"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
-	
-#. Console/r
 msgid "r_shadows_pcf"
 msgstr "<0-4> Shadows Percentage Closer Filtering (PCF)"
 	
-#. Console/r (TODO)
+#. Console/r
 msgid "r_shadows_projection_distance"
 msgstr "<value> The distance shadows are projected from an object and still drawn."
 

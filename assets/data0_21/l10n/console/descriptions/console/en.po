@@ -55,7 +55,7 @@ msgstr "<value> Changes the value of \"Tiny Sized\" fonts.\n"
 msgid "con_messageMode"
 msgstr "<0/1> Opens the chat window.\n"
 "^6Shows arriving messages and gradually disappears: con_messageMode \"0\"\n"
-"^6Secures the window in position: con_messageMode \"1\""
+"^6Secures the window in position: con_messageMode \"1\"\n"
 "^6Note: con_messageMode is intended to be used from the HUD, not set by the player."
 
 #. Console/con

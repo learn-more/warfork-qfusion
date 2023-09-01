@@ -50,7 +50,7 @@ msgstr "Amount of favorite servers."
 
 #. Console/prefixless
 msgid "filterban"
-msgstr "<0/1> Filters connection attempts based on IP addresses."
+msgstr "<0/1> Filters connection attempts based on IP addresses.\n"
 "^6IP addresses matching the current list will be disallowed from entering the game: filterban \"0\"\n"
 "^6Only addresses that match the list will be granted access: filterban \"1\"\n"
 "^6Note: Setting it to \"1\" is recommended for easily configuring a private game or allowing only local network players."
@@ -98,7 +98,7 @@ msgstr "<0-90> Decreases your damage output by defined percentage value.\n"
 
 #. Console/prefixless
 msgid "lang"
-msgstr "<language> Sets the language of Warfork."
+msgstr "<language> Sets the language of Warfork.\n"
 "^6Belarusian: lang \"be\"\n"
 "^6Bulgarian: lang \"bg\"\n"
 "^6Chinese (China): lang \"zh_CN\"\n"
@@ -178,7 +178,7 @@ msgstr "<value> Automatically logs console to a specified file when defined.\n"
 
 #. Console/prefixless
 msgid "protocol"
-msgstr "<value> Specifies the Application Protocol Version."
+msgstr "<value> Specifies the Application Protocol Version.\n"
 "^6Note: The protocol can be changed by modifying \"APP_PROTOCOL_VERSION\" found in \"source/qcommon/version.h\" and recompiling Warfork."
 
 #. Console/prefixless
@@ -228,7 +228,7 @@ msgstr "<3-75> Changes the field of view while zooming."
 
 #. Console/prefixless
 msgid "zoomsens"
-msgstr "<value> Changes your sensitivity while zooming."
+msgstr "<value> Changes your sensitivity while zooming.\n"
 "^6Note: zoomsens \"0\" uses your normal sensitivity."
 
 #. Console/prefixless
@@ -456,12 +456,12 @@ msgstr "Joins spectator mode and chases players."
 
 #. Console/prefixless
 msgid "chasenext"
-msgstr "Chases the next player in spectator mode."
+msgstr "Chases the next player in spectator mode.\n"
 "^6Note: You must also be using \"chase\" mode."
 
 #. Console/prefixless
 msgid "chaseprev"
-msgstr "Chases the previous player in spectator mode."
+msgstr "Chases the previous player in spectator mode.\n"
 "^6Note: You must also be using \"chase\" mode."
  
 #. Console/prefixless
@@ -540,7 +540,7 @@ msgstr "Starts recording video as frames or audio as .wav file depending on cl_d
 
 #. Console/prefixless
 msgid "demoEditMode"
-msgstr "Lets you add and edit cameras for camera paths. Displays additional information on cameras (e.g.: timecode, current camera, next camera, type, position, roll, pitch, yaw ,fov)."
+msgstr "Lets you add and edit cameras for camera paths. Displays additional information on cameras (e.g.: timecode, current camera, next camera, type, position, roll, pitch, yaw, fov)."
 
 #. Console/prefixless
 msgid "demoFreeFly"
@@ -593,7 +593,7 @@ msgstr "<userid> Prints a specific player's user info settings.\n"
 
 #. Console/prefixless
 msgid "dynvarlist"
-msgstr "Lists dynamic variables."
+msgstr "Lists dynamic variables.\n"
 "^6Note: Dynamic variables differ from regular variables in that when you request or set their values, it activates a function associated with them."
 
 #. Console/prefixless
@@ -616,7 +616,7 @@ msgstr "Enters you into the challengers queue.\n"
 
 #. Console/prefixless
 msgid "envshot"
-msgstr "Creates an environment map."
+msgstr "Creates an environment map.\n"
 "^6Note: It will dumped to \"basewf/env/\" within your data folder as \"px\" \"nx\" \"py\" \"ny\" \"pz\" and \"nz\" in .tga format. The location depends based on your Operating System."
 
 #. Console/prefixless
@@ -721,7 +721,7 @@ msgstr "Please help contribute a description of this command by visiting the War
 
 #. Console/prefixless
 msgid "listratings"
-msgstr "Prints matchmaking ratings by gametype and players."
+msgstr "Prints matchmaking ratings by gametype and players.\n"
 "^6Note: This command was intended for debug purposes."
 
 #. Console/prefixless

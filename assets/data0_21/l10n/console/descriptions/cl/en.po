@@ -79,14 +79,14 @@ msgstr "<value> The time before a client timeout when attempting to download fro
 
 #. Console/cl
 msgid "cl_extrapolate"
-msgstr "<0/1> Enhances server-side accuracy in client-side weapon and physics calculations."
+msgstr "<0/1> Enhances server-side accuracy in client-side weapon and physics calculations.\n"
 "^6Disable: cl_extrapolate \"0\"\n"
 "^6Enable: cl_extrapolate \"1\"\n"
 "^6Note: Significant disparities arise while rocketjumping with high ping and toggling extrapolation; additionally, enabled extrapolation affects perceived server-client lag on leaderboards, not true ping."
 
 #. Console/cl
 msgid "cl_flip"
-msgstr "Flips your view."
+msgstr "Flips your view.\n"
 "^6Disable: cl_flip \"0\"\n"
 "^6Enable: cl_flip \"1\"\n"
 

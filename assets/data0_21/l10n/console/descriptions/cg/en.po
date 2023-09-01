@@ -5,37 +5,37 @@ msgid "cg_autoaction_demo"
 msgstr "<0/1> Automatic demo recording of matches after warmup mode is finished.\n"
 "^6Disable: cg_autoaction_demo \"0\"\n"
 "^6Enable: cg_autoaction_demo \"1\"\n"
-"^6Note: The demo will be written to /demos/autorecord/gametype/ in your game data folder with the following file naming convention: gametype_yyyy-mm-dd-hh-mm_map_playername_id.wfdz20"
+"^6Note: The demo will be written to \"/demos/autorecord/gametype/\" in your game data folder with the following file naming convention: \"gametype_yyyy-mm-dd-hh-mm_map_playername_id.wfdz20\"."
 
 #. Console/cg
 msgid "cg_autoaction_screenshot"
 msgstr "<0/1> Automatic screenshotting of the final standings on the scoreboard when the match is finished.\n"
 "^6Disable: cg_autoaction_screenshot \"0\"\n"
 "^6Enable: cg_autoaction_screenshot \"1\"\n"
-"^6Note: The screenshot will be written to /screenshots/ in your game data folder with the following file naming convention: wf_yymmdd_id.extension"
+"^6Note: The screenshot will be written to \"/screenshots/\" in your game data folder with the following file naming convention: wf_yymmdd_id.extension"
 
 #. Console/cg
 msgid "cg_autoaction_spectator"
-msgstr "<0/1> Use autoaction when spectating games.\n"
+msgstr "<0/1> Autoaction will still be used even when spectating.\n"
 "^6Disable: cg_autoaction_spectator \"0\"\n"
 "^6Enable: cg_autoaction_spectator \"1\"\n"
-"^6Note: cg_autoaction_demo \"1\", cg_autoaction_screenshot \"1\", and/or cg_autoaction_stats \"1\" will not be enabled in spectator mode unless cg_autoaction_spectator \"1\" is as well."
+"^6Note: cg_autoaction_demo \"1\", cg_autoaction_screenshot \"1\", and/or cg_autoaction_stats \"1\" will not be enabled in spectator mode, unless cg_autoaction_spectator \"1\" is as well."
 
 #. Console/cg
 msgid "cg_autoaction_stats"
 msgstr "<0/1> Your statistics will be written to a text file.\n"
 "^6Disable: cg_autoaction_stats \"0\"\n"
 "^6Enable: cg_autoaction_stats \"1\"\n"
-"^6Note: Stats will be written to /stats/gametype/ in your game data folder when the match is finished in following file naming convention: gametype_yyyy-mm-dd-hh-mm_map_playername_id.txt"
+"^6Note: Stats will be written to \"/stats/gametype/\" in your game data folder when the match is finished in following file naming convention: \"gametype_yyyy-mm-dd-hh-mm_map_playername_id.txt\"."
 
 #. Console/cg
 msgid "cg_bloodTrail"
-msgstr "<value> Changes the density of damage rings displayed when a player is hit.\n"
+msgstr "<value> Sets the damage rings density when a player is hit.\n"
 "^6Disable: cg_bloodTrail \"0\""
 
 #. Console/cg
 msgid "cg_bloodTrailAlpha"
-msgstr "<0-1.0> Sets the transparency of damage rings displayed.\n"
+msgstr "<0-1.0> Sets the damage rings transparency.\n"
 "^6Totally transparent: cg_bloodTrailAlpha \"0\"\n"
 "^6Totally opaque: cg_bloodTrailAlpha \"1.0\""
 
@@ -65,7 +65,7 @@ msgstr "<0/1> Plays a chat beep sound when someone sends a message.\n"
 #. Console/cg
 msgid "cg_chatFilter"
 msgstr "<0-2> Filters chat messages.\n"
-"^6Display all Messages: cg_chatFilter \"0\"\n"
+"^6Display all messages: cg_chatFilter \"0\"\n"
 "^6Filters global chat messages: cg_chatFilter \"1\"\n"
 "^6Filters team chat messages: cg_chatFilter \"2\""
 
@@ -79,7 +79,7 @@ msgstr "<0-4> Filters Warfork TV chat messages.\n"
 
 #. Console/cg
 msgid "cg_clientHUD"
-msgstr "<HUD name> Changes your HUD.\n"
+msgstr "<HUD> Changes your HUD.\n"
 "^6Default: cg_clientHUD \"default\"\n"
 "^6Classic: cg_clientHUD \"classic\"\n"
 "^6Adem: cg_clientHUD \"adem\"\n"
@@ -95,7 +95,7 @@ msgstr "<0/1> Color correction.\n"
 
 #. Console/cg
 msgid "cg_crosshair"
-msgstr "<0-13> Changes your crosshair style.\n"
+msgstr "<0-13> Changes your primary crosshair style.\n"
 "^6Disable: cg_crosshair \"0\""
 
 #. Console/cg
@@ -122,7 +122,7 @@ msgstr "<R G B> Changes the color of your crosshair when you hit an enemy.\n"
 
 #. Console/cg
 msgid "cg_crosshair_font"
-msgstr "<fontname> Changes the font of your crosshair.\n"
+msgstr "<font> Changes the font of your crosshair.\n"
 "^6Note: Warfork currently only supports crosshairs in TrueType Font format."
 
 #. Console/cg
@@ -132,12 +132,12 @@ msgstr "<0-64> Changes the size of your crosshair.\n"
 
 #. Console/cg
 msgid "cg_crosshair_strong"
-msgstr "<0-13> Changes your crosshair style for strong ammo.\n"
+msgstr "<0-13> Changes your secondary crosshair style.\n"
 "^6Disable: cg_crosshair_strong \"0\""
 
 #. Console/cg
 msgid "cg_crosshair_strong_color"
-msgstr "<R G B> Changes the color of your crosshair for strong ammo.\n"
+msgstr "<R G B> Changes the color of your secondary crosshair.\n"
 "^6Red: cg_crosshair_strong_color \"255 0 0\"\n"
 "^6Blue: cg_crosshair_strong_color \"51 128 255\"\n"
 "^6Green: cg_crosshair_strong_color \"0 204 102\"\n"
@@ -148,7 +148,7 @@ msgstr "<R G B> Changes the color of your crosshair for strong ammo.\n"
 
 #. Console/cg
 msgid "cg_crosshair_strong_size"
-msgstr "<0-64> Changes the size of your crosshair for strong ammo.\n"
+msgstr "<0-64> Changes the size of your secondary crosshair.\n"
 "^6Disable: cg_crosshair_strong_size \"0\""
 
 #. Console/cg
@@ -164,7 +164,7 @@ msgstr "<value> Sets how long the damage indicator will be visible.\n"
 
 #. Console/cg
 msgid "cg_damageNumbers"
-msgstr "<0/1> Damage Numbers that are displayed when attacking a player.\n"
+msgstr "<0/1> Damage Numbers are displayed when attacking a player.\n"
 "^6Disable: cg_damageNumbers \"0\"\n"
 "^6Enable: cg_damageNumbers \"1\""
 
@@ -256,8 +256,8 @@ msgstr "<value> Sets the width of the Elecrobolt beam."
 #. Console/cg
 msgid "cg_explosionsDust"
 msgstr "<0/1> Explosion dust will appear around Grenade Launcher and Rocket Launcher projectiles upon impact.\n"
-"^6Disable: cg_explosionsRing \"0\"\n"
-"^6Enable: cg_explosionsRing \"1\""
+"^6Disable: cg_explosionsDust \"0\"\n"
+"^6Enable: cg_explosionsDust \"1\""
 
 #. Console/cg
 msgid "cg_explosionsRing"
@@ -451,8 +451,8 @@ msgstr "<value> This command sometimes yields a competitive edge over players si
 
 #. Console/cg
 msgid "cg_playList"
-msgstr "<path>/filename.m3u Path to your in-game music playlist.\n"
-"^6Note: To make your own in-game music playlist, create a folder in /basewf/ called /sounds/music/, which contains a file named custom.m3u and copy your music in ogg or wav format. On each line in custom.m3u, specify one track (ie: warfork.ogg). Music cannot exceed 44.1kHz or it will crash the sound system. In the console type cg_playList \"sounds/music/custom.m3u\""
+msgstr "<path>/<filename>.m3u Path to your in-game music playlist.\n"
+"^6Note: To make your own in-game music playlist, create a folder in \"/basewf/\" called \"/sounds/music/\", which contains a file named custom.m3u and copy your music in ogg or wav format. On each line in custom.m3u, specify one track (ie: warfork.ogg). Music cannot exceed 44.1kHz or it will crash the sound system. In the console type cg_playList \"sounds/music/custom.m3u\""
 
 #. Console/cg
 msgid "cg_playListShuffle"
@@ -463,7 +463,7 @@ msgstr "<0/1> Plays songs randomly from the music playlist.\n"
 #. Console/cg
 msgid "cg_predict"
 msgstr "<0/1> Utilizes client side prediction.\n"
-"^6cg_predict \"0\" relies on only server confirmed events and is not recommended."
+"^6Note: cg_predict \"0\" relies on only server confirmed events and is not recommended."
 
 #. Console/cg
 msgid "cg_predictLaserBeam"
@@ -530,7 +530,7 @@ msgstr "<value> Name of the scoreboard monofont."
 
 #. Console/cg
 msgid "cg_scoreboardStats"
-msgstr "<0-1> Statistics will be shown on the Scoreboard when spectating.\n"
+msgstr "<0/1> Statistics will be shown on the Scoreboard when spectating.\n"
 "^6Disable: cg_scoreboardStats \"0\"\n"
 "^6Enable: cg_scoreboardStats \"1\""
 
@@ -771,7 +771,7 @@ msgstr "<model name> Default model of team \"Forbidden\" players.\n"
 
 #. Console/cg
 msgid "cg_teamALPHAmodelForce"
-msgstr "<0/1> Changes models of all team \"Forbidden\" players to a user-chosen one."
+msgstr "<0/1> Changes models of all team \"Forbidden\" players to a user-chosen one.\n"
 "^6Disable: cg_teamALPHAmodelForce \"0\"\n"
 "^6Enable: cg_teamALPHAmodelForce \"1\""
 

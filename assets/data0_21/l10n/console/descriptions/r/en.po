@@ -194,7 +194,8 @@ msgstr "<value> Shadows throughout the map will become lighter."
 
 #. Console/r
 msgid "r_maxfps"
-msgstr "<1-1000> Sets the maximum frames per second."
+msgstr "<1-1000> Sets the maximum allowed framerate in frames per second.\n"
+"^6Note: This should be set to the same value as cl_maxfps."
 
 #. Console/r 
 msgid "r_maxglslbones"

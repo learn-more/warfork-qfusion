@@ -8,18 +8,18 @@ msgstr "<value> Sets the default base directory."
 msgid "fs_basepath"
 msgstr "<value> Sets the directory with your binaries."
 
-#. Console/fs (TODO)
+#. Console/fs
 msgid "fs_cdpath"
-msgstr "<value> Shared assets path."
+msgstr "<value> Optional path to a directory containing assets. Previously used when game content was stored on a CD rather than on your PC."
 
 #. Console/fs
 msgid "fs_game"
 msgstr "<value> Sets the default game.\n"
 "^6Note: This is not intended for gametype scripts. If you're running a mod, for example Racemod then you could set it to \"racemod2.1\"."
 
-#. Console/fs (TODO)
+#. Console/fs
 msgid "fs_usedownloadsdir"
-msgstr "<0/1> Uses downloads dir."
+msgstr "<0/1> Sets whether or not mods and add-ons (such as racemod) should be loaded from the user's local Warfork directory."
 
 #. Console/fs (FIXME)
 msgid "fs_usehomedir"

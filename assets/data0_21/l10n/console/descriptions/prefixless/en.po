@@ -868,7 +868,7 @@ msgstr "Used by the server browser to initiate a master server query."
 
 #. Console/prefixless
 msgid "reset"
-msgstr "Resets a cvar to its default value."
+msgstr "<cvar> Resets a cvar to its default value."
 
 #. Console/prefixless
 msgid "savenodes"

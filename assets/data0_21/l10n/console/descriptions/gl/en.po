@@ -126,7 +126,7 @@ msgstr "<0/1> OpenGL extension get_program_binary.\n"
 msgid "gl_ext_GLSL"
 msgstr "<0/1> OpenGL Shading Language (GLSL).\n"
 "^6Disable: gl_ext_GLSL \"0\"\n"
-"^6Enable: gl_ext_GLSL \"1\""
+"^6Enable: gl_ext_GLSL \"1\"\n"
 "^6Note: A write protected variable. GLSL is for writing shaders that control various stages of the graphics pipeline."
 
 #. Console/gl

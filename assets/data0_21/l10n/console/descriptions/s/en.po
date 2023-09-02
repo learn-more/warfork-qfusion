@@ -4,7 +4,7 @@
 msgid "s_doppler"
 msgstr "<value> Doppler effect will be used for sounds\n"
 "^6Disable: s_doppler \"0\"\n"
-"^6Enable: s_doppler \"1\""
+"^6Enable: s_doppler \"1\"\n"
 "^6Note: This command works only for OpenAL Sound Module."
 
 #. Console/s
@@ -20,7 +20,7 @@ msgstr "<value> The sampling rate of the sounds in kilohertz.\n"
 
 #. Console/s
 msgid "s_mixahead"
-msgstr "<value>	The specified time waited before mixing sound samples."
+msgstr "<value> The specified time waited before mixing sound samples."
 
 #. Console/s
 msgid "s_module"
@@ -43,8 +43,9 @@ msgstr "<0-1.0> Global music volume.\n"
 
 #. Console/s
 msgid "s_openAL_device"
-msgstr "<value>	Specifies the OpenAL device. Example: s_openAL_device 'Rapture3D'"
-	
+msgstr "<value> Specifies the OpenAL device.\n"
+"^6Example: s_openAL_device \"Rapture3D\""
+
 #. Console/s
 msgid "s_pseudoAcoustics"
 msgstr "<0/1> High quality spatialisation.\n"
@@ -52,7 +53,7 @@ msgstr "<0/1> High quality spatialisation.\n"
 
 #. Console/s
 msgid "s_separationDelay"
-msgstr "<value> Applies a delay to opposite ear of where the sound originates based on the angle."
+msgstr "<value> Applies a delay to opposite ear of where the sound originates based on the angle.\n"
 "^6Note: This command works only for Qfusion Sound Module."
 
 #. Console/s

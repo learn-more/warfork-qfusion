@@ -50,7 +50,7 @@ msgstr "Amount of favorite servers."
 
 #. Console/prefixless
 msgid "filterban"
-msgstr "<0/1> Filters connection attempts based on IP addresses."
+msgstr "<0/1> Filters connection attempts based on IP addresses.\n"
 "^6IP addresses matching the current list will be disallowed from entering the game: filterban \"0\"\n"
 "^6Only addresses that match the list will be granted access: filterban \"1\"\n"
 "^6Note: Setting it to \"1\" is recommended for easily configuring a private game or allowing only local network players."
@@ -98,7 +98,7 @@ msgstr "<0-90> Decreases your damage output by defined percentage value.\n"
 
 #. Console/prefixless
 msgid "lang"
-msgstr "<language> Sets the language of Warfork."
+msgstr "<language> Sets the language of Warfork.\n"
 "^6Belarusian: lang \"be\"\n"
 "^6Bulgarian: lang \"bg\"\n"
 "^6Chinese (China): lang \"zh_CN\"\n"
@@ -178,7 +178,7 @@ msgstr "<value> Automatically logs console to a specified file when defined.\n"
 
 #. Console/prefixless
 msgid "protocol"
-msgstr "<value> Specifies the Application Protocol Version."
+msgstr "<value> Specifies the Application Protocol Version.\n"
 "^6Note: The protocol can be changed by modifying \"APP_PROTOCOL_VERSION\" found in \"source/qcommon/version.h\" and recompiling Warfork."
 
 #. Console/prefixless
@@ -228,7 +228,7 @@ msgstr "<3-75> Changes the field of view while zooming."
 
 #. Console/prefixless
 msgid "zoomsens"
-msgstr "<value> Changes your sensitivity while zooming."
+msgstr "<value> Changes your sensitivity while zooming.\n"
 "^6Note: zoomsens \"0\" uses your normal sensitivity."
 
 #. Console/prefixless
@@ -243,23 +243,23 @@ msgstr "Moves backward."
 msgid "+forward"
 msgstr "Moves forward."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+klook"
 msgstr "Keyboard look; +forward +back serve as +lookup +lookdown."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+left"
 msgstr "Turns left."
   
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+lookdown"
 msgstr "Looks down."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+lookup"
 msgstr "Looks up."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+movedown"
 msgstr "Moves backwards." 
 
@@ -271,7 +271,7 @@ msgstr "Moves left."
 msgid "+moveright"
 msgstr "Moves right."  
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+moveup"
 msgstr "Moves up; In water, lava, etc."
 
@@ -296,12 +296,12 @@ msgid "+speed"
 msgstr "Starts walking.\n"
 "^6Note: This probably serves no purpose as Warfork lacks footsteps."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+strafe"
 msgstr "Starts strafing.\n"
 "^6Note: When used +left and +right are changed with +moveleft and +moveright."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+use"
 msgstr "Uses an item."
 
@@ -313,7 +313,7 @@ msgstr "Zooms."
 msgid "-attack"
 msgstr "Stops primary attack." 
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-back"
 msgstr "Stops moving backward."
 
@@ -321,23 +321,23 @@ msgstr "Stops moving backward."
 msgid "-forward"
 msgstr "Stops moving forward."
   
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-klook"
 msgstr "Stops Keyboard look; +forward +back serve as +lookup +lookdown." 
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-left"
 msgstr "Stops looking left."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-lookdown"
 msgstr "Stops looking down."
   
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-lookup"
 msgstr "Stops looking up."
   
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-movedown"
 msgstr "Stops moving backwards."
 
@@ -349,7 +349,7 @@ msgstr "Stops moving left."
 msgid "-moveright"
 msgstr "Stops moving right."   
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-moveup"
 msgstr "Stops moving up; In water, lava, etc."
 
@@ -374,12 +374,12 @@ msgid "-speed"
 msgstr "Starts running.\n"
 "^6Note: This probably serves no purpose as Warfork lacks footsteps."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-strafe"
 msgstr "Stops strafing.\n"
 "^6Note: When used +left and +right are changed with +moveleft and +moveright."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-use"
 msgstr "Stops using an item."
 
@@ -387,9 +387,10 @@ msgstr "Stops using an item."
 msgid "-zoom"
 msgstr "Stops zooming."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "addbotroam"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Manually adds \"misc_botroam\" entities.\n"
+"^6Note: These entities act as goals or destinations for bots in the absence of items. However, it's important to note that items always take priority over bot roams, so bots will ignore bot roams if they find any reachable items to go for."
 
 #. Console/prefixless
 msgid "addcam"
@@ -400,17 +401,17 @@ msgstr "<type name> Adds a camera to your democam path.\n"
 msgid "addip"
 msgstr "<ip address> Adds IP addresses to the filter list."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "addnode"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Allows you to manually place a navigation node at your current position in the map, helping to improve bot pathfinding in specific areas."
 
 #. Console/prefixless
 msgid "alias"
 msgstr "<alias name> <command> Creates an alias."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "aliasa"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<alias name> <command> Creates a persistent alias."
 
 #. Console/prefixless
 msgid "aliaslist"
@@ -456,12 +457,12 @@ msgstr "Joins spectator mode and chases players."
 
 #. Console/prefixless
 msgid "chasenext"
-msgstr "Chases the next player in spectator mode."
+msgstr "Chases the next player in spectator mode.\n"
 "^6Note: You must also be using \"chase\" mode."
 
 #. Console/prefixless
 msgid "chaseprev"
-msgstr "Chases the previous player in spectator mode."
+msgstr "Chases the previous player in spectator mode.\n"
 "^6Note: You must also be using \"chase\" mode."
  
 #. Console/prefixless
@@ -522,8 +523,7 @@ msgstr "Lists all cvars."
 
 #. Console/prefixless
 msgid "deleteclosestnode"
-msgstr "Deletes the closest node.\n"
-"^6Note: This is intended to modify currently loaded nodes. You can enter into edit mode with \"editnodes\"."
+msgstr "Removes the closest bot navigation node to your current location."
 
 #. Console/prefixless
 msgid "deletecam"
@@ -540,7 +540,7 @@ msgstr "Starts recording video as frames or audio as .wav file depending on cl_d
 
 #. Console/prefixless
 msgid "demoEditMode"
-msgstr "Lets you add and edit cameras for camera paths. Displays additional information on cameras (e.g.: timecode, current camera, next camera, type, position, roll, pitch, yaw ,fov)."
+msgstr "Lets you add and edit cameras for camera paths. Displays additional information on cameras (e.g.: timecode, current camera, next camera, type, position, roll, pitch, yaw, fov)."
 
 #. Console/prefixless
 msgid "demoFreeFly"
@@ -593,7 +593,7 @@ msgstr "<userid> Prints a specific player's user info settings.\n"
 
 #. Console/prefixless
 msgid "dynvarlist"
-msgstr "Lists dynamic variables."
+msgstr "Lists dynamic variables.\n"
 "^6Note: Dynamic variables differ from regular variables in that when you request or set their values, it activates a function associated with them."
 
 #. Console/prefixless
@@ -605,9 +605,9 @@ msgid "editcam"
 msgstr "<command> <variable> Edits the current camera.\n"
 "^6Note: You can edit: type <type name> eg. path_spline; track <entity number> (tracks entity; 0 for no track); fov; timeOffset; origin; angles; pitch; yaw; roll."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "editnodes"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Modifies the currently loaded bot navigation nodes in your map, without deleting the existing file."
 
 #. Console/prefixless
 msgid "enterqueue"
@@ -616,7 +616,7 @@ msgstr "Enters you into the challengers queue.\n"
 
 #. Console/prefixless
 msgid "envshot"
-msgstr "Creates an environment map."
+msgstr "Creates an environment map.\n"
 "^6Note: It will dumped to \"basewf/env/\" within your data folder as \"px\" \"nx\" \"py\" \"ny\" \"pz\" and \"nz\" in .tga format. The location depends based on your Operating System."
 
 #. Console/prefixless
@@ -653,9 +653,14 @@ msgstr "Used to send a query to a game server to retrieve detailed status inform
 msgid "gfxinfo"
 msgstr "Prints graphics-related information, such as hardware details, rendering capabilities, texture settings, and screen resolution."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "give"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<value> Give items to a Player.\n"
+"^6Everything: give \"all\"\n"
+"^6Health: give \"health\"\n"
+"^6Weapons: give \"weapons\"\n"
+"^6Ammo: give \"ammo\"\n"
+"^6Armor: give \"armor\""
 
 #. Console/prefixless
 msgid "glslprogramlist"
@@ -721,16 +726,17 @@ msgstr "Please help contribute a description of this command by visiting the War
 
 #. Console/prefixless
 msgid "listratings"
-msgstr "Prints matchmaking ratings by gametype and players."
+msgstr "Prints matchmaking ratings by gametype and players.\n"
 "^6Note: This command was intended for debug purposes."
 
 #. Console/prefixless
 msgid "lockteam"
 msgstr "Locks the teams."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "makenodes"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Will wipe any nodes out and start a new bot navigation (.nav) file.\n"
+"^6Note: Make sure you start the map with devmap <map> Will delete the current .nav file."
 
 #. Console/prefixless
 msgid "map"
@@ -860,13 +866,13 @@ msgstr "<ip address> Removes IP addresses from the filter list."
 msgid "requestservers"
 msgstr "Used by the server browser to initiate a master server query."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "reset"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> Resets a cvar to its default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "savenodes"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Save a bot navigation file after all necessary nodes and links have been set up, ensuring bots can navigate the environment effectively."
 
 #. Console/prefixless
 msgid "saverecam"
@@ -913,31 +919,31 @@ msgstr "Stops server demo recording."
 
 #. Console/prefixless
 msgid "set"
-msgstr "<cvar> <value> Changes the value of x cvar to y."
+msgstr "<cvar> <value> Sets a value of a cvar. Can also create cvars with a default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "seta"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds * flag to a cvar and sets its value. Can also create cvars with a default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "setas"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds *, S flags to a cvar and sets its value. Can also create cvars with a default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "setau"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds *, U flags to a cvar and sets its value. Can also create cvars with a default value."
 
 #. Console/prefixless (TODO)
 msgid "setdyn"
 msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "sets"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds S flag to a cvar and sets its value. Can also create cvars with a default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "setu"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds U flag to a cvar and sets its value. Can also create cvars with a default value."
 
 #. Console/prefixless
 msgid "shaderdump"
@@ -948,9 +954,9 @@ msgstr "Prints the shader information of the texture you are currently observing
 msgid "shaderlist"
 msgstr "Prints a list of shaders currently loaded in your console."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "showclosestnode"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Displays information about the closest navigation node to your current position within bot navigation files, aiding map creators in understanding and refining bot navigation paths."
 
 #. Console/prefixless
 msgid "showip"

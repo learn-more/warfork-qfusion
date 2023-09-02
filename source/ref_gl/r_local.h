@@ -387,7 +387,6 @@ extern cvar_t *r_offsetmapping_reliefmapping;
 
 extern cvar_t *r_shadows;
 extern cvar_t *r_shadows_alpha;
-extern cvar_t *r_shadows_nudge;
 extern cvar_t *r_shadows_projection_distance;
 extern cvar_t *r_shadows_maxtexsize;
 extern cvar_t *r_shadows_pcf;

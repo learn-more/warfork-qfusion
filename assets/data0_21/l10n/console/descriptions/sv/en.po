@@ -102,11 +102,11 @@ msgstr "<value> Name of the HTTP header containing the remote IP address of the 
 
 #. Console/sv
 msgid "sv_ip"
-msgstr "<ip address> If set, binds the Warfork server to a specific IPv4 address."
+msgstr "<ip> If set, binds the Warfork server to a specific IPv4 address."
 
 #. Console/sv
 msgid "sv_ip6"
-msgstr "<ip address> If set, binds the Warfork server to a specific IPv6 address."
+msgstr "<ip> If set, binds the Warfork server to a specific IPv6 address."
 
 #. Console/sv
 msgid "sv_iplimit"
@@ -189,7 +189,7 @@ msgstr "<port> Changes the IPv6 port of the Warfork server."
 
 #. Console/sv
 msgid "sv_pps"
-msgstr "<value>	Packets per second a server sends to the client."
+msgstr "<value> Packets per second a server sends to the client."
 
 #. Console/sv
 msgid "sv_public"
@@ -210,7 +210,7 @@ msgstr "Modules must be in a PK3 archive."
 
 #. Console/sv
 msgid "sv_reconnectlimit"
-msgstr "<value>	Seconds a client must wait until they can reconnect with a server."
+msgstr "<value> Seconds a client must wait until they can reconnect with a server."
 
 #. Console/sv
 msgid "sv_showChallenge"
@@ -269,13 +269,13 @@ msgstr "<value> The base folder for demos uploaded directly from the server."
 
 #. Console/sv
 msgid "sv_uploads_from_server"
-msgstr "<0/1> Uploading is allowed directly from the server."
+msgstr "<0/1> Uploading is allowed directly from the server.\n"
 "^6Disable: sv_uploads_from_server \"0\"\n"
-"^6Enable: sv_uploads_from_server \"1\"\n"
+"^6Enable: sv_uploads_from_server \"1\""
 
 #. Console/sv
 msgid "sv_uploads_http"
-msgstr "<0/1> Local http server that uploads files to clients."
+msgstr "<0/1> Local http server that uploads files to clients.\n"
 "^6Disable: sv_uploads_http \"0\"\n"
 "^6Enable: sv_uploads_http \"1\""
 

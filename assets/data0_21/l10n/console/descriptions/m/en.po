@@ -44,7 +44,7 @@ msgstr "<value> The sensitivity for looking up and down with the mouse."
 
 #. Console/m
 msgid "m_raw"
-msgstr "<0/1> Raw mouse input."
+msgstr "<0/1> Raw mouse input.\n"
 "^6Disable: m_raw \"0\"\n"
 "^6Enable: m_raw \"1\""
 

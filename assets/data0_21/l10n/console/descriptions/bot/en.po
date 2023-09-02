@@ -11,25 +11,25 @@ msgid "bot_showcombat"
 msgstr "<0/1> Combat messages for bots will be displayed.\n"
 "^6Disable: bot_showcombat \"0\"\n"
 "^6Enable: bot_showcombat \"1\"\n"
-"^6Note: You must also enable sv_cheats \"1\" and botdebug in console and then spectate the bot for this command to work."
+"^6Note: You must also enable sv_cheats \"1\", botdebug in console, and then spectate the bot for this command to work."
 
 #. Console/bot
 msgid "bot_showlrgoal"
 msgstr "<0/1> The long range goals for bots will be displayed.\n"
 "^6Disable: bot_showlrgoal \"0\"\n"
 "^6Enable: bot_showlrgoal \"1\"\n"
-"^6Note: You must also enable sv_cheats \"1\" and botdebug in console and then spectate the bot for this command to work."
+"^6Note: You must also enable sv_cheats \"1\", botdebug in console, and then spectate the bot for this command to work."
 
 #. Console/bot
 msgid "bot_showpath"
 msgstr "<0/1> A path will be drawn that the bot is following.\n"
 "^6Disable: bot_showpath \"0\"\n"
 "^6Enable: bot_showpath \"1\"\n"
-"^6Note: You must also enable sv_cheats \"1\" and botdebug in console and then spectate the bot for this command to work."
+"^6Note: You must also enable sv_cheats \"1\", botdebug in console, and then spectate the bot for this command to work."
 
 #. Console/bot
 msgid "bot_showsrgoal"
 msgstr "<0/1> The short range goals for bots will be displayed.\n"
 "^6Disable: bot_showsrgoal \"0\"\n"
 "^6Enable: bot_showsrgoal \"1\"\n"
-"^6Note: You must also enable sv_cheats \"1\" and botdebug in console and then spectate the bot for this command to work."
+"^6Note: You must also enable sv_cheats \"1\", botdebug in console, and then spectate the bot for this command to work."

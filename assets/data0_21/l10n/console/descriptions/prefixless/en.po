@@ -409,9 +409,9 @@ msgstr "Allows you to manually place a navigation node at your current position 
 msgid "alias"
 msgstr "<alias name> <command> Creates an alias."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "aliasa"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<alias name> <command> Creates a persistent alias."
 
 #. Console/prefixless
 msgid "aliaslist"
@@ -866,9 +866,9 @@ msgstr "<ip address> Removes IP addresses from the filter list."
 msgid "requestservers"
 msgstr "Used by the server browser to initiate a master server query."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "reset"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Resets a cvar to its default value."
 
 #. Console/prefixless
 msgid "savenodes"
@@ -919,31 +919,31 @@ msgstr "Stops server demo recording."
 
 #. Console/prefixless
 msgid "set"
-msgstr "<cvar> <value> Changes the value of x cvar to y."
+msgstr "<cvar> <value> Sets a value of a cvar. Can also create cvars with a default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "seta"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds * flag to a cvar and sets its value. Can also create cvars with a default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "setas"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds *, S flags to a cvar and sets its value. Can also create cvars with a default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "setau"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds *, U flags to a cvar and sets its value. Can also create cvars with a default value."
 
 #. Console/prefixless (TODO)
 msgid "setdyn"
 msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "sets"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds S flag to a cvar and sets its value. Can also create cvars with a default value."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "setu"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<cvar> <value> Adds U flag to a cvar and sets its value. Can also create cvars with a default value."
 
 #. Console/prefixless
 msgid "shaderdump"

@@ -3,7 +3,7 @@ msgid "in_debug"
 msgstr "<0/1> Debugs keyboard input.\n"
 "^6Disable: in_debug \"0\"\n"
 "^6Enable: in_debug \"1\"\n"
-"^6Note: Example -> key:100 down:0 time:1405849 +moveright"
+"^6Example: key:100 down:0 time:1405849 +moveright"
 
 #. Console/in
 msgid "in_dinput"

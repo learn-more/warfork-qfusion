@@ -189,7 +189,7 @@ msgstr "<port> Changes the IPv6 port of the Warfork server."
 
 #. Console/sv
 msgid "sv_pps"
-msgstr "<value>	Packets per second a server sends to the client."
+msgstr "<value> Packets per second a server sends to the client."
 
 #. Console/sv
 msgid "sv_public"
@@ -210,7 +210,7 @@ msgstr "Modules must be in a PK3 archive."
 
 #. Console/sv
 msgid "sv_reconnectlimit"
-msgstr "<value>	Seconds a client must wait until they can reconnect with a server."
+msgstr "<value> Seconds a client must wait until they can reconnect with a server."
 
 #. Console/sv
 msgid "sv_showChallenge"

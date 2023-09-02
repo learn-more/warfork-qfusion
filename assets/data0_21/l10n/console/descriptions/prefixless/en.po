@@ -243,23 +243,23 @@ msgstr "Moves backward."
 msgid "+forward"
 msgstr "Moves forward."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+klook"
 msgstr "Keyboard look; +forward +back serve as +lookup +lookdown."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+left"
 msgstr "Turns left."
   
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+lookdown"
 msgstr "Looks down."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+lookup"
 msgstr "Looks up."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+movedown"
 msgstr "Moves backwards." 
 
@@ -271,7 +271,7 @@ msgstr "Moves left."
 msgid "+moveright"
 msgstr "Moves right."  
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+moveup"
 msgstr "Moves up; In water, lava, etc."
 
@@ -296,12 +296,12 @@ msgid "+speed"
 msgstr "Starts walking.\n"
 "^6Note: This probably serves no purpose as Warfork lacks footsteps."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+strafe"
 msgstr "Starts strafing.\n"
 "^6Note: When used +left and +right are changed with +moveleft and +moveright."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "+use"
 msgstr "Uses an item."
 
@@ -313,7 +313,7 @@ msgstr "Zooms."
 msgid "-attack"
 msgstr "Stops primary attack." 
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-back"
 msgstr "Stops moving backward."
 
@@ -321,23 +321,23 @@ msgstr "Stops moving backward."
 msgid "-forward"
 msgstr "Stops moving forward."
   
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-klook"
 msgstr "Stops Keyboard look; +forward +back serve as +lookup +lookdown." 
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-left"
 msgstr "Stops looking left."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-lookdown"
 msgstr "Stops looking down."
   
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-lookup"
 msgstr "Stops looking up."
   
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-movedown"
 msgstr "Stops moving backwards."
 
@@ -349,7 +349,7 @@ msgstr "Stops moving left."
 msgid "-moveright"
 msgstr "Stops moving right."   
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-moveup"
 msgstr "Stops moving up; In water, lava, etc."
 
@@ -374,12 +374,12 @@ msgid "-speed"
 msgstr "Starts running.\n"
 "^6Note: This probably serves no purpose as Warfork lacks footsteps."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-strafe"
 msgstr "Stops strafing.\n"
 "^6Note: When used +left and +right are changed with +moveleft and +moveright."
 
-#. Console/prefixless (FIXME)
+#. Console/prefixless
 msgid "-use"
 msgstr "Stops using an item."
 
@@ -387,9 +387,10 @@ msgstr "Stops using an item."
 msgid "-zoom"
 msgstr "Stops zooming."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "addbotroam"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Manually adds \"misc_botroam\" entities.\n"
+"^6Note: These entities act as goals or destinations for bots in the absence of items. However, it's important to note that items always take priority over bot roams, so bots will ignore bot roams if they find any reachable items to go for."
 
 #. Console/prefixless
 msgid "addcam"
@@ -400,9 +401,9 @@ msgstr "<type name> Adds a camera to your democam path.\n"
 msgid "addip"
 msgstr "<ip address> Adds IP addresses to the filter list."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "addnode"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Allows you to manually place a navigation node at your current position in the map, helping to improve bot pathfinding in specific areas."
 
 #. Console/prefixless
 msgid "alias"
@@ -522,8 +523,7 @@ msgstr "Lists all cvars."
 
 #. Console/prefixless
 msgid "deleteclosestnode"
-msgstr "Deletes the closest node.\n"
-"^6Note: This is intended to modify currently loaded nodes. You can enter into edit mode with \"editnodes\"."
+msgstr "Removes the closest bot navigation node to your current location."
 
 #. Console/prefixless
 msgid "deletecam"
@@ -605,9 +605,9 @@ msgid "editcam"
 msgstr "<command> <variable> Edits the current camera.\n"
 "^6Note: You can edit: type <type name> eg. path_spline; track <entity number> (tracks entity; 0 for no track); fov; timeOffset; origin; angles; pitch; yaw; roll."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "editnodes"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Modifies the currently loaded bot navigation nodes in your map, without deleting the existing file."
 
 #. Console/prefixless
 msgid "enterqueue"
@@ -653,9 +653,14 @@ msgstr "Used to send a query to a game server to retrieve detailed status inform
 msgid "gfxinfo"
 msgstr "Prints graphics-related information, such as hardware details, rendering capabilities, texture settings, and screen resolution."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "give"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "<value> Give items to a Player.\n"
+"^6Everything: give \"all\"\n"
+"^6Health: give \"health\"\n"
+"^6Weapons: give \"weapons\"\n"
+"^6Ammo: give \"ammo\"\n"
+"^6Armor: give \"armor\""
 
 #. Console/prefixless
 msgid "glslprogramlist"
@@ -728,9 +733,10 @@ msgstr "Prints matchmaking ratings by gametype and players.\n"
 msgid "lockteam"
 msgstr "Locks the teams."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "makenodes"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Will wipe any nodes out and start a new bot navigation (.nav) file.\n"
+"^6Note: Make sure you start the map with devmap <map> Will delete the current .nav file."
 
 #. Console/prefixless
 msgid "map"
@@ -864,9 +870,9 @@ msgstr "Used by the server browser to initiate a master server query."
 msgid "reset"
 msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "savenodes"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Save a bot navigation file after all necessary nodes and links have been set up, ensuring bots can navigate the environment effectively."
 
 #. Console/prefixless
 msgid "saverecam"
@@ -948,9 +954,9 @@ msgstr "Prints the shader information of the texture you are currently observing
 msgid "shaderlist"
 msgstr "Prints a list of shaders currently loaded in your console."
 
-#. Console/prefixless (TODO)
+#. Console/prefixless
 msgid "showclosestnode"
-msgstr "Please help contribute a description of this command by visiting the Warfork github repository."
+msgstr "Displays information about the closest navigation node to your current position within bot navigation files, aiding map creators in understanding and refining bot navigation paths."
 
 #. Console/prefixless
 msgid "showip"

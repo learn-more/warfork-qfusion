@@ -10,12 +10,12 @@ msgstr "<value> Sets the directory with your binaries."
 
 #. Console/fs (TODO)
 msgid "fs_cdpath"
-msgstr "<value> Shared assets"
+msgstr "<value> Shared assets path."
 
 #. Console/fs
 msgid "fs_game"
-msgstr "<value> Sets the default game."
-"^6Note: This is not intended for gametype scripts. If you're running a mod, for example Racemod then you could set it to \"racemod2.1\".\n"
+msgstr "<value> Sets the default game.\n"
+"^6Note: This is not intended for gametype scripts. If you're running a mod, for example Racemod then you could set it to \"racemod2.1\"."
 
 #. Console/fs (TODO)
 msgid "fs_usedownloadsdir"
@@ -23,7 +23,7 @@ msgstr "<0/1> Uses downloads dir."
 
 #. Console/fs (FIXME)
 msgid "fs_usehomedir"
-msgstr "<0/1> Uses your Warfork game directory instead of data folder."
+msgstr "<0/1> Uses your Warfork game directory instead of data folder.\n"
 "^6Disable: fs_usehomedir \"0\"\n"
 "^6Enable: fs_usehomedir \"1\""
 

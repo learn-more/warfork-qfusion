@@ -18,7 +18,8 @@ msgstr "Utilized by the UI to open modals.\n"
 #. Console/menu
 msgid "menu_open"
 msgstr "<filename> Utilized by the UI to open menus.\n"
-"^6Note: menu_modal is not intended to be set by the player, but you could utilize it for tasks. Example: bind \"p\" \"credits\" will open credits."
+"^6Note: menu_modal is not intended to be set by the player, but you could utilize it for tasks.\n"
+"^6Example: bind \"p\" \"credits\" will open credits."
 
 #. Console/menu
 msgid "menu_quick"

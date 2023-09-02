@@ -302,7 +302,7 @@ msgstr "<0/1> Used to test and debug portal-related code.\n"
 #. Console/r
 msgid "r_screenshot_fmtstr"
 msgstr "<date format> File name format of screenshots.\n"
-"^6Note: Example: wf_%y%m%d_%H%M%S"
+"^6Example: wf_%y%m%d_%H%M%S"
 
 #. Console/r
 msgid "r_screenshot_format"

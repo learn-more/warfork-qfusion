@@ -919,19 +919,24 @@ msgstr "Stops server demo recording."
 
 #. Console/prefixless
 msgid "set"
-msgstr "<cvar> <value> Sets a value of a cvar. Can also create cvars with a default value."
+msgstr "<cvar> <value> Sets a value of a cvar. You can also create cvars with a default value."
 
 #. Console/prefixless
 msgid "seta"
-msgstr "<cvar> <value> Adds * flag to a cvar and sets its value. Can also create cvars with a default value."
+msgstr "<cvar> <value> Adds * flag to a cvar and sets its value. You can also create cvars with a default value.\n"
+"^6Note: * - Static variable. Changes to those variables are saved in config.cfg."
 
 #. Console/prefixless
 msgid "setas"
-msgstr "<cvar> <value> Adds *, S flags to a cvar and sets its value. Can also create cvars with a default value."
+msgstr "<cvar> <value> Adds *, S flags to a cvar and sets its value. You can also create cvars with a default value.\n"
+"^6Note: * - Static variable. Changes to those variables are saved in config.cfg.\n"
+"^6S - Server-info variable. Those variables are uploaded to all clients (for example to sync bot difficulty)."
 
 #. Console/prefixless
 msgid "setau"
-msgstr "<cvar> <value> Adds *, U flags to a cvar and sets its value. Can also create cvars with a default value."
+msgstr "<cvar> <value> Adds * and U flags to a cvar and sets its value. You can also create cvars with a default value.\n"
+"^6Note: * - Static variable. Changes to those variables are saved in config.cfg.\n"
+"^6U - User-info variable. Those variables are uploaded to the server (for example to let the server know the player's nickname)."
 
 #. Console/prefixless (TODO)
 msgid "setdyn"
@@ -939,11 +944,13 @@ msgstr "Please help contribute a description of this command by visiting the War
 
 #. Console/prefixless
 msgid "sets"
-msgstr "<cvar> <value> Adds S flag to a cvar and sets its value. Can also create cvars with a default value."
+msgstr "<cvar> <value> Adds S flag to a cvar and sets its value. Can also create cvars with a default value.\n"
+"^6Note: S - Server-info variable. Those variables are uploaded to all clients (for example to sync bot difficulty)."
 
 #. Console/prefixless
 msgid "setu"
-msgstr "<cvar> <value> Adds U flag to a cvar and sets its value. Can also create cvars with a default value."
+msgstr "<cvar> <value> Adds U flag to a cvar and sets its value. You can also create cvars with a default value.\n"
+"^6Note: U - User-info variable. Those variables are uploaded to the server (for example to let the server know the player's nickname)."
 
 #. Console/prefixless
 msgid "shaderdump"

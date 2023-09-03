@@ -208,7 +208,7 @@ msgid "timedemo"
 msgstr "<0/1> Sets whether or not a demo should be timed when played.\n"
 "^6Disable: timedemo \"0\"\n"
 "^6Enable: timedemo \"1\"\n"
-"^6Note: Once set to 1, play a demo and then check console. Console will show stats related to the length and playback speed of the demo."
+"^6Note: Once set to \"1\", play a demo and then check console. Console will show stats related to the length and playback speed of the demo."
 
 #. Console/prefixless
 msgid "timegraph"

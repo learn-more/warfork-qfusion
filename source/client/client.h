@@ -333,6 +333,8 @@ extern cvar_t *cl_extrapolate;
 
 extern cvar_t *cl_flip;
 
+extern cvar_t *cl_discord_errors;
+
 extern cvar_t *sensitivity;
 extern cvar_t *zoomsens;
 extern cvar_t *m_pitch;

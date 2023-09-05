@@ -51,6 +51,12 @@ msgstr "<0/1> Output frames when using demoavi.\n"
 "^6Enable: cl_demoavi_video \"1\""
 
 #. Console/cl
+msgid "cl_discord_errors"
+msgstr "<0/1> Prints Discord error messages.\n"
+"^6Disable: cl_discord_errors \"0\"\n"
+"^6Enable: cl_discord_errors \"1\""
+
+#. Console/cl
 msgid "cl_download_allow_modules"
 msgstr "<0/1> Allows the downloading of modules.\n"
 "^6Disable: cl_download_allow_modules \"0\"\n"

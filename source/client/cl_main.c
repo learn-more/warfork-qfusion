@@ -48,6 +48,8 @@ cvar_t *cl_demoavi_audio;
 cvar_t *cl_demoavi_fps;
 cvar_t *cl_demoavi_scissor;
 
+cvar_t *cl_discord_errors;
+
 cvar_t *sensitivity;
 cvar_t *zoomsens;
 cvar_t *m_accel;
@@ -2117,6 +2119,8 @@ static void CL_InitLocal( void )
 	cl_demoavi_fps =	Cvar_Get( "cl_demoavi_fps", "30.3", CVAR_ARCHIVE );
 	cl_demoavi_fps->modified = true;
 	cl_demoavi_scissor =	Cvar_Get( "cl_demoavi_scissor", "0", CVAR_ARCHIVE );
+
+	cl_discord_errors = Cvar_Get( "cl_discord_errors", "1", CVAR_ARCHIVE );
 
 	rcon_client_password =	Cvar_Get( "rcon_password", "", 0 );
 	rcon_address =		Cvar_Get( "rcon_address", "", 0 );

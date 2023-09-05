@@ -476,7 +476,9 @@ static const char *valid_maps[] = {
  */
 static void CL_DiscordDisconnected( int errorCode, const char *message )
 {
+	if( cl_discord_errors->integer ) {
 	Com_Printf( S_COLOR_RED "Discord error %s: %s\n", CL_DiscordErrorString( errorCode ), message );
+	}
 }
 
 typedef struct RichPresence {

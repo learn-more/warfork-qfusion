@@ -101,7 +101,6 @@
 			
 			friends_container.css( 'height', news_container.css( 'height' ) );
 
-			body.getElementById( 'news' ).setAttr( 'src', 'http://forbidden.gg/fvifvinews.php?lang=' + GetUserLanguage() );
 		}
 
 		void onHomeShow( Element @body, Event @event )
@@ -172,7 +171,7 @@
 <hr class="w100p nicehr" id="nicehr" />
 
 <div id="news_container">
-	<idiv id="news" src="" onload="$onNewsLoad" onimageload="$onNewsImageLoad" />
+Join fellow forkers on Discord: https://warfork.com/discord
 </div>
 
 <iframe id="friends_container" src="friends.rml" />

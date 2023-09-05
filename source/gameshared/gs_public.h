@@ -700,6 +700,8 @@ enum
 
 	, STAT_LAST_KILLER
 
+	, DROWNING_STATE
+
 	// the stats below this point are set by the gametype scripts
 	, GS_GAMETYPE_STATS_START = 32
 

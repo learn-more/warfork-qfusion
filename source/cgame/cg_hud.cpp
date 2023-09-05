@@ -723,6 +723,7 @@ static const reference_numeric_t cg_numeric_references[] =
 	{ "VIDWIDTH", CG_GetVidWidth, NULL },
 	{ "VIDHEIGHT", CG_GetVidHeight, NULL },
 	{ "STUNNED", CG_GetStunned, NULL },
+	{ "DROWNING", CG_GetStatValue, (void *)DROWNING_STATE },
 	{ "SCOREBOARD", CG_GetScoreboardShown, NULL },
 	{ "PMOVE_TYPE", CG_GetPmoveType, NULL },
 	{ "DEMOPLAYING", CG_IsDemoPlaying, NULL },

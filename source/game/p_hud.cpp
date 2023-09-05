@@ -409,7 +409,7 @@ void G_SetClientStats( edict_t *ent )
 	if( ent->air_finished - level.time > 12000 )
 		client->ps.stats[DROWNING_STATE] = 0;
 	else
-		client->ps.stats[DROWNING_STATE] = ( ( ( ent->air_finished - level.time ) + 500 ) / 1000 );
+		client->ps.stats[DROWNING_STATE] = ( ( ent->air_finished - level.time ) / 100 );
 
 	//
 	// pickup message

@@ -80,7 +80,7 @@ install:
 
 script:
   - curl https://warfork.com/downloads/sdk/ --output "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip"
-  - unzip "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip" -d "$TRAVIS_BUILD_DIR/third-party/steamworks"
+  - unzip -o "$TRAVIS_BUILD_DIR/third-party/steamworks/sdk.zip" -d "$TRAVIS_BUILD_DIR/third-party/steamworks"
   - cd source
   - if [[ "$QF_ARCH" == "x86_64" ]]; then make -j8; fi
   - if [[ "$QF_ARCH" == "x86" ]]; then make -j8; fi

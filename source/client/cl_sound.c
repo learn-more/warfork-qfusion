@@ -182,14 +182,14 @@ static bool CL_SoundModule_Load( const char *name, sound_import_t *import, bool 
 */
 void CL_SoundModule_Init( bool verbose )
 {
-	static const char *sound_modules[] = { "qf", "openal" };
+	static const char *sound_modules[] = { "openal" };
 	static const int num_sound_modules = sizeof( sound_modules )/sizeof( sound_modules[0] );
 	sound_import_t import;
 
 	if( !s_module )
 		s_module = Cvar_Get( "s_module", "1", CVAR_ARCHIVE|CVAR_LATCH_SOUND );
 	if( !s_module_fallback )
-		s_module_fallback = Cvar_Get( "s_module_fallback", "2", CVAR_LATCH_SOUND );
+		s_module_fallback = Cvar_Get( "s_module_fallback", "0", CVAR_LATCH_SOUND );
 
 	// unload anything we have now
 	CL_SoundModule_Shutdown( verbose );

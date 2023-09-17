@@ -203,9 +203,8 @@
 			<optionsform id="options-form">
 				<div class="title">Sound module</div>
 				<select cvar="s_module" id="sound-module" name="sound-module" onchange="sModuleRestart();">
-					<option value="0" selected>no sound</option>
-					<option value="1" selected>Qfusion</option>
-					<option value="2" selected>OpenAL</option>
+					<option value="0" selected>No sound</option>
+					<option value="1" selected>OpenAL</option>
 				</select>
 				<br/>
 				

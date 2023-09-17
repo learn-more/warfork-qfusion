@@ -201,13 +201,13 @@ void CL_SoundModule_Init( bool verbose )
 
 	if( s_module->integer < 0 || s_module->integer > num_sound_modules )
 	{
-		Com_Printf( "Invalid value for s_module (%i), reseting to default\n", s_module->integer );
+		Com_Printf( "Invalid value for s_module (%i), resetting to default\n", s_module->integer );
 		Cvar_ForceSet( "s_module", s_module->dvalue );
 	}
 
 	if( s_module_fallback->integer < 0 || s_module_fallback->integer > num_sound_modules )
 	{
-		Com_Printf( "Invalid value for s_module_fallback (%i), reseting to default\n", s_module_fallback->integer );
+		Com_Printf( "Invalid value for s_module_fallback (%i), resetting to default\n", s_module_fallback->integer );
 		Cvar_ForceSet( "s_module_fallback", s_module_fallback->dvalue );
 	}
 

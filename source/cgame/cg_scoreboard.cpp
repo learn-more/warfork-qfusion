@@ -833,7 +833,7 @@ struct qfontface_s *CG_ScoreboardFont( cvar_t *familyCvar, cvar_t *sizeCvar )
 	font = trap_SCR_RegisterFont( familyCvar->string, QFONT_STYLE_NONE, ceilf( sizeCvar->integer * ( (float)cgs.vidHeight / 600.0f ) ) );
 	if( !font )
 	{
-		CG_Printf( "%sWarning: Invalid font in '%s'. Reseting to default\n", familyCvar->name, S_COLOR_YELLOW );
+		CG_Printf( "%sWarning: Invalid font in '%s'. Resetting to default\n", familyCvar->name, S_COLOR_YELLOW );
 		trap_Cvar_Set( familyCvar->name, familyCvar->dvalue );
 		trap_Cvar_Set( sizeCvar->name, sizeCvar->dvalue );
 		font = trap_SCR_RegisterFont( familyCvar->string, QFONT_STYLE_NONE, sizeCvar->integer );

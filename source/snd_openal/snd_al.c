@@ -178,7 +178,7 @@ static bool S_Init( void *hwnd, int maxEntities, bool verbose )
 	// the device assigned by the user is not available
 	if( userDeviceNum == -1 )
 	{
-		Com_Printf( "'s_openAL_device': incorrect device name, reseting to default\n" );
+		Com_Printf( "'s_openAL_device': incorrect device name, resetting to default\n" );
 
 		trap_Cvar_ForceSet( "s_openAL_device", ALDEVICE_DEFAULT ? ALDEVICE_DEFAULT : defaultDevice );
 

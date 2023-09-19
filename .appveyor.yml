@@ -34,7 +34,11 @@ build_script:
     msbuild build_%BUILD_PLATFORM%\qfusion.sln /p:configuration=Release /maxcpucount:2
     
     cd source\build\Release
+    
+    XCOPY ..\..\..\third-party\openal-soft\bin\Win32\soft_oal.dll soft_oal32.dll*
 
+    XCOPY ..\..\..\third-party\openal-soft\bin\Win64\soft_oal.dll soft_oal64.dll*
+    
     >>commit.txt echo %APPVEYOR_REPO_COMMIT%
 
     IF "%BUILD_STEAMLIB%"=="1" >>steam_appid.txt echo 671610

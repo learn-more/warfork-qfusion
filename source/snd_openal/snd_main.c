@@ -116,6 +116,9 @@ bool SF_Init( void *hwnd, int maxEntities, bool verbose )
 #ifdef OPENAL_RUNTIME
 	if( !QAL_Init( ALDRIVER, verbose ) )
 	{
+#ifdef ALDRIVER_FALLBACK
+		if( !QAL_Init( ALDRIVER_FALLBACK, verbose ) )
+#endif	
 #ifdef ALDRIVER_ALT
 		if( !QAL_Init( ALDRIVER_ALT, verbose ) )
 #endif

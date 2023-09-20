@@ -34,8 +34,14 @@ typedef struct { char *name; void **funcPointer; } dllfunc_t;
 
 #include "qal.h"
 
-#ifdef _WIN32
+#ifdef _WIN64
 #define ALDRIVER "soft_oal.dll"
+#define ALDRIVER_FALLBACK "soft_oal64.dll"
+#define ALDRIVER_ALT "OpenAL32.dll"
+#define ALDEVICE_DEFAULT "Generic Software"
+#elif defined _WIN32
+#define ALDRIVER "soft_oal.dll"
+#define ALDRIVER_FALLBACK "soft_oal32.dll"
 #define ALDRIVER_ALT "OpenAL32.dll"
 #define ALDEVICE_DEFAULT "Generic Software"
 #elif defined ( __MACOSX__ )

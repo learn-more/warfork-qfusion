@@ -607,7 +607,13 @@ void CL_UpdateDiscord( void )
 				strcpy( presence.state, valid_map ? mapname : "unknownmap" ); // Map name
 
 				// Gametype and Score (if available)
-				Q_snprintfz( presence.details, sizeof( details ), "%s %s", cl.configstrings[CS_GAMETYPENAME], cl.configstrings[CS_MATCHSCORE] );
+				if( cl.configstrings[CS_GAMETYPENAME][0] || cl.configstrings[CS_MATCHSCORE][0] ) {
+					// Discord does not like a 'details' of less than 2 characters
+					Q_snprintfz( presence.details, sizeof( details ), "%s %s", cl.configstrings[CS_GAMETYPENAME], cl.configstrings[CS_MATCHSCORE] );
+				} else {
+					presence.details[0] = '\0';
+				}
+
 				strcpy( presence.partyId, cl.configstrings[CS_HOSTNAME] );
 
 				// If server is not localhost

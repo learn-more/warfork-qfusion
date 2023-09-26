@@ -1,0 +1,77 @@
+version: 2.1
+jobs:
+  build-linux:
+    docker:
+      - image: ubuntu:latest
+    steps:
+      - checkout
+
+      - run:
+          name: Install build dependencies
+          command: |
+            apt-get update
+            apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev zlib1g-dev libcurl4-gnutls-dev git zip unzip
+
+      - run:
+          name: Download steamworks sdk
+          command: |
+            curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+            unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+
+      - run:
+          name: Generate makefiles
+          command: cmake ./source
+
+      - run:
+          name: Build project
+          command: make -j8
+
+      - run:
+          name: Package warfork
+          command: |
+            echo "${CIRCLE_SHA1}" > source/build/commit.txt
+            echo "671610" > source/build/steam_appid.txt
+            tar -czvf source/Linux-x86_64-Release.tar.gz -C source/build * --exclude *.a --exclude base*/*.a libs/*.a
+
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - source/Linux-x86_64-Release.tar.gz
+
+  build-osx:
+    macos:
+      xcode: '13.2.1'
+    steps:
+      - checkout
+
+      - run:
+          name: Install build dependencies
+          command: |
+            brew update
+            brew install curl cmake sdl2 openal-soft libvorbis theora freetype zlib git zip unzip
+
+      - run:
+          name: Download steamworks sdk
+          command: |
+            curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+            unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+
+      - run:
+          name: Generate makefiles
+          command: cmake -G Xcode ./source
+
+      - run:
+          name: Build project
+          command: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+      - run:
+          name: Package warfork
+          command: |
+            echo "${CIRCLE_SHA1}" > source/build/commit.txt
+            echo "671610" > source/build/steam_appid.txt
+            tar -czvf source/OSX-x86_64-Release.tar.gz -C source/build Release/*.app
+
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - source/OSX-x86_64-Release.tar.gz

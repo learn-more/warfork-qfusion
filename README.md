@@ -3,7 +3,7 @@
 [![Build](https://github.com/TeamForbiddenLLC/warfork-qfusion/actions/workflows/build.yml/badge.svg)](https://github.com/TeamForbiddenLLC/warfork-qfusion/actions/workflows/build.yml)
 [![Build Status][travis-badge]][travis-url]
 [![Build Status][appveyor-badge]][appveyor-url]
-[![GPLv2 license](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://github.com/TeamForbiddenLLC/warfork-qfusion/blob/master/source/gnu.txt)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/TeamForbiddenLLC/warfork-qfusion/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/TeamForbiddenLLC/warfork-qfusion/tree/master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3b7508c80bab41cc833ae6c79a9260ba)](https://www.codacy.com/gh/TeamForbiddenLLC/warfork-qfusion/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TeamForbiddenLLC/warfork-qfusion&amp;utm_campaign=Badge_Grade)
 
 https://warfork.com/discord/

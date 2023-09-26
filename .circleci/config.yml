@@ -1,77 +1,62 @@
 version: 2.1
 jobs:
-  build-linux:
+  build-linux64:
     docker:
-      - image: ubuntu:latest
+      - image: ubuntu:20.04
     steps:
+      - run: export DEBIAN_FRONTEND=noninteractive
+      - run: export DEBCONF_NONINTERACTIVE_SEEN=true
+      - run: touch /tmp/nyc.txt
+      - run: echo "tzdata tzdata/Areas select America" > /tmp/nyc.txt
+      - run: echo "tzdata tzdata/Zones/America select New_York" >> /tmp/nyc.txt
+      - run: debconf-set-selections /tmp/nyc.txt
+      - run: ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+      - run: apt-get update
+      - run: apt-get install -y --no-install-recommends tzdata
+      - run: apt-get install -y openssh-client git
+      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev zlib1g-dev libcurl4-gnutls-dev git zip unzip
       - checkout
-
-      - run:
-          name: Install build dependencies
-          command: |
-            apt-get update
-            apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev zlib1g-dev libcurl4-gnutls-dev git zip unzip
-
-      - run:
-          name: Download steamworks sdk
-          command: |
-            curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
-            unzip third-party/steamworks/sdk.zip -d third-party/steamworks
-
-      - run:
-          name: Generate makefiles
-          command: cmake ./source
-
-      - run:
-          name: Build project
-          command: make -j8
-
-      - run:
-          name: Package warfork
-          command: |
-            echo "${CIRCLE_SHA1}" > source/build/commit.txt
-            echo "671610" > source/build/steam_appid.txt
-            tar -czvf source/Linux-x86_64-Release.tar.gz -C source/build * --exclude *.a --exclude base*/*.a libs/*.a
-
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - source/Linux-x86_64-Release.tar.gz
+      - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+      - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+      - run: export CC=clang CXX=clang++
+      - run: cmake -DBUILD_STEAMLIB=1 ./source
+      - run: make -j8
+      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
+      - run: echo "671610" > ./source/build/steam_appid.txt
+      - run: tar -czvf ./source/Linux-x86_64-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
+      - store_artifacts:
+          path: ./source/Linux-x86_64-Release.tar.gz
 
   build-osx:
     macos:
-      xcode: '13.2.1'
+      xcode: '13.4.1'
     steps:
       - checkout
+      - run: brew update
+      - run: brew install curl cmake sdl2 openal-soft libvorbis theora freetype zlib git zip unzip
+      - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+      - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+      - run: cmake -G Xcode ./source
+      - run: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
+      - run: echo "671610" > ./source/build/steam_appid.txt
+      - run: tar -czvf ./source/OSX-x86_64-Release.tar.gz ./source/build/Release/*.app
+      - store_artifacts:
+          path: ./source/OSX-x86_64-Release.tar.gz
 
-      - run:
-          name: Install build dependencies
-          command: |
-            brew update
-            brew install curl cmake sdl2 openal-soft libvorbis theora freetype zlib git zip unzip
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-linux64
+      - build-osx
 
-      - run:
-          name: Download steamworks sdk
-          command: |
-            curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
-            unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+after_success:
+  - wget https://raw.githubusercontent.com/Warfork/circle-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh success $WEBHOOK_URL
 
-      - run:
-          name: Generate makefiles
-          command: cmake -G Xcode ./source
-
-      - run:
-          name: Build project
-          command: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-
-      - run:
-          name: Package warfork
-          command: |
-            echo "${CIRCLE_SHA1}" > source/build/commit.txt
-            echo "671610" > source/build/steam_appid.txt
-            tar -czvf source/OSX-x86_64-Release.tar.gz -C source/build Release/*.app
-
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - source/OSX-x86_64-Release.tar.gz
+after_failure:
+  - wget https://raw.githubusercontent.com/Warfork/circle-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh failure $WEBHOOK_URL

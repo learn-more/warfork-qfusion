@@ -28,8 +28,8 @@ jobs:
       - run: tar -czvf ./source/Linux-x86_64-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
           fail_only: false
-          failure_message: ":red_circle: **${CIRCLE_USERNAME}**'s build: **${CIRCLE_JOB}** has failed!"       
-          success_message: ":green_circle: **${CIRCLE_USERNAME}**'s build: **${CIRCLE_JOB}** has succeeded!"      
+          failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
+          success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
       - store_artifacts:
           path: ./source/Linux-x86_64-Release.tar.gz
@@ -50,8 +50,8 @@ jobs:
       - run: tar -czvf ./source/OSX-x86_64-Release.tar.gz ./source/build/Release/*.app
       - discord/status:
           fail_only: false
-          failure_message: ":red_circle: **${CIRCLE_USERNAME}**'s build: **${CIRCLE_JOB}** has failed!"       
-          success_message: ":green_circle: **${CIRCLE_USERNAME}**'s build: **${CIRCLE_JOB}** has succeeded!"       
+          failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
+          success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
       - store_artifacts:
           path: ./source/OSX-x86_64-Release.tar.gz

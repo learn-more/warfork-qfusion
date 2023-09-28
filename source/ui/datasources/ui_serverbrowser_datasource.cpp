@@ -303,10 +303,10 @@ void ServerInfo::fixString( std::string &s )
 		pos = s.find( '\n', pos );
 	}
 	if ( s.length() > 20 ) {
-		pos = s.find( '   ' );
+		pos = s.find( "   " );
 		while( pos != std::string::npos ) {
 			s.replace( pos, 1, "&nbsp;" );
-			pos = s.find( '   ' );
+			pos = s.find( "   " );
 		}
 	}
 }

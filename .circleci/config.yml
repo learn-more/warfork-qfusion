@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  discord: antonioned/discord@0.1.0
 jobs:
   build-linux64:
     docker:
@@ -24,6 +26,11 @@ jobs:
       - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: echo "671610" > ./source/build/steam_appid.txt
       - run: tar -czvf ./source/Linux-x86_64-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
+      - discord/status:
+          fail_only: false
+          failure_message: ":red_circle: **${CIRCLE_USERNAME}**'s build: **${CIRCLE_JOB}** has failed!"       
+          success_message: ":green_circle: **${CIRCLE_USERNAME}**'s build: **${CIRCLE_JOB}** has succeeded!"      
+          webhook: "${DISCORD_STATUS_WEBHOOK}"
       - store_artifacts:
           path: ./source/Linux-x86_64-Release.tar.gz
 
@@ -41,6 +48,11 @@ jobs:
       - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: echo "671610" > ./source/build/steam_appid.txt
       - run: tar -czvf ./source/OSX-x86_64-Release.tar.gz ./source/build/Release/*.app
+      - discord/status:
+          fail_only: false
+          failure_message: ":red_circle: **${CIRCLE_USERNAME}**'s build: **${CIRCLE_JOB}** has failed!"       
+          success_message: ":green_circle: **${CIRCLE_USERNAME}**'s build: **${CIRCLE_JOB}** has succeeded!"       
+          webhook: "${DISCORD_STATUS_WEBHOOK}"
       - store_artifacts:
           path: ./source/OSX-x86_64-Release.tar.gz
 
@@ -50,13 +62,3 @@ workflows:
     jobs:
       - build-linux64
       - build-osx
-
-after_success:
-  - wget https://raw.githubusercontent.com/Warfork/circle-ci-discord-webhook/master/send.sh
-  - chmod +x send.sh
-  - ./send.sh success $WEBHOOK_URL
-
-after_failure:
-  - wget https://raw.githubusercontent.com/Warfork/circle-ci-discord-webhook/master/send.sh
-  - chmod +x send.sh
-  - ./send.sh failure $WEBHOOK_URL

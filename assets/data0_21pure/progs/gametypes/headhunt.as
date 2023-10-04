@@ -729,6 +729,17 @@ void GT_Shutdown()
 // playing, but nothing has yet started.
 void GT_SpawnGametype()
 {
+    // Prevent Warshell from spawning since we use the effect to identify the tagged player
+    for ( int i = 0; i < numEntities; i++ )
+    {
+        Entity@ ent = @G_GetEntity( i );
+
+        if ( @ent.item != null && ent.item.tag == POWERUP_SHELL )
+        {
+            ent.freeEntity();
+        }
+    }
+
     // Initialize minimap. Player location is automatically
     // updated at tagged_player_minimap_think
     Entity @minimap = @G_SpawnEntity( "tagged_player_minimap" );

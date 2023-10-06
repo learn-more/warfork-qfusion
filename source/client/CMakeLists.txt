@@ -1,6 +1,6 @@
 project(${QFUSION_CLIENT_NAME})
 
-include_directories(${ZLIB_INCLUDE_DIR} ${CURL_INCLUDE_DIR} ${DISCORD_INCLUDE_DIR})
+include_directories(${MINIZ_INCLUDE_DIR} ${CURL_INCLUDE_DIR} ${DISCORD_INCLUDE_DIR})
 
 if (USE_SDL2 OR (${CMAKE_SYSTEM_NAME} MATCHES "Linux"))
     include_directories(${SDL2_INCLUDE_DIR})
@@ -30,6 +30,7 @@ file(GLOB CLIENT_HEADERS
 	"../steamlib/steamlib_public.h"
 	"../cin/cin_public.h"
 	"../matchmaker/*.h"
+    "${MINIZ_INCLUDE_DIR}/miniz.h"
 	"${DISCORD_INCLUDE_DIR}/*.h"
 )
 
@@ -40,9 +41,10 @@ file(GLOB CLIENT_COMMON_SOURCES
     "../gameshared/q_*.c"
     "../qalgo/*.c"
     "../matchmaker/*.c"
-	"${DISCORD_INCLUDE_DIR}/discord_rpc.cpp"	    
+    "${MINIZ_SOURCE_DIR}/miniz.c"
+	"${DISCORD_INCLUDE_DIR}/discord_rpc.cpp"
 	"${DISCORD_INCLUDE_DIR}/rpc_connection.cpp"
-	"${DISCORD_INCLUDE_DIR}/serialization.cpp"	    
+	"${DISCORD_INCLUDE_DIR}/serialization.cpp"
 )
     
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -231,5 +233,5 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${COPY_DYLIBS})
 endif()
 
-target_link_libraries(${QFUSION_CLIENT_NAME} PRIVATE ${CURL_LIBRARY} ${ZLIB_LIBRARY} ${CLIENT_PLATFORM_LIBRARIES} ${DISCORD_LIBRARY})
+target_link_libraries(${QFUSION_CLIENT_NAME} PRIVATE ${CURL_LIBRARY} ${CLIENT_PLATFORM_LIBRARIES} ${DISCORD_LIBRARY})
 qf_set_output_dir(${QFUSION_CLIENT_NAME} "")

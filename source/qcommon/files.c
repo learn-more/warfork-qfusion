@@ -82,7 +82,7 @@ static const char *forbidden_gamedirs[] = {
 typedef struct
 {
 	unsigned char readBuffer[FS_ZIP_BUFSIZE]; // internal buffer for compressed data
-	z_stream zstream;                       // zLib stream structure for inflate
+	mz_stream zstream;                       // zLib stream structure for inflate
 	size_t compressedSize;
 	size_t restReadCompressed;            // number of bytes to be decompressed
 } zipEntry_t;
@@ -241,7 +241,7 @@ static unsigned FS_PK3CheckFileCoherency( FILE *f, packfile_t *file )
 	if( LittleLongRaw( &localHeader[0] ) != FS_ZIP_LOCALHEADERMAGIC )
 		return 0;
 	compressed = LittleShortRaw( &localHeader[8] );
-	if( ( compressed == Z_DEFLATED ) && !( file->flags & FS_PACKFILE_DEFLATED ) )
+	if( ( compressed == MZ_DEFLATED ) && !( file->flags & FS_PACKFILE_DEFLATED ) )
 		return 0;
 	else if( !compressed && ( file->flags & FS_PACKFILE_DEFLATED ) )
 		return 0;
@@ -1126,7 +1126,7 @@ static int _FS_FOpenPakFile( packfile_t *pakFile, int *filenum )
 		// after the compressed stream in order to complete decompression and
 		// return Z_STREAM_END. We don't want absolutely Z_STREAM_END because we known the
 		// size of both compressed and uncompressed data
-		if( qzinflateInit2( &file->zipEntry->zstream, -MAX_WBITS ) != Z_OK )
+		if( mz_inflateInit2( &file->zipEntry->zstream, -MAX_WBITS ) != Z_OK )
 		{
 			Com_DPrintf( "_FS_FOpenPakFile: can't inflate %s\n", pakFile->name );
 			return -1;
@@ -1413,7 +1413,7 @@ void FS_FCloseFile( int file )
 
 	if( fh->zipEntry )
 	{
-		qzinflateEnd( &fh->zipEntry->zstream );
+		mz_inflateEnd( &fh->zipEntry->zstream );
 		Mem_Free( fh->zipEntry );
 		fh->zipEntry = NULL;
 	}
@@ -1498,7 +1498,7 @@ static int FS_ReadPK3File( uint8_t *buf, size_t len, filehandle_t *fh )
 			zipEntry->zstream.avail_in = (uInt)block;
 		}
 
-		error = qzinflate( &zipEntry->zstream, flush );
+		error = mz_inflate( &zipEntry->zstream, flush );
 
 		if( error == Z_STREAM_END )
 			break;
@@ -1741,7 +1741,7 @@ int FS_Seek( int file, int offset, int whence )
 
 		zipEntry->zstream.next_in = zipEntry->readBuffer;
 		zipEntry->zstream.avail_in = 0;
-		error = qzinflateReset( &zipEntry->zstream );
+		error = mz_inflateReset( &zipEntry->zstream );
 		if( error != Z_OK )
 			Sys_Error( "FS_Seek: can't inflateReset file" );
 

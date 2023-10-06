@@ -33,6 +33,38 @@ jobs:
           webhook: "${DISCORD_STATUS_WEBHOOK}"
       - store_artifacts:
           path: ./source/Linux-x86_64-Release.tar.gz
+          
+  build-linux64-debug:
+    docker:
+      - image: ubuntu:20.04
+    steps:
+      - run: export DEBIAN_FRONTEND=noninteractive
+      - run: export DEBCONF_NONINTERACTIVE_SEEN=true
+      - run: touch /tmp/nyc.txt
+      - run: echo "tzdata tzdata/Areas select America" > /tmp/nyc.txt
+      - run: echo "tzdata tzdata/Zones/America select New_York" >> /tmp/nyc.txt
+      - run: debconf-set-selections /tmp/nyc.txt
+      - run: ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+      - run: apt-get update
+      - run: apt-get install -y --no-install-recommends tzdata
+      - run: apt-get install -y openssh-client git
+      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev zlib1g-dev libcurl4-gnutls-dev git zip unzip
+      - checkout
+      - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+      - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+      - run: export CC=clang CXX=clang++
+      - run: cmake -DCMAKE_BUILD_TYPE=DEBUG -DBUILD_STEAMLIB=1 ./source
+      - run: make -j8
+      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
+      - run: echo "671610" > ./source/build/steam_appid.txt
+      - run: tar -czvf ./source/Linux-x86_64-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
+      - discord/status:
+          fail_only: false
+          failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
+          success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
+          webhook: "${DISCORD_STATUS_WEBHOOK}"
+      - store_artifacts:
+          path: ./source/Linux-x86_64-Release.tar.gz          
 
   build-osx:
     macos:
@@ -61,4 +93,5 @@ workflows:
   build:
     jobs:
       - build-linux64
+      - build-linux64-debug
       - build-osx

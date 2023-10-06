@@ -472,8 +472,8 @@ void Cvar_FixCheatVars( void )
 bool Cvar_Command( void )
 {
     cvar_t *v;
-    const char *translated;
-            
+    const char *translated = NULL;
+
     // check variables
     v = Cvar_Find( Cmd_Argv( 0 ) );
     if( !v )
@@ -491,9 +491,9 @@ bool Cvar_Command( void )
                 Q_ColorStringTerminator( v->latched_string, ColorIndex(COLOR_WHITE) ) );
 
         if( autohelp->integer )
-        translated = L10n_TranslateString( "descriptions", Cvar_GetName( v ) );
+            translated = L10n_TranslateString( "descriptions", Cvar_GetName( v ) );
         if( translated )
-        Com_Printf( S_COLOR_CYAN "%s\n", translated );
+            Com_Printf( S_COLOR_CYAN "%s\n", translated );
 
         return true;
     }

@@ -57,14 +57,14 @@ jobs:
       - run: make -j8
       - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: echo "671610" > ./source/build/steam_appid.txt
-      - run: tar -czvf ./source/Linux-x86_64-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
+      - run: tar -czvf ./source/Linux-x86_64-Debug.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
           fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
       - store_artifacts:
-          path: ./source/Linux-x86_64-Release.tar.gz          
+          path: ./source/Linux-x86_64-Debug.tar.gz          
 
   build-osx:
     macos:

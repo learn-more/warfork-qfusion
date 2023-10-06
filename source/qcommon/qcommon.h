@@ -136,7 +136,7 @@ void Com_FreePureList( purelist_t **purelist );
 #define SNAP_MAX_DEMO_META_DATA_SIZE	16*1024
 
 // define this 0 to disable compression of demo files
-#define SNAP_DEMO_GZ					FS_GZ
+#define SNAP_DEMO_GZ					0
 
 void SNAP_ParseBaseline( msg_t *msg, entity_state_t *baselines );
 void SNAP_SkipFrame( msg_t *msg, struct snapshot_s *header );

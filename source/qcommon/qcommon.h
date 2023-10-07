@@ -133,7 +133,7 @@ void Com_FreePureList( purelist_t **purelist );
 #define SNAP_INVENTORY_LONGS			((MAX_ITEMS + 31) / 32)
 #define SNAP_STATS_LONGS				((PS_MAX_STATS + 31) / 32)
 
-#define SNAP_MAX_DEMO_META_DATA_SIZE	16*1024
+#define SNAP_MAX_DEMO_META_DATA_SIZE	4*1024
 
 void SNAP_ParseBaseline( msg_t *msg, entity_state_t *baselines );
 void SNAP_SkipFrame( msg_t *msg, struct snapshot_s *header );
@@ -731,9 +731,6 @@ int	    FS_Eof( int file );
 int	    FS_Flush( int file );
 bool	FS_IsUrl( const char *url );
 int		FS_FileNo( int file, size_t *offset );
-
-void	FS_SetCompressionLevel( int file, int level );
-int		FS_GetCompressionLevel( int file );
 
 // file loading
 int	    FS_LoadFileExt( const char *path, int flags, void **buffer, void *stack, size_t stackSize, const char *filename, int fileline );

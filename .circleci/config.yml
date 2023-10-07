@@ -88,6 +88,28 @@ jobs:
       - store_artifacts:
           path: ./source/OSX-x86_64-Release.tar.gz
 
+  build-osx-debug:
+    macos:
+      xcode: '13.4.1'
+    steps:
+      - checkout
+      - run: brew update
+      - run: brew install curl cmake sdl2 openal-soft libvorbis theora freetype git zip unzip
+      - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+      - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
+      - run: cmake -DCMAKE_BUILD_TYPE=DEBUG -G Xcode ./source
+      - run: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Debug -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
+      - run: echo "671610" > ./source/build/steam_appid.txt
+      - run: tar -czvf ./source/OSX-x86_64-Debug.tar.gz ./source/build/Debug/*.app
+      - discord/status:
+          fail_only: false
+          failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
+          success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
+          webhook: "${DISCORD_STATUS_WEBHOOK}"
+      - store_artifacts:
+          path: ./source/OSX-x86_64-Debug.tar.gz
+          
 workflows:
   version: 2
   build:
@@ -95,3 +117,4 @@ workflows:
       - build-linux64
       - build-linux64-debug
       - build-osx
+      - build-osx-debug

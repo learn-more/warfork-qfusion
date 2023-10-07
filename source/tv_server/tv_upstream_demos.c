@@ -234,7 +234,7 @@ void TV_Upstream_StartDemoRecord( upstream_t *upstream, const char *demoname, bo
 	Q_snprintfz( upstream->demo.tempname, name_size, "%s.rec", upstream->demo.filename );
 
 	// open the demo file
-	if( FS_FOpenFile( upstream->demo.tempname, &upstream->demo.filehandle, FS_WRITE|SNAP_DEMO_GZ ) == -1 )
+	if( FS_FOpenFile( upstream->demo.tempname, &upstream->demo.filehandle, FS_WRITE ) == -1 )
 	{
 		Com_Printf( "Error: Couldn't create the demo file.\n" );
 
@@ -531,7 +531,7 @@ void TV_Upstream_StartDemo( upstream_t *upstream, const char *demoname, bool ran
 	if( filepath )
 	{
 		if( COM_ValidateRelativeFilename( filepath ) )
-			tempdemofilelen = FS_FOpenFile( filepath, &tempdemofilehandle, FS_READ|SNAP_DEMO_GZ );
+			tempdemofilelen = FS_FOpenFile( filepath, &tempdemofilehandle, FS_READ );
 	}
 
 	TV_Upstream_StopDemo( upstream );

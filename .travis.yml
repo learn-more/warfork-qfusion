@@ -43,7 +43,6 @@ matrix:
             - libvorbis-dev:i386
             - libtheora-dev:i386
             - libfreetype6-dev:i386
-            - zlib1g-dev:i386
             - libcurl4-gnutls-dev:i386
             - libglib2.0-dev:i386
     - os: linux
@@ -62,7 +61,6 @@ matrix:
             - libvorbis-dev
             - libtheora-dev
             - libfreetype6-dev
-            - zlib1g-dev
             - libcurl4-gnutls-dev
 
 

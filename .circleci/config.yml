@@ -16,7 +16,7 @@ jobs:
       - run: apt-get update
       - run: apt-get install -y --no-install-recommends tzdata
       - run: apt-get install -y openssh-client git
-      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev zlib1g-dev libcurl4-gnutls-dev git zip unzip
+      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip
       - checkout
       - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
@@ -48,7 +48,7 @@ jobs:
       - run: apt-get update
       - run: apt-get install -y --no-install-recommends tzdata
       - run: apt-get install -y openssh-client git
-      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev zlib1g-dev libcurl4-gnutls-dev git zip unzip
+      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip
       - checkout
       - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
@@ -72,7 +72,7 @@ jobs:
     steps:
       - checkout
       - run: brew update
-      - run: brew install curl cmake sdl2 openal-soft libvorbis theora freetype zlib git zip unzip
+      - run: brew install curl cmake sdl2 openal-soft libvorbis theora freetype git zip unzip
       - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
       - run: cmake -G Xcode ./source

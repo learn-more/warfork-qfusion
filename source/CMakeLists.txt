@@ -61,7 +61,6 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 		"../libsrcs/src/libvorbis"
 		"../libsrcs/src/libtheora"
 		"../libsrcs/src/libcurl/include"
-		"../libsrcs/src/zlib"
 		"../libsrcs/src/libfreetype"
 		"../libsrcs/src/SDL2/include"
 		"../libsrcs/src/OpenAL-MOB/include/AL"
@@ -175,7 +174,6 @@ if (NOT GAME_MODULES_ONLY)
     find_package(Vorbis REQUIRED)
     find_package(Theora REQUIRED)
     find_package(CURL REQUIRED)
-    find_package(ZLIB REQUIRED)
     find_package(Freetype REQUIRED)
     find_package(OpenAL)
 
@@ -209,7 +207,6 @@ endif()
 
 if (NOT GAME_MODULES_ONLY)
     if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-        find_windows_release_libs(ZLIB_LIBRARY)
         find_windows_release_libs(FREETYPE_LIBRARIES)
         find_windows_release_libs(OGG_LIBRARY)
         find_windows_release_libs(VORBIS_LIBRARIES)
@@ -235,9 +232,6 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Do not add 'OR MINGW' here - we need
 
     set(FREETYPE_LIBRARIES "")
     add_definitions(-DFREETYPELIB_RUNTIME)
-
-    set(ZLIB_LIBRARY "")
-    add_definitions(-DZLIB_RUNTIME)
 
     set(CMAKE_EXECUTABLE_SUFFIX ".${CMAKE_SYSTEM_PROCESSOR}${CMAKE_EXECUTABLE_SUFFIX}")
     set(CMAKE_SHARED_LIBRARY_SUFFIX "_${CMAKE_SYSTEM_PROCESSOR}${CMAKE_SHARED_LIBRARY_SUFFIX}")

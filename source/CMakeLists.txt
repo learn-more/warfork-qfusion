@@ -45,6 +45,9 @@ set(MINIZ_DIR ${CMAKE_HOME_DIRECTORY}/../third-party/miniz)
 set(MINIZ_INCLUDE_DIR ${MINIZ_DIR})
 set(MINIZ_SOURCE_DIR ${MINIZ_DIR})
 
+set(STB_DIR ${CMAKE_HOME_DIRECTORY}/../third-party/stb)
+set(STB_INCLUDE_DIR ${STB_DIR})
+
 set(DISCORD_DIR ${CMAKE_HOME_DIRECTORY}/../third-party/discord)
 set(DISCORD_INCLUDE_DIR ${DISCORD_DIR})
 

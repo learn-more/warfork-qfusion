@@ -25,6 +25,11 @@ file(GLOB REF_GL_COMMON_SOURCES
 	"../qcommon/patch.c"
 	)
 
+file(GLOB STB_HEADERS
+    "${STB_INCLUDE_DIR}/stb_image.h"
+    "${STB_INCLUDE_DIR}/stb_image_write.h"
+)
+
 if (USE_SDL2)
 	file(GLOB REF_GL_PLATFORM_SOURCES
 		"../sdl/sdl_glw.c"
@@ -55,5 +60,6 @@ else()
 endif()
 
 add_library(ref_gl SHARED ${REF_GL_HEADERS} ${REF_GL_COMMON_SOURCES} ${REF_GL_PLATFORM_SOURCES})
+target_include_directories(ref_gl PRIVATE ${STB_INCLUDE_DIR})
 target_link_libraries(ref_gl PRIVATE ${REF_GL_PLATFORM_LIBRARIES})
 qf_set_output_dir(ref_gl libs)

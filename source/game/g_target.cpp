@@ -822,7 +822,7 @@ static void target_relay_use( edict_t *self, edict_t *other, edict_t *activator 
 	if( ( self->spawnflags & 4 ) != 0 )
 	{
 		edict_t *target;
-		target = G_PickTarget( self->targetname );
+		target = G_PickTarget( self->target );
 		if( target != NULL )
 			G_CallUse( target, self, activator );
 		return;

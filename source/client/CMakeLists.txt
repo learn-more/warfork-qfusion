@@ -7,10 +7,10 @@ if (USE_SDL2 OR (${CMAKE_SYSTEM_NAME} MATCHES "Linux"))
 endif()
 
 if (NOT QFUSION_MAC_ICON)
-	set(QFUSION_MAC_ICON ../../icons/qfusion.icns)
+	set(QFUSION_MAC_ICON ../../icons/warfork.icns)
 endif()
 if (NOT QFUSION_MAC_INFO_PLIST)
-	set(QFUSION_MAC_INFO_PLIST ../mac/Qfusion-Info.plist)
+	set(QFUSION_MAC_INFO_PLIST ../mac/Warfork-Info.plist)
 endif()
 
 file(GLOB CLIENT_HEADERS

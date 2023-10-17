@@ -1,0 +1,11 @@
+.appveyor.yml
+.circleci
+.dockerignore
+.git
+.git*
+.travis.yml
+assets
+build
+Dockerfile
+README.md
+uncrustify.cfg

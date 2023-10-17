@@ -1,7 +1,6 @@
 # ___WARFORK___ 
 
 [![Build](https://github.com/TeamForbiddenLLC/warfork-qfusion/actions/workflows/build.yml/badge.svg)](https://github.com/TeamForbiddenLLC/warfork-qfusion/actions/workflows/build.yml)
-[![Build Status][travis-badge]][travis-url]
 [![Build Status][appveyor-badge]][appveyor-url]
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/TeamForbiddenLLC/warfork-qfusion/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/TeamForbiddenLLC/warfork-qfusion/tree/master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3b7508c80bab41cc833ae6c79a9260ba)](https://www.codacy.com/gh/TeamForbiddenLLC/warfork-qfusion/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TeamForbiddenLLC/warfork-qfusion&amp;utm_campaign=Badge_Grade)
@@ -34,8 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 https://github.com/TeamForbiddenLLC/warfork-qfusion/wiki
 Additional help can be found here: https://github.com/Qfusion/qfusion/wiki
 
-[travis-badge]: https://api.travis-ci.com/TeamForbiddenLLC/warfork-qfusion.svg?branch=master
-[travis-url]: https://app.travis-ci.com/github/TeamForbiddenLLC/warfork-qfusion
 [appveyor-badge]: https://ci.appveyor.com/api/projects/status/kpu8ugd2fs22vm59?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/Warfork/warfork-qfusion
 [coverity-badge]: https://scan.coverity.com/projects/qfusion/badge.svg

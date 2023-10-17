@@ -143,6 +143,17 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR MINGW)
         set(CMAKE_BUILD_TYPE "Release")
     endif()
 
+    option(WF_BUILD_32 "Enable 32bit builds" OFF)
+    if(WF_BUILD_32)
+        set(CMAKE_CROSSCOMPILING)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
+        set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -m32")
+        set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -m32")
+        set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS}")
+        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
+        set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
+    endif()
+
     add_definitions(-D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE)
 
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pipe -Wall -Wno-unused-function -fvisibility=hidden -Winvalid-pch")

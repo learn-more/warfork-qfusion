@@ -5,20 +5,17 @@ jobs:
   build-linux32:
     docker:
       - image: ubuntu:20.04
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+      DEBCONF_NONINTERACTIVE_SEEN: true
     steps:
-      - run: export DEBIAN_FRONTEND=noninteractive
-      - run: export DEBCONF_NONINTERACTIVE_SEEN=true
-      - run: touch /tmp/nyc.txt
-      - run: echo "tzdata tzdata/Areas select America" > /tmp/nyc.txt
-      - run: echo "tzdata tzdata/Zones/America select New_York" >> /tmp/nyc.txt
-      - run: debconf-set-selections /tmp/nyc.txt
-      - run: ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
       - run: dpkg --add-architecture i386
-      - run: echo -e "\ndeb http://dk.archive.ubuntu.com/ubuntu/ xenial main\ndeb http://dk.archive.ubuntu.com/ubuntu/ xenial universe" >> /etc/apt/sources.list
-      - run: apt-get update
-      - run: apt-get install -y --no-install-recommends tzdata
-      - run: apt-get install -y openssh-client git
-      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip g++-4.9 g++-4.9-multilib g++-multilib gcc-4.9 gcc-4.9-multilib gcc-multilib libcurl4-gnutls-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglib2.0-dev:i386 libglu1-mesa-dev:i386 libopenal-dev:i386 libpng-dev:i386 libpulse-dev:i386 libsdl2-dev:i386 libstdc++6-i386-cross libtheora-dev:i386 libvorbis-dev:i386
+      - run: apt update
+      - run: apt install -y software-properties-common
+      - run: add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ xenial main universe"
+      - run: apt update
+      - run: apt install -y openssh-client git # CircleCI Deps
+      - run: apt install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip g++-4.9 g++-4.9-multilib g++-multilib gcc-4.9 gcc-4.9-multilib gcc-multilib libcurl4-gnutls-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglib2.0-dev:i386 libglu1-mesa-dev:i386 libopenal-dev:i386 libpng-dev:i386 libpulse-dev:i386 libsdl2-dev:i386 libstdc++6-i386-cross libtheora-dev:i386 libvorbis-dev:i386
       - checkout
       - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
@@ -39,20 +36,17 @@ jobs:
   build-linux32-debug:
     docker:
       - image: ubuntu:20.04
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+      DEBCONF_NONINTERACTIVE_SEEN: true
     steps:
-      - run: export DEBIAN_FRONTEND=noninteractive
-      - run: export DEBCONF_NONINTERACTIVE_SEEN=true
-      - run: touch /tmp/nyc.txt
-      - run: echo "tzdata tzdata/Areas select America" > /tmp/nyc.txt
-      - run: echo "tzdata tzdata/Zones/America select New_York" >> /tmp/nyc.txt
-      - run: debconf-set-selections /tmp/nyc.txt
-      - run: ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
       - run: dpkg --add-architecture i386
-      - run: echo -e "\ndeb http://dk.archive.ubuntu.com/ubuntu/ xenial main\ndeb http://dk.archive.ubuntu.com/ubuntu/ xenial universe" >> /etc/apt/sources.list
-      - run: apt-get update
-      - run: apt-get install -y --no-install-recommends tzdata
-      - run: apt-get install -y openssh-client git
-      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip g++-4.9 g++-4.9-multilib g++-multilib gcc-4.9 gcc-4.9-multilib gcc-multilib libcurl4-gnutls-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglib2.0-dev:i386 libglu1-mesa-dev:i386 libopenal-dev:i386 libpng-dev:i386 libpulse-dev:i386 libsdl2-dev:i386 libstdc++6-i386-cross libtheora-dev:i386 libvorbis-dev:i386
+      - run: apt update
+      - run: apt install -y software-properties-common
+      - run: add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ xenial main universe"
+      - run: apt update
+      - run: apt install -y openssh-client git # CircleCI Deps
+      - run: apt install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip g++-4.9 g++-4.9-multilib g++-multilib gcc-4.9 gcc-4.9-multilib gcc-multilib libcurl4-gnutls-dev:i386 libfreetype6-dev:i386 libgl1-mesa-dev:i386 libglib2.0-dev:i386 libglu1-mesa-dev:i386 libopenal-dev:i386 libpng-dev:i386 libpulse-dev:i386 libsdl2-dev:i386 libstdc++6-i386-cross libtheora-dev:i386 libvorbis-dev:i386
       - checkout
       - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
@@ -73,18 +67,13 @@ jobs:
   build-linux64:
     docker:
       - image: ubuntu:20.04
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+      DEBCONF_NONINTERACTIVE_SEEN: true
     steps:
-      - run: export DEBIAN_FRONTEND=noninteractive
-      - run: export DEBCONF_NONINTERACTIVE_SEEN=true
-      - run: touch /tmp/nyc.txt
-      - run: echo "tzdata tzdata/Areas select America" > /tmp/nyc.txt
-      - run: echo "tzdata tzdata/Zones/America select New_York" >> /tmp/nyc.txt
-      - run: debconf-set-selections /tmp/nyc.txt
-      - run: ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
-      - run: apt-get update
-      - run: apt-get install -y --no-install-recommends tzdata
-      - run: apt-get install -y openssh-client git
-      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip
+      - run: apt update
+      - run: apt install -y openssh-client git # CircleCI Deps
+      - run: apt install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip
       - checkout
       - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
@@ -105,18 +94,13 @@ jobs:
   build-linux64-debug:
     docker:
       - image: ubuntu:20.04
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+      DEBCONF_NONINTERACTIVE_SEEN: true
     steps:
-      - run: export DEBIAN_FRONTEND=noninteractive
-      - run: export DEBCONF_NONINTERACTIVE_SEEN=true
-      - run: touch /tmp/nyc.txt
-      - run: echo "tzdata tzdata/Areas select America" > /tmp/nyc.txt
-      - run: echo "tzdata tzdata/Zones/America select New_York" >> /tmp/nyc.txt
-      - run: debconf-set-selections /tmp/nyc.txt
-      - run: ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
-      - run: apt-get update
-      - run: apt-get install -y --no-install-recommends tzdata
-      - run: apt-get install -y openssh-client git
-      - run: apt-get install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip
+      - run: apt update
+      - run: apt install -y openssh-client git # CircleCI Deps
+      - run: apt install -y curl clang cmake build-essential libsdl2-dev libopenal-dev libvorbis-dev libtheora-dev libfreetype6-dev libcurl4-gnutls-dev git zip unzip
       - checkout
       - run: curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks

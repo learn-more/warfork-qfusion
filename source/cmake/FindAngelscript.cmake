@@ -1,5 +1,5 @@
-# - Find ogg
-# Find the native ogg includes and libraries
+# - Find angelscript
+# Find the native angelscript includes and libraries
 #
 #  ANGELSCRIPT_INCLUDE_DIR - where to find angelscript.h, etc.
 #  ANGELSCRIPT_LIBRARIES   - List of libraries when using angelscript.
@@ -16,7 +16,7 @@ find_library(ANGELSCRIPT_LIBRARY NAMES angelscript angelscript_static libangelsc
 # Handle the QUIETLY and REQUIRED arguments and set ANGELSCRIPT_FOUND
 # to TRUE if all listed variables are TRUE.
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(ANGELSCRIPT DEFAULT_MSG ANGELSCRIPT_INCLUDE_DIR ANGELSCRIPT_LIBRARY)
+find_package_handle_standard_args(Angelscript DEFAULT_MSG ANGELSCRIPT_INCLUDE_DIR ANGELSCRIPT_LIBRARY)
 
 set(ANGELSCRIPT_LIBRARIES ${ANGELSCRIPT_LIBRARY})
 

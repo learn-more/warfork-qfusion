@@ -213,6 +213,8 @@ endif()
 add_executable(${QFUSION_CLIENT_NAME} ${CLIENT_BINARY_TYPE} ${CLIENT_HEADERS} ${CLIENT_PLATFORM_HEADERS} ${CLIENT_COMMON_SOURCES} ${CLIENT_PLATFORM_SOURCES} ${BUNDLE_RESOURCES})
 add_dependencies(${QFUSION_CLIENT_NAME} angelwrap cgame cin ftlib game ref_gl snd_openal steamlib ui)
 
+file(WRITE ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${QFUSION_GAME_STEAMAPPID})
+
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set_target_properties(${QFUSION_CLIENT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${QFUSION_MAC_INFO_PLIST})
     set_target_properties(${QFUSION_CLIENT_NAME} PROPERTIES XCODE_ATTRIBUTE_LD_RUNPATH_SEARCH_PATHS "@executable_path/../Frameworks @executable_path/../Resources/base @executable_path/../Resources/libs")
@@ -229,7 +231,15 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         cp -r ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_GAME_DIR}/ ${BUNDLE_PATH}/Resources/${QFUSION_GAME_DIR}/ &&
         cp -r ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/libs/ ${BUNDLE_PATH}/Resources/libs/ &&
         cp ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_SERVER_NAME} ${BUNDLE_PATH}/MacOS/ &&
-        cp ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_TVSERVER_NAME} ${BUNDLE_PATH}/MacOS/
+        cp ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_TVSERVER_NAME} ${BUNDLE_PATH}/MacOS/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/build/libsteam_api.dylib ${BUNDLE_PATH}/MacOS/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${BUNDLE_PATH}/MacOS/
+    )
+        
+    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})
+else()
+    set(POST_BUILD_CMDS
+        cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/
     )
         
     add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})

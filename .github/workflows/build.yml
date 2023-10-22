@@ -47,7 +47,6 @@ jobs:
         working-directory: ./source/build
         run: |
           echo "${GITHUB_SHA}" > commit.txt
-          echo "671610" > steam_appid.txt
           tar -czvf ../Linux-x86-Release.tar.gz * --exclude *.a --exclude base*/*.a libs/*.a
 
       - name: Upload warfork artifact
@@ -99,7 +98,6 @@ jobs:
         working-directory: ./source/build
         run: |
           echo "${GITHUB_SHA}" > commit.txt
-          echo "671610" > steam_appid.txt
           tar -czvf ../Linux-x86-Debug.tar.gz * --exclude *.a --exclude base*/*.a libs/*.a
 
       - name: Upload warfork artifact
@@ -142,7 +140,6 @@ jobs:
         working-directory: ./source/build
         run: |
           echo "${GITHUB_SHA}" > commit.txt
-          echo "671610" > steam_appid.txt
           tar -czvf ../Linux-x86_64-Release.tar.gz * --exclude *.a --exclude base*/*.a libs/*.a
 
       - name: Upload warfork artifact
@@ -185,7 +182,6 @@ jobs:
         working-directory: ./source/build
         run: |
           echo "${GITHUB_SHA}" > commit.txt
-          echo "671610" > steam_appid.txt
           tar -czvf ../Linux-x86_64-Debug.tar.gz * --exclude *.a --exclude base*/*.a libs/*.a
 
       - name: Upload warfork artifact
@@ -225,7 +221,6 @@ jobs:
         working-directory: ./source/build
         run: |
           echo "${GITHUB_SHA}" > commit.txt
-          echo "671610" > steam_appid.txt
           tar -czvf ../OSX-x86_64-Release.tar.gz Release/*.app
 
       - name: Upload warfork artifact
@@ -265,7 +260,6 @@ jobs:
         working-directory: ./source/build
         run: |
           echo "${GITHUB_SHA}" > commit.txt
-          echo "671610" > steam_appid.txt
           tar -czvf ../OSX-x86_64-Debug.tar.gz Debug/*.app
 
       - name: Upload warfork artifact

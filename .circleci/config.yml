@@ -22,7 +22,6 @@ jobs:
       - run: export CC=clang CXX=clang++
       - run: CFLAGS=-m32 CXXFLAGS=-m32 cmake -DBUILD_STEAMLIB=1 -DCMAKE_TOOLCHAIN_FILE=cmake/i386-linux-gnu.cmake -DWF_BUILD_32=ON ./source
       - run: make -j8
-      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: tar -czvf ./source/Linux-x86-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
           fail_only: false
@@ -52,7 +51,6 @@ jobs:
       - run: export CC=clang CXX=clang++
       - run: CFLAGS=-m32 CXXFLAGS=-m32 cmake -DCMAKE_BUILD_TYPE=DEBUG -DBUILD_STEAMLIB=1 -DCMAKE_TOOLCHAIN_FILE=cmake/i386-linux-gnu.cmake -DWF_BUILD_32=ON ./source
       - run: make -j8
-      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: tar -czvf ./source/Linux-x86-Debug.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
           fail_only: false
@@ -78,7 +76,6 @@ jobs:
       - run: export CC=clang CXX=clang++
       - run: cmake -DBUILD_STEAMLIB=1 ./source
       - run: make -j8
-      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: tar -czvf ./source/Linux-x86_64-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
           fail_only: false
@@ -104,7 +101,6 @@ jobs:
       - run: export CC=clang CXX=clang++
       - run: cmake -DCMAKE_BUILD_TYPE=DEBUG -DBUILD_STEAMLIB=1 ./source
       - run: make -j8
-      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: tar -czvf ./source/Linux-x86_64-Debug.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
           fail_only: false
@@ -125,7 +121,6 @@ jobs:
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
       - run: cmake -DBUILD_STEAMLIB=1 -G Xcode ./source
       - run: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: tar -czvf ./source/OSX-x86_64-Release.tar.gz ./source/build/Release/*.app
       - discord/status:
           fail_only: false
@@ -146,7 +141,6 @@ jobs:
       - run: unzip third-party/steamworks/sdk.zip -d third-party/steamworks
       - run: cmake -DCMAKE_BUILD_TYPE=DEBUG -DBUILD_STEAMLIB=1 -DWF_BUILD_DSYM=ON -G Xcode ./source
       - run: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Debug -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-      - run: echo "${CIRCLE_SHA1}" > ./source/build/commit.txt
       - run: tar -czvf ./source/OSX-x86_64-Debug.tar.gz ./source/build/Debug/*.app
       - discord/status:
           fail_only: false

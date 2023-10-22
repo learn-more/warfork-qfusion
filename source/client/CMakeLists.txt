@@ -213,6 +213,9 @@ endif()
 add_executable(${QFUSION_CLIENT_NAME} ${CLIENT_BINARY_TYPE} ${CLIENT_HEADERS} ${CLIENT_PLATFORM_HEADERS} ${CLIENT_COMMON_SOURCES} ${CLIENT_PLATFORM_SOURCES} ${BUNDLE_RESOURCES})
 add_dependencies(${QFUSION_CLIENT_NAME} angelwrap cgame cin ftlib game ref_gl snd_openal steamlib ui)
 
+execute_process(COMMAND git rev-parse HEAD WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}/.. OUTPUT_VARIABLE GIT_COMMIT_HASH OUTPUT_STRIP_TRAILING_WHITESPACE)
+file(WRITE ${CMAKE_HOME_DIRECTORY}/commit.txt ${GIT_COMMIT_HASH})
+
 file(WRITE ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${QFUSION_GAME_STEAMAPPID})
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -233,12 +236,14 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         cp ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_SERVER_NAME} ${BUNDLE_PATH}/MacOS/ &&
         cp ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_TVSERVER_NAME} ${BUNDLE_PATH}/MacOS/ &&
         cp ${CMAKE_HOME_DIRECTORY}/build/libsteam_api.dylib ${BUNDLE_PATH}/MacOS/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${BUNDLE_PATH}/MacOS/ &&
         cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${BUNDLE_PATH}/MacOS/
     )
         
     add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})
 else()
     set(POST_BUILD_CMDS
+        cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/ &&
         cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/
     )
         

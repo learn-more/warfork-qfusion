@@ -1116,7 +1116,7 @@ void TV_Downstream_InitMaster( void )
 	}
 #endif
 
-	tvs.lobby.next_heartbeat = Sys_Milliseconds();
+	tvs.lobby.next_heartbeat = Sys_Milliseconds() + 90 * 1000; // wait a while before sending first heartbeat
 }
 
 /*

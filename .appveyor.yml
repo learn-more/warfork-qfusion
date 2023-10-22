@@ -35,17 +35,17 @@ build_script:
     
     cd source\build\Release
     
-    XCOPY ..\..\..\third-party\openal-soft\bin\Win32\soft_oal.dll soft_oal32.dll*
+    XCOPY ..\..\..\libsrcs\src\openal-soft\bin\Win32\soft_oal.dll soft_oal32.dll*
 
-    XCOPY ..\..\..\third-party\openal-soft\bin\Win64\soft_oal.dll soft_oal64.dll*
+    XCOPY ..\..\..\libsrcs\src\openal-soft\bin\Win64\soft_oal.dll soft_oal64.dll*
     
     >>commit.txt echo %APPVEYOR_REPO_COMMIT%
 
     IF "%BUILD_STEAMLIB%"=="1" >>steam_appid.txt echo 671610
 
-    IF "%BUILD_STEAMLIB%"=="1" 7z a ..\..\..\win_%BUILD_PLATFORM%-STEAM-Release.zip * -r -x!*.exp -x!*.lib
+    IF "%BUILD_STEAMLIB%"=="1" 7z a ..\..\..\win_%BUILD_PLATFORM%-STEAM-Release.zip * '-xr!*.exp' '-xr!*.lib'
 
-    IF "%BUILD_STEAMLIB%"=="" 7z a ..\..\..\win_%BUILD_PLATFORM%-Release.zip * -r -x!*.exp -x!*.lib
+    IF "%BUILD_STEAMLIB%"=="" 7z a ..\..\..\win_%BUILD_PLATFORM%-Release.zip * '-xr!*.exp' '-xr!*.lib'
 
     cd ..\..\..\
 artifacts:

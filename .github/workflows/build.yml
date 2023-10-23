@@ -293,3 +293,131 @@ jobs:
         with:
           name: osx-x86_64-debug
           path: source/OSX-x86_64-Debug.tar.gz
+
+  build-win32:
+    runs-on: windows-2019
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download steamworks sdk
+        run: |
+          curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+          7z x third-party/steamworks/sdk.zip -othird-party/steamworks
+
+      - name: Generate makefiles
+        working-directory: .\source
+        run: cmake -G "Visual Studio 16 2019" -A Win32 -T "v142" -DBUILD_STEAMLIB=1 .
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Build project
+        working-directory: .\source
+        run: msbuild qfusion.sln /p:configuration=Release /maxcpucount:8
+
+      - name: Package warfork
+        working-directory: .\source\build
+        run: 7z a ..\win-x86-Release.zip * '-xr!*.exp' '-xr!*.lib'
+
+      - name: Upload warfork artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: win-x86-release
+          path: source\win-x86-Release.zip
+
+  build-win32-debug:
+    runs-on: windows-2019
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download steamworks sdk
+        run: |
+          curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+          7z x third-party/steamworks/sdk.zip -othird-party/steamworks
+
+      - name: Generate makefiles
+        working-directory: .\source
+        run: cmake -G "Visual Studio 16 2019" -A Win32 -T "v142" -DCMAKE_BUILD_TYPE=DEBUG -DBUILD_STEAMLIB=1 .
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Build project
+        working-directory: .\source
+        run: msbuild qfusion.sln /p:configuration=Debug /maxcpucount:8
+
+      - name: Package warfork
+        working-directory: .\source\build
+        run: 7z a ..\win-x86-Debug.zip * '-xr!*.exp' '-xr!*.lib'
+
+      - name: Upload warfork artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: win-x86-debug
+          path: source\win-x86-Debug.zip
+
+  build-win64:
+    runs-on: windows-2019
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download steamworks sdk
+        run: |
+          curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+          7z x third-party/steamworks/sdk.zip -othird-party/steamworks
+
+      - name: Generate makefiles
+        working-directory: .\source
+        run: cmake -G "Visual Studio 16 2019" -A x64 -T "v142" -DBUILD_STEAMLIB=1 .
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Build project
+        working-directory: .\source
+        run: msbuild qfusion.sln /p:configuration=Release /maxcpucount:8
+
+      - name: Package warfork
+        working-directory: .\source\build
+        run: 7z a ..\win-x86_64-Release.zip * '-xr!*.exp' '-xr!*.lib'
+
+      - name: Upload warfork artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: win-x86_64-release
+          path: source\win-x86_64-Release.zip
+
+  build-win64-debug:
+    runs-on: windows-2019
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download steamworks sdk
+        run: |
+          curl https://warfork.com/downloads/sdk/ --output third-party/steamworks/sdk.zip
+          7z x third-party/steamworks/sdk.zip -othird-party/steamworks
+
+      - name: Generate makefiles
+        working-directory: .\source
+        run: cmake -G "Visual Studio 16 2019" -A x64 -T "v142" -DCMAKE_BUILD_TYPE=DEBUG -DBUILD_STEAMLIB=1 .
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Build project
+        working-directory: .\source
+        run: msbuild qfusion.sln /p:configuration=Debug /maxcpucount:8
+
+      - name: Package warfork
+        working-directory: .\source\build
+        run: 7z a ..\win-x86_64-Debug.zip * '-xr!*.exp' '-xr!*.lib'
+
+      - name: Upload warfork artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: win-x86_64-debug
+          path: source\win-x86_64-Debug.zip

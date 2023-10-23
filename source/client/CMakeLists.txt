@@ -213,24 +213,57 @@ endif()
 add_executable(${QFUSION_CLIENT_NAME} ${CLIENT_BINARY_TYPE} ${CLIENT_HEADERS} ${CLIENT_PLATFORM_HEADERS} ${CLIENT_COMMON_SOURCES} ${CLIENT_PLATFORM_SOURCES} ${BUNDLE_RESOURCES})
 add_dependencies(${QFUSION_CLIENT_NAME} angelwrap cgame cin ftlib game ref_gl snd_openal steamlib ui)
 
+execute_process(COMMAND git rev-parse HEAD WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}/.. OUTPUT_VARIABLE GIT_COMMIT_HASH OUTPUT_STRIP_TRAILING_WHITESPACE)
+file(WRITE ${CMAKE_HOME_DIRECTORY}/commit.txt ${GIT_COMMIT_HASH})
+
+file(WRITE ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${QFUSION_GAME_STEAMAPPID})
+
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set_target_properties(${QFUSION_CLIENT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${QFUSION_MAC_INFO_PLIST})
     set_target_properties(${QFUSION_CLIENT_NAME} PROPERTIES XCODE_ATTRIBUTE_LD_RUNPATH_SEARCH_PATHS "@executable_path/../Frameworks @executable_path/../Resources/base @executable_path/../Resources/libs")
     set_source_files_properties(${QFUSION_MAC_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 
-    set_source_files_properties(../mac/Frameworks                 PROPERTIES MACOSX_PACKAGE_LOCATION .)
+    set_source_files_properties(../../libsrcs/lib/mac/Frameworks                 PROPERTIES MACOSX_PACKAGE_LOCATION .)
 	if (QFUSION_DATA_DIR)
 	    set_source_files_properties(${QFUSION_DATA_DIR}/${QFUSION_GAME_DIR}    PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 		set_source_files_properties(${QFUSION_DATA_DIR}/docs    PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 	endif()
 
     set(BUNDLE_PATH ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_CLIENT_NAME}.app/Contents)
-    set(COPY_DYLIBS
+    set(POST_BUILD_CMDS
         cp -r ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_GAME_DIR}/ ${BUNDLE_PATH}/Resources/${QFUSION_GAME_DIR}/ &&
-        cp -r ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/libs/ ${BUNDLE_PATH}/Resources/libs/
+        cp -r ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/libs/ ${BUNDLE_PATH}/Resources/libs/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_SERVER_NAME} ${BUNDLE_PATH}/MacOS/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/${QFUSION_TVSERVER_NAME} ${BUNDLE_PATH}/MacOS/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/build/libsteam_api.dylib ${BUNDLE_PATH}/MacOS/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${BUNDLE_PATH}/MacOS/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${BUNDLE_PATH}/MacOS/
     )
         
-    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${COPY_DYLIBS})
+    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})
+elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(POST_BUILD_CMDS
+            cp ${CMAKE_HOME_DIRECTORY}/../libsrcs/src/openal-soft/bin/Win64/soft_oal.dll ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/soft_oal64.dll &&
+            cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/ &&
+            cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/
+        )
+    else()
+        set(POST_BUILD_CMDS
+            cp ${CMAKE_HOME_DIRECTORY}/../libsrcs/src/openal-soft/bin/Win32/soft_oal.dll ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/soft_oal32.dll &&
+            cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/ &&
+            cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/
+        )
+    endif()
+        
+    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})
+else()
+    set(POST_BUILD_CMDS
+        cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/ &&
+        cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/
+    )
+        
+    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})
 endif()
 
 target_link_libraries(${QFUSION_CLIENT_NAME} PRIVATE ${CURL_LIBRARY} ${CLIENT_PLATFORM_LIBRARIES} ${DISCORD_LIBRARY})

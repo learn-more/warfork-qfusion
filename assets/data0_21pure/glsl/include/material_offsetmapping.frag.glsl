@@ -1,6 +1,6 @@
 #if defined(APPLY_OFFSETMAPPING) || defined(APPLY_RELIEFMAPPING)
 // The following reliefmapping and offsetmapping routine was taken from DarkPlaces
-// The credit goes to LordHavoc (as always)
+// The credit goes to LadyHavoc (as always)
 vec2 OffsetMapping(sampler2D NormalmapTexture, in vec2 TexCoord, in vec3 EyeVector, in float OffsetMappingScale)
 {
 #ifdef APPLY_RELIEFMAPPING

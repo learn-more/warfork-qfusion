@@ -939,7 +939,7 @@ static void R_FinalizeGLExtensions( void )
 		// blacklist this extension on Radeon X1600-X1950 hardware (they support it only with certain filtering/repeat modes)
 		val = 0;
 
-		// LordHavoc: this is blocked on Mac OS X because the drivers claim support but often can't accelerate it or crash when used.
+		// LadyHavoc: this is blocked on Mac OS X because the drivers claim support but often can't accelerate it or crash when used.
 #ifndef __APPLE__
 		if( glConfig.ext.vertex_shader )
 			qglGetIntegerv( GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS_ARB, &val );

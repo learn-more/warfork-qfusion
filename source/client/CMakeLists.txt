@@ -243,20 +243,12 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-        set(POST_BUILD_CMDS
-            cp ${CMAKE_HOME_DIRECTORY}/../libsrcs/src/openal-soft/bin/Win64/soft_oal.dll ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/soft_oal64.dll &&
-            cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/ &&
-            cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/
-        )
+        add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_HOME_DIRECTORY}/../libsrcs/src/openal-soft/bin/Win64/soft_oal.dll ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/soft_oal64.dll)
     else()
-        set(POST_BUILD_CMDS
-            cp ${CMAKE_HOME_DIRECTORY}/../libsrcs/src/openal-soft/bin/Win32/soft_oal.dll ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/soft_oal32.dll &&
-            cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/ &&
-            cp ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/
-        )
+        add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_HOME_DIRECTORY}/../libsrcs/src/openal-soft/bin/Win64/soft_oal.dll ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/soft_oal64.dll)
     endif()
-        
-    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})
+    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_HOME_DIRECTORY}/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/)
+    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_HOME_DIRECTORY}/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/)
 else()
     set(POST_BUILD_CMDS
         cp ${CMAKE_HOME_DIRECTORY}/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/ &&

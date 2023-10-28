@@ -605,6 +605,8 @@ void ServerBrowserDataSource::updateFrame()
 				
 				tableNameForServerInfo( serverInfo, tableName );
 				addServerToTable( serverInfo, tableName );
+				
+				if( !serverInfo.tv)
 				addServerToTable( serverInfo, TABLE_NAME_ALL );
 
 				if( serverInfo.favorite )

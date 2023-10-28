@@ -22,6 +22,8 @@ libsrcs/libRocket/libRocket/Build/obj/
 **/CMakeScripts/
 **/qfusion.build/
 **/*.xcodeproj
+**/commit.txt
+**/steam_appid.txt
 **/Makefile
 *cmake_install.cmake
 .cache/

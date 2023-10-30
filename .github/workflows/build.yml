@@ -317,8 +317,8 @@ jobs:
         run: msbuild qfusion.sln /p:configuration=Release /maxcpucount:8
 
       - name: Package warfork
-        working-directory: .\source\build
-        run: 7z a ..\win-x86-Release.zip * '-xr!*.exp' '-xr!*.lib'
+        working-directory: .\source\build\Release
+        run: 7z a ..\..\win-x86-Release.zip * '-xr!*.exp' '-xr!*.lib'
 
       - name: Upload warfork artifact
         uses: actions/upload-artifact@v3
@@ -349,8 +349,8 @@ jobs:
         run: msbuild qfusion.sln /p:configuration=Debug /maxcpucount:8
 
       - name: Package warfork
-        working-directory: .\source\build
-        run: 7z a ..\win-x86-Debug.zip * '-xr!*.exp' '-xr!*.lib'
+        working-directory: .\source\build\Debug
+        run: 7z a ..\..\win-x86-Debug.zip * '-xr!*.exp' '-xr!*.lib'
 
       - name: Upload warfork artifact
         uses: actions/upload-artifact@v3
@@ -381,8 +381,8 @@ jobs:
         run: msbuild qfusion.sln /p:configuration=Release /maxcpucount:8
 
       - name: Package warfork
-        working-directory: .\source\build
-        run: 7z a ..\win-x86_64-Release.zip * '-xr!*.exp' '-xr!*.lib'
+        working-directory: .\source\build\Release
+        run: 7z a ..\..\win-x86_64-Release.zip * '-xr!*.exp' '-xr!*.lib'
 
       - name: Upload warfork artifact
         uses: actions/upload-artifact@v3
@@ -413,8 +413,8 @@ jobs:
         run: msbuild qfusion.sln /p:configuration=Debug /maxcpucount:8
 
       - name: Package warfork
-        working-directory: .\source\build
-        run: 7z a ..\win-x86_64-Debug.zip * '-xr!*.exp' '-xr!*.lib'
+        working-directory: .\source\build\Debug
+        run: 7z a ..\..\win-x86_64-Debug.zip * '-xr!*.exp' '-xr!*.lib'
 
       - name: Upload warfork artifact
         uses: actions/upload-artifact@v3

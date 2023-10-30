@@ -249,13 +249,6 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     endif()
     add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_HOME_DIRECTORY}/build/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/)
     add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_HOME_DIRECTORY}/build/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/)
-else()
-    set(POST_BUILD_CMDS
-        cp ${CMAKE_HOME_DIRECTORY}/build/commit.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/ &&
-        cp ${CMAKE_HOME_DIRECTORY}/build/steam_appid.txt ${CMAKE_HOME_DIRECTORY}/build/$(CONFIGURATION)/
-    )
-        
-    add_custom_command(TARGET ${QFUSION_CLIENT_NAME} POST_BUILD COMMAND ${POST_BUILD_CMDS})
 endif()
 
 target_link_libraries(${QFUSION_CLIENT_NAME} PRIVATE ${CURL_LIBRARY} ${CLIENT_PLATFORM_LIBRARIES} ${DISCORD_LIBRARY})

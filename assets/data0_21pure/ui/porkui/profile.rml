@@ -13,7 +13,9 @@
 <body>
 <div id="news" src="" onload="$onNewsLoad" onimageload="$onNewsImageLoad" />
     
-<img src="/ui/porkui/gfx/logo.tga"/>
+
+	<img id="logo" src="/ui/porkui/gfx/logo.tga"/>
+
 
 <p id="intro-text" class="intro">
 

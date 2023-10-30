@@ -168,11 +168,7 @@
 
 <iframe id="profile_container" src="profile.rml" />
 
-<hr class="w100p nicehr" id="nicehr" />
-
-<div id="news_container">
-Join fellow forkers on Discord: https://warfork.com/discord
-</div>
+<div id="news_container"></div>
 
 <iframe id="friends_container" src="friends.rml" />
 

@@ -205,7 +205,7 @@ workflows:
       - build-win64
       - build-win64-debug
 
-  notify-discord:
+notify-discord:
     jobs:
       - discord/status:
           fail_only: false
@@ -214,3 +214,4 @@ workflows:
           webhook: "${DISCORD_STATUS_WEBHOOK}"
     when:
       status: always
+

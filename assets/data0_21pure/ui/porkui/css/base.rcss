@@ -369,3 +369,20 @@ tabset tabs, #navibar {
 .right-arrow:hover {
 	ninep-src: /ui/porkui/gfx/arrow_right_h;
 }
+
+
+#social-links {
+	position: fixed;
+	bottom: 24dp;
+	margin-left: auto;
+	margin-right: 8dp;
+	height: 32dp;
+	z-index: 3;
+}
+
+.social-icon {
+	margin-left: 4dp;
+	height: 32dp;
+	width: 32dp;
+	float: right;
+}

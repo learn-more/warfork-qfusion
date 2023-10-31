@@ -26,7 +26,7 @@ jobs:
       - run: make -j8
       - run: tar -czvf ./source/Linux-x86-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -55,7 +55,7 @@ jobs:
       - run: make -j8
       - run: tar -czvf ./source/Linux-x86-Debug.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -80,7 +80,7 @@ jobs:
       - run: make -j8
       - run: tar -czvf ./source/Linux-x86_64-Release.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -105,7 +105,7 @@ jobs:
       - run: make -j8
       - run: tar -czvf ./source/Linux-x86_64-Debug.tar.gz ./source/build/* --exclude ./source/build/*.a --exclude ./source/build/base*/*.a ./source/build/libs/*.a
       - discord/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -125,7 +125,7 @@ jobs:
       - run: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Release -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
       - run: tar -czvf ./source/OSX-x86_64-Release.tar.gz ./source/build/Release/*.app
       - discord/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -145,7 +145,7 @@ jobs:
       - run: xcodebuild -project qfusion.xcodeproj/ -jobs 4 -configuration Debug -target ALL_BUILD CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
       - run: tar -czvf ./source/OSX-x86_64-Debug.tar.gz ./source/build/Debug/*.app
       - discord/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -167,7 +167,7 @@ jobs:
       - run: msbuild .\source\qfusion.sln /p:configuration=Release /maxcpucount:8
       - run: 7z a win-x86-Release.zip .\source\build\Release\* -r -x!*.exp -x!*.lib
       - discord-win/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -189,7 +189,7 @@ jobs:
       - run: msbuild .\source\qfusion.sln /p:configuration=Debug /maxcpucount:8
       - run: 7z a win-x86-Debug.zip .\source\build\Debug\* -r -x!*.exp -x!*.lib
       - discord-win/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -211,7 +211,7 @@ jobs:
       - run: msbuild .\source\qfusion.sln /p:configuration=Release /maxcpucount:8
       - run: 7z a win-x86_64-Release.zip .\source\build\Release\* -r -x!*.exp -x!*.lib
       - discord-win/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"
@@ -233,7 +233,7 @@ jobs:
       - run: msbuild .\source\qfusion.sln /p:configuration=Debug /maxcpucount:8
       - run: 7z a win-x86_64-Debug.zip .\source\build\Debug\* -r -x!*.exp -x!*.lib
       - discord-win/status:
-          fail_only: true
+          fail_only: false
           failure_message: ":red_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has failed!"
           success_message: ":green_circle: ${CIRCLE_PROJECT_REPONAME} ${CIRCLE_BRANCH} ${CIRCLE_JOB} (${CIRCLE_SHA1}) has succeeded!"
           webhook: "${DISCORD_STATUS_WEBHOOK}"

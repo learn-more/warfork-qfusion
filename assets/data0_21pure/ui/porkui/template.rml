@@ -215,14 +215,14 @@
 	</div>
 
 	<div id="social-links"> 
+		<a href="https://twitter.com/warforksocial" target="_browser">
+			<img src="/ui/porkui/gfx/x.tga" class="social-icon" />
+		</a>
 		<a href="https://warfork.com/discord" target="_browser">
 			<img src="/ui/porkui/gfx/discord.tga" class="social-icon" />
 		</a>
 		<a href="https://warfork.com/" target="_browser">
 			<img src="/ui/porkui/gfx/www.tga" class="social-icon" />
-		</a>
-		<a href="https://twitter.com/warforksocial" target="_browser">
-			<img src="/ui/porkui/gfx/x.tga" class="social-icon" />
 		</a>
 	</div>
 

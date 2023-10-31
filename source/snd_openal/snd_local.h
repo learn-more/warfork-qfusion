@@ -45,7 +45,8 @@ typedef struct { char *name; void **funcPointer; } dllfunc_t;
 #define ALDRIVER_ALT "OpenAL32.dll"
 #define ALDEVICE_DEFAULT "Generic Software"
 #elif defined ( __MACOSX__ )
-#define ALDRIVER "/System/Library/Frameworks/OpenAL.framework/OpenAL"
+#define ALDRIVER "../Frameworks/soft_oal.framework/soft_oal"
+#define ALDRIVER_ALT "/System/Library/Frameworks/OpenAL.framework/OpenAL"
 #define ALDEVICE_DEFAULT NULL
 #else
 #define ALDRIVER "libopenal.so.1"

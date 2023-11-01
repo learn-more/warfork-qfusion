@@ -933,6 +933,7 @@ ucmd_t ucmds[] =
 	{ "configstrings", SV_Configstrings_f },
 	{ "baselines", SV_Baselines_f },
 	{ "begin", SV_Begin_f },
+	{ "disc", SV_Disconnect_f },
 	{ "disconnect", SV_Disconnect_f },
 	{ "usri", SV_UserinfoCommand_f },
 

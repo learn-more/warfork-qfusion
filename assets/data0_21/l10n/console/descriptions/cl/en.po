@@ -161,7 +161,7 @@ msgstr "<0-1.0> Camera offset with cl_stereo\n"
 
 #. Console/cl
 msgid "cl_timeout"
-msgstr "<value> Disconnects you from server if packet isn't recieved more than specified time in seconds."
+msgstr "<value> Disconnects you from server if packet isn't received more than specified time in seconds."
 
 #. Console/cl
 msgid "cl_ucmdMaxResend"

@@ -1235,6 +1235,7 @@ svcmd_t svcmds[] =
 	{ "precache", CL_Precache_f },
 	{ "cmd", CL_ForwardToServer_f },
 	{ "cs", CL_ParseConfigstringCommand },
+	{ "disc", CL_ServerDisconnect_f },
 	{ "disconnect", CL_ServerDisconnect_f },
 	{ "initdownload", CL_InitDownload_f },
 	{ "multiview", CL_Multiview_f },

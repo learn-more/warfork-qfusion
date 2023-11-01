@@ -2194,6 +2194,7 @@ static void CL_InitLocal( void )
 	Cmd_AddCommand( "getinfo", CL_QueryGetInfoMessage_f ); // wsw : jal : ask for server info
 	Cmd_AddCommand( "getstatus", CL_QueryGetStatusMessage_f ); // wsw : jal : ask for server info
 	Cmd_AddCommand( "userinfo", CL_Userinfo_f );
+	Cmd_AddCommand( "disc", CL_Disconnect_f );
 	Cmd_AddCommand( "disconnect", CL_Disconnect_f );
 	Cmd_AddCommand( "record", CL_Record_f );
 	Cmd_AddCommand( "stop", CL_Stop_f );
@@ -2235,6 +2236,7 @@ static void CL_ShutdownLocal( void )
 	Cmd_RemoveCommand( "getinfo" );
 	Cmd_RemoveCommand( "getstatus" );
 	Cmd_RemoveCommand( "userinfo" );
+	Cmd_RemoveCommand( "disc" );
 	Cmd_RemoveCommand( "disconnect" );
 	Cmd_RemoveCommand( "record" );
 	Cmd_RemoveCommand( "stop" );

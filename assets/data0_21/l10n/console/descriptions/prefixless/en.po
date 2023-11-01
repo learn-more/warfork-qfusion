@@ -587,6 +587,10 @@ msgstr "<map> Restarts the game, enables cheats, and starts the map.\n"
 "^6Note: Other available options are \"map\" and \"gamemap\"."
 
 #. Console/prefixless
+msgid "disc"
+msgstr "Disconnects from current server."
+
+#. Console/prefixless
 msgid "disconnect"
 msgstr "Disconnects from current server."
 

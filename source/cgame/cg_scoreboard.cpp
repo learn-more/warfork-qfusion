@@ -851,7 +851,7 @@ struct qfontface_s *CG_ScoreboardFont( cvar_t *familyCvar, cvar_t *sizeCvar )
 void CG_DrawScoreboard( void )
 {
 	int pass;
-	const char *ptr, *token, *layout;
+	const char *ptr, *token, *layout, *mapname, *mapmessage, *mapstr;
 	char title[MAX_CONFIGSTRING_CHARS], type;
 	int team = TEAM_PLAYERS;
 	int xpos;
@@ -884,6 +884,21 @@ void CG_DrawScoreboard( void )
 
 	trap_SCR_DrawString( xpos, ypos, ALIGN_CENTER_TOP, title, titlefont, whiteTransparent );
 	ypos += trap_SCR_FontHeight( titlefont );
+
+	mapname = cgs.configStrings[CS_MAPNAME];
+	mapmessage = cgs.configStrings[CS_MESSAGE];
+
+	// If the map title exists and isn't the same as the map name, add the title to the line where we draw map name
+	if( mapmessage[0] && strcmp( mapmessage, mapname ) )
+		mapstr = va( "%s \"%s\"", mapname, mapmessage );
+	else
+		mapstr = mapname;
+
+	// Draw map name
+	trap_SCR_DrawStringWidth( xpos, ypos, ALIGN_CENTER_TOP, mapstr, cgs.vidWidth*0.75, font, whiteTransparent );
+	ypos += trap_SCR_FontHeight( font );
+
+	// Draw server name
 	trap_SCR_DrawStringWidth( xpos, ypos, ALIGN_CENTER_TOP, cgs.configStrings[CS_HOSTNAME], cgs.vidWidth*0.75, font, whiteTransparent );
 	ypos += trap_SCR_FontHeight( font );
 

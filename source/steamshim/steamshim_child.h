@@ -47,6 +47,7 @@ void STEAMSHIM_setStatF(const char *name, const float val);
 void STEAMSHIM_getStatF(const char *name);
 void STEAMSHIM_getSteamID();
 void STEAMSHIM_getPersonaName();
+void STEAMSHIM_setRichPresence(const char* key, const char* val);
 #ifdef __cplusplus
 }
 #endif

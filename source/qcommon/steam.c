@@ -135,3 +135,11 @@ void Steam_GetPersonaName( char *name, size_t namesize )
 	}
 	strncpy(name, evt->name,namesize);
 }
+
+/*
+* Steam_SetRichPresence
+*/
+void Steam_SetRichPresence( const char *key, const char *val )
+{
+	STEAMSHIM_setRichPresence(key, val);
+}

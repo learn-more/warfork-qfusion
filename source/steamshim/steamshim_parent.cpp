@@ -218,6 +218,7 @@ typedef enum ShimCmd
     SHIMCMD_GETSTATF,
     SHIMCMD_GETSTEAMID,
     SHIMCMD_GETPERSONANAME,
+    SHIMCMD_SETRICHPRESENCE,
 } ShimCmd;
 
 typedef enum ShimEvent
@@ -507,9 +508,19 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
             break;
 
         case SHIMCMD_GETPERSONANAME:
-            const char* name = SteamFriends()->GetPersonaName();
-            writeStatThing(fd, SHIMEVENT_GETPERSONANAME, name, 0,0, 1);
+            {
+                const char* name = SteamFriends()->GetPersonaName();
+                writeStatThing(fd, SHIMEVENT_GETPERSONANAME, name, 0,0, 1);
+            }
             break;
+
+        case SHIMCMD_SETRICHPRESENCE:
+            if (buflen){
+                const char *key  = (const char *)buf;
+                buf += strlen(key) + 1;
+                const char *val = (const char *)buf;
+                SteamFriends()->SetRichPresence(key,val);
+            }
     } // switch
 
     return true;  // keep going.

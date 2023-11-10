@@ -54,6 +54,7 @@ typedef enum ShimCmd
     SHIMCMD_GETSTATF,
     SHIMCMD_GETSTEAMID,
     SHIMCMD_GETPERSONANAME,
+    SHIMCMD_SETRICHPRESENCE,
 } ShimCmd;
 
 static int write1ByteCmd(const uint8 b1)
@@ -378,8 +379,21 @@ void STEAMSHIM_getSteamID()
 {
 	write1ByteCmd(SHIMCMD_GETSTEAMID);
 }
+
 void STEAMSHIM_getPersonaName(){
     write1ByteCmd(SHIMCMD_GETPERSONANAME);
+}
+
+void STEAMSHIM_setRichPresence(const char* key, const char* val){
+    uint8 buf[256];
+    uint8 *ptr = buf+1;
+    *(ptr++) = (uint8) SHIMCMD_SETRICHPRESENCE;
+    strcpy((char *) ptr, key);
+    ptr += strlen(key) + 1;
+    strcpy((char *) ptr, val);
+    ptr += strlen(val) + 1;
+    buf[0] = (uint8) ((ptr-1) - buf);
+    writePipe(GPipeWrite, buf, buf[0] + 1);
 }
 /* end of steamshim_child.c ... */
 

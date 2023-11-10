@@ -23,14 +23,7 @@ typedef int PipeType;
 #endif
 
 #include "steam/steam_api.h"
-#include "pipe.c"
-
-#define DEBUGPIPE 0
-#if DEBUGPIPE
-#define dbgpipe printf
-#else
-static inline void dbgpipe(const char *fmt, ...) {}
-#endif
+#include "pipe.h"
 
 /* platform-specific mainline calls this. */
 static int mainline(void);
@@ -203,24 +196,6 @@ private:
     PipeType fd;
 };
 
-typedef enum ShimCmd
-{
-    SHIMCMD_BYE,
-    SHIMCMD_PUMP,
-    SHIMCMD_REQUESTSTATS,
-    SHIMCMD_STORESTATS,
-    SHIMCMD_SETACHIEVEMENT,
-    SHIMCMD_GETACHIEVEMENT,
-    SHIMCMD_RESETSTATS,
-    SHIMCMD_SETSTATI,
-    SHIMCMD_GETSTATI,
-    SHIMCMD_SETSTATF,
-    SHIMCMD_GETSTATF,
-    SHIMCMD_REQUESTSTEAMID,
-    SHIMCMD_REQUESTPERSONANAME,
-    SHIMCMD_SETRICHPRESENCE,
-} ShimCmd;
-
 typedef enum ShimEvent
 {
     SHIMEVENT_BYE,
@@ -322,17 +297,6 @@ static bool writeStatThing(PipeType fd, const ShimEvent ev, const char *name, co
     buf[0] = (uint8) ((ptr-1) - buf);
     return writePipe(fd, buf, buf[0] + 1);
 } // writeStatThing
-
-static bool writeThing(PipeType fd, const ShimEvent ev, const void *val, const size_t vallen, const bool okay){
-    uint8 buf[256];
-    uint8 *ptr = buf+1;
-    *(ptr++) = (uint8) ev;
-    *(ptr++) = okay ? 1 : 0;
-    memcpy(ptr, val, vallen);
-    ptr += vallen;
-    buf[0] = (uint8) ((ptr-1) - buf);
-    return writePipe(fd, buf, buf[0] + 1);
-}
 
 static inline bool writeSetStatI(PipeType fd, const char *name, const int32 val, const bool okay)
 {

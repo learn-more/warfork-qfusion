@@ -28,52 +28,6 @@ typedef int PipeType;
 #include "pipe.c"
 
 #define DEBUGPIPE 1
-#if DEBUGPIPE
-void Com_Printf( const char *format, ... );
-#define dbgpipe Com_Printf
-#else
-static inline void dbgpipe(const char *fmt, ...) {}
-#endif
-
-
-static PipeType GPipeRead = NULLPIPE;
-static PipeType GPipeWrite = NULLPIPE;
-
-typedef enum ShimCmd
-{
-    SHIMCMD_BYE,
-    SHIMCMD_PUMP,
-    SHIMCMD_REQUESTSTATS,
-    SHIMCMD_STORESTATS,
-    SHIMCMD_SETACHIEVEMENT,
-    SHIMCMD_GETACHIEVEMENT,
-    SHIMCMD_RESETSTATS,
-    SHIMCMD_SETSTATI,
-    SHIMCMD_GETSTATI,
-    SHIMCMD_SETSTATF,
-    SHIMCMD_GETSTATF,
-    SHIMCMD_REQUESTSTEAMID,
-    SHIMCMD_REQUESTPERSONANAME,
-    SHIMCMD_SETRICHPRESENCE,
-} ShimCmd;
-
-static int write1ByteCmd(const uint8 b1)
-{
-    const uint8 buf[] = { 1, b1 };
-    return writePipe(GPipeWrite, buf, sizeof (buf));
-} /* write1ByteCmd */
-
-static int write2ByteCmd(const uint8 b1, const uint8 b2)
-{
-    const uint8 buf[] = { 2, b1, b2 };
-    return writePipe(GPipeWrite, buf, sizeof (buf));
-} /* write2ByteCmd */
-
-static inline int writeBye(void)
-{
-    dbgpipe("Child sending SHIMCMD_BYE().\n");
-    return write1ByteCmd(SHIMCMD_BYE);
-} // writeBye
 
 static int initPipes(void)
 {

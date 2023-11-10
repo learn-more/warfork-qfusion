@@ -28,7 +28,7 @@ typedef struct STEAMSHIM_Event
     int okay;
     int ivalue;
     float fvalue;
-    long lvalue;
+    long long lvalue;
     unsigned long long epochsecs;
     char name[256];
 } STEAMSHIM_Event;

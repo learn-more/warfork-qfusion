@@ -101,7 +101,7 @@ uint64_t Steam_GetSteamID( void )
 	while( !( evt = STEAMSHIM_pump() ) ) {
 	}
 
-	return evt->lvalue;
+	return evt->epochsecs;
 }
 
 /*

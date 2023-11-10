@@ -216,8 +216,8 @@ typedef enum ShimCmd
     SHIMCMD_GETSTATI,
     SHIMCMD_SETSTATF,
     SHIMCMD_GETSTATF,
-    SHIMCMD_GETSTEAMID,
-    SHIMCMD_GETPERSONANAME,
+    SHIMCMD_REQUESTSTEAMID,
+    SHIMCMD_REQUESTPERSONANAME,
     SHIMCMD_SETRICHPRESENCE,
 } ShimCmd;
 
@@ -233,8 +233,8 @@ typedef enum ShimEvent
     SHIMEVENT_GETSTATI,
     SHIMEVENT_SETSTATF,
     SHIMEVENT_GETSTATF,
-    SHIMEVENT_GETSTEAMID,
-    SHIMEVENT_GETPERSONANAME,
+    SHIMEVENT_STEAMIDRECIEVED,
+    SHIMEVENT_PERSONANAMERECIEVED,
 } ShimEvent;
 
 static bool write1ByteCmd(PipeType fd, const uint8 b1)
@@ -323,6 +323,17 @@ static bool writeStatThing(PipeType fd, const ShimEvent ev, const char *name, co
     return writePipe(fd, buf, buf[0] + 1);
 } // writeStatThing
 
+static bool writeThing(PipeType fd, const ShimEvent ev, const void *val, const size_t vallen, const bool okay){
+    uint8 buf[256];
+    uint8 *ptr = buf+1;
+    *(ptr++) = (uint8) ev;
+    *(ptr++) = okay ? 1 : 0;
+    memcpy(ptr, val, vallen);
+    ptr += vallen;
+    buf[0] = (uint8) ((ptr-1) - buf);
+    return writePipe(fd, buf, buf[0] + 1);
+}
+
 static inline bool writeSetStatI(PipeType fd, const char *name, const int32 val, const bool okay)
 {
     dbgpipe("Parent sending SHIMEVENT_SETSTATI('%s', val %d, %sokay).\n", name, (int) val, okay ? "" : "!");
@@ -392,7 +403,7 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
     PRINTGOTCMD(SHIMCMD_GETSTATI);
     PRINTGOTCMD(SHIMCMD_SETSTATF);
     PRINTGOTCMD(SHIMCMD_GETSTATF);
-    PRINTGOTCMD(SHIMCMD_GETSTEAMID);
+    PRINTGOTCMD(SHIMCMD_REQUESTSTEAMID);
     #undef PRINTGOTCMD
     else printf("Parent got unknown shimcmd %d.\n", (int) cmd);
     #endif
@@ -500,17 +511,17 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
             } // if
             break;
 
-        case SHIMCMD_GETSTEAMID:
+        case SHIMCMD_REQUESTSTEAMID:
             {
                 unsigned long long id = SteamUser()->GetSteamID().ConvertToUint64();
-                writeStatThing(fd, SHIMEVENT_GETSTEAMID, "a", &id, sizeof(id),1);
+                writeThing(fd, SHIMEVENT_STEAMIDRECIEVED, &id, sizeof(id), true);
             }
             break;
 
-        case SHIMCMD_GETPERSONANAME:
+        case SHIMCMD_REQUESTPERSONANAME:
             {
                 const char* name = SteamFriends()->GetPersonaName();
-                writeStatThing(fd, SHIMEVENT_GETPERSONANAME, name, 0,0, 1);
+                writeThing(fd, SHIMEVENT_PERSONANAMERECIEVED, name, strlen(name), true);
             }
             break;
 

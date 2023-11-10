@@ -661,7 +661,6 @@ void CL_UpdateDiscord( void )
 			UpdatePresenceIfChanged( presence );
 		}
 	}
-
 	Discord_RunCallbacks();
 }
 

@@ -42,8 +42,8 @@ static void printEvent( const STEAMSHIM_Event *e )
 		PRINTGOTEVENT( STATSSTORED );
 		PRINTGOTEVENT( SETACHIEVEMENT );
 		PRINTGOTEVENT( GETACHIEVEMENT );
-		PRINTGOTEVENT( GETSTEAMID );
-		PRINTGOTEVENT( GETPERSONANAME );
+		PRINTGOTEVENT( STEAMIDRECIEVED );
+		PRINTGOTEVENT( PERSONANAMERECIEVED );
 		PRINTGOTEVENT( RESETSTATS );
 		PRINTGOTEVENT( SETSTATI );
 		PRINTGOTEVENT( GETSTATI );
@@ -101,7 +101,7 @@ uint64_t Steam_GetSteamID( void )
 	while( !( evt = STEAMSHIM_pump() ) ) {
 	}
 
-	return evt->epochsecs;
+	return evt->lvalue;
 }
 
 /*
@@ -109,7 +109,7 @@ uint64_t Steam_GetSteamID( void )
 */
 int Steam_GetAuthSessionTicket( void ( *callback )( void *, size_t ) )
 {
-	UNIMPLEMENTED_DBGBREAK();
+	// UNIMPLEMENTED_DBGBREAK();
 	return 0;
 }
 

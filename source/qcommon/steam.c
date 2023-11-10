@@ -91,18 +91,7 @@ void Steam_Shutdown( void )
 	STEAMSHIM_deinit();
 }
 
-/*
-* Steam_GetSteamID
-*/
-uint64_t Steam_GetSteamID( void )
-{
-	STEAMSHIM_getSteamID();
-	const STEAMSHIM_Event *evt;
-	while( !( evt = STEAMSHIM_pump() ) ) {
-	}
 
-	return evt->epochsecs;
-}
 
 /*
 * Steam_GetAuthSessionTicket
@@ -118,7 +107,7 @@ int Steam_GetAuthSessionTicket( void ( *callback )( void *, size_t ) )
 */
 void Steam_AdvertiseGame( const uint8_t *ip, unsigned short port )
 {
-	UNIMPLEMENTED_DBGBREAK();
+	// UNIMPLEMENTED_DBGBREAK();
 }
 
 /*
@@ -142,4 +131,16 @@ void Steam_GetPersonaName( char *name, size_t namesize )
 void Steam_SetRichPresence( const char *key, const char *val )
 {
 	STEAMSHIM_setRichPresence(key, val);
+}
+/*
+* Steam_GetSteamID
+*/
+uint64_t Steam_GetSteamID( void )
+{
+	STEAMSHIM_getSteamID();
+	const STEAMSHIM_Event *evt;
+	while( !( evt = STEAMSHIM_pump() ) ) {
+	}
+
+	return evt->lvalue;
 }

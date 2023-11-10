@@ -658,6 +658,12 @@ void CL_UpdateDiscord( void )
 				strcpy( presence.details, "Main Menu" );
 			}
 
+
+			// TODO add separate logic for steam rpc stuff
+			Steam_SetRichPresence("score", presence.state);
+			Steam_SetRichPresence("steam_display", "#Status_Score");
+			//
+
 			UpdatePresenceIfChanged( presence );
 		}
 	}

@@ -17,6 +17,8 @@ typedef enum STEAMSHIM_EventType
     SHIMEVENT_GETSTATI,
     SHIMEVENT_SETSTATF,
     SHIMEVENT_GETSTATF,
+    SHIMEVENT_GETSTEAMID,
+    SHIMEVENT_GETPERSONANAME,
 } STEAMSHIM_EventType;
 
 /* not all of these fields make sense in a given event. */
@@ -43,7 +45,8 @@ void STEAMSHIM_setStatI(const char *name, const int _val);
 void STEAMSHIM_getStatI(const char *name);
 void STEAMSHIM_setStatF(const char *name, const float val);
 void STEAMSHIM_getStatF(const char *name);
-
+void STEAMSHIM_getSteamID();
+void STEAMSHIM_getPersonaName();
 #ifdef __cplusplus
 }
 #endif

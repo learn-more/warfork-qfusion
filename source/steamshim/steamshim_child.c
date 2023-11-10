@@ -135,6 +135,8 @@ typedef enum ShimCmd
     SHIMCMD_GETSTATI,
     SHIMCMD_SETSTATF,
     SHIMCMD_GETSTATF,
+    SHIMCMD_GETSTEAMID,
+    SHIMCMD_GETPERSONANAME,
 } ShimCmd;
 
 static int write1ByteCmd(const uint8 b1)
@@ -252,6 +254,8 @@ static const STEAMSHIM_Event *processEvent(const uint8 *buf, size_t buflen)
     PRINTGOTEVENT(SHIMEVENT_GETSTATI);
     PRINTGOTEVENT(SHIMEVENT_SETSTATF);
     PRINTGOTEVENT(SHIMEVENT_GETSTATF);
+    PRINTGOTEVENT(SHIMEVENT_GETSTEAMID);
+    PRINTGOTEVENT(SHIMEVENT_GETPERSONANAME);
     #undef PRINTGOTEVENT
     else printf("Child got unknown shimevent %d.\n", (int) type);
     #endif
@@ -305,7 +309,14 @@ static const STEAMSHIM_Event *processEvent(const uint8 *buf, size_t buflen)
             buf += sizeof (float);
             strcpy(event.name, (const char *) buf);
             break;
-
+		case SHIMEVENT_GETSTEAMID:
+			buf++;
+			event.epochsecs = *( (unsigned long long *)buf );
+			break;
+		case SHIMEVENT_GETPERSONANAME:
+		    buf++;
+		    strcpy(event.name,((char*)buf));
+		    break;
         default:  /* uh oh */
             return NULL;
     } /* switch */
@@ -446,5 +457,12 @@ void STEAMSHIM_getStatF(const char *name)
     writeStatThing(SHIMCMD_GETSTATF, name, NULL, 0);
 } /* STEAMSHIM_getStatF */
 
+void STEAMSHIM_getSteamID()
+{
+	write1ByteCmd(SHIMCMD_GETSTEAMID);
+}
+void STEAMSHIM_getPersonaName(){
+    write1ByteCmd(SHIMCMD_GETPERSONANAME);
+}
 /* end of steamshim_child.c ... */
 

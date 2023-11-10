@@ -13,7 +13,6 @@ typedef HANDLE PipeType;
 #else
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
 #include <errno.h>
 #include <sys/wait.h>
@@ -25,7 +24,7 @@ typedef int PipeType;
 
 #include "steam/steam_api.h"
 
-#define DEBUGPIPE 1
+#define DEBUGPIPE 0
 #if DEBUGPIPE
 #define dbgpipe printf
 #else
@@ -259,6 +258,8 @@ typedef enum ShimCmd
     SHIMCMD_GETSTATI,
     SHIMCMD_SETSTATF,
     SHIMCMD_GETSTATF,
+    SHIMCMD_GETSTEAMID,
+    SHIMCMD_GETPERSONANAME,
 } ShimCmd;
 
 typedef enum ShimEvent
@@ -273,6 +274,8 @@ typedef enum ShimEvent
     SHIMEVENT_GETSTATI,
     SHIMEVENT_SETSTATF,
     SHIMEVENT_GETSTATF,
+    SHIMEVENT_GETSTEAMID,
+    SHIMEVENT_GETPERSONANAME,
 } ShimEvent;
 
 static bool write1ByteCmd(PipeType fd, const uint8 b1)
@@ -430,6 +433,7 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
     PRINTGOTCMD(SHIMCMD_GETSTATI);
     PRINTGOTCMD(SHIMCMD_SETSTATF);
     PRINTGOTCMD(SHIMCMD_GETSTATF);
+    PRINTGOTCMD(SHIMCMD_GETSTEAMID);
     #undef PRINTGOTCMD
     else printf("Parent got unknown shimcmd %d.\n", (int) cmd);
     #endif
@@ -535,6 +539,18 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
                 else
                     writeGetStatF(fd, name, 0.0f, false);
             } // if
+            break;
+
+        case SHIMCMD_GETSTEAMID:
+            {
+                unsigned long long id = SteamUser()->GetSteamID().ConvertToUint64();
+                writeStatThing(fd, SHIMEVENT_GETSTEAMID, "a", &id, sizeof(id),1);
+            }
+            break;
+
+        case SHIMCMD_GETPERSONANAME:
+            const char* name = SteamFriends()->GetPersonaName();
+            writeStatThing(fd, SHIMEVENT_GETPERSONANAME, name, 0,0, 1);
             break;
     } // switch
 

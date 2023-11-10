@@ -26,7 +26,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 		assert( 0 );                                                     \
 	} while( 0 )
 
-
 static void printEvent( const STEAMSHIM_Event *e )
 {
 	if( !e )
@@ -34,8 +33,8 @@ static void printEvent( const STEAMSHIM_Event *e )
 
 	Com_Printf( "CHILD EVENT: " );
 	switch( e->type ) {
-#define PRINTGOTEVENT( x )   \
-	case SHIMEVENT_##x:      \
+#define PRINTGOTEVENT( x )     \
+	case SHIMEVENT_##x:        \
 		Com_Printf( "%s(", #x ); \
 		break
 		PRINTGOTEVENT( BYE );
@@ -43,6 +42,8 @@ static void printEvent( const STEAMSHIM_Event *e )
 		PRINTGOTEVENT( STATSSTORED );
 		PRINTGOTEVENT( SETACHIEVEMENT );
 		PRINTGOTEVENT( GETACHIEVEMENT );
+		PRINTGOTEVENT( GETSTEAMID );
+		PRINTGOTEVENT( GETPERSONANAME );
 		PRINTGOTEVENT( RESETSTATS );
 		PRINTGOTEVENT( SETSTATI );
 		PRINTGOTEVENT( GETSTATI );
@@ -56,7 +57,6 @@ static void printEvent( const STEAMSHIM_Event *e )
 
 	Com_Printf( "%sokay, ival=%d, fval=%f, time=%llu, name='%s').\n", e->okay ? "" : "!", e->ivalue, e->fvalue, e->epochsecs, e->name );
 } /* printEvent */
-
 
 /*
 * Steam_Init
@@ -96,14 +96,18 @@ void Steam_Shutdown( void )
 */
 uint64_t Steam_GetSteamID( void )
 {
-	UNIMPLEMENTED_DBGBREAK();
-	return 0;
+	STEAMSHIM_getSteamID();
+	const STEAMSHIM_Event *evt;
+	while( !( evt = STEAMSHIM_pump() ) ) {
+	}
+
+	return evt->epochsecs;
 }
 
 /*
 * Steam_GetAuthSessionTicket
 */
-int Steam_GetAuthSessionTicket( void (*callback)( void *, size_t ) )
+int Steam_GetAuthSessionTicket( void ( *callback )( void *, size_t ) )
 {
 	UNIMPLEMENTED_DBGBREAK();
 	return 0;
@@ -125,6 +129,9 @@ void Steam_GetPersonaName( char *name, size_t namesize )
 	if( !namesize ) {
 		return;
 	}
-	UNIMPLEMENTED_DBGBREAK();
-	name[0] = '\0';
+	STEAMSHIM_getPersonaName();
+	const STEAMSHIM_Event *evt;
+	while( !( evt = STEAMSHIM_pump() ) ) {
+	}
+	strncpy(name, evt->name,namesize);
 }

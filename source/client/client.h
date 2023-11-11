@@ -361,9 +361,9 @@ extern entity_state_t cl_baselines[MAX_EDICTS];
 //=============================================================================
 
 //
-// cl_discord.c
+// cl_presence.c
 //
-void CL_UpdateDiscord( void );
+void CL_UpdatePresence( void );
 void CL_InitDiscord( void );
 void CL_ShutdownDiscord( void );
 

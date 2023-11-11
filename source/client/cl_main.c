@@ -2759,7 +2759,7 @@ void CL_Frame( int realmsec, int gamemsec )
 	}
 
     // update discord
-    CL_UpdateDiscord();
+    CL_UpdatePresence();
     
 	// advance local effects for next frame
 	SCR_RunCinematic();

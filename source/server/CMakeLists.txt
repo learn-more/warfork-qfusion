@@ -84,7 +84,14 @@ else()
     set(SERVER_BINARY_TYPE "")
 endif()
 
-add_executable(${QFUSION_SERVER_NAME} ${SERVER_BINARY_TYPE} ${SERVER_HEADERS} ${SERVER_SOURCES} ${SERVER_PLATFORM_SOURCES})
+if (BUILD_STEAMLIB)
+    set(STEAMSHIM_FILES "../steamshim/steamshim_child.c" "../steamshim/steamshim_child.h")
+    source_group("steamshim" FILES ${STEAMSHIM_FILES})
+endif()
+
+
+
+add_executable(${QFUSION_SERVER_NAME} ${SERVER_BINARY_TYPE} ${SERVER_HEADERS} ${SERVER_SOURCES} ${SERVER_PLATFORM_SOURCES} ${STEAMSHIM_FILES})
 add_dependencies(${QFUSION_SERVER_NAME} angelwrap game)
 target_link_libraries(${QFUSION_SERVER_NAME} PRIVATE ${CURL_LIBRARY} ${SERVER_PLATFORM_LIBRARIES})
 qf_set_output_dir(${QFUSION_SERVER_NAME} "")

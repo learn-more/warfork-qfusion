@@ -25,135 +25,9 @@ typedef int PipeType;
 #endif
 
 #include "steamshim_child.h"
+#include "pipe.c"
 
 #define DEBUGPIPE 1
-#if DEBUGPIPE
-void Com_Printf( const char *format, ... );
-#define dbgpipe Com_Printf
-#else
-static inline void dbgpipe(const char *fmt, ...) {}
-#endif
-
-static int writePipe(PipeType fd, const void *buf, const unsigned int _len);
-static int readPipe(PipeType fd, void *buf, const unsigned int _len);
-static void closePipe(PipeType fd);
-static char *getEnvVar(const char *key, char *buf, const size_t buflen);
-static int pipeReady(PipeType fd);
-
-
-#ifdef _WIN32
-
-static int pipeReady(PipeType fd)
-{
-    DWORD avail = 0;
-    return (PeekNamedPipe(fd, NULL, 0, NULL, &avail, NULL) && (avail > 0));
-} /* pipeReady */
-
-static int writePipe(PipeType fd, const void *buf, const unsigned int _len)
-{
-    const DWORD len = (DWORD) _len;
-    DWORD bw = 0;
-    return ((WriteFile(fd, buf, len, &bw, NULL) != 0) && (bw == len));
-} /* writePipe */
-
-static int readPipe(PipeType fd, void *buf, const unsigned int _len)
-{
-    const DWORD len = (DWORD) _len;
-    DWORD br = 0;
-    return ReadFile(fd, buf, len, &br, NULL) ? (int) br : -1;
-} /* readPipe */
-
-static void closePipe(PipeType fd)
-{
-    CloseHandle(fd);
-} /* closePipe */
-
-static char *getEnvVar(const char *key, char *buf, const size_t _buflen)
-{
-    const DWORD buflen = (DWORD) _buflen;
-    const DWORD rc = GetEnvironmentVariableA(key, buf, buflen);
-    /* rc doesn't count null char, hence "<". */
-    return ((rc > 0) && (rc < buflen)) ? buf : NULL;
-} /* getEnvVar */
-
-#else
-
-static int pipeReady(PipeType fd)
-{
-    int rc;
-    struct pollfd pfd = { fd, POLLIN | POLLERR | POLLHUP, 0 };
-    while (((rc = poll(&pfd, 1, 0)) == -1) && (errno == EINTR)) { /*spin*/ }
-    return (rc == 1);
-} /* pipeReady */
-
-static int writePipe(PipeType fd, const void *buf, const unsigned int _len)
-{
-    const ssize_t len = (ssize_t) _len;
-    ssize_t bw;
-    while (((bw = write(fd, buf, len)) == -1) && (errno == EINTR)) { /*spin*/ }
-    return (bw == len);
-} /* writePipe */
-
-static int readPipe(PipeType fd, void *buf, const unsigned int _len)
-{
-    const ssize_t len = (ssize_t) _len;
-    ssize_t br;
-    while (((br = read(fd, buf, len)) == -1) && (errno == EINTR)) { /*spin*/ }
-    return (int) br;
-} /* readPipe */
-
-static void closePipe(PipeType fd)
-{
-    close(fd);
-} /* closePipe */
-
-static char *getEnvVar(const char *key, char *buf, const size_t buflen)
-{
-    const char *envr = getenv(key);
-    if (!envr || (strlen(envr) >= buflen))
-        return NULL;
-    strcpy(buf, envr);
-    return buf;
-} /* getEnvVar */
-
-#endif
-
-
-static PipeType GPipeRead = NULLPIPE;
-static PipeType GPipeWrite = NULLPIPE;
-
-typedef enum ShimCmd
-{
-    SHIMCMD_BYE,
-    SHIMCMD_PUMP,
-    SHIMCMD_REQUESTSTATS,
-    SHIMCMD_STORESTATS,
-    SHIMCMD_SETACHIEVEMENT,
-    SHIMCMD_GETACHIEVEMENT,
-    SHIMCMD_RESETSTATS,
-    SHIMCMD_SETSTATI,
-    SHIMCMD_GETSTATI,
-    SHIMCMD_SETSTATF,
-    SHIMCMD_GETSTATF,
-} ShimCmd;
-
-static int write1ByteCmd(const uint8 b1)
-{
-    const uint8 buf[] = { 1, b1 };
-    return writePipe(GPipeWrite, buf, sizeof (buf));
-} /* write1ByteCmd */
-
-static int write2ByteCmd(const uint8 b1, const uint8 b2)
-{
-    const uint8 buf[] = { 2, b1, b2 };
-    return writePipe(GPipeWrite, buf, sizeof (buf));
-} /* write2ByteCmd */
-
-static inline int writeBye(void)
-{
-    dbgpipe("Child sending SHIMCMD_BYE().\n");
-    return write1ByteCmd(SHIMCMD_BYE);
-} // writeBye
 
 static int initPipes(void)
 {
@@ -252,6 +126,8 @@ static const STEAMSHIM_Event *processEvent(const uint8 *buf, size_t buflen)
     PRINTGOTEVENT(SHIMEVENT_GETSTATI);
     PRINTGOTEVENT(SHIMEVENT_SETSTATF);
     PRINTGOTEVENT(SHIMEVENT_GETSTATF);
+    PRINTGOTEVENT(SHIMEVENT_STEAMIDRECIEVED);
+    PRINTGOTEVENT(SHIMEVENT_PERSONANAMERECIEVED);
     #undef PRINTGOTEVENT
     else printf("Child got unknown shimevent %d.\n", (int) type);
     #endif
@@ -305,7 +181,14 @@ static const STEAMSHIM_Event *processEvent(const uint8 *buf, size_t buflen)
             buf += sizeof (float);
             strcpy(event.name, (const char *) buf);
             break;
-
+		case SHIMEVENT_STEAMIDRECIEVED:
+            event.okay = *(buf++) ? 1 : 0;
+			event.lvalue = *( (unsigned long long *)buf );
+			break;
+		case SHIMEVENT_PERSONANAMERECIEVED:
+            event.okay = *(buf++) ? 1 : 0;
+		    strcpy(event.name,((char*)buf));
+		    break;
         default:  /* uh oh */
             return NULL;
     } /* switch */
@@ -446,5 +329,25 @@ void STEAMSHIM_getStatF(const char *name)
     writeStatThing(SHIMCMD_GETSTATF, name, NULL, 0);
 } /* STEAMSHIM_getStatF */
 
+void STEAMSHIM_getSteamID()
+{
+	write1ByteCmd(SHIMCMD_REQUESTSTEAMID);
+}
+
+void STEAMSHIM_getPersonaName(){
+    write1ByteCmd(SHIMCMD_REQUESTPERSONANAME);
+}
+
+void STEAMSHIM_setRichPresence(const char* key, const char* val){
+    uint8 buf[256];
+    uint8 *ptr = buf+1;
+    *(ptr++) = (uint8) SHIMCMD_SETRICHPRESENCE;
+    strcpy((char *) ptr, key);
+    ptr += strlen(key) + 1;
+    strcpy((char *) ptr, val);
+    ptr += strlen(val) + 1;
+    buf[0] = (uint8) ((ptr-1) - buf);
+    writePipe(GPipeWrite, buf, buf[0] + 1);
+}
 /* end of steamshim_child.c ... */
 

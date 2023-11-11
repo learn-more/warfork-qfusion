@@ -501,40 +501,51 @@ typedef struct RichPresence {
 } RichPresence;
 
 typedef struct {
-	_Bool initialized;
+	_Bool discord_initialized;
 	unsigned int next_update;
 	RichPresence old_presence;
 } cl_discord_state_t;
 
-static cl_discord_state_t cl_discord_state;
+static cl_discord_state_t cl_presence_state;
 
 void UpdatePresenceIfChanged( RichPresence presence )
 {
-	if( memcmp( &cl_discord_state.old_presence, &presence, sizeof( presence ) ) == 0 ) {
+	if( memcmp( &cl_presence_state.old_presence, &presence, sizeof( presence ) ) == 0 ) {
 		return;
 	}
 
-	cl_discord_state.old_presence = presence;
+	cl_presence_state.old_presence = presence;
 
-	DiscordRichPresence discord = { 0 };
-	discord.state = presence.state;
-	discord.details = presence.details;
-	discord.startTimestamp = presence.startTimestamp;
-	discord.endTimestamp = presence.endTimestamp;
-	discord.largeImageKey = presence.largeImageKey;
-	discord.largeImageText = presence.largeImageText;
-	discord.smallImageKey = presence.smallImageKey;
-	discord.smallImageText = presence.smallImageText;
-	discord.partyId = presence.partyId;
-	discord.partySize = presence.partySize;
-	discord.partyMax = presence.partyMax;
-	discord.partyPrivacy = presence.partyPrivacy;
-	discord.matchSecret = presence.matchSecret;
-	discord.joinSecret = presence.joinSecret;
-	discord.spectateSecret = presence.spectateSecret;
-	discord.instance = presence.instance;
+	if(cl_presence_state.discord_initialized) {
+		DiscordRichPresence discord = { 0 };
+		discord.state = presence.state;
+		discord.details = presence.details;
+		discord.startTimestamp = presence.startTimestamp;
+		discord.endTimestamp = presence.endTimestamp;
+		discord.largeImageKey = presence.largeImageKey;
+		discord.largeImageText = presence.largeImageText;
+		discord.smallImageKey = presence.smallImageKey;
+		discord.smallImageText = presence.smallImageText;
+		discord.partyId = presence.partyId;
+		discord.partySize = presence.partySize;
+		discord.partyMax = presence.partyMax;
+		discord.partyPrivacy = presence.partyPrivacy;
+		discord.matchSecret = presence.matchSecret;
+		discord.joinSecret = presence.joinSecret;
+		discord.spectateSecret = presence.spectateSecret;
+		discord.instance = presence.instance;
 
-	Discord_UpdatePresence( &discord );
+		Discord_UpdatePresence( &discord );
+	}
+
+#ifdef APP_STEAMID
+	if (STEAMSHIM_alive()){
+		Steam_SetRichPresence("score", presence.state);
+		Steam_SetRichPresence("details", presence.details);
+		Steam_SetRichPresence("steam_display", "#Status_Score");
+	}
+#endif
+
 }
 
 /*
@@ -547,7 +558,7 @@ static void CL_DiscordReady( const DiscordUser *user )
 
 	Com_Printf( "Loading Discord module... (%s)\n", discord_id );
 	Cvar_ForceSet( "discord_id", discord_id );
-	cl_discord_state.initialized = true;
+	cl_presence_state.discord_initialized = true;
 }
 
 /*
@@ -573,16 +584,17 @@ static const char *CL_PlayerStatus( snapshot_t *frame )
 }
 
 /*
- * CL_UpdateDiscord
+ * CL_UpdatePresence
  */
 
-void CL_UpdateDiscord( void )
+void CL_UpdatePresence( void )
 {
-	if( cl_discord_state.initialized ) {
+	// is there a better way of checking whether steam is ready?
+	if( cl_presence_state.discord_initialized || STEAMSHIM_alive()) {
 		unsigned int now = Sys_Milliseconds();
-		if( cl_discord_state.next_update <= now ) {
+		if( cl_presence_state.next_update <= now ) {
 			// Discord rate limit is 15s, but this has been tested and is fine!
-			cl_discord_state.next_update = now + 1000;
+			cl_presence_state.next_update = now + 1000;
 
 			RichPresence presence = { 0 };
 			snapshot_t *frame = &cl.snapShots[cl.currentSnapNum & UPDATE_MASK];
@@ -661,7 +673,6 @@ void CL_UpdateDiscord( void )
 			UpdatePresenceIfChanged( presence );
 		}
 	}
-
 	Discord_RunCallbacks();
 }
 
@@ -706,7 +717,7 @@ void CL_ShutdownDiscord( void )
 {
 	Discord_Shutdown();
 
-	memset( &cl_discord_state, 0, sizeof( cl_discord_state ) );
+	memset( &cl_presence_state, 0, sizeof( cl_presence_state ) );
 
 	Com_Printf( "Discord module unloaded.\n" );
 }

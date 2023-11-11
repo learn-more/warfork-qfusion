@@ -17,6 +17,8 @@ typedef enum STEAMSHIM_EventType
     SHIMEVENT_GETSTATI,
     SHIMEVENT_SETSTATF,
     SHIMEVENT_GETSTATF,
+    SHIMEVENT_STEAMIDRECIEVED,
+    SHIMEVENT_PERSONANAMERECIEVED,
 } STEAMSHIM_EventType;
 
 /* not all of these fields make sense in a given event. */
@@ -26,6 +28,7 @@ typedef struct STEAMSHIM_Event
     int okay;
     int ivalue;
     float fvalue;
+    long long lvalue;
     unsigned long long epochsecs;
     char name[256];
 } STEAMSHIM_Event;
@@ -43,7 +46,9 @@ void STEAMSHIM_setStatI(const char *name, const int _val);
 void STEAMSHIM_getStatI(const char *name);
 void STEAMSHIM_setStatF(const char *name, const float val);
 void STEAMSHIM_getStatF(const char *name);
-
+void STEAMSHIM_getSteamID();
+void STEAMSHIM_getPersonaName();
+void STEAMSHIM_setRichPresence(const char* key, const char* val);
 #ifdef __cplusplus
 }
 #endif

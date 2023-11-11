@@ -539,7 +539,7 @@ void UpdatePresenceIfChanged( RichPresence presence )
 	}
 
 #ifdef APP_STEAMID
-	if (STEAMSHIM_alive()){
+	if (Steam_Active()){
 		Steam_SetRichPresence("score", presence.state);
 		Steam_SetRichPresence("details", presence.details);
 		Steam_SetRichPresence("steam_display", "#Status_Score");
@@ -590,7 +590,7 @@ static const char *CL_PlayerStatus( snapshot_t *frame )
 void CL_UpdatePresence( void )
 {
 	// is there a better way of checking whether steam is ready?
-	if( cl_presence_state.discord_initialized || STEAMSHIM_alive()) {
+	if( cl_presence_state.discord_initialized || Steam_Active()) {
 		unsigned int now = Sys_Milliseconds();
 		if( cl_presence_state.next_update <= now ) {
 			// Discord rate limit is 15s, but this has been tested and is fine!

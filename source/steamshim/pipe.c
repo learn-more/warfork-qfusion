@@ -106,3 +106,4 @@ int writeThing(PipeType fd, const uint8 ev, const void *val, const size_t vallen
     buf[0] = (uint8) ((ptr-1) - buf);
     return writePipe(fd, buf, buf[0] + 1);
 }
+

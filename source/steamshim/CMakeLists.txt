@@ -47,8 +47,12 @@ else()
 endif()
 
 
+add_library(steamshim_child STATIC pipe.c steamshim_child.c)
+qf_set_output_dir(steamshim_child libs)
+
 add_executable(wf_steam ${STEAM_SERVER_BINARY_TYPE} pipe.c steamshim_parent.cpp)
 target_link_libraries(wf_steam ${STEAMWORKS_LIBRARY})
+
 qf_set_output_dir(wf_steam "")
 
 add_custom_command(TARGET wf_steam

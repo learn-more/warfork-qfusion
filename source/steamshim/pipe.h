@@ -67,6 +67,9 @@ int readPipe(PipeType fd, void *buf, const unsigned int _len);
 void closePipe(PipeType fd);
 char *getEnvVar(const char *key, char *buf, const size_t buflen);
 int pipeReady(PipeType fd);
+int write1ByteCmd(const uint8 b1);
+int write2ByteCmd(const uint8 b1, const uint8 b2);
+int writeBye(void);
 int writeThing(PipeType fd, const uint8 ev, const void *val, const size_t vallen, const int okay);
 #ifdef __cplusplus
 };

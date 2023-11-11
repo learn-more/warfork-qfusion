@@ -155,7 +155,7 @@ static const STEAMSHIM_Event *processEvent(const uint8 *buf, size_t buflen)
             event.ivalue = (int) *(buf++);
             if (event.ivalue == 2)
                 event.ivalue = event.okay = 0;
-            event.epochsecs = (long long unsigned) *((uint64 *) buf);
+            event.lvalue = (long long unsigned) *((uint64 *) buf);
             buf += sizeof (uint64);
             strcpy(event.name, (const char *) buf);
             break;

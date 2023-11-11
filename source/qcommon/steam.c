@@ -55,7 +55,7 @@ static void printEvent( const STEAMSHIM_Event *e )
 			break;
 	} /* switch */
 
-	Com_Printf( "%sokay, ival=%d, fval=%f, time=%llu, name='%s').\n", e->okay ? "" : "!", e->ivalue, e->fvalue, e->epochsecs, e->name );
+	Com_Printf( "%sokay, ival=%d, fval=%f, lval=%llu, name='%s').\n", e->okay ? "" : "!", e->ivalue, e->fvalue, e->lvalue, e->name );
 } /* printEvent */
 
 /*

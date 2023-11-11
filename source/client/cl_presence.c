@@ -504,9 +504,9 @@ typedef struct {
 	_Bool discord_initialized;
 	unsigned int next_update;
 	RichPresence old_presence;
-} cl_discord_state_t;
+} cl_presence_state_t;
 
-static cl_discord_state_t cl_presence_state;
+static cl_presence_state_t cl_presence_state;
 
 void UpdatePresenceIfChanged( RichPresence presence )
 {

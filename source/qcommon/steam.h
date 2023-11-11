@@ -29,5 +29,6 @@ int Steam_GetAuthSessionTicket( void (*callback)( void *, size_t ) );
 void Steam_AdvertiseGame( const uint8_t *ip, unsigned short port );
 void Steam_GetPersonaName( char *name, size_t namesize );
 void Steam_SetRichPresence( const char *key, const char *val );
+int Steam_Active();
 
 #endif // _STEAM_LIB_H_

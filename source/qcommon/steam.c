@@ -144,3 +144,9 @@ uint64_t Steam_GetSteamID( void )
 
 	return evt->lvalue;
 }
+/*
+* Steam_Active
+*/
+int Steam_Active(){
+	return STEAMSHIM_alive();
+}

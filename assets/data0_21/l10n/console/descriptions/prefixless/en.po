@@ -610,7 +610,7 @@ msgstr "Dump all Angelscript API variables, classes, and global functions into f
 #. Console/prefixless
 msgid "dumpuser"
 msgstr "<userid> Prints a specific player's user info settings.\n"
-"^6Examples: cg_movementStyle, cg_noAutohop, cl_mm_session, clan, color, discord_id, hand, handicap, model, name, password, and skin."
+"^6Examples: cg_movementStyle, cg_noAutohop, cl_mm_session, clan, color, hand, handicap, model, name, password, and skin."
 
 #. Console/prefixless
 msgid "dynvarlist"
@@ -1095,7 +1095,7 @@ msgstr "Uses an object in the world."
 #. Console/prefixless
 msgid "userinfo"
 msgstr "Prints your user info settings.\n"
-"^6Examples: cg_movementStyle, cg_noAutohop, cl_mm_session, clan, color, discord_id, hand, handicap, model, name, password, and skin."
+"^6Examples: cg_movementStyle, cg_noAutohop, cl_mm_session, clan, color, hand, handicap, model, name, password, and skin."
 
 #. Console/prefixless
 msgid "viewpos"

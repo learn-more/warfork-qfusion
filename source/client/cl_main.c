@@ -2138,7 +2138,7 @@ static void CL_InitLocal( void )
 	//
 	// userinfo
 	//
-	discord_id = Cvar_Get( "discord_id", "", CVAR_USERINFO|CVAR_READONLY );
+	discord_id = Cvar_Get( "discord_id", "", CVAR_ARCHIVE|CVAR_READONLY );
 	info_password = Cvar_Get( "password", "", CVAR_USERINFO );
 	rate =			Cvar_Get( "rate", "60000", CVAR_DEVELOPER ); // FIXME
 

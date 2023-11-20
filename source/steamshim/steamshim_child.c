@@ -1,5 +1,6 @@
 #include "steamshim_child.h"
 #include "pipe.c"
+#include "pipe.h"
 
 #define DEBUGPIPE 1
 
@@ -310,6 +311,10 @@ void STEAMSHIM_getSteamID()
 
 void STEAMSHIM_getPersonaName(){
     write1ByteCmd(SHIMCMD_REQUESTPERSONANAME);
+}
+
+void STEAMSHIM_getAuthSessionTicket(){
+    write1ByteCmd(SHIMCMD_REQUESTAUTHSESSIONTICKET);
 }
 
 void STEAMSHIM_setRichPresence(const char* key, const char* val){

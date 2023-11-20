@@ -1,5 +1,12 @@
-//#define GAME_LAUNCH_NAME "testapp"
-#ifndef GAME_LAUNCH_NAME
+//#define GAME_CLIENT_LAUNCH_NAME "testapp"
+#include "steam/isteamuser.h"
+#ifndef GAME_CLIENT_LAUNCH_NAME
+#error Please define your game exe name.
+#endif
+#ifndef GAME_SERVER_LAUNCH_NAME
+#error Please define your game exe name.
+#endif
+#ifndef GAME_TVSERVER_LAUNCH_NAME
 #error Please define your game exe name.
 #endif
 
@@ -23,6 +30,7 @@ typedef int PipeType;
 #endif
 
 #include "steam/steam_api.h"
+#include "steam/steam_gameserver.h"
 #include "pipe.h"
 
 /* platform-specific mainline calls this. */
@@ -78,7 +86,7 @@ static bool launchChild(ProcessType *pid)
     STARTUPINFOW si = { sizeof( si ) };
 
     memset( pid, 0, sizeof( *pid ) );
-    bool bResult = ( CreateProcessW( TEXT( ".\\" ) TEXT( GAME_LAUNCH_NAME ), str, NULL, NULL, TRUE, 0, NULL,
+    bool bResult = ( CreateProcessW( TEXT( ".\\" ) TEXT( GAME_CLIENT_LAUNCH_NAME ), str, NULL, NULL, TRUE, 0, NULL,
                               NULL, &si, pid) != 0);
     free( str );
     return bResult;
@@ -148,7 +156,10 @@ static bool launchChild(ProcessType *pid)
         return true;  // we'll let the pipe fail if this didn't work.
 
     // we're the child.
-    GArgv[0] = strdup("./" GAME_LAUNCH_NAME);
+    if (strstr(*GArgv,"warfork_steam"))
+        GArgv[0] = strdup("./" GAME_CLIENT_LAUNCH_NAME);
+    else
+        GArgv[0] = strdup("./" GAME_SERVER_LAUNCH_NAME);
     execvp(GArgv[0], GArgv);
     // still here? It failed! Terminate, closing child's ends of the pipes.
     _exit(1);
@@ -173,8 +184,12 @@ int main(int argc, char **argv)
 
 #endif
 
-
 // THE ACTUAL PROGRAM.
+typedef enum ServerType {
+    STEAMGAMESERVER,
+    STEAMGAMECLIENT,
+} ServerType;
+static ServerType GServerType;
 
 class SteamBridge;
 
@@ -184,6 +199,7 @@ static ISteamUser *GSteamUser = NULL;
 static AppId_t GAppID = 0;
 static uint64 GUserID = 0;
 static SteamBridge *GSteamBridge = NULL;
+static ISteamGameServer *GSteamGameServer = NULL;
 
 class SteamBridge
 {
@@ -210,6 +226,7 @@ typedef enum ShimEvent
     SHIMEVENT_GETSTATF,
     SHIMEVENT_STEAMIDRECIEVED,
     SHIMEVENT_PERSONANAMERECIEVED,
+    SHIMEVENT_AUTHSESSIONTICKETRECIEVED,
 } ShimEvent;
 
 static bool write1ByteCmd(PipeType fd, const uint8 b1)
@@ -496,6 +513,15 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
                 const char *val = (const char *)buf;
                 SteamFriends()->SetRichPresence(key,val);
             }
+            break;
+        case SHIMCMD_REQUESTAUTHSESSIONTICKET:
+            {
+                char pTicket[1024];
+                uint32 ticketlength;
+                GSteamUser->GetAuthSessionTicket(pTicket, 1024, &ticketlength);
+                writeThing(fd, SHIMEVENT_AUTHSESSIONTICKETRECIEVED, pTicket, ticketlength, true);
+            }
+            break;
     } // switch
 
     return true;  // keep going.
@@ -555,32 +581,41 @@ static bool setEnvironmentVars(PipeType pipeChildRead, PipeType pipeChildWrite)
 
 static bool initSteamworks(PipeType fd)
 {
-    // this can fail for many reasons:
-    //  - you forgot a steam_appid.txt in the current working directory.
-    //  - you don't have Steam running
-    //  - you don't own the game listed in steam_appid.txt
-    if (!SteamAPI_Init())
-        return 0;
+    if (GServerType == STEAMGAMESERVER) {
+        // is there something i have to do to init server?
+        GSteamGameServer = SteamGameServer();
+    }else{
+        // this can fail for many reasons:
+        //  - you forgot a steam_appid.txt in the current working directory.
+        //  - you don't have Steam running
+        //  - you don't own the game listed in steam_appid.txt
+        if (!SteamAPI_Init())
+            return 0;
 
-    GSteamStats = SteamUserStats();
-    GSteamUtils = SteamUtils();
-    GSteamUser = SteamUser();
+        GSteamStats = SteamUserStats();
+        GSteamUtils = SteamUtils();
+        GSteamUser = SteamUser();
 
-    GAppID = GSteamUtils ? GSteamUtils->GetAppID() : 0;
-	GUserID = GSteamUser ? GSteamUser->GetSteamID().ConvertToUint64() : 0;
+        GAppID = GSteamUtils ? GSteamUtils->GetAppID() : 0;
+	    GUserID = GSteamUser ? GSteamUser->GetSteamID().ConvertToUint64() : 0;
+    }
+
     GSteamBridge = new SteamBridge(fd);
-
     return 1;
 } // initSteamworks
 
 static void deinitSteamworks(void)
 {
-    SteamAPI_Shutdown();
-    delete GSteamBridge;
-    GSteamBridge = NULL;
-    GSteamStats = NULL;
-    GSteamUtils= NULL;
-    GSteamUser = NULL;
+    if (GServerType == STEAMGAMESERVER) {
+        GSteamGameServer = NULL;
+    } else {
+        SteamAPI_Shutdown();
+        delete GSteamBridge;
+        GSteamBridge = NULL;
+        GSteamStats = NULL;
+        GSteamUtils= NULL;
+        GSteamUser = NULL;
+    }
 } // deinitSteamworks
 
 static int mainline(void)
@@ -592,6 +627,12 @@ static int mainline(void)
     ProcessType childPid;
 
     dbgpipe("Parent starting mainline.\n");
+
+    // temporary hack, make this better
+    if (strstr(*GArgv,"warfork_steam"))
+        GServerType = STEAMGAMECLIENT;
+    else
+        GServerType = STEAMGAMESERVER;
 
     if (!createPipes(&pipeParentRead, &pipeParentWrite, &pipeChildRead, &pipeChildWrite))
         fail("Failed to create application pipes");

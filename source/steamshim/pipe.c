@@ -97,7 +97,7 @@ int writeBye(void)
 } // writeBye
 
 int writeThing(PipeType fd, const uint8 ev, const void *val, const size_t vallen, const int okay){
-    uint8 buf[256];
+    uint8 buf[2048];
     uint8 *ptr = buf+1;
     *(ptr++) = (uint8) ev;
     *(ptr++) = okay ? 1 : 0;

@@ -57,8 +57,16 @@ typedef enum ShimCmd
     SHIMCMD_REQUESTPERSONANAME,
     SHIMCMD_SETRICHPRESENCE,
     SHIMCMD_REQUESTAUTHSESSIONTICKET,
+    SHIMCMD_BEGINAUTHSESSION,
 } ShimCmd;
 
+
+#define MAX_BUFFSIZE 4096
+typedef struct
+{
+	unsigned char	data[MAX_BUFFSIZE];
+	int				cursize;
+} pipebuff_t;
 
 #ifdef __cplusplus
 extern "C"{
@@ -72,6 +80,20 @@ int write1ByteCmd(const uint8 b1);
 int write2ByteCmd(const uint8 b1, const uint8 b2);
 int writeBye(void);
 int writeThing(PipeType fd, const uint8 ev, const void *val, const size_t vallen, const int okay);
+
+void PIPE_Init();
+void PIPE_WriteData(void *val, size_t vallen);
+void PIPE_WriteInt(int val);
+void PIPE_WriteFloat(float val);
+void PIPE_WriteLong(long long val);
+void PIPE_SendEvt(PipeType fd, const uint8 ev, const int okay);
+
+void PIPE_Read(pipebuff_t *buf);
+void* PIPE_ReadData(size_t vallen);
+int PIPE_ReadInt();
+float PIPE_ReadFloat();
+long long PIPE_ReadLong();
+
 #ifdef __cplusplus
 };
 #endif

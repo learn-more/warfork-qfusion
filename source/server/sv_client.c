@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // sv_client.c -- server code for moving users
 
 #include "server.h"
+#include "../qcommon/steam.h"
 
 
 //============================================================================
@@ -1151,6 +1152,7 @@ void SV_ParseClientMessage( client_t *client, msg_t *msg )
 		}
 
 		c = MSG_ReadByte( msg );
+		printf("pak is %i\n",c);
 		if( c == -1 )
 			break;
 
@@ -1225,6 +1227,18 @@ void SV_ParseClientMessage( client_t *client, msg_t *msg )
 					MSG_SkipData( msg, len );
 					break;
 				}
+			}
+			break;
+		case clc_steamauth:
+			{
+				SteamAuthTicket_t ticket;
+				ticket.pcbTicket = MSG_ReadLong(msg);
+				MSG_ReadData(msg, ticket.pTicket, AUTH_TICKET_MAXSIZE);
+
+				printf("--%s--\n",client->userinfo);
+
+				Steam_BeginAuthSession(76561199071513456, &ticket);
+				SV_DropClient(client, DROP_TYPE_GENERAL, "steam auth failure");
 			}
 			break;
 		}

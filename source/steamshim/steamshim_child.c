@@ -1,6 +1,8 @@
 #include "steamshim_child.h"
 #include "pipe.c"
 #include "pipe.h"
+#include <string.h>
+#include "steamshim_types.h"
 
 #define DEBUGPIPE 1
 
@@ -103,79 +105,100 @@ static const STEAMSHIM_Event *processEvent(const uint8 *buf, size_t buflen)
     PRINTGOTEVENT(SHIMEVENT_GETSTATF);
     PRINTGOTEVENT(SHIMEVENT_STEAMIDRECIEVED);
     PRINTGOTEVENT(SHIMEVENT_PERSONANAMERECIEVED);
+    PRINTGOTEVENT(SHIMEVENT_AUTHSESSIONTICKETRECIEVED);
     #undef PRINTGOTEVENT
     else printf("Child got unknown shimevent %d.\n", (int) type);
     #endif
 
-    switch (type)
-    {
-        case SHIMEVENT_BYE:
-            break;
+    if (type >= SHIMEVENT_STEAMIDRECIEVED){
+        event.okay = *(buf++) ? 1 : 0;
+        pipebuff_t pipebuf;
+        pipebuf.cursize = 0;
+        memcpy(pipebuf.data, buf, buflen);
+        PIPE_Read(&pipebuf);
+        
+        switch (type){
+		    case SHIMEVENT_STEAMIDRECIEVED:
+			    event.lvalue = PIPE_ReadLong();
+			    break;
+		    case SHIMEVENT_PERSONANAMERECIEVED:
+		        strcpy(event.name,((char*)buf));
+		        break;
+		    case SHIMEVENT_AUTHSESSIONTICKETRECIEVED:
+		        event.lvalue = PIPE_ReadLong();
 
-        case SHIMEVENT_STATSRECEIVED:
-        case SHIMEVENT_STATSSTORED:
-            if (!buflen) return NULL;
-            event.okay = *(buf++) ? 1 : 0;
-            break;
+                void* pTicket = PIPE_ReadData(AUTH_TICKET_MAXSIZE);
+                memcpy(event.name, pTicket, AUTH_TICKET_MAXSIZE);
+                break;
+            default:
+                return NULL;
+        }
 
-        case SHIMEVENT_SETACHIEVEMENT:
-            if (buflen < 3) return NULL;
-            event.ivalue = *(buf++) ? 1 : 0;
-            event.okay = *(buf++) ? 1 : 0;
-            strcpy(event.name, (const char *) buf);
-            break;
+    }else
+        switch (type)
+        {
+            case SHIMEVENT_BYE:
+                break;
 
-        case SHIMEVENT_GETACHIEVEMENT:
-            if (buflen < 10) return NULL;
-            event.ivalue = (int) *(buf++);
-            if (event.ivalue == 2)
-                event.ivalue = event.okay = 0;
-            event.lvalue = (long long unsigned) *((uint64 *) buf);
-            buf += sizeof (uint64);
-            strcpy(event.name, (const char *) buf);
-            break;
+            case SHIMEVENT_STATSRECEIVED:
+            case SHIMEVENT_STATSSTORED:
+                if (!buflen) return NULL;
+                event.okay = *(buf++) ? 1 : 0;
+                break;
 
-        case SHIMEVENT_RESETSTATS:
-            if (buflen != 2) return NULL;
-            event.ivalue = *(buf++) ? 1 : 0;
-            event.okay = *(buf++) ? 1 : 0;
-            break;
+            case SHIMEVENT_SETACHIEVEMENT:
+                if (buflen < 3) return NULL;
+                event.ivalue = *(buf++) ? 1 : 0;
+                event.okay = *(buf++) ? 1 : 0;
+                strcpy(event.name, (const char *) buf);
+                break;
 
-        case SHIMEVENT_SETSTATI:
-        case SHIMEVENT_GETSTATI:
-            event.okay = *(buf++) ? 1 : 0;
-            event.ivalue = (int) *((int32 *) buf);
-            buf += sizeof (int32);
-            strcpy(event.name, (const char *) buf);
-            break;
+            case SHIMEVENT_GETACHIEVEMENT:
+                if (buflen < 10) return NULL;
+                event.ivalue = (int) *(buf++);
+                if (event.ivalue == 2)
+                    event.ivalue = event.okay = 0;
+                event.lvalue = (long long unsigned) *((uint64 *) buf);
+                buf += sizeof (uint64);
+                strcpy(event.name, (const char *) buf);
+                break;
 
-        case SHIMEVENT_SETSTATF:
-        case SHIMEVENT_GETSTATF:
-            event.okay = *(buf++) ? 1 : 0;
-            event.fvalue = (int) *((float *) buf);
-            buf += sizeof (float);
-            strcpy(event.name, (const char *) buf);
-            break;
-		case SHIMEVENT_STEAMIDRECIEVED:
-            event.okay = *(buf++) ? 1 : 0;
-			event.lvalue = *( (unsigned long long *)buf );
-			break;
-		case SHIMEVENT_PERSONANAMERECIEVED:
-            event.okay = *(buf++) ? 1 : 0;
-		    strcpy(event.name,((char*)buf));
-		    break;
-        default:  /* uh oh */
-            return NULL;
-    } /* switch */
+            case SHIMEVENT_RESETSTATS:
+                if (buflen != 2) return NULL;
+                event.ivalue = *(buf++) ? 1 : 0;
+                event.okay = *(buf++) ? 1 : 0;
+                break;
+
+            case SHIMEVENT_SETSTATI:
+            case SHIMEVENT_GETSTATI:
+                event.okay = *(buf++) ? 1 : 0;
+                event.ivalue = (int) *((int32 *) buf);
+                buf += sizeof (int32);
+                strcpy(event.name, (const char *) buf);
+                break;
+
+            case SHIMEVENT_SETSTATF:
+            case SHIMEVENT_GETSTATF:
+                event.okay = *(buf++) ? 1 : 0;
+                event.fvalue = (int) *((float *) buf);
+                buf += sizeof (float);
+                strcpy(event.name, (const char *) buf);
+                break;
+            default:  /* uh oh */
+                return NULL;
+        } /* switch */
+
+
+    
 
     return &event;
 } /* processEvent */
 
 const STEAMSHIM_Event *STEAMSHIM_pump(void)
 {
-    static uint8 buf[256];
+    static uint8 buf[MAX_BUFFSIZE+sizeof(int)+sizeof(uint8)+sizeof(int)];
     static int br = 0;
-    int evlen = (br > 0) ? ((int) buf[0]) : 0;
+    int evlen = (br > 0) ? (*(int*) buf) : 0;
 
     if (isDead())
         return NULL;
@@ -197,10 +220,11 @@ const STEAMSHIM_Event *STEAMSHIM_pump(void)
 
     if (evlen && (br > evlen))
     {
-        const STEAMSHIM_Event *retval = processEvent(buf+1, evlen);
-        br -= evlen + 1;
+        printf("BBBBBBBBBBBBBBBBB%i\n",evlen);
+        const STEAMSHIM_Event *retval = processEvent(buf+sizeof(int), evlen);
+        br -= evlen + sizeof(int);
         if (br > 0)
-            memmove(buf, buf+evlen+1, br);
+            memmove(buf, buf+evlen+sizeof(int), br);
         return retval;
     } /* if */
 
@@ -211,7 +235,10 @@ const STEAMSHIM_Event *STEAMSHIM_pump(void)
         write1ByteCmd(SHIMCMD_PUMP);
     } /* if */
 
-    return NULL;
+
+    char buffer[1024];
+
+    return &buffer;
 } /* STEAMSHIM_pump */
 
 void STEAMSHIM_requestStats(void)
@@ -315,6 +342,14 @@ void STEAMSHIM_getPersonaName(){
 
 void STEAMSHIM_getAuthSessionTicket(){
     write1ByteCmd(SHIMCMD_REQUESTAUTHSESSIONTICKET);
+}
+void STEAMSHIM_beginAuthSession(uint64 steamid, SteamAuthTicket_t* ticket){
+    printf("stewamid: %llu, %llu, -ticket- \n",steamid,ticket->pcbTicket);
+    PIPE_Init();
+    PIPE_WriteLong(steamid);
+    PIPE_WriteLong(ticket->pcbTicket);
+    PIPE_WriteData(ticket->pTicket, AUTH_TICKET_MAXSIZE);
+    PIPE_SendCmd(SHIMCMD_BEGINAUTHSESSION);
 }
 
 void STEAMSHIM_setRichPresence(const char* key, const char* val){

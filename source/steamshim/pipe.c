@@ -1,4 +1,6 @@
 #include "pipe.h"
+#include <string.h>
+#include <assert.h>
 
 #ifdef _WIN32
 
@@ -80,7 +82,9 @@ char *getEnvVar(const char *key, char *buf, const size_t buflen)
 
 int write1ByteCmd(const uint8 b1)
 {
-    const uint8 buf[] = { 1, b1 };
+    uint8 buf[sizeof(int)+1];
+    *(int*)buf = 1;
+    buf[sizeof(int)] = b1;
     return writePipe(GPipeWrite, buf, sizeof (buf));
 } /* write1ByteCmd */
 
@@ -97,13 +101,80 @@ int writeBye(void)
 } // writeBye
 
 int writeThing(PipeType fd, const uint8 ev, const void *val, const size_t vallen, const int okay){
-    uint8 buf[2048];
-    uint8 *ptr = buf+1;
+    uint8 buf[MAX_BUFFSIZE+sizeof(ev)+sizeof(okay)+sizeof(vallen)];
+    uint8 *ptr = buf+sizeof(int);
     *(ptr++) = (uint8) ev;
     *(ptr++) = okay ? 1 : 0;
     memcpy(ptr, val, vallen);
     ptr += vallen;
-    buf[0] = (uint8) ((ptr-1) - buf);
-    return writePipe(fd, buf, buf[0] + 1);
+    *(int*)buf = (int) ((ptr-1) - buf);
+
+    return writePipe(fd, buf, *(int*)buf + sizeof(int));
 }
 
+
+// pipe buffer manipulation stuff
+static pipebuff_t pipeSendBuffer;
+void PIPE_Init()
+{
+    pipeSendBuffer.cursize = 0;
+}
+
+void PIPE_WriteData(void *val, size_t vallen)
+{
+    assert(pipeSendBuffer.cursize + vallen < MAX_BUFFSIZE);
+    memcpy(pipeSendBuffer.data+pipeSendBuffer.cursize, val, vallen);
+    pipeSendBuffer.cursize += vallen;
+}
+
+void PIPE_WriteInt(int val){
+    PIPE_WriteData(&val,sizeof(val));
+}
+
+void PIPE_WriteFloat(float val){
+    PIPE_WriteData(&val,sizeof(val));
+}
+
+void PIPE_WriteLong(long long val){
+    PIPE_WriteData(&val,sizeof(val));
+}
+
+void PIPE_SendEvt(PipeType fd, const uint8 ev, const int okay){
+    printf("AAAAAAAAAAAAAAAAAAAAA%llu\n",pipeSendBuffer.cursize);
+    writeThing(fd, ev, pipeSendBuffer.data, pipeSendBuffer.cursize, okay);
+}
+
+int PIPE_SendCmd(const uint8 cmd){
+    uint8 buf[MAX_BUFFSIZE+sizeof(cmd)];
+    uint8 *ptr = buf+1;
+    *(ptr++) = (uint8) cmd;
+    memcpy(ptr, pipeSendBuffer.data, pipeSendBuffer.cursize+1);
+
+    buf[0] = (uint8) pipeSendBuffer.cursize+1;
+    return writePipe(GPipeWrite, buf, buf[0] + 1);
+}
+
+
+static pipebuff_t *pipeReadBuffer;
+void PIPE_Read(pipebuff_t *buf){
+    pipeReadBuffer = buf;
+}
+
+void* PIPE_ReadData(size_t vallen){
+    assert(pipeReadBuffer->cursize + vallen < MAX_BUFFSIZE);
+    void* val = pipeReadBuffer->data+pipeReadBuffer->cursize;
+    pipeReadBuffer->cursize+=vallen;
+    return val;
+}
+
+int PIPE_ReadInt(){
+    return *(int*)PIPE_ReadData(sizeof(int));
+}
+
+float PIPE_ReadFloat(){
+    return *(float*)PIPE_ReadData(sizeof(float));
+}
+
+long long PIPE_ReadLong(){
+    return *(long long*)PIPE_ReadData(sizeof(long long));
+}

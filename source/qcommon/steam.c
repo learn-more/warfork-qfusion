@@ -19,6 +19,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "../qcommon/qcommon.h"
 #include "../steamshim/steamshim_child.h"
+#include "../steamshim/steamshim_types.h"
+#include <string.h>
 
 #define UNIMPLEMENTED_DBGBREAK()                                         \
 	do {                                                                 \
@@ -62,11 +64,13 @@ static const STEAMSHIM_Event* blockOnEvent(STEAMSHIM_EventType type){
 	while( 1 ) {
 		const STEAMSHIM_Event *evt = STEAMSHIM_pump();
 		if (!evt) continue;
+		printf("%i\n",evt->type);
 
 		if (evt->type == type){
 			printEvent( evt );
 			return evt;
 		} else {
+			printf("warning: ignoring event %i\n",evt->type);
 			// event gets ignored!
 			printEvent( evt );
 		}
@@ -84,7 +88,7 @@ void Steam_Init( void )
 		return;
 	}
 
-	STEAMSHIM_requestStats();
+	// STEAMSHIM_requestStats();
 }
 
 /*
@@ -113,8 +117,30 @@ void Steam_Shutdown( void )
 */
 int Steam_GetAuthSessionTicket( void ( *callback )( void *, size_t ) )
 {
-	// UNIMPLEMENTED_DBGBREAK();
+	// coolelectronics: not implementing anything here until i have a better understanding of cl_mm.c
 	return 0;
+}
+
+/*
+* Steam_GetAuthSessionTicketBlocking
+*/
+const SteamAuthTicket_t* Steam_GetAuthSessionTicketBlocking(){
+	static SteamAuthTicket_t ticket;
+
+	STEAMSHIM_getAuthSessionTicket();
+	printf("bloci\n");
+	const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_AUTHSESSIONTICKETRECIEVED);
+
+	printf("bloci\n");
+
+	ticket.pcbTicket = evt->lvalue;
+	memcpy(ticket.pTicket, evt->name, AUTH_TICKET_MAXSIZE);
+
+	return &ticket;
+}
+
+void Steam_BeginAuthSession(uint64_t steamid, SteamAuthTicket_t *ticket){
+	STEAMSHIM_beginAuthSession(steamid,ticket);
 }
 
 /*
@@ -161,3 +187,4 @@ uint64_t Steam_GetSteamID( void )
 int Steam_Active(){
 	return STEAMSHIM_alive();
 }
+

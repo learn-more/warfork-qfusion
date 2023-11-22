@@ -897,6 +897,7 @@ static void CL_MM_ErrorMessage( bool printToConsole, const char *format, ... )
 
 void CL_MM_Init( void )
 {
+
 	if( cl_mm_initialized )
 		return;
 

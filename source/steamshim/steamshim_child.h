@@ -1,9 +1,11 @@
 #ifndef _INCL_STEAMSHIM_CHILD_H_
 #define _INCL_STEAMSHIM_CHILD_H_
 
+#include <stdint.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "steamshim_types.h"
 
 typedef enum STEAMSHIM_EventType
 {
@@ -20,6 +22,7 @@ typedef enum STEAMSHIM_EventType
     SHIMEVENT_STEAMIDRECIEVED,
     SHIMEVENT_PERSONANAMERECIEVED,
     SHIMEVENT_AUTHSESSIONTICKETRECIEVED,
+    SHIMEVENT_AUTHSESSIONVALIDATED,
 } STEAMSHIM_EventType;
 
 /* not all of these fields make sense in a given event. */
@@ -30,7 +33,7 @@ typedef struct STEAMSHIM_Event
     int ivalue;
     float fvalue;
     unsigned long long lvalue;
-    char name[256];
+    char name[1024];
 } STEAMSHIM_Event;
 
 int STEAMSHIM_init(void);  /* non-zero on success, zero on failure. */
@@ -49,6 +52,8 @@ void STEAMSHIM_getStatF(const char *name);
 void STEAMSHIM_getSteamID();
 void STEAMSHIM_getPersonaName();
 void STEAMSHIM_setRichPresence(const char* key, const char* val);
+void STEAMSHIM_getAuthSessionTicket();
+void STEAMSHIM_beginAuthSession(uint64_t steamid, SteamAuthTicket_t* ticket);
 #ifdef __cplusplus
 }
 #endif

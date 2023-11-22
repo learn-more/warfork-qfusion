@@ -985,6 +985,19 @@ static void CL_ParseServerData( msg_t *msg )
 				}
 			}
 		}
+
+		// ticket needs to be generated on demand each time we join a server
+		SteamAuthTicket_t *ticket = Steam_GetAuthSessionTicketBlocking();
+
+	  uint8_t messageData[MAX_MSGLEN];
+		msg_t msg;
+		MSG_Init(&msg, messageData, sizeof(messageData));
+	  MSG_WriteByte(&msg, clc_steamauth);
+	  MSG_WriteLong(&msg, ticket->pcbTicket);
+		MSG_WriteData(&msg, ticket->pTicket, AUTH_TICKET_MAXSIZE);
+
+		CL_Netchan_Transmit(&msg);
+
 	}
 
 	// pure list

@@ -2137,7 +2137,7 @@ static char* CL_RandomName(){
 */
 static void CL_InitLocal( void )
 {
-	cvar_t *name, *color;
+	cvar_t *name, *color, *steam_id;
 
 	cls.state = CA_DISCONNECTED;
 	Com_SetClientState( CA_DISCONNECTED );
@@ -2235,6 +2235,14 @@ static void CL_InitLocal( void )
 			Cvar_Set( name->name, CL_RandomName() );
 		}
 
+	}
+
+
+	steam_id = Cvar_Get( "steam_id", "", CVAR_USERINFO);
+
+	if (Steam_Active()){
+		char id[18];
+		Cvar_Set(steam_id->name, id);
 	}
 
 	Cvar_Get( "clan", "", CVAR_USERINFO | CVAR_ARCHIVE );

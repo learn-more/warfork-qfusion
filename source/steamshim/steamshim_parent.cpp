@@ -10,28 +10,10 @@
 #error Please define your game exe name.
 #endif
 
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN 1
-#include <windows.h>
-typedef PROCESS_INFORMATION ProcessType;
-typedef HANDLE PipeType;
-#define NULLPIPE NULL
-#include <malloc.h>
-#else
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <sys/wait.h>
-#include <signal.h>
-typedef pid_t ProcessType;
-typedef int PipeType;
-#define NULLPIPE -1
-#endif
-
 #include "steam/steam_api.h"
 #include "steam/steam_gameserver.h"
 #include "pipe.h"
+#include "steamshim_types.h"
 
 /* platform-specific mainline calls this. */
 static int mainline(void);
@@ -207,6 +189,7 @@ public:
     SteamBridge(PipeType _fd);
 	STEAM_CALLBACK(SteamBridge, OnUserStatsReceived, UserStatsReceived_t, m_CallbackUserStatsReceived);
 	STEAM_CALLBACK(SteamBridge, OnUserStatsStored, UserStatsStored_t, m_CallbackUserStatsStored);
+	STEAM_CALLBACK(SteamBridge, OnValidateAuthTicket, ValidateAuthTicketResponse_t, m_CallbackValidateAuthTicket);
 
 private:
     PipeType fd;
@@ -227,6 +210,7 @@ typedef enum ShimEvent
     SHIMEVENT_STEAMIDRECIEVED,
     SHIMEVENT_PERSONANAMERECIEVED,
     SHIMEVENT_AUTHSESSIONTICKETRECIEVED,
+    SHIMEVENT_AUTHSESSIONVALIDATED,
 } ShimEvent;
 
 static bool write1ByteCmd(PipeType fd, const uint8 b1)
@@ -344,6 +328,7 @@ static inline bool writeGetStatF(PipeType fd, const char *name, const float val,
 SteamBridge::SteamBridge(PipeType _fd)
     : m_CallbackUserStatsReceived( this, &SteamBridge::OnUserStatsReceived )
 	, m_CallbackUserStatsStored( this, &SteamBridge::OnUserStatsStored )
+    , m_CallbackValidateAuthTicket( this, &SteamBridge::OnValidateAuthTicket )
 	, fd(_fd)
 {
 } // SteamBridge::SteamBridge
@@ -361,6 +346,15 @@ void SteamBridge::OnUserStatsStored(UserStatsStored_t *pCallback)
     writeStatsStored(fd, pCallback->m_eResult == k_EResultOK);
 } // SteamBridge::OnUserStatsStored
 
+void SteamBridge::OnValidateAuthTicket(ValidateAuthTicketResponse_t *pCallback)
+{
+    PIPE_Init();
+    PIPE_WriteLong(pCallback->m_SteamID.ConvertToUint64());
+    PIPE_WriteInt(pCallback->m_eAuthSessionResponse);
+    PIPE_SendEvt(fd, SHIMEVENT_AUTHSESSIONVALIDATED, true);
+
+    printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+}
 
 static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
 {
@@ -370,11 +364,11 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
     const ShimCmd cmd = (ShimCmd) *(buf++);
     buflen--;
 
-    #if DEBUGPIPE
+    #if 1
     if (false) {}
-    #define PRINTGOTCMD(x) else if (cmd == x) printf("Parent got " #x ".\n")
+    #define PRINTGOTCMD(x) else if (cmd && cmd == x) printf("Parent got " #x ".\n")
     PRINTGOTCMD(SHIMCMD_BYE);
-    PRINTGOTCMD(SHIMCMD_PUMP);
+    // PRINTGOTCMD(SHIMCMD_PUMP);
     PRINTGOTCMD(SHIMCMD_REQUESTSTATS);
     PRINTGOTCMD(SHIMCMD_STORESTATS);
     PRINTGOTCMD(SHIMCMD_SETACHIEVEMENT);
@@ -385,8 +379,12 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
     PRINTGOTCMD(SHIMCMD_SETSTATF);
     PRINTGOTCMD(SHIMCMD_GETSTATF);
     PRINTGOTCMD(SHIMCMD_REQUESTSTEAMID);
+    PRINTGOTCMD(SHIMCMD_REQUESTPERSONANAME);
+    PRINTGOTCMD(SHIMCMD_SETRICHPRESENCE);
+    PRINTGOTCMD(SHIMCMD_REQUESTAUTHSESSIONTICKET);
+    PRINTGOTCMD(SHIMCMD_BEGINAUTHSESSION);
     #undef PRINTGOTCMD
-    else printf("Parent got unknown shimcmd %d.\n", (int) cmd);
+    else if (cmd != SHIMCMD_PUMP) printf("Parent got unknown shimcmd %d.\n", (int) cmd);
     #endif
 
     switch (cmd)
@@ -516,12 +514,38 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
             break;
         case SHIMCMD_REQUESTAUTHSESSIONTICKET:
             {
-                char pTicket[1024];
-                uint32 ticketlength;
-                GSteamUser->GetAuthSessionTicket(pTicket, 1024, &ticketlength);
-                writeThing(fd, SHIMEVENT_AUTHSESSIONTICKETRECIEVED, pTicket, ticketlength, true);
+                char pTicket[AUTH_TICKET_MAXSIZE];
+                uint32 pcbTicket;
+                GSteamUser->GetAuthSessionTicket(pTicket,AUTH_TICKET_MAXSIZE, &pcbTicket);
+
+                PIPE_Init();
+                PIPE_WriteLong(pcbTicket);
+                PIPE_WriteData(pTicket, AUTH_TICKET_MAXSIZE);
+                PIPE_SendEvt(fd, SHIMEVENT_AUTHSESSIONTICKETRECIEVED, true);
             }
             break;
+        case SHIMCMD_BEGINAUTHSESSION:
+            {
+                pipebuff_t pipebuf;
+                pipebuf.cursize = 0;
+                memcpy(pipebuf.data, buf, buflen);
+                PIPE_Read(&pipebuf);
+
+                char pTicket[AUTH_TICKET_MAXSIZE];
+
+                uint64 steamID = PIPE_ReadLong();
+                long long cbAuthTicket = PIPE_ReadLong();
+                void* pAuthTicket = PIPE_ReadData(AUTH_TICKET_MAXSIZE);
+
+                printf("stewamid: %llu, %llu, -ticket- \n",*(long long*)buf,cbAuthTicket);
+
+                write(91,buf,AUTH_TICKET_MAXSIZE);
+
+                int i = GSteamGameServer->BeginAuthSession(pAuthTicket, cbAuthTicket, steamID);
+                if (i != 0){
+                    printf("FAILED %i\n",i);
+                }
+            }
     } // switch
 
     return true;  // keep going.
@@ -530,7 +554,7 @@ static bool processCommand(const uint8 *buf, unsigned int buflen, PipeType fd)
 static void processCommands(PipeType pipeParentRead, PipeType pipeParentWrite)
 {
     bool quit = false;
-    uint8 buf[256];
+    uint8 buf[MAX_BUFFSIZE];
     int br;
 
     // this read blocks.
@@ -538,18 +562,19 @@ static void processCommands(PipeType pipeParentRead, PipeType pipeParentWrite)
     {
         while (br > 0)
         {
-            const int cmdlen = (int) buf[0];
+            const int cmdlen = *(int*)buf;
+            // printf("___%i_\n",cmdlen);
             if ((br-1) >= cmdlen)
             {
-                if (!processCommand(buf+1, cmdlen, pipeParentWrite))
+                if (!processCommand(buf+sizeof(int), cmdlen, pipeParentWrite))
                 {
                     quit = true;
                     break;
                 } // if
 
-                br -= cmdlen + 1;
+                br -= cmdlen + sizeof(int);
                 if (br > 0)
-                    memmove(buf, buf+cmdlen+1, br);
+                    memmove(buf, buf+cmdlen+sizeof(int), br);
             } // if
             else  // get more data.
             {
@@ -582,8 +607,12 @@ static bool setEnvironmentVars(PipeType pipeChildRead, PipeType pipeChildWrite)
 static bool initSteamworks(PipeType fd)
 {
     if (GServerType == STEAMGAMESERVER) {
-        // is there something i have to do to init server?
+        if (!SteamGameServer_Init(0, 27015, 0,eServerModeNoAuthentication,"0.0.0.0"))
+            return 0;
         GSteamGameServer = SteamGameServer();
+        if (!GSteamGameServer)
+            return 0;
+        
     }else{
         // this can fail for many reasons:
         //  - you forgot a steam_appid.txt in the current working directory.

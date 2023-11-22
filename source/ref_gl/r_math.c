@@ -96,7 +96,7 @@ void Matrix4_MultiplyFast( const mat4_t m1, const mat4_t m2, mat4_t out )
 
 // Taken from Darkplaces source code
 // Adapted from code contributed to Mesa by David Moore (Mesa 7.6 under SGI Free License B - which is MIT/X11-type)
-// added helper for common subexpression elimination by eihrul, and other optimizations by div0
+// added helper for common subexpression elimination by Lee "eihrul" Salzman and other optimizations by Rudolf "divVerent" Polzer
 bool Matrix4_Invert( const mat4_t in, mat4_t out )
 {
 	vec_t det;

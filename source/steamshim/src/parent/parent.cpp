@@ -131,16 +131,12 @@ static void processCommands()
   pipebuff_t buf;
 
   while (1){
+
     if (!buf.Recieve())
       continue;
 
-
     if (buf.hasmsg){
-        buf.hasmsg = false;
-
         volatile unsigned int evlen =buf.ReadInt();
-
-        write(91,buf.buffer+buf.cursize,1024);
 
         ShimCmd cmd = (ShimCmd)buf.ReadByte();
 

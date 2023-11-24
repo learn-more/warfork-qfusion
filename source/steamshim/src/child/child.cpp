@@ -43,11 +43,9 @@ static STEAMSHIM_Event* ProcessEvent(){
     if (!buf.hasmsg)
         return NULL;
 
-    buf.hasmsg = false;
+    volatile unsigned int msglen =buf.ReadInt();
+    write(91,buf.buffer,1024);
 
-    volatile unsigned int evlen =buf.ReadInt();
-
-    write(91,buf.buffer+buf.cursize,1024);
 
     char type = buf.ReadByte();
 
@@ -75,6 +73,7 @@ static STEAMSHIM_Event* ProcessEvent(){
         case SHIMEVENT_STEAMIDRECIEVED:
             {
                 event.lvalue = buf.ReadLong();
+                printf("long is %llu",event.lvalue);
             }
             break;
         default:
@@ -138,7 +137,7 @@ extern "C" {
 
   const STEAMSHIM_Event *STEAMSHIM_pump(void)
   {
-    Write1ByteMessage(SHIMCMD_PUMP);
+    // Write1ByteMessage(SHIMCMD_PUMP);
     return ProcessEvent();
   } 
 

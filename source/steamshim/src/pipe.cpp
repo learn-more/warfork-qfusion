@@ -14,6 +14,7 @@ class pipebuff_t
   public:
   char buffer[MESSAGE_MAX];
   unsigned int cursize = 0;
+
   unsigned int br = 0;
   bool hasmsg = false;
   
@@ -92,20 +93,32 @@ class pipebuff_t
 
   int Transmit()
   {
+    printf("writing pipe %i\n", cursize);
     writePipe(GPipeWrite, &cursize, sizeof cursize);
     return writePipe(GPipeWrite, buffer, cursize);
   }
 
   int Recieve()
   {
-    int evlen = (br > 0) ? (*(uint32_t*) &buffer[0]) : 0;
+    // reset after a succesful message read. could be more explicit but idc
+    if (hasmsg)
+    {
+      cursize = 0;
+      hasmsg = false;
+      memset(buffer,0,sizeof buffer);
+    }
 
-    if (br <= evlen)  /* we have an incomplete commmand. Try to read more. */
+
+    // read message length header
+    int msglen = (br > 0) ? (*(uint32_t*) &buffer[0]) : 0;
+
+    if (br < (msglen + sizeof(uint32_t)))  /* we have an incomplete commmand. Try to read more. */
     {
         if (pipeReady(GPipeRead))
         {
-            const int morebr = readPipe(GPipeRead, buffer + br, sizeof (buffer) - br);
 
+            assert(br < sizeof(buffer));
+            const int morebr = readPipe(GPipeRead, buffer + br, sizeof (buffer) - br);
             if (morebr > 0)
                 br += morebr;
             else  /* uh oh */
@@ -115,13 +128,18 @@ class pipebuff_t
         }
     }
 
-    if (evlen && (br > evlen))
+
+    // we have a full command
+    if (msglen && (br >= msglen + sizeof(uint32_t)))
     {
-        printf("GOTMESSAGE \n");
-        write(91, buffer,evlen+sizeof(uint32_t));
-        br -= evlen + sizeof(uint32_t);
-        if (br > 0)
-            memmove(buffer, buffer+evlen+sizeof(uint32_t), br);
+      hasmsg = true;
+
+      br -= msglen + sizeof(uint32_t);
+      if (br > 0){
+        printf("OVERRINNING!!!\n");
+        // we have extra data left over, shift it to the left
+        memmove(buffer, buffer+msglen+sizeof(uint32_t), br);
+      }
 
     }
 

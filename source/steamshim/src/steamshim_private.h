@@ -30,6 +30,8 @@ class pipebuff_t
   public:
   char buffer[1024];
   unsigned int cursize;
+
+  int br;
   bool hasmsg;
   pipebuff_t();
   ~pipebuff_t();

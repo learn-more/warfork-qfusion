@@ -30,6 +30,7 @@ class pipebuff_t
   public:
   char buffer[1024];
   unsigned int cursize;
+  bool hasmsg;
   pipebuff_t();
   ~pipebuff_t();
 
@@ -37,6 +38,15 @@ class pipebuff_t
   void WriteByte(char val);
   void WriteInt(int val);
   void WriteFloat(float val);
+  void WriteLong(long long val);
+
+  void *ReadData(size_t vallen);
+  char *ReadString();
+  char ReadByte();
+  int ReadInt();
+  int ReadFloat();
+  int ReadLong();
+
   int Transmit();
   int Recieve();
 

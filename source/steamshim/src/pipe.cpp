@@ -7,14 +7,15 @@
 PipeType GPipeRead = NULLPIPE;
 PipeType GPipeWrite = NULLPIPE;
 
-
+#define MESSAGE_MAX 1024
 
 class pipebuff_t
 {
   public:
-  char buffer[1024];
+  char buffer[MESSAGE_MAX];
   unsigned int cursize = 0;
   unsigned int br = 0;
+  bool hasmsg = false;
   
 
   // cursize, data, whatever is in pipebuff_t now
@@ -29,7 +30,7 @@ class pipebuff_t
 
   void WriteData(void* val, size_t vallen)
   {
-    assert(cursize + vallen < 1024);
+    assert(cursize + vallen < MESSAGE_MAX);
     memcpy(buffer + cursize, val, vallen);
     cursize += vallen;
   }
@@ -49,6 +50,46 @@ class pipebuff_t
     WriteData(&val, sizeof val);
   }
 
+  void WriteLong(long long val){
+    WriteData(&val, sizeof val);
+  }
+
+  void *ReadData(size_t vallen)
+  {
+    assert(cursize + vallen < MESSAGE_MAX);
+    void* val = cursize + buffer;
+    cursize += vallen;
+    return val;
+  }
+
+  char *ReadString()
+  {
+    char *str = cursize + buffer;
+    unsigned int len = strlen(str);
+    cursize +=len;
+
+    return str;
+  }
+
+  char ReadByte(){
+    return *(char*)ReadData(sizeof(char));
+  }
+
+  int ReadInt(){
+    return *(int*)ReadData(sizeof(int));
+  }
+
+  int ReadFloat(){
+    return *(float*)ReadData(sizeof(float));
+  }
+
+  int ReadLong(){
+    return *(long long*)ReadData(sizeof(long long));
+  }
+
+
+
+
   int Transmit()
   {
     writePipe(GPipeWrite, &cursize, sizeof cursize);
@@ -64,6 +105,7 @@ class pipebuff_t
         if (pipeReady(GPipeRead))
         {
             const int morebr = readPipe(GPipeRead, buffer + br, sizeof (buffer) - br);
+
             if (morebr > 0)
                 br += morebr;
             else  /* uh oh */
@@ -75,11 +117,12 @@ class pipebuff_t
 
     if (evlen && (br > evlen))
     {
+        printf("GOTMESSAGE \n");
+        write(91, buffer,evlen+sizeof(uint32_t));
         br -= evlen + sizeof(uint32_t);
         if (br > 0)
             memmove(buffer, buffer+evlen+sizeof(uint32_t), br);
 
-        printf("GOTMESSAGE\n");
     }
 
     return 1;
@@ -93,9 +136,14 @@ int Write1ByteMessage(const uint8_t message){
   return buf.Transmit();
 }
 
-
-//???
+//
+// //???
 int what(){
   pipebuff_t wtf;
   wtf.Recieve();
+  wtf.ReadByte();
+  wtf.ReadInt();
+  wtf.WriteLong(0);
+  wtf.ReadString();
+  wtf.ReadLong();
 }

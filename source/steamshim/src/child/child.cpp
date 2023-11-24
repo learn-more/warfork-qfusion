@@ -32,6 +32,58 @@ static int initPipes(void)
     return ((GPipeRead != NULLPIPE) && (GPipeWrite != NULLPIPE));
 } /* initPipes */
 
+static STEAMSHIM_Event* ProcessEvent(){
+    static STEAMSHIM_Event event;
+    // make sure this is static, since it needs to persist between pumps
+    static pipebuff_t buf;
+
+    if (!buf.Recieve())
+        return NULL;
+
+    if (!buf.hasmsg)
+        return NULL;
+
+    buf.hasmsg = false;
+
+    volatile unsigned int evlen =buf.ReadInt();
+
+    write(91,buf.buffer+buf.cursize,1024);
+
+    char type = buf.ReadByte();
+
+    #if DEBUGPIPE
+    if (0) {}
+    #define PRINTGOTEVENT(x) else if (type == x) printf("Child got " #x ".\n")
+    PRINTGOTEVENT(SHIMEVENT_BYE);
+    PRINTGOTEVENT(SHIMEVENT_STATSRECEIVED);
+    PRINTGOTEVENT(SHIMEVENT_STATSSTORED);
+    PRINTGOTEVENT(SHIMEVENT_SETACHIEVEMENT);
+    PRINTGOTEVENT(SHIMEVENT_GETACHIEVEMENT);
+    PRINTGOTEVENT(SHIMEVENT_RESETSTATS);
+    PRINTGOTEVENT(SHIMEVENT_SETSTATI);
+    PRINTGOTEVENT(SHIMEVENT_GETSTATI);
+    PRINTGOTEVENT(SHIMEVENT_SETSTATF);
+    PRINTGOTEVENT(SHIMEVENT_GETSTATF);
+    PRINTGOTEVENT(SHIMEVENT_STEAMIDRECIEVED);
+    PRINTGOTEVENT(SHIMEVENT_PERSONANAMERECIEVED);
+    PRINTGOTEVENT(SHIMEVENT_AUTHSESSIONTICKETRECIEVED);
+    #undef PRINTGOTEVENT
+    else printf("Child got unknown shimevent %d.\n", (int) type);
+    #endif
+
+    switch (type){
+        case SHIMEVENT_STEAMIDRECIEVED:
+            {
+                event.lvalue = buf.ReadLong();
+            }
+            break;
+        default:
+            return NULL;
+    }
+
+    return &event;
+}
+
 extern "C" {
   int STEAMSHIM_init(void)
   {
@@ -49,7 +101,7 @@ extern "C" {
       dbgpipe("Child init success!\n");
       return 1;
   } /* STEAMSHIM_init */
-
+//
   void STEAMSHIM_deinit(void)
   {
       dbgpipe("Child deinit.\n");
@@ -86,7 +138,8 @@ extern "C" {
 
   const STEAMSHIM_Event *STEAMSHIM_pump(void)
   {
-    // Write1ByteMessage(SHIMCMD_PUMP);
+    Write1ByteMessage(SHIMCMD_PUMP);
+    return ProcessEvent();
   } 
 
   void STEAMSHIM_getSteamID()
@@ -95,6 +148,7 @@ extern "C" {
   }
 
   void STEAMSHIM_getPersonaName(){
+
       // write1ByteCmd(SHIMCMD_REQUESTPERSONANAME);
   }
 

@@ -61,6 +61,7 @@ static void printEvent( const STEAMSHIM_Event *e )
 } /* printEvent */
 
 static const STEAMSHIM_Event* blockOnEvent(STEAMSHIM_EventType type){
+
 	while( 1 ) {
 		const STEAMSHIM_Event *evt = STEAMSHIM_pump();
 		if (!evt) continue;
@@ -159,9 +160,9 @@ void Steam_GetPersonaName( char *name, size_t namesize )
 	if( !namesize ) {
 		return;
 	}
-	STEAMSHIM_getPersonaName();
-	const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_PERSONANAMERECIEVED);
-	strncpy(name, evt->name,namesize);
+	// STEAMSHIM_getPersonaName();
+	// const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_PERSONANAMERECIEVED);
+	strncpy(name, "a",namesize);
 }
 
 /*
@@ -177,9 +178,9 @@ void Steam_SetRichPresence( const char *key, const char *val )
 uint64_t Steam_GetSteamID( void )
 {
 	STEAMSHIM_getSteamID();
-	const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_STEAMIDRECIEVED);
+	// const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_STEAMIDRECIEVED);
 	
-	return evt->lvalue;
+	return 10;
 }
 /*
 * Steam_Active

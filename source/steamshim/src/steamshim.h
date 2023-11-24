@@ -1,3 +1,5 @@
+#define AUTH_TICKET_MAXSIZE 1024
+
 typedef enum STEAMSHIM_EventType
 {
     SHIMEVENT_BYE,

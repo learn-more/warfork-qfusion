@@ -266,7 +266,6 @@ if (NOT GAME_MODULES_ONLY)
     endif()
 endif()
 
-set(STEAMSHIMCHILD_LIBRARY ${CMAKE_SOURCE_DIR}/build/libs/libsteamshim_child.a)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux") # Do not add 'OR MINGW' here - we need to use suffix-prefix settings from Windows
     set(CURL_LIBRARY "")

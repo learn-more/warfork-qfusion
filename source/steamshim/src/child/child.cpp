@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <cstring>
+#include <stdio.h>
 #define DEBUGPIPE 1
 #include "child_private.h"
 #include "../steamshim.h"
@@ -193,6 +194,3 @@ extern "C" {
       buf.Transmit();
   }
 }
-
-// what the hell?
-void *__gxx_personality_v0;

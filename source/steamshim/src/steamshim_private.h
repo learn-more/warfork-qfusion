@@ -30,12 +30,10 @@ class pipebuff_t
 {
   public:
   char buffer[PIPEMESSAGE_MAX];
-  unsigned int cursize;
+  unsigned int cursize = 0;
 
-  int br;
-  bool hasmsg;
-  pipebuff_t();
-  ~pipebuff_t();
+  int br = 0;
+  bool hasmsg = false;
 
   void WriteData(void* val, size_t vallen);
   void WriteByte(char val);

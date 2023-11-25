@@ -57,6 +57,7 @@ int closeProcess(ProcessType *pid)
     return 0;
 } // closeProcess
 
+#if 0
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                      LPSTR lpCmdLine, int nCmdShow)
 {
@@ -64,7 +65,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     ExitProcess(0);
     return 0;  // just in case.
 } // WinMain
-
+#endif
 
 #else  // everyone else that isn't Windows.
 

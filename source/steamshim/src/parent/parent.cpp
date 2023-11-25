@@ -98,7 +98,7 @@ static bool processCommand(pipebuff_t cmd, ShimCmd cmdtype, unsigned int len)
                 uint32 pcbTicket;
                 GSteamUser->GetAuthSessionTicket(pTicket,AUTH_TICKET_MAXSIZE, &pcbTicket);
 
-                write(91,pTicket,1024);
+                //write(91,pTicket,1024);
 
                 msg.WriteByte(SHIMEVENT_AUTHSESSIONTICKETRECIEVED);
                 msg.WriteLong(pcbTicket);
@@ -191,7 +191,9 @@ static bool setEnvironmentVars(PipeType pipeChildRead, PipeType pipeChildWrite)
 
 int main(int argc, char **argv)
 {
+#ifndef _WIN32
     signal(SIGPIPE, SIG_IGN);
+#endif
     GArgc = argc;
     GArgv = argv;
 
@@ -251,4 +253,45 @@ int main(int argc, char **argv)
     return retval;
 
 }
+
+#ifdef _WIN32
+
+// from win_sys
+#define MAX_NUM_ARGVS 128
+int argc;
+char *argv[MAX_NUM_ARGVS];
+
+static void ParseCommandLine( LPSTR lpCmdLine )
+{
+	argc = 1;
+	argv[0] = "exe";
+
+	while( *lpCmdLine && ( argc < MAX_NUM_ARGVS ) ) {
+		while( *lpCmdLine && ( *lpCmdLine <= 32 || *lpCmdLine > 126 ) )
+			lpCmdLine++;
+
+		if( *lpCmdLine ) {
+			char quote = ( ( '"' == *lpCmdLine || '\'' == *lpCmdLine ) ? *lpCmdLine++ : 0 );
+
+			argv[argc++] = lpCmdLine;
+			if( quote ) {
+				while( *lpCmdLine && *lpCmdLine != quote && *lpCmdLine >= 32 && *lpCmdLine <= 126 )
+					lpCmdLine++;
+			} else {
+				while( *lpCmdLine && *lpCmdLine > 32 && *lpCmdLine <= 126 )
+					lpCmdLine++;
+			}
+
+			if( *lpCmdLine )
+				*lpCmdLine++ = 0;
+		}
+	}
+}
+
+int CALLBACK WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
+{
+	ParseCommandLine( lpCmdLine );
+	return main( argc, argv );
+} // WinMain
+#endif
 

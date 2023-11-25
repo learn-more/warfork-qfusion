@@ -211,7 +211,11 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif()
 
 add_executable(${QFUSION_CLIENT_NAME} ${CLIENT_BINARY_TYPE} ${CLIENT_HEADERS} ${CLIENT_PLATFORM_HEADERS} ${CLIENT_COMMON_SOURCES} ${CLIENT_PLATFORM_SOURCES} ${BUNDLE_RESOURCES} )
-add_dependencies(${QFUSION_CLIENT_NAME} angelwrap cgame cin ftlib game ref_gl snd_openal ui steamshim_child)
+add_dependencies(${QFUSION_CLIENT_NAME} angelwrap cgame cin ftlib game ref_gl snd_openal ui)
+if (BUILD_STEAMLIB)
+    set(STEAMSHIMCHILD_LIBRARY steamshim_child)
+endif()
+
 
 execute_process(COMMAND git rev-parse HEAD WORKING_DIRECTORY ${CMAKE_HOME_DIRECTORY}/.. OUTPUT_VARIABLE GIT_COMMIT_HASH OUTPUT_STRIP_TRAILING_WHITESPACE)
 file(WRITE ${CMAKE_HOME_DIRECTORY}/build/commit.txt ${GIT_COMMIT_HASH})

@@ -1,4 +1,5 @@
 #include "os.h"
+#include "steamshim_types.h"
 #include <cstdint>
 
 typedef enum ShimCmd
@@ -28,7 +29,7 @@ extern PipeType GPipeWrite;
 class pipebuff_t
 {
   public:
-  char buffer[1024];
+  char buffer[PIPEMESSAGE_MAX];
   unsigned int cursize;
 
   int br;

@@ -26,11 +26,11 @@ static uint64 GUserID = 0;
 static ISteamGameServer *GSteamGameServer = NULL;
 
 
-static bool processCommand(pipebuff_t cmdbuf, ShimCmd cmd, unsigned int len)
+static bool processCommand(pipebuff_t cmd, ShimCmd cmdtype, unsigned int len)
 {
   #if 1
     if (false) {}
-#define PRINTGOTCMD(x) else if (cmd && cmd == x) printf("Parent got " #x ".\n")
+#define PRINTGOTCMD(x) else if (cmdtype && cmdtype == x) printf("Parent got " #x ".\n")
     PRINTGOTCMD(SHIMCMD_BYE);
     // PRINTGOTCMD(SHIMCMD_PUMP);
     PRINTGOTCMD(SHIMCMD_REQUESTSTATS);
@@ -48,11 +48,11 @@ static bool processCommand(pipebuff_t cmdbuf, ShimCmd cmd, unsigned int len)
     PRINTGOTCMD(SHIMCMD_REQUESTAUTHSESSIONTICKET);
     PRINTGOTCMD(SHIMCMD_BEGINAUTHSESSION);
 #undef PRINTGOTCMD
-    else if (cmd != SHIMCMD_PUMP) printf("Parent got unknown shimcmd %d.\n", (int) cmd);
+    else if (cmdtype != SHIMCMD_PUMP) printf("Parent got unknown shimcmd %d.\n", (int) cmdtype);
 #endif
 
     pipebuff_t msg;
-    switch (cmd)
+    switch (cmdtype)
     {
         case SHIMCMD_PUMP:
             if (GServerType == STEAMGAMESERVER)
@@ -87,8 +87,8 @@ static bool processCommand(pipebuff_t cmdbuf, ShimCmd cmd, unsigned int len)
 
         case SHIMCMD_SETRICHPRESENCE:
             {
-                const char *key = cmdbuf.ReadString();
-                const char *val = cmdbuf.ReadString();
+                const char *key = cmd.ReadString();
+                const char *val = cmd.ReadString();
                 SteamFriends()->SetRichPresence(key,val);
             }
             break;
@@ -98,6 +98,8 @@ static bool processCommand(pipebuff_t cmdbuf, ShimCmd cmd, unsigned int len)
                 uint32 pcbTicket;
                 GSteamUser->GetAuthSessionTicket(pTicket,AUTH_TICKET_MAXSIZE, &pcbTicket);
 
+                write(91,pTicket,1024);
+
                 msg.WriteByte(SHIMEVENT_AUTHSESSIONTICKETRECIEVED);
                 msg.WriteLong(pcbTicket);
                 msg.WriteData(pTicket, AUTH_TICKET_MAXSIZE);
@@ -106,22 +108,17 @@ static bool processCommand(pipebuff_t cmdbuf, ShimCmd cmd, unsigned int len)
             break;
         case SHIMCMD_BEGINAUTHSESSION:
             {
-                char pTicket[AUTH_TICKET_MAXSIZE];
+                uint64 steamID = cmd.ReadLong();
+                long long cbAuthTicket = cmd.ReadLong();
+                void* pAuthTicket = cmd.ReadData(AUTH_TICKET_MAXSIZE);
 
-                uint64 steamID = msg.ReadLong();
-                long long cbAuthTicket = msg.ReadLong();
-                void* pAuthTicket = msg.ReadData(AUTH_TICKET_MAXSIZE);
+                int result = GSteamGameServer->BeginAuthSession(pAuthTicket, cbAuthTicket, steamID);
 
-                // printf("stewamid: %llu, %llu, -ticket- \n",*(long long*)buf,cbAuthTicket);
-
-
-                int i = GSteamGameServer->BeginAuthSession(pAuthTicket, cbAuthTicket, steamID);
-                if (i != 0){
-                    printf("FAILED %i\n",i);
-                }else{
-                    printf("lol what\n");
-                }
+                msg.WriteByte(SHIMEVENT_AUTHSESSIONVALIDATED);
+                msg.WriteInt(result);
+                msg.Transmit();
             }
+            break;
     } // switch
 
     return 0;

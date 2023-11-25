@@ -44,7 +44,7 @@ static STEAMSHIM_Event* ProcessEvent(){
         return NULL;
 
     volatile unsigned int msglen =buf.ReadInt();
-    write(91,buf.buffer,1024);
+    // write(91,buf.buffer,1024);
 
 
     char type = buf.ReadByte();
@@ -66,6 +66,7 @@ static STEAMSHIM_Event* ProcessEvent(){
     PRINTGOTEVENT(SHIMEVENT_STEAMIDRECIEVED);
     PRINTGOTEVENT(SHIMEVENT_PERSONANAMERECIEVED);
     PRINTGOTEVENT(SHIMEVENT_AUTHSESSIONTICKETRECIEVED);
+    PRINTGOTEVENT(SHIMEVENT_AUTHSESSIONVALIDATED);
     #undef PRINTGOTEVENT
     else printf("Child got unknown shimevent %d.\n", (int) type);
     #endif
@@ -84,9 +85,18 @@ static STEAMSHIM_Event* ProcessEvent(){
             break;
         case SHIMEVENT_AUTHSESSIONTICKETRECIEVED:
             {
+                long long pcbTicket = buf.ReadLong();
                 void *ticket = buf.ReadData(AUTH_TICKET_MAXSIZE);
+                event.lvalue = pcbTicket;
                 memcpy(event.name, ticket, AUTH_TICKET_MAXSIZE);
             }
+            break;
+        case SHIMEVENT_AUTHSESSIONVALIDATED:
+            {
+                int result = buf.ReadInt();
+                event.ivalue = result;
+            }
+            break;
         default:
             return NULL;
     }
@@ -148,7 +158,7 @@ extern "C" {
 
   const STEAMSHIM_Event *STEAMSHIM_pump(void)
   {
-    Write1ByteMessage(SHIMCMD_PUMP);
+    // Write1ByteMessage(SHIMCMD_PUMP);
     return ProcessEvent();
   } 
 

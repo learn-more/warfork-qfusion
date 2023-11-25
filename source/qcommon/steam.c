@@ -104,10 +104,7 @@ const SteamAuthTicket_t* Steam_GetAuthSessionTicketBlocking(){
 	static SteamAuthTicket_t ticket;
 
 	STEAMSHIM_getAuthSessionTicket();
-	printf("bloci\n");
 	const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_AUTHSESSIONTICKETRECIEVED);
-
-	printf("bloci\n");
 
 	ticket.pcbTicket = evt->lvalue;
 	memcpy(ticket.pTicket, evt->name, AUTH_TICKET_MAXSIZE);
@@ -115,8 +112,12 @@ const SteamAuthTicket_t* Steam_GetAuthSessionTicketBlocking(){
 	return &ticket;
 }
 
-void Steam_BeginAuthSession(uint64_t steamid, SteamAuthTicket_t *ticket){
+int Steam_BeginAuthSession(uint64_t steamid, SteamAuthTicket_t *ticket){
+
 	STEAMSHIM_beginAuthSession(steamid,ticket);
+	const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_AUTHSESSIONVALIDATED);
+
+	return evt->ivalue;
 }
 
 /*
@@ -145,7 +146,7 @@ void Steam_GetPersonaName( char *name, size_t namesize )
 */
 void Steam_SetRichPresence( const char *key, const char *val )
 {
-	STEAMSHIM_setRichPresence(key, val);
+	// STEAMSHIM_setRichPresence(key, val);
 }
 /*
 * Steam_GetSteamID

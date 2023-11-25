@@ -3,16 +3,15 @@
 #include <cassert>
 #include <cstring>
 #include "os.h"
+#include "steamshim_types.h"
 
 PipeType GPipeRead = NULLPIPE;
 PipeType GPipeWrite = NULLPIPE;
 
-#define MESSAGE_MAX 1024
-
 class pipebuff_t
 {
   public:
-  char buffer[MESSAGE_MAX];
+  char buffer[PIPEMESSAGE_MAX];
   unsigned int cursize = 0;
 
   unsigned int br = 0;
@@ -31,7 +30,7 @@ class pipebuff_t
 
   void WriteData(void* val, size_t vallen)
   {
-    assert(cursize + vallen < MESSAGE_MAX);
+    assert(cursize + vallen < PIPEMESSAGE_MAX);
     memcpy(buffer + cursize, val, vallen);
     cursize += vallen;
   }
@@ -63,7 +62,7 @@ class pipebuff_t
 
   void *ReadData(size_t vallen)
   {
-    assert(cursize + vallen < MESSAGE_MAX);
+    assert(cursize + vallen < PIPEMESSAGE_MAX);
     void* val = cursize + buffer;
     cursize += vallen;
     return val;
@@ -99,6 +98,7 @@ class pipebuff_t
 
   int Transmit()
   {
+
     writePipe(GPipeWrite, &cursize, sizeof cursize);
     return writePipe(GPipeWrite, buffer, cursize);
   }
@@ -124,6 +124,9 @@ class pipebuff_t
 
             assert(br < sizeof(buffer));
             const int morebr = readPipe(GPipeRead, buffer + br, sizeof (buffer) - br);
+            // write(91,"------",5);
+            // write(91,buffer,1024);
+            // printf("read from pipe\n");
             if (morebr > 0)
                 br += morebr;
             else  /* uh oh */
@@ -167,5 +170,6 @@ int what(){
   wtf.WriteLong(0);
   wtf.ReadString();
   wtf.ReadLong();
+  wtf.WriteInt(0);
   wtf.WriteString("");
 }

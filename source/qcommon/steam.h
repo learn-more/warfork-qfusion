@@ -32,7 +32,7 @@ void Steam_AdvertiseGame( const uint8_t *ip, unsigned short port );
 void Steam_GetPersonaName( char *name, size_t namesize );
 void Steam_SetRichPresence( const char *key, const char *val );
 SteamAuthTicket_t *Steam_GetAuthSessionTicketBlocking();
-void Steam_BeginAuthSession(uint64_t steamid, SteamAuthTicket_t *ticket);
+int Steam_BeginAuthSession(uint64_t steamid, SteamAuthTicket_t *ticket);
 int Steam_Active();
 
 #endif // _STEAM_LIB_H_

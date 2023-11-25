@@ -1,3 +1,11 @@
+#ifndef STEAMSHIM_H
+#define STEAMSHIM_H
+
+#include <stdint.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define AUTH_TICKET_MAXSIZE 1024
 
 typedef enum STEAMSHIM_EventType
@@ -28,3 +36,10 @@ typedef struct STEAMSHIM_Event
     unsigned long long lvalue;
     char name[1024];
 } STEAMSHIM_Event;
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+

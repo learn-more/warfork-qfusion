@@ -41,13 +41,14 @@ class pipebuff_t
   void WriteInt(int val);
   void WriteFloat(float val);
   void WriteLong(long long val);
+  void WriteString(char *val);
 
   void *ReadData(size_t vallen);
   char *ReadString();
   char ReadByte();
   int ReadInt();
-  int ReadFloat();
-  int ReadLong();
+  float ReadFloat();
+  long long ReadLong();
 
   int Transmit();
   int Recieve();

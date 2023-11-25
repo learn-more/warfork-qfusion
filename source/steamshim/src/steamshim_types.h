@@ -1,9 +1,5 @@
-#ifndef STEAMSHIM_TYPES_H_
-#define STEAMSHIM_TYPES_H_
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef _INCL_STEAMSHIM_TYPES_H_
+#define _INCL_STEAMSHIM_TYPES_H_
 
 #define AUTH_TICKET_MAXSIZE 1024
 typedef struct {
@@ -11,7 +7,4 @@ typedef struct {
   long long pcbTicket;
 } SteamAuthTicket_t;
 
-#endif
-#ifdef __cplusplus
-}
 #endif

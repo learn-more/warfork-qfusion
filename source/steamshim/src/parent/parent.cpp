@@ -32,7 +32,7 @@ static bool processCommand(pipebuff_t cmdbuf, ShimCmd cmd, unsigned int len)
     if (false) {}
 #define PRINTGOTCMD(x) else if (cmd && cmd == x) printf("Parent got " #x ".\n")
     PRINTGOTCMD(SHIMCMD_BYE);
-    PRINTGOTCMD(SHIMCMD_PUMP);
+    // PRINTGOTCMD(SHIMCMD_PUMP);
     PRINTGOTCMD(SHIMCMD_REQUESTSTATS);
     PRINTGOTCMD(SHIMCMD_STORESTATS);
     PRINTGOTCMD(SHIMCMD_SETACHIEVEMENT);
@@ -118,6 +118,8 @@ static bool processCommand(pipebuff_t cmdbuf, ShimCmd cmd, unsigned int len)
                 int i = GSteamGameServer->BeginAuthSession(pAuthTicket, cbAuthTicket, steamID);
                 if (i != 0){
                     printf("FAILED %i\n",i);
+                }else{
+                    printf("lol what\n");
                 }
             }
     } // switch

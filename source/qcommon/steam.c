@@ -18,8 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 #include "../qcommon/qcommon.h"
-#include "../steamshim/steamshim_child.h"
-#include "../steamshim/steamshim_types.h"
+#include "../steamshim/src/child/child.h"
 #include <string.h>
 
 #define UNIMPLEMENTED_DBGBREAK()                                         \
@@ -32,30 +31,6 @@ static void printEvent( const STEAMSHIM_Event *e )
 {
 	if( !e )
 		return;
-
-	Com_Printf( "CHILD EVENT: " );
-	switch( e->type ) {
-#define PRINTGOTEVENT( x )     \
-	case SHIMEVENT_##x:        \
-		Com_Printf( "%s(", #x ); \
-		break
-		PRINTGOTEVENT( BYE );
-		PRINTGOTEVENT( STATSRECEIVED );
-		PRINTGOTEVENT( STATSSTORED );
-		PRINTGOTEVENT( SETACHIEVEMENT );
-		PRINTGOTEVENT( GETACHIEVEMENT );
-		PRINTGOTEVENT( STEAMIDRECIEVED );
-		PRINTGOTEVENT( PERSONANAMERECIEVED );
-		PRINTGOTEVENT( RESETSTATS );
-		PRINTGOTEVENT( SETSTATI );
-		PRINTGOTEVENT( GETSTATI );
-		PRINTGOTEVENT( SETSTATF );
-		PRINTGOTEVENT( GETSTATF );
-#undef PRINTGOTEVENT
-		default:
-			Com_Printf( "UNKNOWN(" );
-			break;
-	} /* switch */
 
 	Com_Printf( "%sokay, ival=%d, fval=%f, lval=%llu, name='%s').\n", e->okay ? "" : "!", e->ivalue, e->fvalue, e->lvalue, e->name );
 } /* printEvent */
@@ -160,9 +135,9 @@ void Steam_GetPersonaName( char *name, size_t namesize )
 	if( !namesize ) {
 		return;
 	}
-	// STEAMSHIM_getPersonaName();
-	// const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_PERSONANAMERECIEVED);
-	strncpy(name, "a",namesize);
+	STEAMSHIM_getPersonaName();
+	const STEAMSHIM_Event *evt = blockOnEvent(SHIMEVENT_PERSONANAMERECIEVED);
+	strncpy(name, evt->name, namesize);
 }
 
 /*

@@ -51,8 +51,14 @@ class pipebuff_t
     WriteData(&val, sizeof val);
   }
 
-  void WriteLong(long long val){
+  void WriteLong(long long val)
+  {
     WriteData(&val, sizeof val);
+  }
+  
+  void WriteString(char *val)
+  {
+    WriteData(val, strlen(val));
   }
 
   void *ReadData(size_t vallen)
@@ -80,11 +86,11 @@ class pipebuff_t
     return *(int*)ReadData(sizeof(int));
   }
 
-  int ReadFloat(){
+  float ReadFloat(){
     return *(float*)ReadData(sizeof(float));
   }
 
-  int ReadLong(){
+  long long ReadLong(){
     return *(long long*)ReadData(sizeof(long long));
   }
 
@@ -93,7 +99,6 @@ class pipebuff_t
 
   int Transmit()
   {
-    printf("writing pipe %i\n", cursize);
     writePipe(GPipeWrite, &cursize, sizeof cursize);
     return writePipe(GPipeWrite, buffer, cursize);
   }
@@ -136,7 +141,6 @@ class pipebuff_t
 
       br -= msglen + sizeof(uint32_t);
       if (br > 0){
-        printf("OVERRINNING!!!\n");
         // we have extra data left over, shift it to the left
         memmove(buffer, buffer+msglen+sizeof(uint32_t), br);
       }
@@ -154,8 +158,7 @@ int Write1ByteMessage(const uint8_t message){
   return buf.Transmit();
 }
 
-//
-// //???
+// if i remove this it won't compile
 int what(){
   pipebuff_t wtf;
   wtf.Recieve();
@@ -164,4 +167,5 @@ int what(){
   wtf.WriteLong(0);
   wtf.ReadString();
   wtf.ReadLong();
+  wtf.WriteString("");
 }

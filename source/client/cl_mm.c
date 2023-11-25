@@ -942,7 +942,7 @@ void CL_MM_Init( void )
 	/*
 	* steam
 	*/
-	cl_mm_steam_id = Steam_GetSteamID();
+	// cl_mm_steam_id = Steam_GetSteamID();
 
 	/*
 	* login

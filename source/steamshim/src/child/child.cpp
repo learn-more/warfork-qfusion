@@ -1,6 +1,6 @@
 #include <cstdint>
+#include <cstring>
 #define DEBUGPIPE 1
-#include "child.h"
 #include "child_private.h"
 #include "../steamshim.h"
 #include "../steamshim_private.h"
@@ -48,6 +48,7 @@ static STEAMSHIM_Event* ProcessEvent(){
 
 
     char type = buf.ReadByte();
+    event.type = (STEAMSHIM_EventType)type;
 
     #if DEBUGPIPE
     if (0) {}
@@ -73,9 +74,19 @@ static STEAMSHIM_Event* ProcessEvent(){
         case SHIMEVENT_STEAMIDRECIEVED:
             {
                 event.lvalue = buf.ReadLong();
-                printf("long is %llu",event.lvalue);
             }
             break;
+        case SHIMEVENT_PERSONANAMERECIEVED:
+            {
+                char *string = buf.ReadString();
+                strcpy(event.name, string);
+            }
+            break;
+        case SHIMEVENT_AUTHSESSIONTICKETRECIEVED:
+            {
+                void *ticket = buf.ReadData(AUTH_TICKET_MAXSIZE);
+                memcpy(event.name, ticket, AUTH_TICKET_MAXSIZE);
+            }
         default:
             return NULL;
     }
@@ -91,7 +102,7 @@ extern "C" {
       {
           dbgpipe("Child init failed.\n");
           return 0;
-      } /* if */
+      }
 
 #ifndef _WIN32
       signal(SIGPIPE, SIG_IGN);
@@ -99,8 +110,8 @@ extern "C" {
 
       dbgpipe("Child init success!\n");
       return 1;
-  } /* STEAMSHIM_init */
-//
+  } 
+
   void STEAMSHIM_deinit(void)
   {
       dbgpipe("Child deinit.\n");
@@ -108,7 +119,7 @@ extern "C" {
       {
           // writeBye();
           closePipe(GPipeWrite);
-      } /* if */
+      } 
 
       if (GPipeRead != NULLPIPE)
           closePipe(GPipeRead);
@@ -118,26 +129,26 @@ extern "C" {
 #ifndef _WIN32
       signal(SIGPIPE, SIG_DFL);
 #endif
-  } /* STEAMSHIM_deinit */
+  } 
 
   static inline int isAlive(void)
   {
       return ((GPipeRead != NULLPIPE) && (GPipeWrite != NULLPIPE));
-  } /* isAlive */
+  } 
 
   static inline int isDead(void)
   {
       return !isAlive();
-  } /* isDead */
+  }
 
   int STEAMSHIM_alive(void)
   {
       return isAlive();
-  } /* STEAMSHIM_alive */
+  } 
 
   const STEAMSHIM_Event *STEAMSHIM_pump(void)
   {
-    // Write1ByteMessage(SHIMCMD_PUMP);
+    Write1ByteMessage(SHIMCMD_PUMP);
     return ProcessEvent();
   } 
 
@@ -148,31 +159,28 @@ extern "C" {
 
   void STEAMSHIM_getPersonaName(){
 
-      // write1ByteCmd(SHIMCMD_REQUESTPERSONANAME);
+      Write1ByteMessage(SHIMCMD_REQUESTPERSONANAME);
   }
 
   void STEAMSHIM_getAuthSessionTicket(){
-      // write1ByteCmd(SHIMCMD_REQUESTAUTHSESSIONTICKET);
-  }
-  void STEAMSHIM_beginAuthSession(uint64_t steamid, SteamAuthTicket_t* ticket){
-      // printf("stewamid: %llu, %llu, -ticket- \n",steamid,ticket->pcbTicket);
-      // PIPE_Init();
-      // PIPE_WriteLong(steamid);
-      // PIPE_WriteLong(ticket->pcbTicket);
-      // PIPE_WriteData(ticket->pTicket, AUTH_TICKET_MAXSIZE);
-      // PIPE_SendCmd(SHIMCMD_BEGINAUTHSESSION);
+      Write1ByteMessage(SHIMCMD_REQUESTAUTHSESSIONTICKET);
   }
 
-  void STEAMSHIM_setRichPresence(const char* key, const char* val){
-      // uint8 buf[256];
-      // uint8 *ptr = buf+1;
-      // *(ptr++) = (uint8) SHIMCMD_SETRICHPRESENCE;
-      // strcpy((char *) ptr, key);
-      // ptr += strlen(key) + 1;
-      // strcpy((char *) ptr, val);
-      // ptr += strlen(val) + 1;
-      // buf[0] = (uint8) ((ptr-1) - buf);
-      // writePipe(GPipeWrite, buf, buf[0] + 1);
+  void STEAMSHIM_beginAuthSession(uint64_t steamid, SteamAuthTicket_t* ticket){
+      pipebuff_t buf;
+      buf.WriteByte(SHIMCMD_BEGINAUTHSESSION);
+      buf.WriteLong(steamid);
+      buf.WriteLong(ticket->pcbTicket);
+      buf.WriteData(ticket->pTicket, AUTH_TICKET_MAXSIZE);
+      buf.Transmit();
+  }
+
+  void STEAMSHIM_setRichPresence(char* key, char* val){
+      pipebuff_t buf;
+      buf.WriteByte(SHIMCMD_SETRICHPRESENCE);
+      buf.WriteString(key);
+      buf.WriteString(val);
+      buf.Transmit();
   }
 }
 

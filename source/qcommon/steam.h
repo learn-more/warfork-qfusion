@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #ifndef _STEAM_LIB_H_
 #define _STEAM_LIB_H_
-#include "../steamshim/steamshim_types.h"
+#include "../steamshim/src/steamshim_types.h"
 #include <stdint.h>
 
 void Steam_Init( void );
